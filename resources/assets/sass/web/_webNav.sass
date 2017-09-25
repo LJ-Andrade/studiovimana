@@ -1,0 +1,162 @@
+$nav-back: #fff
+$nav-back-portfolio: #1d1729
+
+.navbar-default .navbar-toggle
+    border: 0
+    max-width: 100%
+@media (min-width: 765px)
+    .navbar
+        background-color: $nav-back
+        border-bottom: 0
+        height: 60px
+        @include transition(0.5s)
+        .navbar-right
+            margin-right: 15px
+            @include transition(0.5s)
+            li 
+                margin-right: 5px
+                a 
+                    font-family: $font2
+                    font-weight: 400
+                    i
+                        font-family: $font1
+                        margin-right: 5px
+        .navbar-nav > li
+            @include flex-center
+            height: 60px
+            a
+                color: #fff
+                font-size: 1rem
+                font-family: $font3
+                font-weight: 300
+                border-radius: 30px
+                padding: 4px 20px
+                @include transition(0.5s)
+            a.contacto
+                background-color: $light-green
+ 
+            &:active,&:focus
+                color: #ccc
+            &:hover
+                cursor: pointer
+                a
+                    background-color: none
+                a.contacto
+                    color: #fff
+        .navbar-brand
+            padding: 8px 12px
+            @include transition(0.5s)
+            img
+                @include transition(0.5s)
+                width: 150px
+
+    .navbar.home-nav
+        background-color: transparent
+        .navbar-nav > li
+            a
+                color: #fff
+                font-size: 1.2rem
+            &:hover
+                a
+                    border: 1px solid $light-green
+                    color: #fff
+                    
+                a.contacto
+                    background-color: $main-blue
+                    border: 0
+                    color: #fff
+
+    .navbar.change-nav
+        background-color: #fff
+        height: 60px
+        @include transition(0.5s)
+        @include box-shadow
+        // @include box-shadow-down
+        .navbar-right
+            border-bottom: 0
+        .navbar-nav > li
+            @include flex-center
+            height: 60px
+            a
+                color: #000
+                font-size: 1.25rem
+                padding-top: 4px
+            a.contacto
+                color: #fff
+            &:active,&:focus
+                color: #fff
+
+        .navbar-brand
+            @include transition(0.5s)
+            img
+                @include transition(0.5s)
+                width: 150px
+        
+@media (max-width: 765px)
+    .navbar
+        background-color: $nav-back
+        border: 0
+        .navbar-brand
+            img
+                width: 100px
+        // Mobile Sandwich button
+        .navbar-toggle
+            border-radius: 0
+        .navbar-default .navbar-toggle
+            border-color: #fff
+        .navbar-toggle
+            .icon-bar
+                background-color: #fff
+
+@media (max-width: 786px)
+    body
+        padding-top: 0
+    // Mobile hamburger menu
+    .navbar .navbar-toggle .icon-bar
+        background-color: #383838
+    // Text Color
+    .navbar-default .navbar-nav > li > a
+        color: #383838
+        font-family: $font2
+        font-weight: 400
+        font-size: 1.5rem
+        padding-top: 10px
+        padding-bottom: 10px
+        border: 1px solid #f9f9f9
+        border-radius: 50px
+        margin-bottom: 5px
+        &:hover
+            color: #383838
+            background-color: #f9f9f9
+    // UL Border
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form
+        border: 0
+    // Sandwich focus
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover
+        background-color: $nav-back
+    .navbar
+        background-color: $nav-back
+        border: 0
+        .navbar-brand
+            img
+                width: 100px
+
+.nav-portfolio
+    background-color: #fff
+    border-bottom: 1px solid #ccc
+    .navbar-collapse ul li a 
+        color: #000
+    li
+        a
+            color: #fff
+            font-size: 1.2rem
+            border: 1px solid transparent
+        &:hover
+            a
+                border: 1px solid $light-green
+                color: #fff
+                
+            a.contacto
+                background-color: $main-blue
+                border: 0
+                color: #fff

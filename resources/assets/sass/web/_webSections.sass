@@ -1,0 +1,768 @@
+////////////////////////////////////////
+//                                    //
+//              HOME                  //
+//                                    //
+////////////////////////////////////////
+
+.main-home
+	background: transparent
+	position: relative
+	padding-top: 5%
+	// min-height: 500px
+	min-height: 100vh
+	.main-info
+		width: 100%
+		@include flex-column
+		z-index: 5
+		h1
+			color: #fff
+			font-size: 1.5rem
+			margin-bottom: 25px
+		.buttons
+			button
+				float: left
+
+@media (max-width: 765px)
+	.main-home
+		.main-info
+			text-align: center
+			padding-top: 100px
+			img
+				max-width: 80%
+			.actions button
+				margin-bottom: 15px
+				border: 1px solid #fff
+				font-weight: 600
+
+
+	
+//--------- DIVISOR ------------- //
+.first-divisor
+	margin-top: -7px
+	background-color: $back-color
+
+@media (max-width: 765px)
+	.first-divisor img
+		margin-top: -14px
+
+
+//--------- SECOND SECTION ------------- //
+
+.home-section-2
+	padding: 50px 20px
+	background-color: $back-color
+	color: #fff
+	.big-text
+		text-align: right
+		span
+			font-family: $font2
+			font-size: 3.5rem
+			line-height: 5.1rem
+	.small-text
+		padding-top: 10px
+		h3
+			font-size: 1.5rem
+			margin-top: 15px
+			margin-bottom: 22px
+	.bottom-text
+		text-align: center
+		margin-top: 50px
+		span
+			font-size: 1.2rem
+			font-weight: 300
+
+// -------- Mobile ------------//
+@media (max-width: 765px)
+	.home-section-2
+		padding: 50px 10px
+		.big-text
+			text-align: left
+			span
+				font-size: 3rem
+				line-height: 4rem
+
+@media (max-width: 435px)
+	.home-section-2
+		.power-icons
+			margin-left: 20px
+			margin-top: 10px
+			img
+				width: 40px
+
+@media (max-width: 335px)
+	.home-section-2
+		.big-text
+			text-align: left
+			span
+				font-size: 2rem
+				line-height: 3rem
+
+// -------------- End Mobile --------------//
+
+//------------ HOME MID SLIDER ------------- //
+
+.home-mid-slider
+	padding: 60px 10px
+	.inner-text
+		padding-top: 40px
+		font-size: 1.5rem
+		line-height: 2.1rem
+
+
+//------------ THIRD SECTION ------------- //
+.home-section-3
+	background-color: $back-color
+	padding: 50px 10px
+	text-align: center
+	.col-md-3
+		padding: 0
+	.text
+		padding: 20px
+		p
+			color: #fff
+			font-size: 1.2rem
+	.divisor
+		max-width: 100%
+
+//--------- FOURTH SECTION ------------- //
+.service-item
+	padding: 50px 10px
+
+.our-services
+	padding: 40px 0 
+	background-color: #f9f9f9
+	color: $back-color2
+	h1
+		text-align: center
+	.inner
+		@include flex-column-left
+		padding: 20px
+		margin: 0 auto
+		object,img
+			margin: 0 auto
+			// width: 600px
+			max-width: 100%
+		.text-big
+			h1
+				margin-bottom: 0
+				line-height: 40px
+				font-size: 2.5rem
+				font-weight: 700
+				padding-bottom: 10px
+				color: $back-color2	
+				text-align: left
+		.action
+			margin-top: 40px
+		i
+			color: #03cdb7
+			font-size: .9rem
+			margin-right: 5px
+
+
+.our-works
+	padding: 40px 5px 30px
+	background-color: #fff
+	color: $back-color
+	text-align: center
+	.inner
+		padding: 20px 20px 30px
+		margin: auto
+		text-align: right
+		h1
+			line-height: 3.3rem
+			margin-bottom: 25px
+		p
+			line-height: 1.5rem
+			font-size: 1.4rem
+		p.first
+			margin-bottom: 20px
+		p.second
+			margin-bottom: 10px
+
+		object,img
+			max-width: 100%
+		span
+			font-size: 3rem
+		.btn
+			margin-top: 20px
+			font-size: 1.5rem
+	.inner-mobile
+			display: none
+	.inner-desk
+
+@media (max-width: 991px)
+	.our-works
+		.inner
+			padding: 10px 20px 0 0 
+			h1
+				margin-top: 0
+				margin-bottom: 5px
+				line-height: 2.8rem
+				font-size: 2rem
+			p
+				font-size: 1.2rem
+				line-height: 1.2rem
+
+@media (max-width: 764px)
+	.our-works
+		.inner
+			text-align: left
+			h1
+				margin-top: 0
+				line-height: 2.8rem
+				font-size: 2rem
+			p
+				font-size: 1.2rem
+				line-height: 1.2rem
+		.inner-mobile
+			display: block
+			text-align: center
+			padding-bottom: 30px
+		.inner-desk
+			display: none
+////////////////////////////////////////
+//                                    //
+//              PORTFOLIO             //
+//                                    //
+////////////////////////////////////////
+
+.dark-container-top
+	padding: 0
+	padding-top: 60px
+	background-color: #fff
+	color: #fff
+	h2
+		text-align: center
+
+.container-top
+	padding: 0
+	margin-top: 80px
+	padding-bottom: 50px
+
+.filters
+	.searcher
+		input
+			color: #000
+
+.portfolio-container
+	padding-top: 20px
+	.portfolio-item
+		@include flex-column
+		margin-bottom: 25px
+		.inner
+			// width: auto
+			img
+				max-width: 100%
+				@include transition(0.2s)
+				&:hover
+					filter: brightness(50%)
+					cursor: pointer
+			.info	
+				padding: 15px
+				background-color: #fff
+				position: relative
+				min-height: 188px
+				padding-bottom: 70px
+				hr
+					margin-top: 10px
+					margin-bottom: 10px
+				.text
+					font-family: $font2
+					font-size: 1rem
+					color: $color3
+					font-weight: 400
+				.title
+					font-size: 1.3rem
+					font-weight: 700
+					margin-top: 10px
+					margin-bottom: 5px
+					margin-left: 5px
+				.cat-title
+					margin-left: 5px
+				.cat-text
+					a
+						color: #9D9D9D
+						&:hover
+							color: #383838
+				.bottom-content
+					position: absolute
+					bottom: 10px
+					left: 5px
+					.tags
+						margin-top: 5px
+						line-height: 28px
+					.date
+						margin-left: 5px
+						margin-top: 5px
+						span.text
+							color: #ABABAB
+
+@media (max-width: 1380px) and (min-width: 991px)
+	.portfolio-container
+		.portfolio-item
+			.inner
+				.info
+					min-height: 208px
+
+// @media (max-width: 1032px) and (min-width: 991px)
+// 	.portfolio-container
+// 		.portfolio-item
+// 			.inner
+// 				.info
+// 					min-height: 208px
+
+$nav_dark1: #31313A
+$nav_dark2: #3F3F4A
+$nav_dark3: #444450
+@media (min-width: 765px)
+	.portfolio-filter
+		background-color: #fff
+		border: 0
+		.icons-menu
+			font-size: 1.2rem
+			margin-right: 5px
+		.container-fluid,.navbar-collapse
+			padding-left: 0
+			padding-right: 15px
+		.portfolio-filter-left
+			height: 50px
+			.title
+				padding: 15px 30px
+				background-color: #fff
+				border-right: 1px solid #ccc
+				color: #383838
+				height: 55px
+			li.filter-parent-link
+				height: 55px
+			li
+				border-right: 1px solid #ccc
+				&:hover,&:focus,&:active
+					border: 0 !important
+					a
+						border: 0 !important
+				a
+					padding-left: 10px
+					color: #fff
+					font-size: 1rem
+					font-family: $font3
+					font-weight: 300
+				&:hover
+					background-color: $light-green
+					a
+						color: #fff
+				&:focus,&:active
+					background-color: $light-green
+					border: 0
+					color: #fff
+					a
+						color: #fff
+
+			.open > a, .open > a:focus, .open > a:hover
+				border: 0
+				background-color: $light-green
+				color: #fff
+			.dropdown-items
+				background-color: #fff
+				border: 0
+				border-radius: 0
+				.badge
+					font-family: $font2
+					font-weight: 400
+					font-size: 0.8rem
+					margin-right: 5px
+					background-color: $light-green
+					width: 28px
+				li
+					a
+						color: #000
+					&:hover
+						background-color: #fff
+						color: #383838
+						a
+							color: #383838	
+		.portfolio-filter-right
+			.search-bar
+				border: 1px solid #ccc
+				border-radius: 40px
+				padding: 0px 18px
+				input
+					border: 0
+					box-shadow: none
+					font-size: 1rem
+				.search-btn
+					background-color: #fff
+					color: #383838
+			// form
+			// 	input
+			// 		border: 0
+			// 		border-radius: 0
+			// .search-btn
+			// 	background-color: #fff
+			// 	// border-radius: 0
+			// 	color: #383838
+			// 	// @include transition(0.2s)
+			// 	// &:hover
+			// 	// 	background-color: #383838
+			// 	// 	color: #fff
+
+@media (max-width: 765px)
+	.portfolio-filter
+		display: none
+
+.portfolio-filter-mobile
+	display: none
+
+@media (max-width: 765px)
+	.portfolio-filter-mobile
+		display: block
+		position: relative
+		padding: 0
+		.search-bar
+			border: 1px solid #ccc
+			border-radius: 40px
+			padding: 0px 18px
+			input
+				border: 0
+				box-shadow: none
+				font-size: 1rem
+			.search-btn
+				background-color: #fff
+				color: #383838
+		h2
+			color: #383838
+		.inner-main
+			height: 40px
+			padding-left: 15px
+		.title
+			font-size: 1.5rem
+			color: #383838
+		.filterMobileBtn
+			color: #383838
+			background-color: transparent
+			position: absolute
+			right: 0
+			top: -9px
+			border-radius: 0
+			padding: 5px 26px 0
+			margin-right: 20px
+			margin-bottom: 10px
+			font-family: "Josefin Slab", serif
+			font-weight: 400
+			font-size: 1.3rem
+			border: 1px solid #ccc
+			border-radius: 50px
+			&:hover
+				color: #383838
+				background-color: #ccc
+		// Filters
+		.filter-inner
+			text-align: center
+			background-color: #fff
+			padding: 10px
+			hr
+				margin-top: 10px
+				margin-bottom: 20px
+				border: 0
+				border-top: 1px solid #d4d4d4
+				// border-top: 1px solid rgb(84, 87, 116)
+			.search-input
+				hr
+					margin-top: 20px
+				input
+					width: 70%
+					float: left
+					margin-right: 5px
+					border-radius: 0
+				button
+					color: #000
+					border-radius: 0
+			.search-buttons
+				.title
+					font-size: 1.2rem
+					margin-bottom: 10px
+					font-weight: 400
+				.filter-button
+					font-weight: 300
+					border-radius: 50px
+					background-color: transparent
+					border: 1px solid #dbdbdb
+					padding: 5px
+					margin-right: 5px
+					margin-bottom: 5px
+					color: #000
+					font-size: 1rem
+					&:hover
+						background-color: #f9f9f9
+
+
+
+
+
+.single-item
+	background-color: #fff
+	padding: 25px
+	position: relative
+	@include box-shadow-center
+	border-radius: 6px
+	margin-bottom: 15px
+	p
+		font-size: 1.4rem
+	a
+		color: blue
+	h1
+		text-align: center
+		margin-bottom: 25px
+	// .image
+	// .content
+	.info
+		width: 100%
+	.date
+		position: absolute
+		right: 12px
+		top: 5px
+	
+@media (max-width: 430px)
+	.single-item
+		padding: 10px
+		h1
+			font-size: 2rem
+
+
+////////////////////////////////////////
+//                                    //
+//              CONTACT               //
+//                                    //
+////////////////////////////////////////
+
+$ph-text: 1.3rem
+$ph-color: #f9f9f9
+$ph-font: $font2
+$ph-weight: 400
+
+
+
+
+.contact-section
+	background: rgba(26,212,190,1)
+	background: -moz-linear-gradient(-45deg, rgba(26,212,190,1) 0%, rgba(51,86,227,1) 100%)
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(26,212,190,1)), color-stop(100%, rgba(51,86,227,1)))
+	background: -webkit-linear-gradient(-45deg, rgba(26,212,190,1) 0%, rgba(51,86,227,1) 100%)
+	background: -o-linear-gradient(-45deg, rgba(26,212,190,1) 0%, rgba(51,86,227,1) 100%)
+	background: -ms-linear-gradient(-45deg, rgba(26,212,190,1) 0%, rgba(51,86,227,1) 100%)
+	background: linear-gradient(135deg, rgba(26,212,190,1) 0%, rgba(51,86,227,1) 100%)
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ad4be', endColorstr='#3356e3', GradientType=1 )
+	padding: 30px 5px 60px
+	.title			
+		color: #fff
+		text-align: center
+		margin-bottom: 20px
+		h1
+			font-size: 2.2rem
+	.contact-head-data
+		color: #fff
+		text-align: left
+		display: inline-block
+		width: 100%
+		margin-top: 25px
+		margin-bottom: 40px
+		>div
+			border-right: 1px solid #fff
+			padding: 0 30px
+			&:last-child
+				border: 0
+		div
+			float: left
+		div.data-title
+			font-family: $font1
+			font-weight: 700
+			font-size: 1.5rem
+			margin-bottom: 5px
+			i
+				font-size: 1.8rem
+		div.data-info
+			font-family: $font3
+			color: #383838
+	.inner
+		text-align: center
+		@include flex-center
+		.contact-form
+			max-width: 880px
+			form
+				// background-color: rgba(206, 206, 206, 0.2)
+				// @include box-shadow-floor
+				color: #fff
+				padding: 20px
+				>.col-md-6
+					padding: 0
+				.form-group
+					margin-bottom: 0
+				// Chrome/Opera/Safari
+				::-webkit-input-placeholder 
+					color: $ph-color
+					font-size: $ph-text
+					font-family: $ph-font
+					font-weight: $ph-weight
+				// Firefox 19+
+				::-moz-placeholder
+					color:  $ph-color
+					font-size: $ph-text
+					font-family: $ph-font
+					font-weight: $ph-weight
+				//IE 10+
+				::-ms-input-placeholder
+					color: $ph-color
+					font-size: $ph-text
+					font-family: $ph-font
+					font-weight: $ph-weight
+				//Firefox 18-
+				::-moz-placeholder
+					color:  $ph-color
+					font-size: $ph-text
+					font-family: $ph-font
+					font-weight: $ph-weight
+			input
+				height: 70px
+			input,textarea
+				border: 0
+				border-radius: 0
+				background-color: transparent
+				border: 1px solid rgba(255,255,255,.5)
+				color: #fff
+				box-shadow: none
+				font-size: 1.5rem
+			.contactBtn
+				border-radius: 0
+				padding: 5px 120px
+				height: 50px
+				background-color: #fff
+				color: #383838
+				@include transition(0.2s)
+				&:hover
+					background-color: transparent
+					border: 1px solid #fff
+					color: #fff
+					// @include box-shadow-floor-big
+			textarea
+				height: 210px
+			.form-responses
+				padding-top: 30px
+				padding-bottom: 20px
+				color: #fff
+				font-size: 1.5rem
+				i
+					font-size: 4rem
+				i.success
+					color: $light-green
+				i.error
+					color: $main-red
+				hr
+					margin-top: 60px
+
+	.social-icons
+		text-align: center
+		margin-top: 25px
+		.title
+			margin-bottom: 15px
+		span
+			font-size: 1.6rem
+			font-family: $font2
+			font-weight: 400
+			color: #fff
+		img
+			border-radius: 100%
+			max-width: 70px
+			@include transition(0.5s)
+			&:hover
+				@include box-shadow-down
+				cursor: pointer
+
+@media (min-width: 698px)
+	.contact-section
+		.contact-head-data
+			@include flex-center
+
+@media (max-width: 698px)
+	.contact-section
+		.contact-head-data
+			color: #fff
+			text-align: left
+			display: block
+			// width: 100%
+			// @include flex-center
+			div
+				float: none
+				text-align: center
+				margin-bottom: 15px
+				br
+					display: none
+			>div
+				border-right: 0
+
+@media (max-width: 765px)
+	.contact-section
+		.social-icons
+			img
+				width: 75px
+
+@media (max-width: 405px)
+	.contact-section
+		.social-icons
+			img
+				width: 45px
+
+.whatsapp-call
+	padding: 10px
+	position: fixed
+	bottom: 50px
+	right: 0
+	background-color: #fff
+	border-radius: 5px 0 0 5px
+	@include box-shadow
+	z-index: 9999
+	img
+		width: 40px
+		&:hover
+			cursor: pointer
+
+@media (min-width: 1000px)
+	.whatsapp-call
+		bottom: 150px
+
+footer
+	background-color: $back-color
+	padding-left: 0 !important
+	padding-right: 0 !important
+	.footer
+		padding: 20px 10px 40px
+		h2
+			color: #fff
+		.contact-data
+			span
+				font-size: 1.2rem
+				font-family: $font2
+				font-weight: 400
+				color: #fff
+				text-align: center
+			i
+				color: #E7E7E7
+				font-size: 2rem
+			span.icon
+				margin-right: 10px
+				width: 50px
+		.social
+			span
+				color: #fff
+			#u_0_3
+				display: none
+
+
+	.copyright
+		background-color: #0A1120
+		padding: 10px 5px
+		text-align: center
+		color: #fff
+		font-family: $font2
+		font-weight: 400
+		font-size: 1.4rem
+
+
