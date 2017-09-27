@@ -113,7 +113,7 @@ class WebController extends Controller
 		$MailSubject      = "Mensaje desde la web";
 
 		if (!isset($MailFromAddress) ) {
-			$MailFromAddress = "info@studiovimana.com.ar";
+			$MailFromAddress = "admstudiovimana@gmail.com";
 		}
 
 		$Header = "Contacto desde la Web";
