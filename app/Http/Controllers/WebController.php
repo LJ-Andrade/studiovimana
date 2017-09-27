@@ -109,7 +109,7 @@ class WebController extends Controller
 	public function mail_sender(Request $request)
     {
 
-		$MailToAddress    = "info@studiovimana.com.ar";
+		$MailToAddress    = "adm@studiovimana.com.ar";
 		$MailSubject      = "Mensaje desde la web";
 
 		if (!isset($MailFromAddress) ) {

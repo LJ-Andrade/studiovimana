@@ -7,7 +7,7 @@
 			<div class="contact-head-data">
 				<div>
 					<div class="data-title"><i class="ion-email"></i> Mail</div> <br>
-					<div class="data-info">info@studiovimana.com.ar</div>
+					<div class="data-info">admstudiovimana@gmail.com</div>
 				</div>
 				<div>
 					<div class="data-title"><i class="ion-ios-telephone"></i> Teléfono</div> <br>
