@@ -77,8 +77,8 @@
                     <img class="divisor" src="{{ asset('webimages/gral/home/divisor.png') }}" alt="">
                     <div class="text">
                         <p>
-                            Analizamos las cualidades del cliente. El objetivo es llevar al receptor la mejor impresión
-                            para ser valorado positivamente en el primer vistazo.
+                            Analizamos el perfil del cliente para detectar las cualidades a destacar.
+                            El objetivo es que en el primer vistazo sea valorado positivamente.
                         </p>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                     <img class="divisor" src="{{ asset('webimages/gral/home/divisor.png') }}" alt="">
                     <div class="text">
                         <p>
-                            Desarrollamos y presentamos ideas. Trazamos un plan de desarrollo para plasmarlas y transladarlas al receptor de manera clara y sintética.
+                            Desarrollamos y presentamos ideas. Aportamos nuestro punto de vista y nuestra experiencia con otros clientes.
                         </p>    
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                     <img class="divisor" src="{{ asset('webimages/gral/home/divisor.png') }}" alt="">
                     <div class="text">
                         <p>
-                            Proporcionamos ideas, recomendaciones y tips basados en nuestra experiencia con otros clientes.
+                            Una vez en marcha le damos al proyecto el retoque necesario para encausarlo a la dirección correcta.
                         </p>
                     </div>
                 </div>
@@ -116,15 +116,9 @@
         </div>
     </div>
     {{-- Slider --}}
-    <div class="container home-mid-slider">
+   {{--  <div class="container home-mid-slider">
         <div class="row">
             <div class="col-md-6">
-        {{--         <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/slider/homeimg2.jpg') }}" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/slider/homeimg3.jpg') }}" alt=""></div>
-                    </div>
-               </div>--}}
 
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
@@ -150,7 +144,7 @@
             </div>
         </div>
     </div>
-
+    --}}
     {{-- Our Services --}}
     <div id="services" class="container-fluid section-container our-services">
         <div class="container">
@@ -165,6 +159,7 @@
                     </div>
                     <p>
                         Desarrollamos sitios personalizados. Creados desde cero y con las últimas tecnologías web.
+                        <b>Son visibles en todo tipo de dispositivo.</b>
                         Entregamos un código limpio y optimizado para luego incluírlo en buscadores cumpliendo con sus exigencias. <br><br>
                         <i class="ion-record"></i> <b>Adaptables</b> | Celulares | Tablets | Notebooks | Pc <br>
                         <i class="ion-record"></i> <b>Sitios Institucionales</b> | Económicos | Rápido Desarrollo <br>
@@ -175,9 +170,33 @@
                 </article>
             </div>
 
+            
+
             <div class="row row-flex row-flex-wrap service-item">
                 <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
-                    <img src="{{ asset('webimages/gral/home/servicio2.png') }}">        
+                    <img src="{{ asset('webimages/gral/home/servicio2.png') }}">       
+                </div>
+                <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
+                    <div class="text-big">
+                        <h1>Progamación y Desarrollo de Apps</h1> 
+                        <img src="{{ asset('webimages/gral/home/divisor2.png') }}">      
+                    </div>
+                    <p>
+                        Creamos sistemas hechos a medida según las necesidades presentadas.<br>
+                        Desarrollamos: <br>
+                        <i class="ion-record"></i> <b>Gestores de Contenido</b><br>
+                        <i class="ion-record"></i> <b>Carros de Compras</b><br>
+                        <i class="ion-record"></i> <b>Portfolios</b><br>
+                        <i class="ion-record"></i> <b>Catálogos</b><br>
+                        <i class="ion-record"></i> <b>Blogs</b> <br>
+                        <b>* Son Autoadministrables !</b>
+                        
+                    </p>
+                </article>
+            </div>
+            <div class="row row-flex row-flex-wrap service-item">
+                <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
+                    <img src="{{ asset('webimages/gral/home/servicio3.png') }}">        
                 </div>
                 <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
                     <div class="text-big">
@@ -194,29 +213,6 @@
                         <i class="ion-record"></i> <b>Publicidad</b> | Redes sociales | Plantillas | Posts <br>
                         <i class="ion-record"></i> <b>Editorial</b> | Libros | Catálogos | Manuales | Folletos <br>
                         <i class="ion-record"></i> <b>Packagin</b> | Etiquetas | Bolsas | Cajas <br>
-                    </p>
-                </article>
-            </div>
-
-            <div class="row row-flex row-flex-wrap service-item">
-                <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
-                    <img src="{{ asset('webimages/gral/home/servicio3.png') }}">       
-                </div>
-                <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
-                    <div class="text-big">
-                        <h1>Progamación y Desarrollo de Apps</h1> 
-                        <img src="{{ asset('webimages/gral/home/divisor2.png') }}">      
-                    </div>
-                    <p>
-                        Creamos sistemas hechos a medida según las necesidades presentadas.<br>
-                        Desarrollamos: <br>
-                        <i class="ion-record"></i> <b>Gestores de Contenido</b><br>
-                        <i class="ion-record"></i> <b>Carros de Compras</b><br>
-                        <i class="ion-record"></i> <b>Portfolios</b><br>
-                        <i class="ion-record"></i> <b>Catálogos</b><br>
-                        <i class="ion-record"></i> <b>Blogs</b> <br>
-                        * Autoadministrables !
-                        
                     </p>
                 </article>
             </div>

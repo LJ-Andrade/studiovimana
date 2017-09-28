@@ -552,12 +552,16 @@ $ph-weight: 400
 	background: linear-gradient(135deg, rgba(26,212,190,1) 0%, rgba(51,86,227,1) 100%)
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ad4be', endColorstr='#3356e3', GradientType=1 )
 	padding: 30px 5px 60px
-	.title			
-		color: #fff
+	.contact-data
 		text-align: center
-		margin-bottom: 20px
-		h1
-			font-size: 2.2rem
+		padding: 25px 0 
+		span.mail
+			font-size: 2.5rem
+			color: #fff
+		.phone
+			font-size: 2rem
+			color: #fff
+			margin-top: 20px
 	.contact-head-data
 		color: #fff
 		text-align: left
@@ -709,6 +713,25 @@ $ph-weight: 400
 		.social-icons
 			img
 				width: 45px
+
+@media (max-width: 500px)
+	.contact-section
+		.contact-data
+			span.mail
+				font-size: 1.8rem
+			.phone
+				font-size: 1.4rem
+
+@media (max-width: 369px)
+	.contact-section
+		padding: 10px 0 
+		.contact-data
+			padding: 18px 0 10px
+			span.mail
+				font-size: 1.3rem
+			.phone
+				font-size: 1.2rem
+
 
 .whatsapp-call
 	padding: 10px

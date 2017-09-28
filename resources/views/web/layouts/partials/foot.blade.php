@@ -2,11 +2,9 @@
 	<div class="container footer">
 		<div class="col-md-4 contact-data fadeIn animated wow">
 			<h2>Datos</h2><hr>
-			<span class="icon"><i class="ion-ios-telephone-outline"></i></span><span> (011) 3529-4527 </span><br>
 			<span class="icon"><i class="ion-iphone"></i></span><span> (011) 15-5160-1565</span> <br>
 			<span class="icon"><i class="ion-ios-email-outline"></i></span><span> info@studiovimana.com.ar</span> <br>
 			<span class="icon"><i class="ion-ios-location-outline"></i></span><span> Buenos Aires - Argentina <br>
-			Atendemos a todo el país y al exterior</span>
 		</div>
 		<div class="col-md-4 tags">
 			<h2>Portfolio</h2><hr>

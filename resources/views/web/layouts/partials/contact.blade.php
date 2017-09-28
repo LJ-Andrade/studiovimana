@@ -1,8 +1,10 @@
 <div id="contact" class="container-fluid contact-section">
 	<div class="container wow animated fadeIn">
-		<div class="row title">
-			<h1>CONTACTANOS !</h1>
+		<div class="contact-data">
+			<span class="mail">info@studiovimana.com.ar</span>
+			<div class="phone">(011) 15-5160-1565</div>
 		</div>
+		{{-- 
 		<div class="row">
 			<div class="contact-head-data">
 				<div>
@@ -19,7 +21,8 @@
 				</div>
 			</div>
 		</div>
-
+		--}}
+		{{-- 
 		<div class="row inner">
 			<div class="col-md-12 contact-form">
 				{!! Form::open(['id'=>'ContactForm', 'method' => 'POST']) !!}
@@ -59,7 +62,7 @@
 				</div>
 			</div>
 		</div>
-
+		--}}
 		<div class="horizontal-list social-icons">
 			<div class="title">
 				<span>Seguí nuestro proceso creativo en las redes</span>
