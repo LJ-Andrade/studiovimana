@@ -16,7 +16,6 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['web.portfolio.portfolio'], 'App\Http\ViewComposers\ShowTagsCategories');
-        // View::composer(['front.index', 'front.article'], 'App\Http\ViewComposers\AsideComposer');
     }
 
     /**

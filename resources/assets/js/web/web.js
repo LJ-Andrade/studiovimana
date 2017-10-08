@@ -1,18 +1,18 @@
 //////////////////////////////
-// 						             	//
-//        LOADER            //
+// 						    //
+//        PLUGINS           //
 //                          //
 //////////////////////////////
 
 new WOW().init();
 
-$(document).ready(function () {
+//////////////////////////////
+// 					        //
+//        NAVIGATION        //
+//                          //
+//////////////////////////////
 
-	//////////////////////////////
-	// 					            		//
-	//        NAVIGATION        //
-	//                          //
-	//////////////////////////////
+$(document).ready(function () {
 
 	var section       = $('#ActualSection').data('section');
 	var logo          = $('.navbar .navbar-brand');
@@ -78,18 +78,14 @@ $(document).ready(function () {
 	    }
 
     }
-
-
     // ----------- End Navigation Script ------------ //
 
     //Activate nav effects in desktop
 	if (screen.width > 775) {
         nav_logic();
-  } else {
+ 	} else {
 		
 	}
-
-
 
 
 }); // Document Ready

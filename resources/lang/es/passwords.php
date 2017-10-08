@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'La contraseña debe tener al menos 6 caracteres.',
-    'reset' => 'Su contraseña ha sido regenerada!',
-    'sent' => 'Le hemos enviado un email con el link de restablecimiento de contraseña!',
-    'token' => 'La credencial de renovación de password es inválida.',
-    'user' => "No podemos encontrar un usuario con esa dirección de e-mail.",
+    'password' => 'La contraseña debe tener al menos 6 caracteres y coincidir con la confirmación.',
+    'reset' => 'Su contraseña fue reseteada!',
+    'sent' => 'Le enviamos un mail con el link de reseteo!',
+    'token' => 'El código es inválido.',
+    'user' => "No podemos encontrar un usuario con el e-mail ingresado",
 
 ];

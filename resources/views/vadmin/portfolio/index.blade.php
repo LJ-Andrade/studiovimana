@@ -1,4 +1,4 @@
-@extends('vadmin.layouts.main')
+@extends('layouts.vadmin.main')
 
 @section('title', 'Vadmin | Portfolio')
 

@@ -1,4 +1,4 @@
-@extends('web.layouts.main')
+@extends('layouts.web.main')
 @section('title', 'StudioVimana | Inicio')
 
 @section('styles')
@@ -51,15 +51,15 @@
                 <div class="icons horizontal-list power-icons">
                     <ul>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-                        <img src=" {{asset('webimages/gral/home/icons/icon2.png')}} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon2.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-                        <img src=" {{asset('webimages/gral/home/icons/icon1.png')}} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon1.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-                        <img src=" {{asset('webimages/gral/home/icons/icon4.png')}} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon4.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <img src=" {{asset('webimages/gral/home/icons/icon3.png')}} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon3.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-                        <img src=" {{asset('webimages/gral/home/icons/icon5.png')}} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon5.png') }} "></li>
                     </ul>
                 </div>
             </article>
@@ -222,37 +222,36 @@
     <div class="container-fluid our-works">
         <div class="container wow animated fadeIn">
             <div class="row">
-                <div class="row row-flex row-flex-wrap">  
-                    {{-- Mobile --}} 
-                    <div class="col-xs-12 col-sm-6 col-md-4 inner inner-mobile">
-                        <h1>NUESTRO<br>PORTFOLIO</h1>
-                        <p class="first">
-                            Una imágen vale más que un slogan.
-                        </p>
-                        <p class="second">
-                            Visitá nuestro portfolio y mirá como trabajamos.
-                        </p>
-                        <a href="{{ route('web.portfolio') }}"><button class="button btnHollowGreyTransBlack">Nuestro Portfolio</button></a>
-                    </div>
-                    {{-- Desk --}} 
-                    <div class="col-xs-12 col-sm-6 col-md-4 inner inner-desk">
-                        <h1>NUESTRO<br>PORTFOLIO</h1>
-                        <p class="first">
-                            Una imágen vale más <br>que un slogan.
-                        </p>
-                        <p class="second">
-                            Visitá nuestro portfolio <br> y mirá como trabajamos.
-                        </p>
-                        <a href="{{ route('web.portfolio') }}"><button class="button btnHollowGreyTransBlack">Nuestro Portfolio</button></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-8 inner">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port1.jpg') }}" alt=""></div>
-                                <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port2.jpg') }}" alt=""></div>
-                                <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port3.jpg') }}" alt=""></div>
-                                <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port4.jpg') }}" alt=""></div>
-                            </div>
+             
+                {{-- Mobile --}} 
+                <div class="col-xs-12 col-sm-6 col-md-4 inner inner-mobile">
+                    <h1>NUESTRO<br>PORTFOLIO</h1>
+                    <p class="first">
+                        Una imágen vale más que un slogan.
+                    </p>
+                    <p class="second">
+                        Visitá nuestro portfolio y mirá como trabajamos.
+                    </p>
+                    <a href="{{ route('web.portfolio') }}"><button class="button btnHollowGreyTransBlack">Nuestro Portfolio</button></a>
+                </div>
+                {{-- Desk --}} 
+                <div class="col-xs-12 col-sm-6 col-md-4 inner inner-desk">
+                    <h1>NUESTRO<br>PORTFOLIO</h1>
+                    <p class="first">
+                        Una imágen vale más <br>que un slogan.
+                    </p>
+                    <p class="second">
+                        Visitá nuestro portfolio <br> y mirá como trabajamos.
+                    </p>
+                    <a href="{{ route('web.portfolio') }}"><button class="button btnHollowGreyTransBlack">Nuestro Portfolio</button></a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-8 inner">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port1.jpg') }}" alt=""></div>
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port2.jpg') }}" alt=""></div>
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port3.jpg') }}" alt=""></div>
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port4.jpg') }}" alt=""></div>
                         </div>
                     </div>
                 </div>
@@ -260,19 +259,16 @@
         </div>
     </div>
 
-    @include('web.layouts.partials.contact')
-    @include('web.layouts.partials.foot')
+    @include('layouts.web.partials.contact')
+    @include('layouts.web.partials.foot')
 
 
 @endsection
 
 @section('scripts')
-
     <script type="text/javascript" src="{{ asset('plugins/parallax/parallax.min.js') }}"></script>
     {{-- Slider --}}
     <script type="text/javascript" src="{{ asset('plugins/swiper-slider/swiper.jquery.min.js') }}"></script>
-    
-
 @endsection
 
 @section('custom_js')

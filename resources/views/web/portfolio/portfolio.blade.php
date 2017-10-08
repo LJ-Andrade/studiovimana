@@ -1,4 +1,4 @@
-@extends('web.layouts.main')
+@extends('layouts.web.main')
 
 @section('title', 'Studio Vimana | Portfolio')
 

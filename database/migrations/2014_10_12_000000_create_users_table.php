@@ -11,16 +11,29 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+
+    // Roles
+    // 1 Superadmin
+    // 2 Admin
+    // 3 User
+    // 4 LowUser
+
+    // Group
+    // 1 Member
+    // 2 Client
+    // 3 ClientBig
+    
+
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('username')->nullable()->unique();
             $table->string('email')->unique();
-            $table->string('avatar')->default('');
             $table->string('password');
-            $table->enum('type', ['member','admin','superadmin'])->default('member');
-            $table->enum('role', ['author', 'none'])->default('member');;
+            $table->enum('group', [1, 2, 3])->default(2);
+            $table->enum('role', [1, 2, 3, 4])->default(3);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -33,6 +46,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('users');
     }
 }

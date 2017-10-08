@@ -16,14 +16,21 @@ class WebController extends Controller
 		Carbon::setLocale('es');
 	}
 
+	public function home()
+    {
+        $categories = Category::all();
+        return view('web')->with('categories', $categories);
+    }
+
 	public function portfolio(Request $request)
 	{
 
-        $articles = Article::search($request->title)->orderBy('id', 'DESCC')->where('status', 'active')->paginate(12);
+        $articles = Article::search($request->title)->orderBy('id', 'DESC')->where('status', 'active')->paginate(12);
         $articles->each(function($articles){
             $articles->category;
             $articles->images;
-        }); 
+		}); 
+		
 
 		// $articles = Article::orderBy('id', 'DESC')->paginate(10);
 		// $articles->each(function($articles){
@@ -31,7 +38,7 @@ class WebController extends Controller
 		// 	$articles->images;
 		// }); 
     	return view('web.portfolio.portfolio')
-    	->with('articles', $articles);
+    		->with('articles', $articles);
     }
 
 
@@ -77,12 +84,6 @@ class WebController extends Controller
         return view('web.portfolio.article')->with('article', $article);
     }
 
-    public function home()
-    {
-        $categories = Category::all();
-        
-        return view('web')->with('categories', $categories);
-    }
 
     public function contact()
     {  
@@ -109,11 +110,11 @@ class WebController extends Controller
 	public function mail_sender(Request $request)
     {
 
-		$MailToAddress    = "admstudiovimana@gmail.com";
+		$MailToAddress    = "info@studiovimana.com.ar";
 		$MailSubject      = "Mensaje desde la web";
 
 		if (!isset($MailFromAddress) ) {
-			$MailFromAddress = "admstudiovimana@gmail.com";
+			$MailFromAddress = "info@studiovimana.com.ar";
 		}
 
 		$Header = "Contacto desde la Web";

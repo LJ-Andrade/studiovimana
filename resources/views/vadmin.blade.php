@@ -1,19 +1,32 @@
-@extends('vadmin.layouts.main')
-@section('title', 'Vadmin | Gestor de Contenido')
+@extends('layouts.vadmin.main')
+
+@section('title', 'Vadmin | ')
+
 @section('header_title', 'Inicio | ')
+
 @section('header_subtitle')
-	Bienvenido <b>{{ Auth::user()->name }}</b>
+	Bienvenid@ <b>{{ Auth::user()->name }}</b>
+@endsection
+
+@section('styles')
+	
 @endsection
 
 @section('content')
-
-	 <div class="container">
-		<div class="row">
-			<span>Tu nivel de permisos es <b>{{ typeTrd(Auth::user()->type) }}</b></span>
-			<hr>			
+	<div class="app-content content container-fluid">
+		<div class="content-wrapper">
+			<div class="content-header row">
+			</div>
+			<div class="content-body"><!-- stats -->
+			</div>
 		</div>
-	 </div>  
-
+	</div>
 @endsection
 
+@section('scripts')
+	
+@endsection
 
+@section('custom_js')
+
+@endsection

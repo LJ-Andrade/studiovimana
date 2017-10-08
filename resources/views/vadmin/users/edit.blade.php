@@ -1,34 +1,45 @@
-@extends('vadmin.layouts.main')
+@extends('layouts.vadmin.main')
+
 
 @section('title', 'Vadmin | Editar Usuario')
 
-@section('content')
-<div class="container">
-	<div class="row">
-		<h2>Editando a <b>{{ $user->name}}</b></h2>
-		<hr>
-		{!! Form::open(['route' => ['users.update',$user->id], 'method' => 'PUT']) !!}
-		{{-- {!! Form::open(['route' => 'users.update', $user->id, 'method' => 'PUT']) !!} --}}
+@section('title', 'Vadmin | Creación de Usuario')
 
-			<div class="form-group">
-				{!! Form::label('name', 'Nombre') !!}
-				{!! Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Nombre de Usuario', 'required'] )!!}
+@section('content')
+	@component('vadmin.components.header')
+		@slot('left')
+		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('users.index')}}">Usuarios</a></li>
+            <li class="breadcrumb-item active">Nuevo Usuario</li>
+		@endslot
+		@slot('right')
+		@endslot
+	@endcomponent
+
+	<div class="row">
+		@component('vadmin.components.container')
+			@slot('title', 'Editando a '. $user->name)
+			@slot('content')
+	
+			{!! Form::model($user, [
+				'method' => 'PATCH',
+				'url' => ['/vadmin/users', $user->id],
+				'files' => true
+			]) !!}
+			@include('vadmin.users.form')
+			<div class="form-actions right">
+				<a href="{{ route('users.index')}}">
+					<button type="button" class="btn btnRed">
+						<i class="icon-cross2"></i> Cancelar
+					</button>
+				</a>
+				<button type="submit" class="btn btnGreen">
+					<i class="icon-check2"></i> Guardar
+				</button>
 			</div>
-			<div class="form-group">
-				{!! Form::label('email', 'E-Mail') !!}
-				{!! Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'E-Mail', 'required'] )!!}
-			</div>
-			<div class="form-group">
-				{!! Form::label('type', 'Tipo') !!}
-				{!! Form::select('type', ['member' => 'Usuario', 'admin' => 'Administrador'], $user->type, ['class' => 'form-control'])!!}
-			</div>
-			<div class="form-group">
-				{!! Form::submit('Editar Usuario', ['class' => 'btn btn-primary']) !!}
-			</div>
-			
-		{!! Form::close() !!}
-		
+			{!! Form::close() !!}
+			@endslot
+		@endcomponent
 	</div>
-</div>
 
 @endsection

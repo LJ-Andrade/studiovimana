@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,37 +11,27 @@ const { mix } = require('laravel-mix');
  |
  */
 
+// mix.js('resources/assets/js/app.js', 'public/js')
+//    .sass('resources/assets/sass/app.scss', 'public/css');
+
 // Web
+
 mix.js('resources/assets/js/web/web.js', 'public/js')
-    .sass('resources/assets/sass/web.scss', 'public/css')
-    .options({
-      processCssUrls: false
+.sass('resources/assets/sass/web.scss', 'public/css')
+.options({
+    processCssUrls: false
+});
+
+mix.sass('resources/assets/sass/web/web.sass', 'public/css')
+.options({
+    processCssUrls: false
+});
+
+// Vadmin 
+mix.js('resources/assets/js/vadmin-ui.js', 'public/js');
+mix.js('resources/assets/js/vadmin-functions.js', 'public/js');
+
+mix.sass('resources/assets/sass/vadmin/vadmin.sass', 'public/css')
+   .options({
+       processCssUrls: false
    });
-
-// // // Web Css Vendors
-// mix.combine([
-//     'public/plugins/animate/animate.css',
-//     'public/plugins/ionicons/ionicons.min.css'
-// ], 'public/css/web-vendors.css');
-
-// // Web JS Vendors
-// mix.combine([
-//     'public/plugins/wow/script.wow.js',
-//     'public/plugins/jquery/jquery-3.3.1.min.js',
-//     'public/plugins/bootstrap/js/bootstrap.min.js'
-// ], 'public/js/web-vendors.js');
-  
-
-
-// -------------- Solo estilos ----------------- //
-// mix.sass('resources/assets/sass/vadmin/vadmin.sass', 'public/css')
-//   .options({
-//     processCssUrls: false
-//   });
-
-// mix.sass('resources/assets/sass/web/web.sass', 'public/css')
-//   .options({
-//     processCssUrls: false
-//   });
-
-// .js('resources/assets/js/vadmin/vadmin.js', 'public/js')

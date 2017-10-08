@@ -1,94 +1,172 @@
 //////////////////////////////////////
 //                                  //
+//           BACKGROUNDS            //
+//                                  //
+//////////////////////////////////////
+
+.blue-back
+	background-color: $blue
+
+.green-back
+	background-color: $green
+
+.red-back
+	background-color: $red
+
+.grey-back
+	background-color: #f3f3f3
+	
+//////////////////////////////////////
+//                                  //
 //           CONTAINERS             //
 //                                  //
 //////////////////////////////////////
 
+.test-box
+	background-color: #ffffff
+	border-radius: 5px
+	padding: 10px
+	margin-bottom: 10px
+	margin-top: 10px
 
-.big-card
-	background-color: #fff
-	padding: 20px
-	@include box-shadow
+.narrow-card
+	max-width: 400px
+	margin-bottom: 20px
+	.inner
+		min-width: 400px
+		border: 2px solid #f9f9f9
+		.card-content
+			border: 1px solid #f9f9f9
+			border-top: 0
+			padding: 15px
+			width: 100%
 
-.profile-card
-	text-align: center
-	@include flex-column
-	margin-top: 50px
-	.inner1
-		width: 450px
-		max-width: 100%
-		background-color: #5d76c9
-		color: #fff
-		padding-top: 20px
-		padding-bottom: 20px
-		border-radius: 10px 10px 0 0
-		min-height: 120px
-	.inner2
-		@include box-shadow-floor
-		background-color: #fff
-		padding-bottom: 20px
-		width: 450px
-		max-width: 100%
-		border-radius: 0 0 10px 10px
-		.title
-			font-size: 1.2rem
-			margin-bottom: 15px
-		.text
-			margin-top: 15px
-			padding-bottom: 20px
-			.data
-				background-color: $other
+.round-image-card
+	max-width: 400px
+	margin-bottom: 20px
+	.inner
+		border: 2px solid #f9f9f9
+		.image
+			position: relative
+			padding: 25px 5px
+			background-color: #f9f9f9
+			text-align: center
+			.over-text
+				position: absolute
+				width: 100%
+				left: 0
+				top: 130px
 				color: #fff
-				border-radius: 40px
-				padding: 2px 10px
-				white-space: nowrap
-				
-		.avatar
-			margin-top: -80px
-			margin-bottom: 20px
-	img
-		border-radius: 50%
-		width: 200px
-		height: 200px
-		max-width: 100%
+				font-weight: 600
+				font-size: 1.2rem 
+				opacity: 0
+				@include transition(0.2s)
+			&:hover
+				.over-text
+					opacity: 1
+					pointer-events: none
+			img
+				border-radius: 50%
+				width: 230px
+				height: 230px
+				max-width: 100%
+				max-height: 100%
+				@include transition(0.2s)
+				&:hover
+					cursor: pointer
+					opacity: 0.9
+					
+		.card-content
+			border: 1px solid #f9f9f9
+			border-top: 0
+			padding: 15px
+			width: 100%
+
+
+//////////////////////////////////////
+//                                  //
+//            SEARCH                //
+//                                  //
+//////////////////////////////////////
+
+
+// ------- FILTERS -------- //
+	
+.search-filters
+	position: relative
+	background-color: #1d2b36
+	color: #fff
+	@include box-shadow-floor-big
+	padding: 15px
+	z-index: 999
+	// display: none
+	margin-bottom: 10px
+	margin-bottom: 25px
+	label
+		font-weight: 400
+		margin: 0
+		color: #fff
+	input,select
+		margin-right: 10px
+	.hide-desk
+		display: none
+	.actionBtn
+		margin-left: 10px
+		margin-top: 20px
+	.btn-close
+		
+
+@media (max-width: 765px)
+	.search-filters
+		form
+			.form-group
+				margin-bottom: 10px
+		.actionBtn
+			margin-left: 0
+
+.search-results
+	margin-bottom: 15px
+	span
+		font-weight: 600
+//////////////////////////////////////
+//                                  //
+//             LISTS                //
+//                                  //
+//////////////////////////////////////
+
+.list-actions
+	margin-bottom: 15px
+	.left
+	.right
+		text-align: right
+
+@media (max-width: 765px)
+	.list-actions
+		.left
+			margin-bottom: 15px
+		.right
+			text-align: left
+
+.custom-list
+	.row-selected
+		background-color: #fff1e8 !important
+		&:hover
+			background-color: #ece1d9 !important 
+	tr
 		@include transition(0.2s)
 		&:hover
-			cursor: pointer
-			filter: brightness(1.2)
+			background-color: #ececec !important
+			.show-link a
+				color: $green
+				
+	.show-link a
+		color: $blue
+		font-weight: 600
+.list-checkbox
+	padding-left: 0 !important
+	margin-bottom: 0
 
-//////////////////////////////////////
-//                                  //
-//            LISTS                 //
-//                                  //
-//////////////////////////////////////
 
-.big-list
-	padding-right: 10px
-	margin-bottom: 10px
-	.inner
-		background-color: #fff
-		height: 100%
-		display: flex
-	.image
-		margin-right: 10px
-		float: left
-		img
-			width: 100px
-			height: 100%
-	.content	
-		padding-top: 5px
-		white-space: nowrap
-		overflow: hidden !important
-		text-overflow: ellipsis
-		padding-right: 5px
-		p
-			font-size: 1rem
-		span.date
-			font-size: 0.8rem
-	hr
-		border-top: 1px solid #A2A2A2
-		margin-top: 5px
-		margin-bottom: 5px
 
 
 //////////////////////////////////////
@@ -99,150 +177,6 @@
 
 $phvColor: #000
 $phvFsize: 0.9rem
-
-.big-form
-	padding: 10px
-	border: 1px solid #ccc
-	border-top: 10px solid $dark4
-	background-color: #fff
-	@include box-shadow
-	.inner-row
-		label
-			font-size: 1rem
-	.box-container
-		position: relative
-		padding: 10px 20px
-		border: 1px solid #ccc
-		margin-top: 10px
-		.box-inner
-			padding: 10px
-
-	.sub-title
-		.inner-sub-title
-			margin-top: 15px
-			padding: 7px 6px 3px
-			padding-left: 6px
-			background-color: #f5f5f5
-			span
-				font-size: 1rem
-				font-weight: 700
-			i.icon
-				padding-top: 4px
-				font-size: 1.5rem
-				margin-right: 8px
-				margin-left: 8px
-	.multiple-items
-		position: relative
-		.add-another
-			margin-top: 10px
-			position: absolute
-			bottom: -30px
-			left: 0
-			font-size: 1rem
-
-.main-form
-	.form-container
-		@include flex-center
-	.outer-wrapper
-		display: table
-		width: 100%
-		height: 100%
-	.inner-wrapper
-		background-color: $light
-		display: table-cell
-		vertical-align: middle
-		padding: 10px 25px
-		.login-header
-			text-align: center
-			width: 100%
-			padding: 15px 5px
-			span
-				font-size: 2rem
-			.svlogo
-				margin-top: 10px
-				width: 100px
-	.login-btn
-		position: fixed
-		top: 15px
-		right: 15px
-
-// --------- Centered Form ------------ //
-
-.centered-form
-	@include flex-center
-	hr
-		margin-top: 5px
-		margin-bottom: 5px
-	.inner
-		width: 450px
-		max-width: 100%
-		.login-header
-			padding-top: 10px
-			text-align: center
-			span.title
-				font-size: 2rem
-			span.subtitle
-				font-size: .8rem
-			div.formname
-				margin-top: 15px
-				padding: 10px
-				font-size: 1.4
-				background-color:  rgba(255,255,255,.9)
-		padding: 10px 20px
-		background-color: rgba(255,255,255,.9)
-		.footer
-			text-align: center
-			span
-				font-size: .7rem
-			img
-				width: 100px
-
-
-.login-back
-	background-color: $dark
-
-.form-group,.form-horizontal
-	form
-		padding: 15px
-		border: 1px solid red
-	form,input,textarea
-		width: 100%
-		border: 1px solid #BABABA
-		border-radius: 0
-		box-shadow: none
-		// Chrome/Opera/Safari
-		::-webkit-input-placeholder 
-			color: $phvColor
-			font-family: $fv
-			font-size: $phvFsize
-			font-weight: $fvw1
-		// Firefox 19+
-		::-moz-placeholder
-			color:  $phvColor
-			font-family: $fv
-			font-size: $phvFsize
-			font-weight: $fvw1
-		//IE 10+
-		::-ms-input-placeholder
-			color: $phvColor
-			font-family: $fv
-			font-size: $phvFsize
-			font-weight: $fvw1
-		//Firefox 18-
-		::-moz-placeholder
-			color:  $phvColor
-			font-family: $fv
-			font-size: $phvFsize
-			font-weight: $fvw1
-	textarea
-		background-color: #fff
-	label
-		font-family: $fv
-		font-weight: $fvw2
-		margin-top: 10px
-
-.form-control
-	border-radius: 0
 
 // Textaerea trumbowyg
 .trumbowyg-button-pane
@@ -301,178 +235,75 @@ $phvFsize: 0.9rem
 	background-color: #fff
 
 
-/// Image thumnbail with delete icon
-.actual-images
-	ul 
-		padding: 25px 15px 25px 15px
-		li
-			position: relative
-			margin-right: 5px
-			margin-bottom: 5px
-			.overlayItemCenter
-				color: #EAE9E9
-				i
-					font-size: 4rem
-			&:hover
-				.overlayItemCenter
-					opacity: 1
-		cursor: pointer
-	img
-		width: 150px
-		max-width: 100%
-	
-
-.small-card
-	border: 1px solid #ccc
-	padding: 5px
-	padding-left: 10px
-	position: relative
-	margin: 5px 0
-	margin-top: 10px
-	.btnCloseThis
-		background-color: #f3f3f3
-		padding: 1px 7px
-		border-radius: 50%
-		font-size: 0.8rem
-		width: 25px
-		height: 25px
-		position: absolute
-		right: 4px
-		top: 4px
-		@include transition(0.2s)
-		&:hover
-			cursor: pointer
-
-
-	i
-		color: $red
-		font-size: 1.2rem
-
 //////////////////////////////////////
 //                                  //
 //            BUTTONS               //
 //                                  //
 //////////////////////////////////////
 
-.button
-	border: 0
-	border-radius: 50px
-	padding: 7px 20px
-	font-size: 1.2rem
-	white-space: nowrap
-	vertical-align: middle
-	-webkit-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
-	user-select: none
-	background-image: none
-	line-height: 1.42857143
-	margin: 4px
+.btn
+	// margin-bottom: 15px
 	@include transition(0.2s)
-	&:hover
-		cursor: pointer
+	border-radius: 20px
+
+.btnSquare
+	border-radius: 5px
 
 .btnSm
-	border: 0
-	border-radius: 50px
-	padding: 2px 15px
-	font-size: 1rem
+	display: inline-block
+	font-weight: normal
+	line-height: 1.25
+	text-align: center
 	white-space: nowrap
 	vertical-align: middle
-	-webkit-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
+	cursor: pointer
 	user-select: none
-	background-image: none
-	line-height: 1.42857143
-	margin: 4px
-	min-height: 27px
-	@include transition(0.2s)
+	border: 1px solid transparent
+	padding: 4px 12px
+	font-size: 1rem
+	border-radius: 0.18rem
+	transition: all 0.2s ease-in-out
+
+.btn-close
+	position: absolute
+	right: 5px
+	top: 5px
+	font-size: 1.5rem
 	&:hover
 		cursor: pointer
+		color: #ccc
 
-
-
-.btnList
-	border: 0
-	padding: 5px 15px
-	font-size: 1.2rem
-	white-space: nowrap
-	vertical-align: middle
-	-webkit-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
-	user-select: none
-	background-image: none
-	line-height: 1.42857143
-	margin: 4px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
-
-.btnSmall
-	border: 0
-	padding: 5px 10px
-	font-size: 1rem
-	white-space: nowrap
-	vertical-align: middle
-	-webkit-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
-	user-select: none
-	background-image: none
-	line-height: 1.42857143
-	margin: 2px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
-
-.transBtn
-	border: 0
-	border-radius: 0
-	padding: 0
-	font-size: 1rem
-	white-space: nowrap
-	vertical-align: middle
-	-webkit-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
-	user-select: none
-	background-image: none
-	line-height: 1.42857143
-	margin: 0
-	background-color: transparent
-	&:hover
-		background-color: transparent
-
-
-.buttonOk
-	background-color: $ok
+.btnGreen
+	background-color: $green
 	color: #fff
 	&:hover
-		background-color: $okH
+		background-color: $greenH
+		color: #fff
 
-.buttonCancel
-	background-color: $cancel
+.btnRed
+	background-color: $red
 	color: #fff
 	&:hover
-		background-color: $cancelH
+		background-color: $redH
+		color: #fff
 
-.buttonEdit
-	background-color: $edit
+.btnYellow
+	background-color: $orange
 	color: #fff
 	&:hover
-		background-color: $editH
+		background-color: $orangeH
+		color: #fff
 
-.buttonOther
-	background-color: $other
+.btnBlue
+	background-color: $blue
 	color: #fff
 	&:hover
-		background-color: $otherH
+		background-color: $blueH
 	&:active,&:focus
 		color: #fff
 
-.buttonGrey
+
+.btnGrey
 	background-color: #ccc
 	color: #000
 	&:hover
@@ -480,379 +311,27 @@ $phvFsize: 0.9rem
 	&:active,&:focus
 		color: #000
 
-.btnClose
-	background-color: #fff
-	padding: 7px 8px
-	border-radius: 50%
-	font-size: 0.8rem
-	width: 25px
-	height: 25px
-	position: absolute
-	right: 5px
-	top: 5px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
 
-.btnCloseDark
-	background-color: #ccc
-	padding: 1px 8px
-	border-radius: 50%
-	font-size: 0.8rem
-	width: 25px
-	height: 25px
-	position: absolute
-	right: 4px
-	top: 4px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
+//////////////////////////////////////
+//                                  //
+//              DECO                //
+//                                  //
+//////////////////////////////////////
 
 
-.btnClose2
-	background-color: #fff
-	padding: 1px 8px
-	border-radius: 50%
-	font-size: 0.8rem
-	width: 25px
-	height: 25px
-	position: absolute
-	right: 5px
-	top: 5px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
-
-.btnSquare
-	border: 0
-	border-radius: 40px
-	padding: 2px 10px
-	height: 40px
-	font-size: 1.2rem
+.custom-badge
+	display: inline-block
+	min-width: 10px
+	padding: 3px 7px
+	font-size: 12px
+	font-weight: 700
+	line-height: 1
+	color: #fff
+	text-align: center
 	white-space: nowrap
 	vertical-align: middle
-	-webkit-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
-	user-select: none
-	background-image: none
-	line-height: 1.42857143
-	margin: 4px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
-
-.close-btn
-	background-color: #fff
-	color: #000
-	padding: 7px 8px
-	border-radius: 50%
-	font-size: 0.8rem
-	width: 25px
-	height: 25px
-	position: absolute
-	right: 5px
-	top: 5px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
-
-.close-btn2
-	background-color: #fff
-	color: #000
-	padding: 1px 8px
-	border-radius: 50%
-	font-size: 0.8rem
-	width: 25px
-	height: 25px
-	position: absolute
-	right: 5px
-	top: 5px
-	@include transition(0.2s)
-	&:hover
-		cursor: pointer
-
-//////////////////////////////////////
-//                                  //
-//              HEADER              //
-//                                  //
-//////////////////////////////////////
-
-.header
-	background-color: $dark3
-	padding-bottom: 15px
-	padding-top: 15px
-	color: #fff
-	position: relative
-	span.title
-		font-weight: $fvw2
-		font-size: 1.5rem
-	span.subtitle
-		font-weight: $fvw1
-	.inner
-		position: relative
-	.content
-		@include flex-center-left
-	.actions
-		position: absolute
-		right: 0
-		top: -5px
-
-@media (max-width: 765px)
-	.header
-		padding: 5px
-		.content
-			display: block
-			.titles
-				margin: 10px
-			.actions
-				position: relative
-
-.main-section
-	padding: 25px 5px
-
-.overlayItemCenter
-	position: absolute
-	height: 100%
-	width: 100%
-	top: 0
-	left: 0	
-	@include flex-column
-	@include transition(0.2s)
-	background-color: rgba(0,0,0,0.5)
-	opacity: 0
-
-.header-options
-	margin-bottom: 10px
-	position: relative
-
-
-// ------- FILTERS -------- //
-	
-.search-filters
-	position: relative
-	background-color: $dark3
-	padding: 5px
-	z-index: 999
-	display: none
-	.navbar-form
-		padding: 0
-		margin: 0
-	.inner-column
-		display: inline-block
-	label
-		font-weight: 300
-		margin: 0
-		color: #fff
-	.hide-desk
-		display: none
-
-@media (max-width: 765px)
-	.search-filters
-		.inner-column
-			width: 100%
-			.input-group
-				width: 100%
-				input
-					margin-bottom: 10px
-					width: 100%
-		.hide-desk
-			display: block
-		
-//////////////////////////////////////
-//                                  //
-//      ITEM CREATOR / Forms        //
-//                                  //
-//////////////////////////////////////
-
-
-.small-form
-	margin-bottom: 25px
-	.title
-		background-color: $dark4
-		padding: 10px
-		padding-left: 20px
-		color: #fff
-		margin-bottom: 10px
-	.inner
-		@include box-shadow
-		padding-bottom: 15px
-		border: 1px solid #ccc
-		background-color: #fff
-		width: 600px
-		max-width: 100%
-		.error-container
-			margin-bottom: 15px
-			.error-content
-				padding: 2px 2px 2px 10px
-				color: #fff
-				background-color: $red	
-
-//////////////////////////////////////
-//                                  //
-//        ITEM CREATOR / LIST       //
-//                                  //
-//////////////////////////////////////
-
-.main-list
-	@include box-shadow
-	.item-row
-		position: relative
-		background-color: #fff
-		padding-right: 30px
-		padding-top: 8px
-		padding-bottom: 8px
-		max-height: 80px
-		border: 1px solid #d7d7d7
-		border-bottom: 0
-		@include transition(0.2s)
-		div:first-child
-			// padding-left: 0
-			float: left
-		&:nth-child(odd)
-			background-color: #f3f3f3
-		&:hover, .row-selected
-			cursor: pointer
-			background-color: #DDD
-			color: #000
-			img
-				filter: brightness(120%)
-		.img
-			margin-right: 15px
-			img
-				width: 53px
-
-		.withimg
-			padding-left: 0
-		.content
-			position: relative
-			.inner
-				display: inline-block
-				white-space: nowrap
-				overflow: hidden !important
-				text-overflow: ellipsis
-			.inner-tags
-				max-height: 60px
-				overflow-x: hidden
-			.small-text
-				font-size: 0.9rem
-		.lists-actions-trigger
-			position: absolute
-			height: 100%
-			right: 30px
-			top: 0
-			.action-btn
-				border: 0
-				background-color: #8DBB61
-				height: 100%
-				padding: 0 20px
-				i
-					font-size: 1.5rem
-					color: #fff
-				&:hover
-					background-color: #9FD56B
-		.triggerwithimg
-			.action-btn
-				right: 0px
-		.lists-actions
-			position: absolute
-			top: 0
-			right: 0
-			height: 100%
-			padding: 0 20px
-			@include flex-center
-			@include box-shadow-left
-			background-color: #fff
-			z-index: 5
-			.form-group
-				margin-right: 10px
-			.btn
-				margin: 5px
-				padding: 0 10px
-				font-size: 1rem
-				font-family: $font2
-				font-weight: $f2w1
-				i
-					font-size: 1.5rem
-			.btn-close
-				border-radius: 40px
-			.form-group
-				margin-bottom: 0
-				.form-control
-					padding: 2px 12px
-			.small
-				color: #C1C1C1
-				font-size: 0.8rem
-		.status-icon
-			position: absolute
-			padding: 5px 8px
-			right: 0
-			top: 0
-			width: 30px
-			background-color: #efefef
-			height: 100%
-			@include flex-column
-			input[type="checkbox"], input[type="radio"]
-				margin: 0
-	.paused
-		color: #ccc
-		img
-			filter: opacity(.5)
-		span.badge
-			background-color: #ccc !important
-
-.main-list
-	.simple-list
-		.content
-			padding-left: 20px
-
-.empty-row
-	padding: 20px 15px
-	background-color: #ccc
-
-@media (max-width: 765px)
-	.main-list
-		.item-row
-			.mobile-hide
-				display: none
-
-@media (max-width: 350px)
-	.main-list .item-row
-		padding: 0
-		.action-btn
-			height: 100%
-			padding: 5px 10px
-			margin-top: 0
-	.lists-actions-trigger
-		padding-top: 0px !important
-		top: 0
-		right: 18px
-		height: 53px
-		position: absolute
-
-			
-.batchDeleteBtn
-	position: fixed
-	right: 15px
-	bottom: 15px
-	z-index: 998
-
-
-.color-circle
-	width: 20px
-	height: 20px
-	border-radius: 50%
-	margin: 2px
-
-.badge
+	border-radius: 10px
 	margin-bottom: 5px
-	
-//////////////////////////////////////
-//                                  //
-//            DECORATION            //
-//                                  //
-//////////////////////////////////////
-
 
 .softhr
 	border-top: 1px solid #E4E4E4
@@ -916,16 +395,51 @@ $phvFsize: 0.9rem
 //                                  //
 //////////////////////////////////////
 
-.pagination>li:first-child>a, .pagination>li:first-child>span
-	border-radius: 0 !important
-.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover
-	background-color: $dark2
-	border: 0
-	border-radius: 0 !important
-.pagination > li > a, .pagination > li > span
-	color: #383838
-.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover
-	color: #383838
+ul.pagination
+	margin-top: 2px
+
+ul.pagination li
+	display: inline
+	font-size: 1rem
+	font-weight: bold
+
+ul.pagination li a
+	padding: 8px 12px
+	background-color: #fff
+
+ul.pagination li a
+	color: black
+	text-decoration: none
+	transition: background-color .3s
+	border: 1px solid #ddd
+
+ul.pagination li a.active
+	background-color: #4CAF50
+	color: white
+
+ul.pagination li.active
+	/*background-color: #4CAF50;*/
+	background-color: #1D2B36
+	padding: 8px 12px
+	color: white
+
+ul.pagination li.disabled
+	background-color: #f9f9f9
+	&:hover	
+		cursor: not-allowed
+	
+
+/*ul.pagination li a:hover:not(.active) {background-color: #ddd;}*/
+ul.pagination li a:hover
+	background-color: #1D2B36
+	color: #fff
+
+ul.pagination li.disabled
+    /*background-color: #cccccc;*/
+    color: #ddd
+    padding: 8px 12px
+    border: 1px solid #ddd
+    margin: 4px
 
 //////////////////////////////////////
 //                                  //
@@ -935,80 +449,59 @@ $phvFsize: 0.9rem
 
 .alert-success
 	color: #fff
-	background-color: $dark4
+	background-color: $greenL
 	border: 0
 
 
-
-
 //////////////////////////////////////
 //                                  //
-//        FROM JQUERY EVENTS        //
+//            BACKGROUNDS           //
 //                                  //
 //////////////////////////////////////
 
 
-.row-selected
-	background-color: #FE9B9B !important
+.blue-back
+	background-color: $lightBlue
 	color: #fff
-	img
-		filter: brightness(120%)
-	i
-		color: #000
-
-
-//////////////////////////////////////
-//                                  //
-//              LISTS               //
-//                                  //
-//////////////////////////////////////
-///// Vertical List ///
-.vertical-list
-	ul
-		padding-left: 0
-		padding: 0
-		margin: 0
-		list-style: none
-		li
-			list-style: none
-			display: block
-			// float: left
-			// width: 100px
-			// line-height: 80px
-			// vertical-align: middle
-
-//// Grid View /////
-.horizontal-list
-	ul
-		padding-left: 0
-		padding: 0
-		margin: 0
-		li
-			display: inline-block
-			list-style: none
-
-
-//////////////////////////////////////
-//                                  //
-//            LOADERS               //
-//                                  //
-//////////////////////////////////////
-
-.main-loader
-	position: fixed
-	width: 100%
-	height: 100%
-	top: 0
-	left: 0
-	@include flex-column
-	z-index: 9999
-	overflow: hidden
-	.inner
-		width: 120px
-		height: 125px
-		text-align: center
-		background-color: #59596c
+	span
 		color: #fff
-		padding: 10px
-		img
-			width: 80px
+
+.green-back
+	background-color: $greenD	
+	color: #fff
+	span
+		color: #fff
+
+.light-green-back
+	background-color: #dae2d4
+	color: #383838
+
+.light-grey-back
+	background-color: #eaeaea
+.inner-grey-back
+	background-color: rgb(247, 247, 247)
+
+//////////////////////////////////////
+//                                  //
+//              LOGIN               //
+//                                  //
+//////////////////////////////////////
+
+.login-page
+	background-color: $dark2
+
+.login-container
+	max-width: 400px
+	margin-top: 150px
+	.card-header
+		padding: 0
+	.rememberme-box
+		margin-top: 10px
+	.card-footer
+		font-size: 0.8rem
+	fieldset
+		margin-bottom: 10px
+	input
+		margin-bottom: 5px
+	input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill
+		background-color: #fff !important
