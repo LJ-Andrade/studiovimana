@@ -22,7 +22,7 @@
     {{-- Home Section Desktop --}}
     <div  class="main-home" data-parallax="scroll">
         <div class="main-info wow animated fadeIn" data-wow-delay="0s" data-wow-duration="1s">
-            <img src="{{ secure_asset('webimages/logos/main-logo.png') }}">
+            <img src="{{ asset('webimages/logos/main-logo.png') }}">
             <h1>Desarrollo Web y Diseño Gráfico</h1>
             <div class="actions">
                 <a href="{{ route('web.portfolio') }}"><button class="button btnHollowGreyTrans">Nuestro Portfolio</button></a>

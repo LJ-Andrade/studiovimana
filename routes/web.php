@@ -138,3 +138,8 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('updateAvatar', 'UserController@updateAvatar');	
     Route::post('destroy_users', 'UserController@destroy');
 });
+
+
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
