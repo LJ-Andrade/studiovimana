@@ -140,6 +140,3 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
 });
 
 
-if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
-}
