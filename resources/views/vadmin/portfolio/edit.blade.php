@@ -69,7 +69,7 @@
 						<ul>
 							@foreach($article->images as $image)
 							<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
-								<img src="{{ asset('webimages/portfolio/'.$image->name) }}">
+								<img src="{{ secure_asset('webimages/portfolio/'.$image->name) }}">
 								<div class="overlayItemCenter"><i class="ion-trash-a"></i></div>
 							</li>
 							@endforeach
@@ -98,12 +98,12 @@
 @endsection
 
 @section('scripts')
-	<script type="text/javascript" src="{{ asset('plugins/texteditor/trumbowyg.min.js')}} "></script>
-	{{-- <script type="text/javascript" src="{{ asset('plugins/jqueryfiler/jquery.filer.min.js')}} "></script> --}}
-	<script type="text/javascript" src="{{ asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js')}} "></script>
-	<script type="text/javascript" src="{{ asset('plugins/colorpicker/spectrum.js')}} "></script>
-	<script type="text/javascript" src="{{ asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
-	<script type="text/javascript" src="{{ asset('js/jslocal/forms.js') }}" ></script>
+	<script type="text/javascript" src="{{ secure_asset('plugins/texteditor/trumbowyg.min.js')}} "></script>
+	{{-- <script type="text/javascript" src="{{ secure_asset('plugins/jqueryfiler/jquery.filer.min.js')}} "></script> --}}
+	<script type="text/javascript" src="{{ secure_asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js')}} "></script>
+	<script type="text/javascript" src="{{ secure_asset('plugins/colorpicker/spectrum.js')}} "></script>
+	<script type="text/javascript" src="{{ secure_asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
+	<script type="text/javascript" src="{{ secure_asset('js/jslocal/forms.js') }}" ></script>
 @endsection
 
 @section('custom_js')
@@ -112,7 +112,7 @@
 
 		// ---- Textarea Text Editor ----- //
 		// Path to icons
-		$.trumbowyg.svgPath = '{{ asset('plugins/texteditor/icons.svg') }}';
+		$.trumbowyg.svgPath = '{{ secure_asset('plugins/texteditor/icons.svg') }}';
 		// Init
 		$('.Textarea-Editor').trumbowyg();
 

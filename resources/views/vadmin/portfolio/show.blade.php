@@ -1,4 +1,4 @@
-@extends('vadmin.layouts.main')
+@extends('layouts.vadmin.main')
 
 @section('title', 'VADmin | Artículos')
 
@@ -10,7 +10,7 @@
               	<h1>{!! $article->title !!}</h1>
             	<p>{!! $article->content !!}</p>
             	@foreach($article->images as $image)
-					<img src="{{ asset('content/articles/images/'.$image->name ) }}" class="img-responsive img-article" style="max-width: 200px">
+					<img src="{{ secure_asset('content/articles/images/'.$image->name ) }}" class="img-responsive img-article" style="max-width: 200px">
 				@endforeach
 				<hr>
 				Slug: <span class="badge">{!! $article->slug !!}</span>

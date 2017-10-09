@@ -7,9 +7,9 @@
 		<div class="img">
 			
 			@if(count($article->images))
-			<img class="thumb" src="{{ asset('webimages/portfolio/'. $article->images->first()->name ) }}">
+			<img class="thumb" src="{{ secure_asset('webimages/portfolio/'. $article->images->first()->name ) }}">
 			@else
-			<img class="thumb" src="{{ asset('webimages/gen/genlogo.jpg') }}">
+			<img class="thumb" src="{{ secure_asset('webimages/gen/genlogo.jpg') }}">
 			@endif
 
 		</div>
