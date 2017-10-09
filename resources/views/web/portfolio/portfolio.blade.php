@@ -31,9 +31,9 @@
                     {{-- Prevents error when No image is uploaded in article --}}
                     <a href="{!! route('web.portfolio.article',$article->slug ) !!}">
                         @if (count($article->images))
-                            <img src="{{ asset('webimages/portfolio/'. $article->images->first()->name ) }}" class="img-responsive" alt="">
+                            <img src="{{ secure_asset('webimages/portfolio/'. $article->images->first()->name ) }}" class="img-responsive" alt="">
                         @else
-                            <img src="{{ asset('webimages/gen/genlogo.jpg') }}" class="img-responsive" alt="">
+                            <img src="{{ secure_asset('webimages/gen/genlogo.jpg') }}" class="img-responsive" alt="">
                         @endif
                     </a>
 

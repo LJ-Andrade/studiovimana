@@ -1,4 +1,4 @@
-@extends('web.layouts.main')
+@extends('layouts.web.main')
 
 @section('title', 'Studio Vimana | Portfolio')
 
@@ -19,10 +19,10 @@
 					<div class="swiper-wrapper">
 						{{-- Show generic Image if img not exist --}}
 						@if(count($article->images) == 0)
-							<div class="swiper-slide"><img src="{{ asset('webimages/gen/article-gen.jpg') }}" class="slider-image"></div>
+							<div class="swiper-slide"><img src="{{ secure_asset('webimages/gen/article-gen.jpg') }}" class="slider-image"></div>
 						@else 
 							@foreach($article->images as $image)
-							<div class="swiper-slide"><img src="{{ asset('webimages/portfolio/'.$image->name ) }}" class="slider-image"></div>
+							<div class="swiper-slide"><img src="{{ secure_asset('webimages/portfolio/'.$image->name ) }}" class="slider-image"></div>
 							@endforeach
 						@endif
 					</div>
