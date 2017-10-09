@@ -3,7 +3,7 @@
 @section('title', 'Studio Vimana | Portfolio')
 
 @section('styles')
-	{!! Html::style('plugins/swiper-slider/swiper.min.css') !!}
+	<link rel="stylesheet" type="text/css" href="{{ secure_asset('plugins/swiper-slider/swiper.min.css') }}">
 @endsection	
 
 @section('content')
@@ -68,7 +68,7 @@
 @endsection
 
 @section('scripts')
-	{{ Html::script('plugins/swiper-slider/swiper.jquery.min.js') }}
+	<script type="text/javascript" src="{{secure_asset('plugins/swiper-slider/swiper.jquery.min.js')}}"></script>
 @endsection
 
 @section('custom_js')
