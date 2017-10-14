@@ -2,7 +2,7 @@
 
 @section('title', 'Vadmin | Creación de Usuario')
 
-@section('content')
+@section('header')
 	@component('vadmin.components.header')
 		@slot('left')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
@@ -11,8 +11,12 @@
 		@endslot
 		@slot('right')
 		@endslot
+		@slot('bottom')
+		@endslot
 	@endcomponent
+@endsection
 
+@section('content')
 	<div class="row">
 		@component('vadmin.components.container')
 			@slot('title', 'Creación de Usuario')

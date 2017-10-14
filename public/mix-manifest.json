@@ -3,5 +3,6 @@
     "/css/web.css": "/css/web.css",
     "/css/vadmin.css": "/css/vadmin.css",
     "/js/vadmin-ui.js": "/js/vadmin-ui.js",
-    "/js/vadmin-functions.js": "/js/vadmin-functions.js"
+    "/js/vadmin-functions.js": "/js/vadmin-functions.js",
+    "/js/vadmin-forms.js": "/js/vadmin-forms.js"
 }

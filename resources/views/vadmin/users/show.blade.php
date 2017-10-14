@@ -2,16 +2,21 @@
 
 @section('title', 'Vadmin | Perfil de Usuario')
 
-@section('content')
-	@component('vadmin.components.header')
+@section('header')
+    @component('vadmin.components.header')
 		@slot('left')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item"><a href="{{ route('users.index')}}">Usuarios</a></li>
-            <li class="breadcrumb-item active">{{ $user->username }}</li>
+            <li class="breadcrumb-item active">Perfil de <b>{{ $user->username }}</b></li>
 		@endslot
 		@slot('right')
 		@endslot
+        @slot('bottom')
+		@endslot
 	@endcomponent
+@endsection
+
+@section('content')
     <div class="row">
         @component('vadmin.components.container')
             @slot('title')

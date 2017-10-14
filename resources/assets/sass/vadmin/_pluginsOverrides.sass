@@ -14,13 +14,88 @@
         td
             font-size: 0.9rem
 
-
-
 .table-striped tbody tr:nth-of-type(odd)
     background-color: rgb(253, 253, 253)
 
 .breadcrumb
     padding-bottom: 0
+
+.content-wrapper
+	padding-top: 0 !important    
+	.list-wrapper
+		margin-top: 136px
+//     .inner-wrapper
+
+  
+@media (max-width: 765px)
+	.content-wrapper
+		.list-wrapper
+			margin-top: 50px
+
+
+//////////////////////////////////////
+//                                  //
+//             PLUGINS              //
+//                                  //
+//////////////////////////////////////
+
+$phvColor: #000
+$phvFsize: 0.9rem
+
+// Textaerea trumbowyg
+.trumbowyg-button-pane
+	background-color: #DADADA
+	
+.trumbowyg-button-group 
+	color: #383838
+	&:hover
+		color: #525252
+.trumbowyg-box .trumbowyg-editor
+	background-color: #fff
+	border: 1px solid #ccc
+	&:hover
+		color: #383838
+
+.trumbowyg-box 
+	margin: 5px auto !important
+	border: 0
+
+.form-control
+	@include transition(0.2s)
+.form-control:focus
+	box-shadow: none
+	border: 2px solid #4B4568
+
+/// Multiple Select Chosen
+
+.chosen-container-single .chosen-single
+	background: #fff
+	box-shadow: none
+	border-radius: 0
+	padding: 6px 0px 0px 15px
+	height: 36px
+.chosen-container-multi .chosen-choices
+	background: #fff
+	box-shadow: none
+	border-radius: 0
+	padding: 3px 5px 3px 15px
+	li.search-choice
+		border: 0
+		background-image: none
+		box-shadow: none
+		background-color: #7A83CA
+		color: #fff
+		a
+			color: #fff
+
+/// Image File Upload Input (JQuery Filer)
+.jFiler-theme-default .jFiler-input-caption,.jFiler-theme-default .jFiler-input-button
+	padding-top: 5px
+.jFiler-theme-default .jFiler-input
+	box-shadow: none
+.jFiler-items-default .jFiler-item
+	background-color: #fff
+
 //////////////////////////////////////
 //                                  //
 //             ALERT                //
@@ -29,3 +104,10 @@
 
 .alert-success
     background-color: $green
+
+//////////////////////////////////////
+//                                  //
+//             BOOSTRAP             //
+//                                  //
+//////////////////////////////////////
+

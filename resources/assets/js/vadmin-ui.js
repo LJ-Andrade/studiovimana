@@ -1,13 +1,12 @@
 
-var searchFilters = $('#SearchFilters');
-searchFilters.hide();
-
 $('.btnClose').click(function(){
     $(this).parent().addClass('Hidden');
 });
-   
+
+
+var searchFilters = $('#SearchFilters');
+searchFilters.hide();
 
 $('#SearchFiltersBtn').on('click', function(){
-    searchFilters.removeClass('Hidden');
-    searchFilters.show(100);
+    searchFilters.toggle(100);
 });

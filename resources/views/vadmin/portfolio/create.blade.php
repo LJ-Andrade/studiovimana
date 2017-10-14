@@ -1,114 +1,58 @@
 @extends('layouts.vadmin.main')
 @section('title', 'VADmin | Nuevo Artículo')
 
-
-@section('header')
-	@section('header_title', 'Nuevo Artículo') 
-	@section('header_subtitle', ' ')
-	@section('options')
-		<div class="actions">
-			<a href="{{ route('portfolio.index') }}"><button type="button" class="animated fadeIn btnSm buttonOther">Volver</button></a>
-		</div>	
-	@endsection
-@endsection
-
-
-
 @section('styles')
 	{!! Html::style('plugins/texteditor/trumbowyg.min.css') !!}
 	{!! Html::style('plugins/jqueryFileUploader/jquery.fileuploader.css') !!}
 	{{-- {!! Html::style('plugins/jqueryfiler/themes/jquery.filer-dragdropbox-theme.css') !!} --}}
-	{{-- {!! Html::style('plugins/jqueryfiler/jquery.filer.css') !!} --}}
+	{!! Html::style('plugins/jqueryfiler/jquery.filer.css') !!}
+	{!! Html::style('plugins/chosen/chosen.min.css') !!}
 	{!! Html::style('plugins/colorpicker/spectrum.css') !!}
 @endsection
 
+@section('header')
+	@component('vadmin.components.header')
+		@slot('breadcrums')
+			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('portfolio.index')}}">Listado de Artículos</a></li>
+			<li class="breadcrumb-item active">Crear Artículo</li>
+		@endslot
+		@slot('actions')
+			<div class="list-actions">
+				<h1>Creación de Nuevo Artículo</h1>
+				{{-- Edit --}}
+				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+			</div>
+		@endslot
+	@endcomponent
+@endsection
+
 @section('content')
-
-	<div class="container">
-	    <div class="row">
-	        {!! Form::open(['route' => 'portfolio.store', 'method' => 'POST', 'files' => true, 'id' => 'NewItemForm', 'class' => 'big-form', 'data-parsley-validate' => '']) !!}	
-				<div class="row">
-					{{-- Title --}}
-					<div class="col-md-6">
-						<div class="form-group">
-							{!! Form::label('title', 'Título') !!}
-							{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título del artículo', 'id' => 'TitleInput', 
-							'required' => '', 'maxlength' => '120', 'minlength' => '4']) !!}
-						</div>
-					</div>
-					{{-- Slug --}}
-					<div class="col-md-6">
-						<div class="form-group">
-							{!! Form::label('slug', 'Url - Dirección web') !!}
-							{!! Form::text('slug', null, ['class' => 'SlugInput form-control', 'placeholder' => 'Dirección visible (en explorador)', 'id' => 'SlugInput', 'required' => '']) !!}
-							<div class="slug2"></div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				{{-- Content --}}
-				<div class="form-group">
-					{!! Form::label('content', 'Contenido') !!}
-					{!! Form::textarea('content', null, ['class' => 'form-control Textarea-Editor']) !!}
-				</div>
-				<div class="row">
-					{{-- Category --}}
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div class="form-group">
-							{!! Form::label('category_id', 'Categoría') !!}
-							{!! Form::select('category_id', $categories, null, ['class' => 'form-control Select-Category', 'placeholder' => 'Seleccione una opcion',
-							'required' => '']) !!}
-						</div>
-					</div>
-					{{-- Tags--}}
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div class="form-group">
-							{!! Form::label('tags', 'Tags') !!}
-							{!! Form::select('tags[]',$tags, null, ['class' => 'form-control Select-Tags', 'multiple', 'required' => '']) !!}
-						</div>
-					</div>
-					{{-- Status--}}
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div class="form-group">
-							{!! Form::label('status', 'Estado') !!}
-							{!! Form::select('status', ['active' => 'Activo','paused' => 'Pausado'], null, ['class' => 'form-control']) !!}
-						</div>
-					</div>	
-				</div>
-				{{-- Images--}}
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							{!! Form::label('images', 'Imágenes') !!}
-							<span style="font-size: 12px"> | Formatos soportados: jpeg, jpg, png, gif</span>
-							{!! Form::file('images[]', array('multiple'=>true, 'id' => 'Multi_Images')) !!}
-							<div class="ErrorImage"></div>
-						</div>
-						<hr class="softhr">
-					</div>
-				</div>
-				<div class="row text-center">
-					{!! Form::submit('Agregar artículo', ['class' => 'button buttonOk']) !!}
-				</div>
-			{!! Form::close() !!}
-	    </div>
+	<div class="inner-wrapper">
+		{!! Form::open(['route' => 'portfolio.store', 'method' => 'POST', 'files' => true, 'id' => 'NewItemForm', 'class' => 'row big-form', 'data-parsley-validate' => '']) !!}	
+			@include('vadmin.portfolio.form')
+			<div class="row centered">
+				{!! Form::submit('Agregar artículo', ['class' => 'btn btnGreen']) !!}
+			</div>
+		{!! Form::close() !!}
 	</div>  
-
 @endsection
 
 @section('scripts')
 	<script type="text/javascript" src="{{ asset('plugins/texteditor/trumbowyg.min.js')}} "></script>
 	{{-- <script type="text/javascript" src="{{ asset('plugins/jqueryfiler/jquery.filer.min.js')}} "></script> --}}
+	<script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/spectrum.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
-	<script type="text/javascript" src="{{ asset('js/jslocal/forms.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
 @endsection
 
 @section('custom_js')
 	
 	<script>
-
 		// ------------------- Textarea Text Editor --------------------------- //
 		// Path to icons
 		$.trumbowyg.svgPath = '{{ asset('plugins/texteditor/icons.svg') }}';
@@ -127,9 +71,6 @@
 				console.log(hex);
 			}
 		});
-
-		
-
 	</script>
 
 @endsection

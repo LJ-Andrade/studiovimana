@@ -1,109 +1,79 @@
-@extends('vadmin.layouts.main')
+@extends('layouts.vadmin.main')
 @section('title', 'VADmin | Editar Artículo')
-@section('header_title', 'Editando artículo: ') 
-@section('header_subtitle')
-	{{ $article->title }}
-@endsection
- 
+
 @section('styles')
 	{!! Html::style('plugins/texteditor/trumbowyg.min.css') !!}
-	{{-- {!! Html::style('plugins/jqueryfiler/themes/jquery.filer-dragdropbox-theme.css') !!} --}}
-	{{-- {!! Html::style('plugins/jqueryfiler/jquery.filer.css') !!} --}}
 	{!! Html::style('plugins/jqueryFileUploader/jquery.fileuploader.css') !!}
+	{{-- {!! Html::style('plugins/jqueryfiler/themes/jquery.filer-dragdropbox-theme.css') !!} --}}
+	{!! Html::style('plugins/jqueryfiler/jquery.filer.css') !!}
+	{!! Html::style('plugins/chosen/chosen.min.css') !!}
 	{!! Html::style('plugins/colorpicker/spectrum.css') !!}
+@endsection
+
+@section('header')
+	@component('vadmin.components.header')
+		@slot('breadcrums')
+			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('portfolio.index')}}">Listado de Artículos</a></li>
+			<li class="breadcrumb-item active">Edición de Artículo</li>
+		@endslot
+		@slot('actions')
+			<div class="list-actions">
+				<h1>Edición de Artículo</h1>
+				{{-- Edit --}}
+				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+			</div>
+		@endslot
+	@endcomponent
 @endsection
 
 @section('content')
 
-	<div class="container">
-	    <div class="row">
-	        {!! Form::open(['route' => ['portfolio.update', $article], 'class' => 'big-form', 'method' => 'PUT', 'files' => true]) !!}
-	        	<div class="row">
-					{{-- Title --}}
-					<div class="col-md-6">
-						<div class="form-group">
-							{!! Form::label('title', 'Título') !!}
-							{!! Form::text('title', $article->title, ['class' => 'form-control', 'placeholder' => 'Título del artículo']) !!}
-						</div>
-					</div>
-					{{-- Slug --}}
-					<div class="col-md-6">
-						<div class="form-group">
-							{!! Form::label('slug', 'Slug') !!}
-							{!! Form::text('slug', $article->slug, ['class' => 'SlugInput form-control', 'required']) !!}
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				{{-- Conten --}}
-				<div class="form-group">
-					{!! Form::label('content', 'Contenido') !!}
-					{!! Form::textarea('content', $article->content, ['class' => 'form-control Textarea-Editor']) !!}
-				</div>
-
-				<div class="row">
-					<div class="col-md-4">
-						<div class="form-group">
-							{!! Form::label('category_id', 'Categoría') !!}
-							{!! Form::select('category_id', $categories, $article->category->id, ['class' => 'form-control Select-Category', 'placeholder' => 'Seleccione una opcion', 'required']) !!}
-						</div>
-					</div>
-					<div class="col-md-5">
-						<div class="form-group">
-							{!! Form::label('tags', 'Tags') !!}
-							{!! Form::select('tags[]', $tags, $actual_tags, ['class' => 'form-control Select-Tags', 'multiple', 'required']) !!}
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							{!! Form::label('status', 'Estado') !!}
-							{!! Form::select('status', ['active' => 'Activo','paused' => 'Pausado'], $article->status, ['class' => 'form-control']) !!}
-						</div> 
-					</div>
-				</div>
-				@if(count($article->images) == 0 )
-				@else
+	<div class="inner-wrapper">
+		{!! Form::model($article, [
+				'method' => 'PATCH',
+				'url' => ['vadmin/portfolio', $article->id],
+				'files' => true,
+				'class' => 'row big-form', 
+				'data-parsley-validate' => ''
+			]) !!}
+			@include('vadmin.portfolio.form')
+			@if(count($article->images) == 0 )
+			@else
 				<div class="row">
 					<div class="col-md-12 actual-images horizontal-list">
 						<h2>Imágenes publicadas</h2>
 						<ul>
 							@foreach($article->images as $image)
 							<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
-								<img src="{{ secure_asset('webimages/portfolio/'.$image->name) }}">
-								<div class="overlayItemCenter"><i class="ion-trash-a"></i></div>
+								<img src="{{ asset('webimages/portfolio/'.$image->name) }}">
+								<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i></div>
 							</li>
 							@endforeach
 						</ul>
 						<hr class="softhr">
 					</div>
 				</div>
-				@endif
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							<span><b>Agregar nuevas imágenes </b></span><span style="font-size: 12px"> | Formatos soportados: jpeg, jpg, png, gif</span>
-							{!! Form::file('images[]', array('multiple'=>true, 'id' => 'Multi_Images')) !!}
-							<div class="ErrorImage"></div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="row text-center">
-					{!! Form::submit('Editar Item', ['class' => 'button buttonOk']) !!}
-				</div>
-			{!! Form::close() !!}
-	    </div>
+			@endif
+			<div class="row centered">
+				{!! Form::submit('Actualizar artículo', ['class' => 'btn btnGreen']) !!}
+			</div>
+		{!! Form::close() !!}
+		
 	</div>  
 
 @endsection
 
 @section('scripts')
-	<script type="text/javascript" src="{{ secure_asset('plugins/texteditor/trumbowyg.min.js')}} "></script>
-	{{-- <script type="text/javascript" src="{{ secure_asset('plugins/jqueryfiler/jquery.filer.min.js')}} "></script> --}}
-	<script type="text/javascript" src="{{ secure_asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js')}} "></script>
-	<script type="text/javascript" src="{{ secure_asset('plugins/colorpicker/spectrum.js')}} "></script>
-	<script type="text/javascript" src="{{ secure_asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
-	<script type="text/javascript" src="{{ secure_asset('js/jslocal/forms.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/texteditor/trumbowyg.min.js')}} "></script>
+	{{-- <script type="text/javascript" src="{{ asset('plugins/jqueryfiler/jquery.filer.min.js')}} "></script> --}}
+	<script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js')}} "></script>
+	<script type="text/javascript" src="{{ asset('plugins/colorpicker/spectrum.js')}} "></script>
+	<script type="text/javascript" src="{{ asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
+	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
 @endsection
 
 @section('custom_js')
@@ -112,7 +82,7 @@
 
 		// ---- Textarea Text Editor ----- //
 		// Path to icons
-		$.trumbowyg.svgPath = '{{ secure_asset('plugins/texteditor/icons.svg') }}';
+		$.trumbowyg.svgPath = '{{ asset('plugins/texteditor/icons.svg') }}';
 		// Init
 		$('.Textarea-Editor').trumbowyg();
 

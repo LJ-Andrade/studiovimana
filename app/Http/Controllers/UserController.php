@@ -22,15 +22,15 @@ class UserController extends Controller
         $group = $request->get('group');
         
         if(isset($name) && $name != ''){
-            $items = User::searchname($name)->orderBy('id', 'ASC')->paginate(10); 
+            $items = User::searchname($name)->orderBy('id', 'ASC')->paginate(15); 
         } else if(isset($role) && isset($group) && $role != '*' && $group != '*' ) {
-            $items = User::searchrolegroup($role, $group)->orderBy('id', 'ASC')->paginate(10); 
+            $items = User::searchrolegroup($role, $group)->orderBy('id', 'ASC')->paginate(15); 
         } else if(isset($role) && $role != '*') {
-            $items = User::searchrole($role)->orderBy('id', 'ASC')->paginate(10); 
+            $items = User::searchrole($role)->orderBy('id', 'ASC')->paginate(15); 
         } else if(isset($group) && $group != '*'){ 
-            $items = User::searchgroup($group)->orderBy('id', 'ASC')->paginate(10); 
+            $items = User::searchgroup($group)->orderBy('id', 'ASC')->paginate(15); 
         } else {
-            $items = User::orderBy('id', 'ASC')->paginate(10); 
+            $items = User::orderBy('id', 'ASC')->paginate(15); 
         }        
 
         return view('vadmin.users.index')

@@ -26,12 +26,9 @@ class Article extends Model
     	return $this->belongsToMany('App\Tag');
     }
 
-
-    public function scopeSearch($query, $title)
+    public function scopeSearchtitle($query, $title)
     {
-        // Remember to add Namespace::search($request->$title)orderBy('id', 'DESCC')->paginate(5);
-        // In the controller
         return $query->where('title', 'LIKE', "%$title%");
-
     }
+
 }

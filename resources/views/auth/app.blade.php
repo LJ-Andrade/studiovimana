@@ -30,16 +30,13 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/css/app.css') }}">
 		<!-- END ROBUST CSS-->
 		
-		
 		<!-- END Page Level CSS-->
 		<!-- BEGIN Custom CSS-->
-		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/assets/css/style.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/vadmin.css') }}">
 		
 		<!-- END Custom CSS-->
 	</head>
     <body class="login-page">
         @yield('content')
-
     </body>
 </html>

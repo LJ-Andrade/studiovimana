@@ -24,30 +24,27 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/fonts/icomoon.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/fonts/flag-icon-css/css/flag-icon.min.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/vendors/css/extensions/pace.css') }}">
-		<!-- END VENDOR CSS-->
-		<!-- BEGIN ROBUST CSS-->
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/css/bootstrap-extended.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/css/app.css') }}">
-		{{-- <link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/css/colors.css') }}"> --}}
-		<!-- END ROBUST CSS-->
-		<!-- BEGIN Page Level CSS-->
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/css/core/menu/menu-types/vertical-overlay-menu.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/app-assets/css/core/colors/palette-gradient.css') }}">
-		<!-- END Page Level CSS-->
-		<!-- BEGIN Custom CSS-->
-		<link rel="stylesheet" type="text/css" href="{{ asset('vadmin-ui/assets/css/style.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/vadmin.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('plugins/sweetalert/sweetalert2.min.css') }}">
+		<!-- END VENDOR CSS-->
+		<!-- BEGIN Custom CSS-->
 		<!-- END Custom CSS-->
 		@yield('styles')
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/vadmin.css') }}">
 	</head>
   	<body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns fixed-navbar">
 
 		@include('layouts.vadmin.partials.nav')
 		<div class="app-content content container-fluid">
 			<div class="content-wrapper">
-				<div class="content-header row">
+				<div class="container pad0">
+					<div class="container pad0">
+						@yield('header')
+					</div>
 				</div>
 				<div class="container">
 					{{-- Errors --}}
@@ -92,7 +89,7 @@
 		<script src="{{ asset('vadmin-ui/app-assets/vendors/js/extensions/pace.min.js') }}" type="text/javascript"></script>
 		<!-- BEGIN VENDOR JS-->
 		<!-- BEGIN PAGE VENDOR JS-->
-		<script src="{{ asset('vadmin-ui/app-assets/vendors/js/charts/chart.min.js') }}" type="text/javascript"></script>
+		{{--  <script src="{{ asset('vadmin-ui/app-assets/vendors/js/charts/chart.min.js') }}" type="text/javascript"></script>  --}}
 		<!-- END PAGE VENDOR JS-->
 		<!-- BEGIN ROBUST JS-->
 		<script src="{{ asset('vadmin-ui/app-assets/js/core/app-menu.js') }}" type="text/javascript"></script>

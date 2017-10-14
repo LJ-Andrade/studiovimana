@@ -1,11 +1,9 @@
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
  
-
 /*
 |--------------------------------------------------------------------------
 | LISTS
@@ -13,11 +11,11 @@ $.ajaxSetup({
 */
 
 // Set List Action Buttons
-$(document).on("click", ".row-checkbox", function(e){
+$(document).on("click", ".List-Checkbox", function(e){
     e.stopPropagation();
 
 	var selectedRows = [];
-    $(".row-checkbox:checked").each(function() {          
+    $(".List-Checkbox:checked").each(function() {          
         selectedRows.push($(this).attr('data-id'));
 		$('#RowsToDeletion').val(selectedRows);
     });
@@ -44,7 +42,7 @@ $(document).on("click", ".row-checkbox", function(e){
 
 function showButtons(trigger) {
 	
-	var countSelected = $('input:checkbox:checked').length;
+	var countSelected = $('.List-Checkbox:checkbox:checked').length;
 
 	if(countSelected == 1) {
         $('#DeleteBtn').removeClass('Hidden');
@@ -55,7 +53,6 @@ function showButtons(trigger) {
         $('#DeleteBtn').addClass('Hidden');
         $('#EditBtn').addClass('Hidden');
     }
-
 }
 
 /*

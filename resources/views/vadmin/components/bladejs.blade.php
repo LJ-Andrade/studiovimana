@@ -21,4 +21,7 @@
         deleteAndReload(id, route, 'Cuidado!','Está seguro?');
     });
 
+    // Pause Item
+    
+
 </script>
