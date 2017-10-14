@@ -8,14 +8,12 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('portfolio.index')}}">Listado de Categorías</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('categories.index')}}">Listado de Categorías</a></li>
 			<li class="breadcrumb-item active">Nueva Categoría</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h1>Creación de Nuevo Artículo</h1>
-				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<h1>Creación de Nueva Categoría</h1>
 			</div>
 		@endslot
 	@endcomponent
@@ -23,10 +21,17 @@
 
 @section('content')
 	<div class="inner-wrapper">
-		{!! Form::open(['route' => 'portfolio.store', 'method' => 'POST', 'files' => true, 'id' => 'NewItemForm', 'class' => 'row big-form', 'data-parsley-validate' => '']) !!}	
+		{!! Form::open(['route' => 'categories.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form', 'data-parsley-validate' => '']) !!}	
 			@include('vadmin.portfolio.categories.form')
-			<div class="row centered">
-				{!! Form::submit('Agregar artículo', ['class' => 'btn btnGreen']) !!}
+			<div class="form-actions right">
+				<a href="{{ route('categories.index')}}">
+					<button type="button" class="btn btnRed">
+						<i class="icon-cross2"></i> Cancelar
+					</button>
+				</a>
+				<button type="submit" class="btn btnGreen">
+					<i class="icon-check2"></i> Guardar
+				</button>
 			</div>
 		{!! Form::close() !!}
 	</div>  

@@ -97,6 +97,8 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
 Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('destroy_users', 'UserController@destroy');
     Route::post('destroy_portfolio', 'Portfolio\ArticlesController@destroy');
+    Route::post('destroy_categories', 'Portfolio\CategoriesController@destroy');
+    Route::post('destroy_tags', 'Portfolio\TagsController@destroy');
 });
 
 

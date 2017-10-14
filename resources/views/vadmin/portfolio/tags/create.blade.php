@@ -1,5 +1,5 @@
 @extends('layouts.vadmin.main')
-@section('title', 'VADmin | Editar Etiqueta')
+@section('title', 'VADmin | Nueva etiqueta')
 
 @section('styles')
 @endsection
@@ -8,29 +8,20 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('tags.index')}}">Listado de Etiquetas</a></li>
-			<li class="breadcrumb-item active">Edición de Etiqueta</li>
+			<li class="breadcrumb-item"><a href="{{ route('categories.index')}}">Listado de Etiquetas</a></li>
+			<li class="breadcrumb-item active">Nueva Etiqueta</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h2>Editando Etiqueta: " {{ $tag->name }} "</h2>
-				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<h1>Creación de Nueva Etiqueta</h1>
 			</div>
 		@endslot
 	@endcomponent
 @endsection
 
 @section('content')
-
 	<div class="inner-wrapper">
-		{!! Form::model($tag, [
-				'method' => 'PATCH',
-				'url' => ['vadmin/tags', $tag->id],
-				'files' => true,
-				'class' => 'row big-form', 
-				'data-parsley-validate' => ''
-			]) !!}
+		{!! Form::open(['route' => 'tags.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form', 'data-parsley-validate' => '']) !!}	
 			@include('vadmin.portfolio.tags.form')
 			<div class="form-actions right">
 				<a href="{{ route('tags.index')}}">
@@ -43,7 +34,16 @@
 				</button>
 			</div>
 		{!! Form::close() !!}
-		
 	</div>  
+@endsection
+
+@section('scripts')
+	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
+@endsection
+
+@section('custom_js')
 
 @endsection
+
+

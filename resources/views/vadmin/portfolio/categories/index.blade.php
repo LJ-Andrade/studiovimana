@@ -71,7 +71,7 @@
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 							</tr>						
 						@endforeach
-						@endif
+					@endif
 				@endslot
 			@endcomponent
 			

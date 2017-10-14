@@ -31,8 +31,18 @@
 	<div class="inner-wrapper">
 		{!! Form::open(['route' => 'portfolio.store', 'method' => 'POST', 'files' => true, 'id' => 'NewItemForm', 'class' => 'row big-form', 'data-parsley-validate' => '']) !!}	
 			@include('vadmin.portfolio.form')
-			<div class="row centered">
+			{{-- <div class="row centered">
 				{!! Form::submit('Agregar artículo', ['class' => 'btn btnGreen']) !!}
+			</div> --}}
+			<div class="form-actions right">
+				<a href="{{ route('portfolio.index')}}">
+					<button type="button" class="btn btnRed">
+						<i class="icon-cross2"></i> Cancelar
+					</button>
+				</a>
+				<button type="submit" class="btn btnGreen">
+					<i class="icon-check2"></i> Guardar
+				</button>
 			</div>
 		{!! Form::close() !!}
 	</div>  

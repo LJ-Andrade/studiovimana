@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     
     public function index(Request $request)
     {   
-        $name    = $request->get('name');
+        $name = $request->get('name');
 
         if(isset($name)){
             $categories = Category::searchname($name)->orderBy('id', 'ASC')->paginate(15); 
@@ -40,27 +40,22 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        return view('vadmin.categories.create');
+        return view('vadmin.portfolio.categories.create');
     }
 
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'max:120|required|unique:categories'
+            'name' => 'required|min:4|max:250|unique:categories',
         ],[
-            'name.unique'         => 'La categoría ya existe'
+            'name.required' => 'Debe ingresar un nombre a la categoría',
+            'name.unique'   => 'La categoría ya existe',
         ]);
 
-        if ($request->ajax())
-        {            
-            $result = Category::create($request->all());
-            if ($result)
-            {
-                return response()->json(['success'=>'true', 'message'=>'Categoria creada']);
-            } else {
-                return response()->json(['success'=>'false', 'error'=>'Error']);        
-            }
-        }
+        $category = new Category($request->all());
+        $category->save();
+
+        return redirect()->route('categories.index')->with('message','Categoría creada');
     }
 
     /*
@@ -72,33 +67,26 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('vadmin.categories.edit')->with('category', $category);
+        return view('vadmin.portfolio.categories.edit')->with('category', $category);
 
     }
 
     public function update(Request $request, $id)
     {
+        $category = Category::find($id);
+
         $this->validate($request,[
-            'name'     => 'max:120|required|unique:categories'
+            'name' => 'required|min:4|max:250|unique:categories,name,'.$category->id,
         ],[
-            'name.unique'         => 'La categoría ya existe'
+            'name.required' => 'Debe ingresar un nombre a la categoría',
+            'name.unique'   => 'La categoría ya existe'
         ]);
         
-        $category = Category::find($id);
         $category->fill($request->all());
+        $category->save();
 
-        // // O se puede hacer individualmente
-        // // $user->name  = $request->name;
-        // // $user->email = $request->email;
-        // // $user->type  = $request->type;
-        
-        $result = $category->save();
-        if ($result) {
-            return response()->json(['success'=>'true']);
-        } else {
-            return response()->json(['success'=>'false']);
-        }
-    }
+        return redirect()->route('categories.index')->with('message','Categoría editada');
+    } 
 
     /*
     |--------------------------------------------------------------------------
@@ -114,7 +102,7 @@ class CategoriesController extends Controller
         if(is_array($ids)) {
             try {
                 foreach ($ids as $id) {
-                    $record = Categorie::find($id);
+                    $record = Category::find($id);
                     $record->delete();
                 }
                 return response()->json([
@@ -128,7 +116,7 @@ class CategoriesController extends Controller
             }
         } else {
             try {
-                $record = Categorie::find($id);
+                $record = Category::find($id);
                 $record->delete();
                     return response()->json([
                         'success'   => true,
@@ -142,7 +130,4 @@ class CategoriesController extends Controller
                 }
         }
     }
-
-
-
 } // End

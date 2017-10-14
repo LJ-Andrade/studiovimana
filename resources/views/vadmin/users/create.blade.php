@@ -4,14 +4,12 @@
 
 @section('header')
 	@component('vadmin.components.header')
-		@slot('left')
-		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
+		@slot('breadcrums')
+			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item"><a href="{{ route('users.index')}}">Usuarios</a></li>
             <li class="breadcrumb-item active">Nuevo Usuario</li>
 		@endslot
-		@slot('right')
-		@endslot
-		@slot('bottom')
+		@slot('actions')
 		@endslot
 	@endcomponent
 @endsection

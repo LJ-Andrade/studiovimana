@@ -55,6 +55,5 @@
             {!! Form::file('images[]', array('multiple'=>true, 'id' => 'Multi_Images')) !!}
             <div class="ErrorImage"></div>
         </div>
-        <hr class="softhr">
     </div>
 </div>

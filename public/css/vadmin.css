@@ -899,8 +899,33 @@ ul.pagination li.disabled {
 
 .alert-success {
   color: #fff;
-  background-color: #9FD56B;
+  background-color: #8DBB61;
   border: 0;
+}
+
+.alert-success .close {
+  opacity: 1;
+  color: #fff;
+  text-shadow: none;
+}
+
+.alert-success ul {
+  margin-bottom: 0;
+}
+
+.alert-error {
+  color: #fff;
+  background-color: #D05C5C;
+  border: 0;
+}
+
+.alert-error .close {
+  opacity: 1;
+  color: #fff;
+}
+
+.alert-error ul {
+  margin-bottom: 0;
 }
 
 .blue-back {

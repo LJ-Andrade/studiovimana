@@ -9,26 +9,25 @@
 @endsection
 {{-- CONTENT --}}
 @section('header')
-	@component('vadmin.components.header')
-		@slot('left')
+	@component('vadmin.components.headerfixed')
+		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item active">Usuarios</li>
 		@endslot
-		@slot('right')
-		@endslot
-		@slot('bottom')
+		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
 				<a href="{{ route('users.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Usuario</a>
 				<button id="SearchFiltersBtn" class="btn btnGreen"><i class="icon-ios-search-strong"></i></button>
 				@if(Auth::user()->role <= 2)
 					{{-- Edit --}}
-					<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i></a>
-					<input id="EditId" type="hidden">
-					<input id="ModelName" type="hidden" value="users">
-					{{-- Delete --}}
-					<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i></button>
-					<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
+				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<input id="EditId" type="hidden">
+				{{-- Delete --}}
+				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
+				<input id="ModelName" type="hidden" value="users">
+				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				@endif
 				{{-- If Search --}}
 				@if(isset($_GET['name']) || isset($_GET['group']) || isset($_GET['role']))
@@ -36,13 +35,15 @@
 					<div class="results">{{ $items->total() }} resultados de búsqueda: </div>
 				@endif
 			</div>
+		@endslot
+		@slot('searcher')
 			@include('vadmin.users.searcher')
 		@endslot
 	@endcomponent
 @endsection
 
 @section('content')
-	<div class="inner-wrapper">
+	<div class="list-wrapper">
 		{{-- Test --}}
 		<div id="TestBox" class="col-xs-12 test-box Hidden">
 		</div>
@@ -67,7 +68,7 @@
 							@if(Auth::user()->role <= 2)
 							<td>
 								<label class="custom-control custom-checkbox list-checkbox">
-									<input type="checkbox" class="custom-control-input row-checkbox" data-id="{{ $item->id }}">
+									<input type="checkbox" class="List-Checkbox custom-control-input row-checkbox" data-id="{{ $item->id }}">
 									<span class="custom-control-indicator"></span>
 									<span class="custom-control-description"></span>
 								</label>
