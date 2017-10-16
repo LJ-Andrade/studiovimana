@@ -25,7 +25,7 @@ class WebController extends Controller
 	public function portfolio(Request $request)
 	{
 
-        $articles = Article::search($request->title)->orderBy('id', 'DESC')->where('status', 'active')->paginate(12);
+        $articles = Article::search($request->title)->orderBy('id', 'DESC')->where('status', '1')->paginate(12);
         $articles->each(function($articles){
             $articles->category;
             $articles->images;
