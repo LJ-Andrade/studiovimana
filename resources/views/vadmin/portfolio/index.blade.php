@@ -83,12 +83,12 @@
 								<td class="w-50 pad0 centered">
 									@if($item->status == '1')
 										<label class="switch">
-											<input id="PauseArticle" class="switch-checkbox" data-id="{{ $item->id }}" type="checkbox" checked>
+											<input class="PauseArticle switch-checkbox" data-id="{{ $item->id }}" type="checkbox" checked>
 											<span class="slider round"></span>
 										</label>
 									@elseif($item->status == '0')
 										<label class="switch">
-											<input id="ActivateArticle" data-id="{{ $item->id }}" type="checkbox">
+											<input class="ActivateArticle" data-id="{{ $item->id }}" type="checkbox">
 											<span class="slider round"></span>
 										</label>
 									@else 
@@ -121,4 +121,53 @@
 
 {{-- CUSTOM JS SCRIPTS--}}
 @section('custom_js')
+	<script>
+	$(document).ready(function(e) {
+		$('.PauseArticle').click(function() {
+			var cbx = $(this);
+			if (cbx[0].checked) {
+				console.log("Error en checkbox");
+			} else {
+				console.log("Pausar");
+				var id     = cbx.data('id');
+				console.log(id);
+				updateStatus(id, '0');
+			}
+		});
+
+		$('.ActivateArticle').click(function() {
+			var cbx = $(this);
+			if (cbx[0].checked) {
+				var id = cbx.data('id');
+				console.log("Activar");
+				console.log(id);
+				updateStatus(id, '1');
+			} else {
+				console.log("Error en checkbox");
+			}
+		});
+	});
+
+	function updateStatus(id, status)
+	{
+		var route = "{{ url('/vadmin/updateStatus') }}/"+id+"";
+		$.ajax({
+			
+			url: route,
+			method: 'post',             
+			dataType: 'json',
+			data: { id: id, status: status
+			},
+			success: function(data){
+				console.log(data);
+			},
+			error: function(data){
+				$('#Error').html(data.responseText);
+			}
+		});
+	}
+
+
+
+	</script>
 @endsection
