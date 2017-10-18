@@ -131,16 +131,16 @@ class UserController extends Controller
                 if ($user->avatar != "default.jpg") {
                     $path     = public_path('images/users/');
                     $lastpath = $user->avatar;
-                    File::Delete($path . $lastpath);
+                    File::Delete($path . $lastpath);   
                 }
+                $user->avatar = $filename;
+                $user->save();
+                return redirect('vadmin/users/'.$user->id)->with('message', 'Avatar actualizado');
             }   catch(Exception $e){
                 dd($e);
             }
             
-            $user->avatar = $filename;
-            $user->save();
             
-            return view('vadmin.users.show', compact('user'));
         }
     }
 
