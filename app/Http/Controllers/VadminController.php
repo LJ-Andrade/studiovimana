@@ -14,7 +14,8 @@ class VadminController extends Controller
     
     public function index(Request $request)
     {
-        return view('vadmin');
+        $messages = Contact::get()->count();
+        return view('vadmin')->with('messages', $messages);
     }
 
     public function storedContacts(Request $request)

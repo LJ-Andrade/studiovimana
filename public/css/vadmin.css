@@ -992,6 +992,35 @@ ul.pagination li.disabled {
   background-color: #fff !important;
 }
 
+.dashboard {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.dashboard .main-title {
+  font-size: 0.9rem;
+  line-height: 2rem;
+  font-weight: 600;
+  color: #5D76C9;
+  margin-bottom: 100px;
+}
+
+.dashboard .main-title .black {
+  color: #383838;
+}
+
+.dashboard .main-title img {
+  width: 250px;
+}
+
+.dashboard .messages-text {
+  margin-top: 20px;
+}
+
+.dashboard .motivation {
+  margin-top: 150px;
+}
+
 .custom-card .form-actions {
   padding: 20px 0 0;
 }
