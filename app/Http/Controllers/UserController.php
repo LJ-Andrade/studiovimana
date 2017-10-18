@@ -125,8 +125,8 @@ class UserController extends Controller
 
             $user = User::findOrFail($request->id);
             $avatar   = $request->file('avatar');
-            $filename = $user->username . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300, 300)->save( public_path('images/users/' . $filename ) );
+            $filename = $user->username;
+            Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename.'.jpg'));
         
             // if (Auth::user()->avatar != "default.jpg") {
             //     $path     = 'images/users/';
@@ -134,7 +134,7 @@ class UserController extends Controller
             //     File::Delete(public_path( $path . $lastpath) );
             // }
             
-            $user->avatar = $filename;
+            $user->avatar = $filename.'.jpg';
             
             $user->save();
             

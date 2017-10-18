@@ -8,13 +8,13 @@
 				
 					<div class="col-md-6">
 						<div class="form-group">
-							{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingresá tu nombre/empresa']) !!}
+							{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingresá tu nombre/empresa', 'required']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Ingresá tu teléfono']) !!}
+							{!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Ingresá tu teléfono', 'required']) !!}
 						</div>
 						<div class="form-group">
-							{!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Ingresá tu E-Mail']) !!}
+							{!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Ingresá tu E-Mail', 'required']) !!}
 						</div>
 							
 					</div>
