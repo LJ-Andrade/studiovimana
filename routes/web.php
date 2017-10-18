@@ -2,7 +2,6 @@
 
 use App\Http\Middleware\Admins;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web
@@ -45,6 +44,8 @@ Route::get('tag/{name}', [
 	'as'   => 'web.search.tag'
 ]);
 
+Route::post('mail_sender', 'WebController@mail_sender');
+
 /*
 |--------------------------------------------------------------------------
 | VADmin
@@ -53,7 +54,6 @@ Route::get('tag/{name}', [
 
 Route::get('/home', 'VadminController@index')->middleware('auth');
 Route::get('/vadmin', 'VadminController@index')->middleware('auth');
-
 
 /*
 |--------------------------------------------------------------------------

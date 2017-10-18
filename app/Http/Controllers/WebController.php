@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Article;
 use App\Category;
 use App\Tag;
+use App\Contact;
 
 class WebController extends Controller
 {
@@ -24,7 +25,6 @@ class WebController extends Controller
 
 	public function portfolio(Request $request)
 	{
-
         $articles = Article::search($request->title)->orderBy('id', 'DESC')->where('status', '1')->paginate(12);
         $articles->each(function($articles){
             $articles->category;
@@ -40,7 +40,6 @@ class WebController extends Controller
     	return view('web.portfolio.portfolio')
     		->with('articles', $articles);
     }
-
 
     public function searchCategory($name)
     {
@@ -84,7 +83,6 @@ class WebController extends Controller
         return view('web.portfolio.article')->with('article', $article);
     }
 
-
     public function contact()
     {  
         return view('contacto');
@@ -92,19 +90,15 @@ class WebController extends Controller
 
 	public function test_sender(Request $request)
 	{
-
 		sleep(2);
 
 		$Message  = "Nombre/Empresa: ".stripslashes($_POST['name'])." \n";
-		$Message .= "Tel.: ".stripslashes($_POST['tel'])." \n";
+		$Message .= "Tel.: ".stripslashes($_POST['phone'])." \n";
 		$Message .= "E-Mail: ".stripslashes($_POST['email'])." \n";
 		$Message .= "Consulta/Mensaje: ".stripslashes($_POST['message'])." \n";
 
-
 		$Message .= 'Ok, terminé';
 		return response()->json(['response' => $Message]);
-
-
 	}
 
 	public function mail_sender(Request $request)
@@ -126,7 +120,7 @@ class WebController extends Controller
 
 		// Genera un mensaje personalizado.
 		$Message  = "Nombre/Empresa: ".stripslashes($_POST['name'])." \n";
-		$Message .= "Tel.: ".stripslashes($_POST['tel'])." \n";
+		$Message .= "Tel.: ".stripslashes($_POST['phone'])." \n";
 		$Message .= "E-Mail: ".stripslashes($_POST['email'])." \n";
 		$Message .= "Consulta/Mensaje: ".stripslashes($_POST['message'])." \n";
 
@@ -143,8 +137,17 @@ class WebController extends Controller
 			$Message .= "\n\n".$Footer;
 		}
 
-		mail( "$MailToAddress", "$MailSubject", "$Message", "From: $MailFromAddress");
-
+		try{
+			mail("$MailToAddress", "$MailSubject", "$Message", "From: $MailFromAddress");
+			$contact = new Contact();
+            $contact->fill($request->all());
+			$contact->save();
+			return response()->json(['response' => 1,
+									 'error'    => '0']); 
+		} catch(Exception $e) {
+			return response()->json(['response' => 0,
+									 'error'    => $e]); 
+		}
 
 		function ValidarDatos($campo){
 			//Array con las posibles cabeceras a utilizar por un spammer
@@ -158,9 +161,7 @@ class WebController extends Controller
 			"To:",
 			"bcc:",
 			"cc:");
-			//Comprobamos que entre los datos no se encuentre alguna de
-			//las cadenas del array. Si se encuentra alguna cadena se
-			//dirige a una página de Forbidden
+
 			foreach($badHeads as $valor){
 				if(strpos(strtolower($campo), strtolower($valor)) !== false){
 					header( "HTTP/1.0 403 Forbidden");
@@ -172,20 +173,11 @@ class WebController extends Controller
 		//Ejemplo de llamadas a la funcion
 		ValidarDatos($_POST['name']);
 		ValidarDatos($_POST['email']);
-		ValidarDatos($_POST['tel']);
+		ValidarDatos($_POST['phone']);
 		ValidarDatos($_POST['message']);
-
         
-		return response()->json(['response' => $Message]); 
-
-		// if (1==1){    
-		//     } 
-		//     else {
-		//         return response()->json(['response' => 'This is get method']);
-		//     }
+		
 
 		}
-
-
-
+		
 }

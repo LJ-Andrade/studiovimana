@@ -258,11 +258,8 @@
             </div>
         </div>
     </div>
-
     @include('layouts.web.partials.contact')
     @include('layouts.web.partials.foot')
-
-
 @endsection
 
 @section('scripts')
@@ -273,10 +270,9 @@
 
 @section('custom_js')
 <script>    
-
     // Home Parallax
     var image = "{{ secure_asset('webimages/gral/home/home-back.jpg') }}";
-    $('.main-home').parallax({imageSrc: image});
+    $('.main-home').parallax({ imageSrc: image });
 
     // Home Slider    
     // var swiper = new Swiper('.swiper-container');
@@ -287,7 +283,7 @@
         spaceBetween: 100
     }); 
 
-    $(document).on('submit','#ContactForm',function(e){
+    $(document).on('submit','#MainContactForm',function(e){
         e.preventDefault();
 
         var data   = $(this).serialize();
@@ -305,23 +301,19 @@
                 $('#ContactBtn').html('Enviando ' + loader);
             },
             success: function(data) {
-                $('#ContactForm').hide();
+                $('#MainContactForm').hide();
                 $('#FormSuccess').removeClass('Hidden');
                 $('#FormResponse').hide();
                 console.log(data);
-                
             },
             error: function(data) {
-                console.log(data);
                 $('#FormResponse').hide();
-                $('#ContactForm').hide();
+                $('#MainContactForm').hide();
                 $('#ContactBtn').html('ENVIAR');
                 $('#FormError').removeClass('Hidden');
-                
+                console.log(data);
             }
         });
     });
-
-
 </script>
 @endsection
