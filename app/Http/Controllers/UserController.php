@@ -125,17 +125,19 @@ class UserController extends Controller
 
             $user = User::findOrFail($request->id);
             $avatar   = $request->file('avatar');
-            $filename = $user->username;
-            Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename.'.jpg'));
-        
-            // if (Auth::user()->avatar != "default.jpg") {
-            //     $path     = 'images/users/';
-            //     $lastpath = Auth::user()->avatar;
-            //     File::Delete(public_path( $path . $lastpath) );
-            // }
+            $filename = $user->username.date('dmys').rand(100, 999).'.jpg';
+            try{
+                Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename));
+                if ($user->avatar != "default.jpg") {
+                    $path     = public_path('images/users/');
+                    $lastpath = $user->avatar;
+                    File::Delete($path . $lastpath);
+                }
+            }   catch(Exception $e){
+                dd($e);
+            }
             
-            $user->avatar = $filename.'.jpg';
-            
+            $user->avatar = $filename;
             $user->save();
             
             return view('vadmin.users.show', compact('user'));
