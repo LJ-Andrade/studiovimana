@@ -69,6 +69,12 @@
 				</li>
 			</ul>
 		</li>
+		<li class="nav-item"><a href="#"><i class="icon-users2"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Administración</span></a>
+			<ul class="menu-content">
+				<li><a href="{{ url('vadmin/stored_contacts') }}" class="menu-item"><i class="icon-envelop"></i> Contactos</a></li>
+			</ul>
+		</li>
+		
 
 		
 		<li class="navigation-header"><span data-i18n="nav.category.support">Ayuda</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>

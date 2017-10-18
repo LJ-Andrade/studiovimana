@@ -1,17 +1,15 @@
 @extends('layouts.vadmin.main')
 
-@section('title', 'Vadmin | Perfil de Usuario')
+@section('title', 'Vadmin | Previsualización de Artículo')
 
 @section('header')
-    @component('vadmin.components.header')
-		@slot('left')
+	@component('vadmin.components.header')
+		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item"><a href="{{ route('portfolio.index')}}">Artículos</a></li>
-            <li class="breadcrumb-item active">Hoja del artículo <b></b></li>
+            <li class="breadcrumb-item active">Previsualización del artículo <b></b></li>
 		@endslot
-		@slot('right')
-		@endslot
-        @slot('bottom')
+		@slot('actions')
 		@endslot
 	@endcomponent
 @endsection
@@ -37,7 +35,7 @@
 					<span class="badge">{!! $tag->name !!}</span>
 				@endforeach
 				<br><br>
-				<button class="btn btnGreen">Editar Artículo</button>
+				<a href="{{ url('vadmin/portfolio/'.$article->id.'/edit') }}" class="btn btnGreen"><i class="icon-pencil2"></i> Editar Artículo</a> 
 				
             @endslot
 

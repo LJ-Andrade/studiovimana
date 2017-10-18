@@ -3,18 +3,17 @@
 @section('title', 'Vadmin | Perfil de Usuario')
 
 @section('header')
-    @component('vadmin.components.header')
-		@slot('left')
-		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
+	@component('vadmin.components.header')
+		@slot('breadcrums')
+			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item"><a href="{{ route('users.index')}}">Usuarios</a></li>
             <li class="breadcrumb-item active">Perfil de <b>{{ $user->username }}</b></li>
 		@endslot
-		@slot('right')
-		@endslot
-        @slot('bottom')
+		@slot('actions')
 		@endslot
 	@endcomponent
 @endsection
+
 
 @section('content')
     <div class="row">
@@ -27,9 +26,9 @@
                     <div class="inner">
                         <div class="image">
                             @if($user->avatar == '')
-                                <img id="Avatar" class="Image-Container" src="{{ asset('images/users/default.jpg') }}" alt="Card image cap">
+                                <img id="Avatar" class="Image-Container" src="{{ asset('images/users/default.jpg') }}" alt="Imágen de Usuario">
                             @else	
-                                <img id="Avatar" class="Image-Container" src="{{ asset('images/users/'.$user->avatar) }}" alt="Card image cap">
+                                <img id="Avatar" class="Image-Container" src="{{ asset('images/users/'.$user->avatar) }}" alt="Imágen de Usuario">
                             @endif
                             <span class="over-text">Cambiar imágen</span>
                         </div>

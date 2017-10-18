@@ -85,6 +85,10 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
     Route::resource('portfolio', 'Portfolio\ArticlesController');
     Route::resource('categories', 'Portfolio\CategoriesController');
     Route::resource('tags', 'Portfolio\TagsController');
+
+    // -------- Users ---------- //
+    Route::get('/stored_contacts', 'VadminController@storedContacts');
+    Route::get('stored_contact/{id}', 'VadminController@showStoredContact');
  
 });
     
@@ -99,6 +103,7 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('destroy_portfolio', 'Portfolio\ArticlesController@destroy');
     Route::post('destroy_categories', 'Portfolio\CategoriesController@destroy');
     Route::post('destroy_tags', 'Portfolio\TagsController@destroy');
+    Route::post('destroy_stored_contacts', 'VadminController@destroyStoredContacts');
 });
 
 

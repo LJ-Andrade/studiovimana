@@ -88,19 +88,6 @@ class WebController extends Controller
         return view('contacto');
     }
 
-	public function test_sender(Request $request)
-	{
-		sleep(2);
-
-		$Message  = "Nombre/Empresa: ".stripslashes($_POST['name'])." \n";
-		$Message .= "Tel.: ".stripslashes($_POST['phone'])." \n";
-		$Message .= "E-Mail: ".stripslashes($_POST['email'])." \n";
-		$Message .= "Consulta/Mensaje: ".stripslashes($_POST['message'])." \n";
-
-		$Message .= 'Ok, terminé';
-		return response()->json(['response' => $Message]);
-	}
-
 	public function mail_sender(Request $request)
     {
 
@@ -138,7 +125,8 @@ class WebController extends Controller
 		}
 
 		try{
-			mail("$MailToAddress", "$MailSubject", "$Message", "From: $MailFromAddress");
+			// Está deshabilitada la funcion envío vía mail hasta que sea permitido el uso de SMTP desde Digital Ocean
+			// mail("$MailToAddress", "$MailSubject", "$Message", "From: $MailFromAddress");
 			$contact = new Contact();
             $contact->fill($request->all());
 			$contact->save();
