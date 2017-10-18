@@ -21,24 +21,15 @@
                  <h2>Nombre: {!! $item->name !!}</h2>
             @endslot
             @slot('content')
-                Mensaje: <br>
+                {{ transDateAndTime($item->created_at) }}
+                <br><br>
+                <h2>Mensaje:</h2>
             	<p>{!! $item->message !!}</p>
-
-
             	<hr class="softhr">
                 <i class="icon-android-mail"></i>  <b>E-Mail: </b>{!! $item->email !!} |
                 <i class="icon-android-phone-portrait"></i>  <b>Teléfono: </b>{!! $item->phone !!}
-				
-				
             @endslot
-
         @endcomponent
     </div>
-
-@endsection
-
-
-
-@section('custom_js')
 @endsection
 

@@ -234,14 +234,14 @@ function transDateT($data){
     }
 }
 
-function transDateTS($data){
+function transDateAndTime($data){
     if($data != null){
         $a        = explode(' ', $data);
         $b        = explode('-', $a[0]);
         $pretime  = explode(':', $a[1]);
         $time     = $pretime[0].':'.$pretime[1];
         $date     = $b[2]."/".$b[1]."/".$b[0];
-        $datetime = $date.' '.$time;
+        $datetime = $date.' ('.$time.')';
         return $datetime;
     } else {
         return '';

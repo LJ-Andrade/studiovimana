@@ -68,8 +68,8 @@
 							<td class="show-link max-text"><a href="{{ url('vadmin/stored_contact/'.$item->id) }}"> {{ $item->name }} </a></td>
 							<td>{{ $item->email }}</td>
 							<td>{{ $item->phone }}</td>
-							<td>{{ $item->message }}</td>
-							<td>{{ transDateT($item->created_at) }}</td>
+							<td class="max-text">{{ $item->message }}</td>
+							<td>{{ transDateAndTime($item->created_at) }}</td>
 						</tr>						
 					@endforeach
 				@endslot

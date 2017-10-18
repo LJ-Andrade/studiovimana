@@ -92,7 +92,7 @@
 											<span class="slider round"></span>
 										</label>
 									@else 
-										Error de estado
+										Sin estado
 									@endif
 								</td>
 							</tr>						
