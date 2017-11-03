@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
-		<meta name="author" content="PIXINVENT">
+		<meta name="author" content="Vimana Studio">
 		<title>{{ config('app.name', 'Vadmin') }}</title>
 		<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('vadmin-ui/app-assets/images/ico/apple-icon-60.png') }}">
 		<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('vadmin-ui/app-assets/images/ico/apple-icon-76.png') }}">

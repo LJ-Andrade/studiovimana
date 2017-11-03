@@ -93,6 +93,11 @@
 @endsection
 
 {{-- CUSTOM JS SCRIPTS--}}
-@section('custom_js')
+MensajesLi
 
+@section('custom_js')
+	<script>
+		$('.AdminLi').addClass('open');
+		$('.MensajesLi').addClass('active');
+	</script>
 @endsection

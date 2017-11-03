@@ -37,6 +37,11 @@
 	@endcomponent
 @endsection
 
+{{--  If section has fixed actions  --}}
+@section('top-space')
+<div class="top-space"></div>
+@endsection
+
 {{-- CONTENT --}}
 @section('content')
 	<div class="list-wrapper">
@@ -122,6 +127,9 @@
 {{-- CUSTOM JS SCRIPTS--}}
 @section('custom_js')
 	<script>
+	$('.PortfolioLi').addClass('open');
+	$('.PortfolioList').addClass('active');
+
 	$(document).ready(function(e) {
 		$('.PauseArticle').click(function() {
 			var cbx = $(this);

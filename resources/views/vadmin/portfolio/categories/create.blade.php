@@ -21,7 +21,7 @@
 
 @section('content')
 	<div class="inner-wrapper">
-		{!! Form::open(['route' => 'categories.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form', 'data-parsley-validate' => '']) !!}	
+		{!! Form::open(['route' => 'categories.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form mw450', 'data-parsley-validate' => '']) !!}	
 			@include('vadmin.portfolio.categories.form')
 			<div class="form-actions right">
 				<a href="{{ route('categories.index')}}">
@@ -43,7 +43,10 @@
 @endsection
 
 @section('custom_js')
-
+	<script>
+		$('.PortfolioCategoriesLi').addClass('open');
+		$('.PortfolioCategoriesNew').addClass('active');
+	</script>
 @endsection
 
 

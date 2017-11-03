@@ -28,7 +28,7 @@
 				'method' => 'PATCH',
 				'url' => ['vadmin/categories', $category->id],
 				'files' => true,
-				'class' => 'row big-form', 
+				'class' => 'row big-form mw450', 
 				'data-parsley-validate' => ''
 			]) !!}
 			@include('vadmin.portfolio.categories.form')
@@ -43,15 +43,19 @@
 				</button>
 			</div>
 		{!! Form::close() !!}
-		
 	</div>  
-
 @endsection
 
 @section('scripts')
+	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
 @endsection
 
 @section('custom_js')
+	<script>
+		$('.PortfolioLi').addClass('open');
+		$('.PortfolioCategoriesLi').addClass('open');
+	</script>
 @endsection
 
 

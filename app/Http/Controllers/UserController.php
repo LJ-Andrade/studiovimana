@@ -123,7 +123,7 @@ class UserController extends Controller
         
         if ($request->hasFile('avatar')) {
 
-            $user = User::findOrFail($request->id);
+            $user     = User::findOrFail($request->id);
             $avatar   = $request->file('avatar');
             $filename = $user->username.date('dmys').rand(100, 999).'.jpg';
             try{

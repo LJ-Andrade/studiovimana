@@ -76,9 +76,9 @@ module.exports = __webpack_require__(6);
 /***/ 6:
 /***/ (function(module, exports) {
 
-
 $('.btnClose').click(function () {
-    $(this).parent().addClass('Hidden');
+    // $(this).parent().addClass('Hidden');
+    $(this).parent().hide();
 });
 
 var searchFilters = $('#SearchFilters');

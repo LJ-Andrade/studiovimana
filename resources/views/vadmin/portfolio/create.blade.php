@@ -63,6 +63,8 @@
 @section('custom_js')
 	
 	<script>
+		$('.PortfolioLi').addClass('open');
+		$('.PortfolioNew').addClass('active');
 		// ------------------- Textarea Text Editor --------------------------- //
 		// Path to icons
 		$.trumbowyg.svgPath = '{{ asset('plugins/texteditor/icons.svg') }}';

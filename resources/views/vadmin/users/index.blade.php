@@ -12,7 +12,7 @@
 	@component('vadmin.components.headerfixed')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Usuarios</li>
+            <li class="breadcrumb-item active">Listado de Usuarios</li>
 		@endslot
 		@slot('actions')
 			{{-- Actions --}}
@@ -42,6 +42,11 @@
 	@endcomponent
 @endsection
 
+{{--  If section has fixed actions  --}}
+@section('top-space')
+<div class="top-space"></div>
+@endsection
+
 @section('content')
 	<div class="list-wrapper">
 		{{-- Test --}}
@@ -49,7 +54,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('title', 'Listado de Usuarios')
+				@slot('title', 'Usuarios del Sistema')
 				@slot('tableTitles')
 					@if(Auth::user()->role <= 2)
 					<th></th>
@@ -106,9 +111,9 @@
 
 {{-- CUSTOM JS SCRIPTS--}}
 @section('custom_js')
-
 	<script>
-
+		$('.AdminLi').addClass('open');
+		$('.UsersLi').addClass('open');
+		$('.UsersList').addClass('active');
 	</script>
-
 @endsection

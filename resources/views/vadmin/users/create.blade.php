@@ -6,7 +6,7 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('users.index')}}">Usuarios</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('users.index')}}">Listado de Usuarios</a></li>
             <li class="breadcrumb-item active">Nuevo Usuario</li>
 		@endslot
 		@slot('actions')
@@ -36,5 +36,16 @@
 			@endslot
 		@endcomponent
 	</div>
+@endsection
 
+@section('scripts')
+	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
+@endsection
+
+@section('custom_js')
+	<script>
+		$('.UsersLi').addClass('open');
+		$('.UsersNew').addClass('active');
+	</script>
 @endsection

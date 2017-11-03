@@ -46,6 +46,7 @@
 						@yield('header')
 					</div>
 				</div>
+				@yield('top-space')
 				<div class="container">
 					{{-- Errors --}}
 					@if(count($errors) > 0)

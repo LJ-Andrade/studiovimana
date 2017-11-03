@@ -2,8 +2,8 @@
 
 @section('content')
 
-<section class="flexbox-container">
-    <div class="login-container col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-2 p-0">
+<section class="login-container">
+    <div class="inner">
         <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
             <div class="card-header no-border">
                 <div class="card-title text-xs-center">

@@ -114,6 +114,10 @@ hr {
   width: 200px;
 }
 
+.mw450 {
+  max-width: 450px;
+}
+
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -367,7 +371,6 @@ hr {
   box-shadow: -3px 19px 11px -14px rgba(0, 0, 0, 0.4);
   padding: 15px;
   z-index: 999;
-  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -960,36 +963,58 @@ ul.pagination li.disabled {
 }
 
 .login-page {
-  background-color: #343440;
+  background: #6e6d6e;
+  background: radial-gradient(ellipse at center, #6e6d6e 0%, #383838 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e6d6e', endColorstr='#383838', GradientType=1 );
 }
 
 .login-container {
-  max-width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.login-container .inner {
+  width: 400px;
+  max-width: 100%;
   margin-top: 150px;
 }
 
-.login-container .card-header {
+.login-container .inner .card-header {
   padding: 0;
 }
 
-.login-container .rememberme-box {
+.login-container .inner .rememberme-box {
   margin-top: 10px;
 }
 
-.login-container .card-footer {
+.login-container .inner .card-footer {
   font-size: 0.8rem;
 }
 
-.login-container fieldset {
+.login-container .inner fieldset {
   margin-bottom: 10px;
 }
 
-.login-container input {
+.login-container .inner input {
   margin-bottom: 5px;
 }
 
-.login-container input:-webkit-autofill, .login-container textarea:-webkit-autofill, .login-container select:-webkit-autofill {
+.login-container .inner input:-webkit-autofill, .login-container .inner textarea:-webkit-autofill, .login-container .inner select:-webkit-autofill {
   background-color: #fff !important;
+}
+
+@media (max-width: 500px) {
+  .login-container .inner {
+    margin-top: 80px;
+  }
 }
 
 .dashboard {
@@ -1053,8 +1078,8 @@ ul.pagination li.disabled {
   padding-top: 0 !important;
 }
 
-.content-wrapper .list-wrapper {
-  margin-top: 136px;
+.top-space {
+  height: 140px;
 }
 
 @media (max-width: 765px) {

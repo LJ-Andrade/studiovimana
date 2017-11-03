@@ -1,0 +1,30 @@
+@extends('layouts.vadmin.main')
+
+@section('title', 'Vadmin | Previsualización de %%crudName%%')
+
+@section('header')
+	@component('vadmin.components.header')
+		@slot('breadcrums')
+		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('%%crudName%%.index')}}">%%crudName%%</a></li>
+            <li class="breadcrumb-item active">Previsualización del %%crudName%% <b></b></li>
+		@endslot
+		@slot('actions')
+		@endslot
+	@endcomponent
+@endsection
+
+@section('content')
+    <div class="row">
+        @component('vadmin.components.container')
+            @slot('title')
+                 <h1>{!! $item->name !!}</h1>
+            @endslot
+            @slot('content')
+				<a href="{{ url('vadmin/%%crudName%%/'.$item->id.'/edit') }}" class="btn btnGreen"><i class="icon-pencil2"></i> Editar Artículo</a> 
+            @endslot
+
+        @endcomponent
+    </div>
+@endsection
+

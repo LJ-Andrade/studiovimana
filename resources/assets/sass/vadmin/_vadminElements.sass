@@ -134,7 +134,6 @@
 	@include box-shadow-floor-big
 	padding: 15px
 	z-index: 999
-	margin-top: 10px
 	margin-bottom: 10px
 	label
 		font-weight: 400
@@ -485,7 +484,6 @@ input:checked + .slider:before
 	border-top: 1px solid #E4E4E4
 
 
-
 //////////////////////////////////////
 //                                  //
 //           COLOR PICKER           //
@@ -652,20 +650,28 @@ ul.pagination li.disabled
 //////////////////////////////////////
 
 .login-page
-	background-color: $dark2
+	@include black-gradient
 
 .login-container
-	max-width: 400px
-	margin-top: 150px
-	.card-header
-		padding: 0
-	.rememberme-box
-		margin-top: 10px
-	.card-footer
-		font-size: 0.8rem
-	fieldset
-		margin-bottom: 10px
-	input
-		margin-bottom: 5px
-	input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill
-		background-color: #fff !important
+	@include flex-center
+	.inner
+		width: 400px
+		max-width: 100%
+		margin-top: 150px
+		.card-header
+			padding: 0
+		.rememberme-box
+			margin-top: 10px
+		.card-footer
+			font-size: 0.8rem
+		fieldset
+			margin-bottom: 10px
+		input
+			margin-bottom: 5px
+		input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill
+			background-color: #fff !important
+
+@media (max-width: 500px)
+	.login-container
+		.inner
+			margin-top: 80px

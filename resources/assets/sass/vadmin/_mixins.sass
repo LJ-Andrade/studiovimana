@@ -89,12 +89,21 @@
   -moz-box-shadow: $horiz $vert $blur $spread $color !important
   box-shadow: $horiz $vert $blur $spread $color !important
 
-
 @mixin obscure-back
   background: -moz-radial-gradient(center, ellipse cover, rgba(36,44,51,0) -1%, rgba(36,44,51,0.01) 0%, rgba(32,39,47,0.2) 22%, rgba(19,19,35,0.65) 100%)
   background: -webkit-radial-gradient(center, ellipse cover, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%)
   background: radial-gradient(ellipse at center, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%)
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00242c33', endColorstr='#a6131323',GradientType=1 )
+
+@mixin black-gradient
+  background: rgba(110,109,110,1)
+  background: -moz-radial-gradient(center, ellipse cover, rgba(110,109,110,1) 0%, rgba(56,56,56,1) 100%)
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(110,109,110,1)), color-stop(100%, rgba(56,56,56,1)))
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(110,109,110,1) 0%, rgba(56,56,56,1) 100%)
+  background: -o-radial-gradient(center, ellipse cover, rgba(110,109,110,1) 0%, rgba(56,56,56,1) 100%)
+  background: -ms-radial-gradient(center, ellipse cover, rgba(110,109,110,1) 0%, rgba(56,56,56,1) 100%)
+  background: radial-gradient(ellipse at center, rgba(110,109,110,1) 0%, rgba(56,56,56,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e6d6e', endColorstr='#383838', GradientType=1 )
 
 ////////////////////////////////////////
 //                                    //

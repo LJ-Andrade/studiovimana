@@ -9,7 +9,7 @@
 	@component('vadmin.components.headerfixed')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Listado de Etiquetas</li>
+            <li class="breadcrumb-item active">Etiquetas del Portfolio</li>
 		@endslot
 		@slot('actions')
 			{{-- Actions --}}
@@ -37,6 +37,11 @@
 	@endcomponent
 @endsection
 
+{{--  If section has fixed actions  --}}
+@section('top-space')
+<div class="top-space"></div>
+@endsection
+
 {{-- CONTENT --}}
 @section('content')
 	<div class="list-wrapper">
@@ -46,7 +51,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('title', 'Listado de Etiquetas')
+				@slot('title', 'Etiquetas del Portfolio')
 					@if($tags->count() == '0')
 						@slot('tableTitles', '')
 						@slot('tableContent', '')
@@ -95,4 +100,8 @@
 
 {{-- CUSTOM JS SCRIPTS--}}
 @section('custom_js')
+	<script>
+		$('.PortfolioTagsLi').addClass('open');
+		$('.PortfolioTagsList').addClass('active');
+	</script>
 @endsection

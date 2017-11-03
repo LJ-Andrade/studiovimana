@@ -42,40 +42,59 @@
 	<!-- main menu content-->
 	<div class="main-menu-content">
 	<ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-
-		{{-- <li class="nav-item"><a href="#"><i class="icon-stack-2"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Item</span></a></li> --}}
-		<li class="nav-item"><a href="#"><i class="icon-users2"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Usuarios</span></a>
-			<ul class="menu-content">
-				<li><a href="{{ route('users.index') }}" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-				<li><a href="{{ route('users.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
-			</ul>
-		</li>
-
-		<li class="nav-item has-sub"><a href="#"><i class="icon-folder-open"></i><span data-i18n="nav.menu_levels.main" class="menu-title">Portfolio</span></a>
-			<ul class="menu-content" style="">
-				<li><a href="{{ route('portfolio.index') }}" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-				<li><a href="{{ route('portfolio.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Artículo</a></li>
-				<li class="has-sub is-shown"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Categorías</a>
-					<ul class="menu-content" style="">
-						<li class="is-shown"><a href="{{ route('categories.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-						<li class="is-shown"><a href="{{ route('categories.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nueva Categoría</a></li>
-					</ul>
-				</li>
-				<li class="has-sub is-shown"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Etiquetas</a>
-					<ul class="menu-content" style="">
-						<li class="is-shown"><a href="{{ route('tags.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-						<li class="is-shown"><a href="{{ route('tags.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nueva Etiqueta</a></li>
-					</ul>
-				</li>
-			</ul>
-		</li>
-		<li class="nav-item"><a href="#"><i class="icon-users2"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Administración</span></a>
-			<ul class="menu-content">
-				<li><a href="{{ url('vadmin/stored_contacts') }}" class="menu-item"><i class="icon-envelop"></i> Contactos</a></li>
-			</ul>
-		</li>
 		
+		{{--  CATALOGO  --}}
+		<li class="nav-item has-sub CatalogLi"><a href="#"><i class="icon-cart4"></i><span data-i18n="nav.menu_levels.main" class="menu-title">Catálogo</span></a>
+			<ul class="menu-content" style="">
+				<li class="CatalogList"><a href="{{ route('catalogo.index') }}" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+				<li class="CatalogNew"><a href="{{ route('catalogo.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Artículo</a></li>
+				<li class="has-sub is-shown CatalogCategoriesLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Categorías</a>
+					<ul class="menu-content" style="">
+						<li class="is-shown CatalogCategoriesList"><a href="{{ route('cat_categorias.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+						<li class="is-shown CatalogCategoriesNew"><a href="{{ route('cat_categorias.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nueva Categoría</a></li>
+					</ul>
+				</li>
+				<li class="has-sub is-shown CatalogTagsLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Etiquetas</a>
+					<ul class="menu-content" style="">
+						<li class="is-shown CatalogTagsList"><a href="{{ route('cat_tags.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+						<li class="is-shown CatalogTagsNew"><a href="{{ route('cat_tags.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nueva Etiqueta</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 
+		<li class="nav-item has-sub PortfolioLi"><a href="#"><i class="icon-briefcase2"></i><span data-i18n="nav.menu_levels.main" class="menu-title">Portfolio</span></a>
+			<ul class="menu-content" style="">
+				<li class="PortfolioList"><a href="{{ route('portfolio.index') }}" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+				<li class="PortfolioNew"><a href="{{ route('portfolio.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Artículo</a></li>
+				<li class="has-sub is-shown PortfolioCategoriesLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Categorías</a>
+					<ul class="menu-content" style="">
+						<li class="is-shown PortfolioCategoriesList"><a href="{{ route('categories.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+						<li class="is-shown PortfolioCategoriesNew"><a href="{{ route('categories.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nueva Categoría</a></li>
+					</ul>
+				</li>
+				<li class="has-sub is-shown PortfolioTagsLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Etiquetas</a>
+					<ul class="menu-content" style="">
+						<li class="is-shown PortfolioTagsList"><a href="{{ route('tags.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+						<li class="is-shown PortfolioTagsNew"><a href="{{ route('tags.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nueva Etiqueta</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+		<li class="nav-item AdminLi"><a href="#"><i class="icon-cog"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Administración</span></a>
+			<ul class="menu-content" style="">
+				<li class="has-sub is-shown UsersLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-users2"></i>	Usuarios</a>
+					<ul class="menu-content" style="">
+						<li class="is-shown UsersList"><a href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+						<li class="is-shown UsersNew"><a href="{{ route('users.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="menu-content">
+				<li class="MensajesLi"><a href="{{ url('vadmin/stored_contacts') }}" class="menu-item"><i class="icon-envelop"></i> Mensajes</a></li>
+			</ul>
+		</li>
 		
 		<li class="navigation-header"><span data-i18n="nav.category.support">Ayuda</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
 		</li>
