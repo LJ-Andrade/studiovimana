@@ -10,8 +10,10 @@
 		<meta name="keywords" content="Diseño Web, diseño grafico, web, sitio web, paginas web, programacion, sistemas, administracion, gestores, contenido, publicidad, internet, redes sociales" />
 		<meta name="author" content="Studio Vimana" />
 
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="{{ asset('webimages/logos/favicon.png') }}">
+		<meta name="theme-color" content="#0d1d41"><!-- Chrome, Firefox OS and Opera -->
+		<meta name="msapplication-navbutton-color" content="#0d1d41"><!-- Windows Phone -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="#0d1d41"><!-- iOS Safari -->
+		<link rel="shortcut icon" href="{{ asset('webimages/logos/favicon.png') }}"><!-- Favicon -->
 
 		<meta property="og:url"         content="http://vimana.studio" />
 		<meta property="og:type"        content="article" />
