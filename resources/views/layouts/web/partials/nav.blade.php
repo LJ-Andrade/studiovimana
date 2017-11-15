@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>  
-            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ secure_asset('webimages/logos/logo.png') }}"></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('webimages/logos/logo.png') }}"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">

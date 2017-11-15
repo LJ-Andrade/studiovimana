@@ -3,7 +3,7 @@
 
 @section('styles')
     {{-- Slider --}}
-    <link rel="stylesheet" type="text/css" href="{{ secure_asset('plugins/swiper-slider/swiper.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/swiper-slider/swiper.min.css') }}">
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
     {{-- Home Section Desktop --}}
     <div  class="main-home" data-parallax="scroll">
         <div class="main-info wow animated fadeIn" data-wow-delay="0s" data-wow-duration="1s">
-            <img src="{{ secure_asset('webimages/logos/main-logo.png') }}">
+            <img src="{{ asset('webimages/logos/main-logo.png') }}">
             <h1>Desarrollo Web y Diseño Gráfico</h1>
             <div class="actions">
                 <a href="{{ route('web.portfolio') }}"><button class="button btnHollowGreyTrans">Nuestro Portfolio</button></a>
@@ -51,15 +51,15 @@
                 <div class="icons horizontal-list power-icons">
                     <ul>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-                        <img src=" {{ secure_asset('webimages/gral/home/icons/icon2.png') }} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon2.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-                        <img src=" {{ secure_asset('webimages/gral/home/icons/icon1.png') }} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon1.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-                        <img src=" {{ secure_asset('webimages/gral/home/icons/icon4.png') }} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon4.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <img src=" {{ secure_asset('webimages/gral/home/icons/icon3.png') }} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon3.png') }} "></li>
                         <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-                        <img src=" {{ secure_asset('webimages/gral/home/icons/icon5.png') }} "></li>
+                        <img src=" {{ asset('webimages/gral/home/icons/icon5.png') }} "></li>
                     </ul>
                 </div>
             </article>
@@ -72,9 +72,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="{{ secure_asset('webimages/gral/home/pro1.png') }}" alt="">
+                    <img src="{{ asset('webimages/gral/home/pro1.png') }}" alt="">
                     <h3>Concepto</h3>
-                    <img class="divisor" src="{{ secure_asset('webimages/gral/home/divisor.png') }}" alt="">
+                    <img class="divisor" src="{{ asset('webimages/gral/home/divisor.png') }}" alt="">
                     <div class="text">
                         <p>
                             Analizamos el perfil del cliente para detectar las cualidades a destacar.
@@ -83,9 +83,9 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img src="{{ secure_asset('webimages/gral/home/pro2.png') }}" alt="">
+                    <img src="{{ asset('webimages/gral/home/pro2.png') }}" alt="">
                     <h3>Planificación</h3>
-                    <img class="divisor" src="{{ secure_asset('webimages/gral/home/divisor.png') }}" alt="">
+                    <img class="divisor" src="{{ asset('webimages/gral/home/divisor.png') }}" alt="">
                     <div class="text">
                         <p>
                             Desarrollamos y presentamos ideas. Aportamos nuestro punto de vista y nuestra experiencia con otros clientes.
@@ -93,9 +93,9 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img src="{{ secure_asset('webimages/gral/home/pro3.png') }}" alt="">
+                    <img src="{{ asset('webimages/gral/home/pro3.png') }}" alt="">
                     <h3>Aprobación</h3>
-                    <img class="divisor" src="{{ secure_asset('webimages/gral/home/divisor.png') }}" alt="">
+                    <img class="divisor" src="{{ asset('webimages/gral/home/divisor.png') }}" alt="">
                     <div class="text">
                         <p>
                             Trabajamos con la aprobación del cliente. Vamos avanzando según las etapas sean resueltas con una devolución positiva.
@@ -103,9 +103,9 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img src="{{ secure_asset('webimages/gral/home/pro4.png') }}" alt="">
+                    <img src="{{ asset('webimages/gral/home/pro4.png') }}" alt="">
                     <h3>Soporte</h3>
-                    <img class="divisor" src="{{ secure_asset('webimages/gral/home/divisor.png') }}" alt="">
+                    <img class="divisor" src="{{ asset('webimages/gral/home/divisor.png') }}" alt="">
                     <div class="text">
                         <p>
                             Una vez en marcha le damos al proyecto el retoque necesario para encausarlo a la dirección correcta.
@@ -122,8 +122,8 @@
 
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="{{ secure_asset('webimages/gral/home/slider/homeimg2.jpg') }}" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ secure_asset('webimages/gral/home/slider/homeimg3.jpg') }}" alt=""></div>
+                        <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/slider/homeimg2.jpg') }}" alt=""></div>
+                        <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/slider/homeimg3.jpg') }}" alt=""></div>
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
@@ -150,12 +150,12 @@
         <div class="container">
             <div class="row row-flex row-flex-wrap service-item">
                 <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
-                    <img src="{{ secure_asset('webimages/gral/home/servicio1.png') }}">
+                    <img src="{{ asset('webimages/gral/home/servicio1.png') }}">
                 </div>
                 <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
                     <div class="text-big">
                         <h1>Diseño y Desarrollo Web</h1> 
-                        <img src="{{ secure_asset('webimages/gral/home/divisor2.png') }}">    
+                        <img src="{{ asset('webimages/gral/home/divisor2.png') }}">    
                     </div>
                     <p>
                         Desarrollamos sitios personalizados. Creados desde cero y con las últimas tecnologías web.
@@ -174,12 +174,12 @@
 
             <div class="row row-flex row-flex-wrap service-item">
                 <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
-                    <img src="{{ secure_asset('webimages/gral/home/servicio2.png') }}">       
+                    <img src="{{ asset('webimages/gral/home/servicio2.png') }}">       
                 </div>
                 <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
                     <div class="text-big">
                         <h1>Progamación y Desarrollo de Apps</h1> 
-                        <img src="{{ secure_asset('webimages/gral/home/divisor2.png') }}">      
+                        <img src="{{ asset('webimages/gral/home/divisor2.png') }}">      
                     </div>
                     <p>
                         Creamos sistemas hechos a medida según las necesidades presentadas.<br>
@@ -196,12 +196,12 @@
             </div>
             <div class="row row-flex row-flex-wrap service-item">
                 <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
-                    <img src="{{ secure_asset('webimages/gral/home/servicio3.png') }}">        
+                    <img src="{{ asset('webimages/gral/home/servicio3.png') }}">        
                 </div>
                 <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
                     <div class="text-big">
                         <h1>Diseño Gráfico</h1> 
-                        <img src="{{ secure_asset('webimages/gral/home/divisor2.png') }}">    
+                        <img src="{{ asset('webimages/gral/home/divisor2.png') }}">    
                     </div>
                     <p>
                         Desarrollamos piezas personalizadas.  <br>
@@ -248,10 +248,10 @@
                 <div class="col-xs-12 col-sm-6 col-md-8 inner">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="{{ secure_asset('webimages/gral/home/portfolioslider/port1.jpg') }}" alt=""></div>
-                            <div class="swiper-slide"><img src="{{ secure_asset('webimages/gral/home/portfolioslider/port2.jpg') }}" alt=""></div>
-                            <div class="swiper-slide"><img src="{{ secure_asset('webimages/gral/home/portfolioslider/port3.jpg') }}" alt=""></div>
-                            <div class="swiper-slide"><img src="{{ secure_asset('webimages/gral/home/portfolioslider/port4.jpg') }}" alt=""></div>
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port1.jpg') }}" alt=""></div>
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port2.jpg') }}" alt=""></div>
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port3.jpg') }}" alt=""></div>
+                            <div class="swiper-slide"><img src="{{ asset('webimages/gral/home/portfolioslider/port4.jpg') }}" alt=""></div>
                         </div>
                     </div>
                 </div>
@@ -263,15 +263,15 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{ secure_asset('plugins/parallax/parallax.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/parallax/parallax.min.js') }}"></script>
     {{-- Slider --}}
-    <script type="text/javascript" src="{{ secure_asset('plugins/swiper-slider/swiper.jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/swiper-slider/swiper.jquery.min.js') }}"></script>
 @endsection
 
 @section('custom_js')
 <script>    
     // Home Parallax
-    var image = "{{ secure_asset('webimages/gral/home/home-back.jpg') }}";
+    var image = "{{ asset('webimages/gral/home/home-back.jpg') }}";
     $('.main-home').parallax({ imageSrc: image });
 
     // Home Slider    
@@ -289,7 +289,7 @@
         var data   = $(this).serialize();
         var route  = "{{ url('mail_sender') }}";
         // var route  = "{{ url('test_sender') }}";
-        var loader = '<img src="{{ secure_asset("images/loaders/loader-sm.svg") }}"/>' + '<div style="color: #fff; margin-left: 15px">Enviando...</div>';
+        var loader = '<img src="{{ asset("images/loaders/loader-sm.svg") }}"/>' + '<div style="color: #fff; margin-left: 15px">Enviando...</div>';
 
         $.ajax({
             type: "POST",
@@ -297,7 +297,7 @@
             dataType: 'json',
             data: data,
             beforeSend: function(){
-                var loader = "<img src='{{ secure_asset('images/loaders/loader-sm.svg') }}'>";
+                var loader = "<img src='{{ asset('images/loaders/loader-sm.svg') }}'>";
                 $('#ContactBtn').html('Enviando ' + loader);
             },
             success: function(data) {

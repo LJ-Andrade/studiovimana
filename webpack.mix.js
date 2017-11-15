@@ -19,12 +19,14 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/web/web.js', 'public/js')
 .sass('resources/assets/sass/web.scss', 'public/css')
 .options({
-    processCssUrls: false
+    processCssUrls: false,
+    outputStyle: 'compressed'
 });
 
 mix.sass('resources/assets/sass/web/web.sass', 'public/css')
 .options({
-    processCssUrls: false
+    processCssUrls: false,
+    outputStyle: 'compressed'
 });
 
 // Vadmin 
@@ -34,5 +36,6 @@ mix.js('resources/assets/js/vadmin-forms.js', 'public/js');
 
 mix.sass('resources/assets/sass/vadmin/vadmin.sass', 'public/css')
    .options({
-       processCssUrls: false
+       processCssUrls: false,
+       outputStyle: 'compressed'
    });

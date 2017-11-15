@@ -2,6 +2,10 @@
 
 use App\Http\Middleware\Admins;
 
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
+
 /*
 |--------------------------------------------------------------------------
 | Web
@@ -124,3 +128,14 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('destroy_stored_contacts', 'VadminController@destroyStoredContacts');
     Route::post('destroy_cat_atribute1', 'Catalog\CatalogAtribute1Controller@destroy');
 });
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Errors
+|--------------------------------------------------------------------------
+*/
+Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound']);
+Route::get('500', ['as' => '500', 'uses' => 'ErrorController@fatal']);

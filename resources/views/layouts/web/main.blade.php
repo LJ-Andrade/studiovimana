@@ -11,23 +11,23 @@
 		<meta name="author" content="Studio Vimana" />
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="{{ secure_asset('webimages/logos/favicon.png') }}">
+		<link rel="shortcut icon" href="{{ asset('webimages/logos/favicon.png') }}">
 
 		<meta property="og:url"         content="http://vimana.studio" />
 		<meta property="og:type"        content="article" />
 		<meta property="og:title"       content="Diseño Web y Diseño Gráfico" />
 		<meta property="og:description" content="Somos un equipo de trabajo dedicado a desarrollar contenido visual e interactivo" />
-		<meta property="og:image"       content="{{ secure_asset('webimages/logos/main-logo.png') }}" />
+		<meta property="og:image"       content="{{ asset('webimages/logos/main-logo.png') }}" />
 		<meta name="twitter:title"      content="Studio Vimana" />
-		<meta name="twitter:image"      content="{{ secure_asset('webimages/logos/main-logo.png') }}" />
+		<meta name="twitter:image"      content="{{ asset('webimages/logos/main-logo.png') }}" />
 		<meta name="twitter:url"        content="http://vimana.studio" />
 		{{-- <meta name="twitter:card"       content="" /> --}}
-		{{--<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/app.css') }}">--}}
-		<link rel="stylesheet" async  type="text/css" href="{{ secure_asset('plugins/bootstrap/bootstrap3/bootstrap.min.css') }}">
-		<link rel="stylesheet" async  type="text/css" href="{{ secure_asset('plugins/animate/animate.css') }}">
-		<link rel="stylesheet" async  type="text/css" href="{{ secure_asset('plugins/ionicons/ionicons.min.css') }}"> 
+		{{--<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">--}}
+		<link rel="stylesheet" async  type="text/css" href="{{ asset('plugins/bootstrap/bootstrap3/bootstrap.min.css') }}">
+		<link rel="stylesheet" async  type="text/css" href="{{ asset('plugins/animate/animate.css') }}">
+		<link rel="stylesheet" async  type="text/css" href="{{ asset('plugins/ionicons/ionicons.min.css') }}"> 
 		@yield('styles')
-		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/web.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/web.css') }}">
 
 	</head>
 	<body>
@@ -41,7 +41,7 @@
 		
 	    {{-- Loader --}}
 	{{--     <div class="Loader loader">
-	        <img src="{{ secure_asset('webimages/gral/loaders/loader.svg') }} ">
+	        <img src="{{ asset('webimages/gral/loaders/loader.svg') }} ">
 	        <span><i class="ion-ios-gear-outline"></i> Cargando...</span>
 	    </div> --}}
 
