@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Admins;
+use Illuminate\Support\Facades\Schema; 
 
 if (env('APP_ENV') === 'production') {
     URL::forceSchema('https');
