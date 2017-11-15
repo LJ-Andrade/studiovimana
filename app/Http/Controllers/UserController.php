@@ -136,7 +136,7 @@ class UserController extends Controller
                 $user->avatar = $filename;
                 $user->save();
                 return redirect('vadmin/users/'.$user->id)->with('message', 'Avatar actualizado');
-            }   catch(Exception $e){
+            }   catch(\Exception $e){
                 dd($e);
             }
             
@@ -166,7 +166,7 @@ class UserController extends Controller
                 return response()->json([
                     'success'   => true,
                 ]); 
-            }  catch (Exception $e) {
+            }  catch (\Exception $e) {
                 return response()->json([
                     'success'   => false,
                     'error'    => 'Error: '.$e
@@ -180,7 +180,7 @@ class UserController extends Controller
                         'success'   => true,
                     ]);  
                     
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return response()->json([
                         'success'   => false,
                         'error'    => 'Error: '.$e

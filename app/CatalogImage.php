@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CatalogImage extends Model
 {
-    protected $table = "images";
+    protected $table = "catalog_images";
 
     protected $fillable = ['name', 'article_id'];
 

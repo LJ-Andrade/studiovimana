@@ -3,8 +3,8 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::label('title', 'Título') !!}
-            {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título del artículo', 'id' => 'TitleInput', 
+            {!! Form::label('name', 'Nombre') !!}
+            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Título del artículo', 'id' => 'TitleInput', 
             'required' => '', 'maxlength' => '120', 'minlength' => '4']) !!}
         </div>
     </div>
@@ -18,34 +18,41 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    {{--  Code  --}}
+    <div class="col-md-3">
         <div class="form-group">
-            {!! Form::label('title', 'Título') !!}
-            {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título del artículo', 'id' => 'TitleInput', 
-            'required' => '', 'maxlength' => '120', 'minlength' => '4']) !!}
+            {!! Form::label('code', 'Código') !!}
+            {!! Form::text('code', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el código', 'required' => '']) !!}
+        </div>
+    </div>
+    {{--  Price  --}}
+    <div class="col-md-3">
+        <div class="form-group">
+            {!! Form::label('price', 'Precio') !!}
+            {!! Form::number('price', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el precio', 'min' => '0', 'required' => '', 'maxlength' => '30']) !!}
         </div>
     </div>
     {{-- Slug --}}
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
-            {!! Form::label('slug', 'Url - Dirección web') !!}
-            {!! Form::text('slug', null, ['class' => 'SlugInput form-control', 'placeholder' => 'Dirección visible (en explorador)', 'id' => 'SlugInput', 'required' => '']) !!}
+            {!! Form::label('atribute1', 'Talles') !!}
+            {!! Form::select('atribute1[]', $atribute1, null, ['class' => 'Select-Atribute form-control', 'multiple']) !!}
             <div class="slug2"></div>
         </div>
     </div>
-    {{-- Slug --}}
-    <div class="col-md-4">
+    {{--  Textile  --}}
+    <div class="col-md-3">
         <div class="form-group">
-            {!! Form::label('slug', 'Url - Dirección web') !!}
-            {!! Form::text('slug', null, ['class' => 'SlugInput form-control', 'placeholder' => 'Dirección visible (en explorador)', 'id' => 'SlugInput', 'required' => '']) !!}
-            <div class="slug2"></div>
+            {!! Form::label('textile', 'Textil') !!}
+            {!! Form::text('textile', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el textil', 
+            'required' => '', 'maxlength' => '50']) !!}
         </div>
     </div>
 </div>
 {{-- Content --}}
 <div class="form-group">
-    {!! Form::label('content', 'Contenido') !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control Textarea-Editor']) !!}
+    {!! Form::label('description', 'Descripción') !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control Textarea-Editor']) !!}
 </div>
 <div class="row">
     {{-- Category --}}
@@ -60,7 +67,7 @@
     <div class="col-md-4 col-sm-6 col-xs-12">
         <div class="form-group">
             {!! Form::label('tags', 'Tags') !!}
-            {!! Form::select('tags[]',$tags, null, ['class' => 'form-control Select-Tags', 'multiple', 'required' => '']) !!}
+            {!! Form::select('tags[]', $tags, null, ['class' => ' Select-Tags form-control', 'multiple', 'required' => '']) !!}
         </div>
     </div>
     {{-- Status--}}

@@ -18,6 +18,15 @@ Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
+| Store
+|--------------------------------------------------------------------------
+*/
+Route::get('tienda', 'StoreController@index');
+Route::get('producto', 'StoreController@product');
+
+
+/*
+|--------------------------------------------------------------------------
 | Web / Portfolio 
 |--------------------------------------------------------------------------
 */
@@ -76,25 +85,26 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
 
 Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
     
-    // USERS
+    // -- USERS --
     Route::post('updateAvatar', 'UserController@updateAvatar');	
     Route::get('/stored_contacts', 'VadminController@storedContacts');
     Route::get('stored_contact/{id}', 'VadminController@showStoredContact');
     
-    // PORTFOLIO
+    // -- PORTFOLIO --
     Route::resource('portfolio', 'Portfolio\ArticlesController');
     Route::resource('categories', 'Portfolio\CategoriesController');
     Route::resource('tags', 'Portfolio\TagsController');
     Route::post('updateStatus/{id}', 'Portfolio\ArticlesController@updateStatus');
     Route::post('deleteArticleImg/{id}', 'Portfolio\ArticlesController@deleteArticleImg');
 
-    // CATALOG
+    // -- CATALOG --
     Route::resource('catalogo', 'Catalog\ArticlesController');
     Route::resource('cat_categorias', 'Catalog\CategoriesController');
     Route::resource('cat_tags', 'Catalog\TagsController');
     Route::post('cat_article_status/{id}', 'Catalog\ArticlesController@updateStatus');
     Route::post('deleteArticleImg/{id}', 'Portfolio\ArticlesController@deleteArticleImg');
- 
+    // Atribute 1
+    Route::resource('cat_atribute1', 'Catalog\CatalogAtribute1Controller');
 });
     
 /*
@@ -112,4 +122,5 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('destroy_cat_categorias', 'Catalog\CategoriesController@destroy');
     Route::post('destroy_cat_tags', 'Catalog\TagsController@destroy');
     Route::post('destroy_stored_contacts', 'VadminController@destroyStoredContacts');
+    Route::post('destroy_cat_atribute1', 'Catalog\CatalogAtribute1Controller@destroy');
 });

@@ -15,7 +15,7 @@
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
 			<li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Productos del Catálogo</a></li>
-			<li class="breadcrumb-item active">Creando Producto</li>
+			<li class="breadcrumb-item active">Creación</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">

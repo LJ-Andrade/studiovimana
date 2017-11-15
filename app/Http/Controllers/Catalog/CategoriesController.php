@@ -68,7 +68,6 @@ class CategoriesController extends Controller
     {
         $category = CatalogCategory::find($id);
         return view('vadmin.catalog.categories.edit')->with('category', $category);
-
     }
 
     public function update(Request $request, $id)
@@ -108,7 +107,7 @@ class CategoriesController extends Controller
                 return response()->json([
                     'success'   => true,
                 ]); 
-            }  catch (Exception $e) {
+            }  catch (\Exception $e) {
                 return response()->json([
                     'success'   => false,
                     'error'    => 'Error: '.$e
@@ -122,7 +121,7 @@ class CategoriesController extends Controller
                         'success'   => true,
                     ]);  
                     
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return response()->json([
                         'success'   => false,
                         'error'    => 'Error: '.$e

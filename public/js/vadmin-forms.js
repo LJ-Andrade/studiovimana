@@ -76,6 +76,13 @@ $('.Select-Tags').chosen({
     no_results_text: 'No se ha encontrado la etiqueta'
 });
 
+$('.Select-Atribute').chosen({
+    placeholder_text_multiple: 'Seleccionar',
+    // max_selected_options: 3,
+    search_contains: true,
+    no_results_text: 'No se ha encontrado'
+});
+
 $('.Select-Category').chosen({
     placeholder_text_single: 'Seleccione una categoría'
 });
@@ -165,7 +172,6 @@ $('.AddAnotherAddressBtn').click(function () {
 //////////////////////////////
 
 $('#Multi_Images').fileuploader({
-
     extensions: ['jpg', 'jpeg', 'png', 'gif'],
     limit: null,
     addMore: true,
@@ -191,19 +197,16 @@ $('#Multi_Images').fileuploader({
             folderUpload: 'You are not allowed to upload folders.'
         },
         dialogs: {
-
             // alert dialog
             alert: function alert(text) {
                 return alert_confirm(text);
             },
-
             // confirm dialog
             confirm: function confirm(text, callback) {
                 'confirm(text) ? callback() : null;';
             }
         }
     }
-
 });
 
 /***/ }),

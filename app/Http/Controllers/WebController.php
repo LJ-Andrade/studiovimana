@@ -13,7 +13,6 @@ class WebController extends Controller
 
 	public function __construct()
 	{
-        // Date convert to passed time plugin
 		Carbon::setLocale('es');
 	}
 
@@ -30,13 +29,6 @@ class WebController extends Controller
             $articles->category;
             $articles->images;
 		}); 
-		
-
-		// $articles = Article::orderBy('id', 'DESC')->paginate(10);
-		// $articles->each(function($articles){
-		// 	$articles->category;
-		// 	$articles->images;
-		// }); 
     	return view('web.portfolio.portfolio')
     		->with('articles', $articles);
     }
@@ -72,7 +64,6 @@ class WebController extends Controller
                 $article->tags;
                 $article->colors;
         });
-
         return view('web.portfolio.article')->with('article', $article);
     }
 
@@ -157,15 +148,9 @@ class WebController extends Controller
 				}
 			}
 		}
-
-		//Ejemplo de llamadas a la funcion
 		ValidarDatos($_POST['name']);
 		ValidarDatos($_POST['email']);
 		ValidarDatos($_POST['phone']);
 		ValidarDatos($_POST['message']);
-        
-		
-
-		}
-		
+		}		
 }

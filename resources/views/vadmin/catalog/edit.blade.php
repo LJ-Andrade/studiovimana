@@ -32,25 +32,27 @@
 	<div class="inner-wrapper">
 		{!! Form::model($article, [
 				'method' => 'PATCH',
-				'url' => ['vadmin/portfolio', $article->id],
+				'url' => ['vadmin/catalogo', $article->id],
 				'files' => true,
 				'class' => 'row big-form', 
 				'data-parsley-validate' => ''
 			]) !!}
-			@include('vadmin.portfolio.form')
+			@include('vadmin.catalog.form')
 			@if(count($article->images) == 0 )
 			@else
 				<div class="row">
 					<div class="col-md-12 actual-images horizontal-list">
 						<h2>Imágenes publicadas</h2>
-						<ul>
-							@foreach($article->images as $image)
-							<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
-								<img src="{{ asset('webimages/portfolio/'.$image->name) }}">
-								<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i></div>
-							</li>
-							@endforeach
-						</ul>
+						<div class="row">
+							<ul>
+								@foreach($article->images as $image)
+								<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
+									<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
+									<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i></div>
+								</li>
+								@endforeach
+							</ul>
+						</div>
 						<hr class="softhr">
 					</div>
 				</div>

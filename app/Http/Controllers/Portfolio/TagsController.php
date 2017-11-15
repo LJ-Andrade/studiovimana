@@ -108,7 +108,7 @@ class TagsController extends Controller
                 return response()->json([
                     'success'   => true,
                 ]); 
-            }  catch (Exception $e) {
+            }  catch (\Exception $e) {
                 return response()->json([
                     'success'   => false,
                     'error'    => 'Error: '.$e
@@ -122,7 +122,7 @@ class TagsController extends Controller
                         'success'   => true,
                     ]);  
                     
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return response()->json([
                         'success'   => false,
                         'error'    => 'Error: '.$e

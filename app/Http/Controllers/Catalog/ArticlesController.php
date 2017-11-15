@@ -8,6 +8,7 @@ use App\CatalogCategory;
 use App\CatalogTag;
 use App\CatalogArticle;
 use App\CatalogImage;
+use App\CatalogAtribute1;
 use File;
 
 
@@ -22,8 +23,8 @@ class ArticlesController extends Controller
 
     public function index(Request $request)
     {
-        $title    = $request->get('title');
-        $category = $request->get('category');
+        $title    = $request->get('name');
+        // $category = $request->get('category');
 
         // if(isset($title)){
         //     $articles = Catalog\Catalog::searchtitle($title)->orderBy('id', 'ASC')->paginate(15); 
@@ -48,7 +49,7 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = CatalogArticle::find($id);
-        return view('vadmin.portfolio.show')->with('article', $article);
+        return view('vadmin.catalog.show')->with('article', $article);
     }
 
     /*
@@ -60,66 +61,82 @@ class ArticlesController extends Controller
     public function create(Request $request)
     {
         $categories = CatalogCategory::orderBy('name', 'ASC')->pluck('name', 'id');
+        $atribute1  = CatalogAtribute1::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags       = CatalogTag::orderBy('name', 'ASC')->pluck('name', 'id');
         return view('vadmin.catalog.create')
             ->with('categories', $categories)
+            ->with('atribute1', $atribute1)
             ->with('tags', $tags);
     }
 
     public function store(Request $request)
     {
+        
         $this->validate($request,[
 
-            'title'       => 'required|min:4|max:250|unique:cat_articles',
+            'name'        => 'required|min:4|max:250|unique:catalog_articles',
+            'code'        => 'unique:catalog_articles,code',
             'category_id' => 'required',
-            'slug'        => 'required|alpha_dash|min:5|max:255|unique:cat_articles,slug',
-            'content'     => 'required|min:1',
+            'slug'        => 'required|alpha_dash|min:4|max:255|unique:catalog_articles,slug',
             'image'       => 'image',
 
         ],[
-            'title.required'       => 'Debe ingresar un título',
-            'title.min'            => 'El título debe tener al menos 4 caracteress',
-            'title.max'            => 'El título debe tener como máximo 250 caracteress',
-            'title.unique'         => 'El título ya existe en otro artículo',
+            'name.required'        => 'Debe ingresar un nombre',
+            'name.min'             => 'El título debe tener al menos 4 caracteress',
+            'name.max'             => 'El título debe tener como máximo 250 caracteress',
+            'name.unique'          => 'El título ya existe en otro artículo',
+            'code.unique'          => 'El código está utilizado por otro producto',
             'category_id.required' => 'Debe ingresar una categoría',
             'slug.required'        => 'Se requiere un slug',
-            'slug.min'             => 'El slug debe tener 5 caracteres como mínimo',
+            'slug.min'             => 'El slug debe tener 4 caracteres como mínimo',
             'slug.max'             => 'El slug debe tener 255 caracteres como máximo',
             'slug.max'             => 'El slug debe tener guiones bajos en vez de espacios',
             'slug.unique'          => 'El slug debe ser único, algún otro artículo lo está usando',
-            'content.min'          => 'El contenido debe contener al menos 60 caracteres',
-            'content.required'     => 'Debe ingresar contenido',
             'image'                => 'El archivo adjuntado no es soportado',
         ]);
-
-        $path             = public_path("webimages/catalog/"); 
-        $article          = new CatalogArticle($request->all());
-
-        $article->user_id = \Auth::user()->id;
-        $article->save();
-
-        // Sync() fills pivote table. Gets un array.
-        $article->tags()->sync($request->tags);
-
-        $images           = $request->file('images');
-
-        if ($article->save() && $images)
-        {
-            foreach($images as $phisic_image)
-            {
-                $name     = md5($phisic_image->getFilename().time()).'.'.$phisic_image->getClientOriginalExtension();
-                $img      = \Image::make($phisic_image->path());
-                
-                $img->fit(600)->save($path.'/'.$name);
-
-                $image            = new Image();
-                $image->name      = $name;
-                $image->article()->associate($article);
-                $image->save();
+    
+        try {
+            $article           = new CatalogArticle($request->all());
+            $article->user_id  = \Auth::user()->id;
+            
+            $images            = $request->file('images');
+            $imgPath           = public_path("webimages/catalogo/"); 
+            $extension         = '.jpg';
+            
+            $article->thumb    = $article->code.'-thumb'.$extension;
+            $article->save();
+            $article->atribute1()->sync($request->atribute1);
+            $article->tags()->sync($request->tags);
+            
+            $number = '0';
+            try {
+                foreach($images as $phisic_image)
+                {
+                    $filename = $article->code.'-'.$number++;
+                    $img      = \Image::make($phisic_image);
+                    $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
+                    
+                    $image            = new CatalogImage();
+                    $image->name      = $filename.$extension;
+                    $image->article()->associate($article);
+                    $image->save();
+                }
+            } catch(\Exception $e) {
+                $article->delete();
+                return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
-        } 
-        return redirect()->route('portfolio.index')->with('message','Artículo creado');
+            
+            $thumb      = \Image::make($images[0]);
+            $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
+            
+        } catch(\Exception $e){
+            dd($e);
+        }
+        
+        return redirect()->route('catalogo.index')->with('message','Artículo creado');
     }
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -130,54 +147,62 @@ class ArticlesController extends Controller
     public function edit($id)
     {   
         $tags       = CatalogTag::orderBy('name', 'DESC')->pluck('name', 'id');
+        $atribute1  = CatalogAtribute1::orderBy('name', 'DESC')->pluck('name', 'id');
         $article    = CatalogArticle::find($id);
-        $article->category;
         $categories = CatalogCategory::orderBy('name', 'DESC')->pluck('name', 'id');
         $article->each(function($article){
                 $article->images;
         });
 
-        // Acá se llaman los id de los tags y se los convierte de objeto a array
-        $actual_tags = $article->tags->pluck('id')->ToArray();
-        $status      = $article->status;
-
-        return view('vadmin.portfolio.edit')
+        return view('vadmin.catalog.edit')
             ->with('categories', $categories)
             ->with('article', $article)
             ->with('tags', $tags)
-            ->with('actual_tags', $actual_tags)
-            ->with('status', $status);
+            ->with('atribute1', $atribute1);
     }
 
     public function update(Request $request, $id)
     {
-        $path      = public_path("webimages/catalog/"); 
-
         $article   = CatalogArticle::find($id);
         $article->fill($request->all());
-        $article->save();
-
-        // Sync() fills pivote table. Gets un array.
-        $article->tags()->sync($request->tags);
-
+        
         $images    = $request->file('images');
+        $imgPath   = public_path("webimages/catalogo/"); 
+        $extension = '.jpg';
+        
+        try {
 
-        if ($article->save() && $images)
-        {
-            foreach($images as $phisic_image)
-            {
-                $name         = md5($phisic_image->getFilename().time()).'.'.$phisic_image->getClientOriginalExtension();
-                $img          = \Image::make($phisic_image->path());
-                
-                $img->fit(600)->save($path.'/'.$name);
-
-                $image        = new Image();
-                $image->name  = $name;
-                $image->article()->associate($article);
-                $image->save();
+            $article->thumb    = $article->code.'-thumb'.$extension;
+            $article->save();
+            $article->atribute1()->sync($request->atribute1);
+            $article->tags()->sync($request->tags);
+            
+            $number = '0';
+            try {
+                foreach($images as $phisic_image)
+                {
+                    $filename = $article->code.'-'.$number++;
+                    $img      = \Image::make($phisic_image);
+                    $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
+                    
+                    $image            = new CatalogImage();
+                    $image->name      = $filename.$extension;
+                    $image->article()->associate($article);
+                    $image->save();
+                }
+            } catch(\Exception $e) {
+                $article->delete();
+                return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
-        } 
-        return redirect()->route('portfolio.index')->with('message', 'Se ha editado el artículo con éxito');
+
+        } catch(\Exception $e){
+            dd($e);
+        }
+          
+        $thumb      = \Image::make($images[0]);
+        $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
+
+        return redirect()->route('catalogo.index')->with('message', 'Se ha editado el artículo con éxito');
     }
 
     public function updateStatus(Request $request, $id)
@@ -199,18 +224,28 @@ class ArticlesController extends Controller
 
     public function destroy(Request $request)
     {   
-        $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);
-        
+        $ids      = json_decode('['.str_replace("'",'"',$request->id).']', true);
+        $path     = 'webimages/catalogo/';
+
         if(is_array($ids)) {
             try {
                 foreach ($ids as $id) {
                     $record = CatalogArticle::find($id);
+                    $record->tags()->detach();
+                    $record->atribute1()->detach();
+                    
+                    $images = $record->images;
+                    File::Delete(public_path( $path . $record->thumb));
+                    foreach ($images as $image) {
+                        File::Delete(public_path( $path . $image->name));
+                    }
+
                     $record->delete();
                 }
                 return response()->json([
                     'success'   => true,
                 ]); 
-            }  catch (Exception $e) {
+            }  catch (\Exception $e) {
                 return response()->json([
                     'success'   => false,
                     'error'    => 'Error: '.$e
@@ -219,12 +254,21 @@ class ArticlesController extends Controller
         } else {
             try {
                 $record = CatalogArticle::find($id);
+                $record->tags()->detach();
+                $record->atribute1()->detach();
+                
+                $images = $record->images;
+                File::Delete(public_path( $path . $record->thumb));
+                foreach ($images as $image) {
+                    File::Delete(public_path( $path . $image->name));
+                }
+
                 $record->delete();
                     return response()->json([
                         'success'   => true,
                     ]);  
                     
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return response()->json([
                         'success'   => false,
                         'error'    => 'Error: '.$e

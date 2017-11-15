@@ -58,7 +58,8 @@
 					@else
 					@slot('tableTitles')
 						<th></th>
-						<th>Imágen</th>
+						<th></th>
+						<th>Cód.</th>
 						<th>Título</th>
 						<th>Categoría</th>
 						<th>Fecha de Creación</th>
@@ -77,12 +78,13 @@
 								</td>
 								<td class="thumb">
 									@if(count($item->images))
-										<img src="{{ asset('webimages/portfolio/'. $item->images->first()->name ) }}">
+										<img src="{{ asset('webimages/catalogo/'. $item->images->first()->name ) }}">
 									@else
 										<img src="{{ asset('webimages/gen/genlogo.jpg') }}">
 									@endif
 								</td>
-								<td class="show-link max-text"><a href="{{ url('vadmin/portfolio/'.$item->id) }}">{{ $item->title }}</a></td>
+								<td class="w-50">{{ $item->code }}</td>
+								<td class="show-link max-text"><a href="{{ url('vadmin/catalogo/'.$item->id) }}">{{ $item->name }}</a></td>
 								<td>{{ $item->category->name }}</td>
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 								<td class="w-50 pad0 centered">

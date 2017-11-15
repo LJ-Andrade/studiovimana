@@ -47,7 +47,7 @@
 		<li class="nav-item has-sub CatalogLi"><a href="#"><i class="icon-cart4"></i><span data-i18n="nav.menu_levels.main" class="menu-title">Catálogo</span></a>
 			<ul class="menu-content" style="">
 				<li class="CatalogList"><a href="{{ route('catalogo.index') }}" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-				<li class="CatalogNew"><a href="{{ route('catalogo.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Artículo</a></li>
+				<li class="CatalogNew"><a href="{{ route('catalogo.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Producto</a></li>
 				<li class="has-sub is-shown CatalogCategoriesLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Categorías</a>
 					<ul class="menu-content" style="">
 						<li class="is-shown CatalogCategoriesList"><a href="{{ route('cat_categorias.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
@@ -58,6 +58,12 @@
 					<ul class="menu-content" style="">
 						<li class="is-shown CatalogTagsList"><a href="{{ route('cat_tags.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
 						<li class="is-shown CatalogTagsNew"><a href="{{ route('cat_tags.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nueva Etiqueta</a></li>
+					</ul>
+				</li>
+				<li class="has-sub is-shown CatalogAtribute1Li"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Talles</a>
+					<ul class="menu-content" style="">
+						<li class="is-shown CatalogAtribute1List"><a href="{{ route('cat_atribute1.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+						<li class="is-shown CatalogAtribute1New"><a href="{{ route('cat_atribute1.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Talle</a></li>
 					</ul>
 				</li>
 			</ul>
