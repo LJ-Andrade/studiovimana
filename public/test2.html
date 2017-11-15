@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Vimana Studio | Diseño Web</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Somos un equipo de trabajo dedicado a desarrollar contenido visual e interactivo. Nos especializamos en el diseño web y diseño gráfico" />
+		<meta name="keywords" content="diseño Web, desarrollo web, diseño grafico, web, sitio web, paginas web, programacion, sistemas, administracion, gestores, contenido, publicidad, internet, redes sociales" />
+		<meta name="author" content="Studio Vimana" />
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="https://vimana.studio/webimages/logos/favicon.png">
+		<meta property="og:url"         content="http://vimana.studio" />
+		<meta property="og:type"        content="article" />
+		<meta property="og:title"       content="Diseño Web y Diseño Gráfico" />
+		<meta property="og:description" content="Somos un equipo de trabajo dedicado a desarrollar contenido visual e interactivo" />
+		<meta property="og:image"       content="https://vimana.studio/webimages/logos/main-logo.png" />
+		<meta name="twitter:title"      content="Studio Vimana" />
+		<meta name="twitter:image"      content="https://vimana.studio/webimages/logos/main-logo.png" />
+		<meta name="twitter:url"        content="http://vimana.studio" />
+		<link rel="stylesheet" async  type="text/css" href="https://vimana.studio/plugins/bootstrap/bootstrap3/bootstrap.min.css">
+		<link rel="stylesheet" async  type="text/css" href="https://vimana.studio/plugins/animate/animate.css">
+		<link rel="stylesheet" async  type="text/css" href="https://vimana.studio/plugins/ionicons/ionicons.min.css"> 	    
+	    <link rel="stylesheet" type="text/css" href="https://vimana.studio/plugins/swiper-slider/swiper.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="https://vimana.studio/css/web.css"> -->
+		<style>
+		
+		/*! CSS Used from: https://vimana.studio/plugins/bootstrap/bootstrap3/bootstrap.min.css */
+body{margin:0;}
+article,footer,header{display:block;}
+a{background-color:transparent;}
+a:active,a:hover{outline:0;}
+b{font-weight:700;}
+h1{margin:.67em 0;font-size:2em;}
+img{border:0;}
+hr{height:0;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;}
+button,input,textarea{margin:0;font:inherit;color:inherit;}
+button{overflow:visible;}
+button{text-transform:none;}
+button,input[type=submit]{-webkit-appearance:button;cursor:pointer;}
+button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0;}
+input{line-height:normal;}
+textarea{overflow:auto;}
+@media print{
+*,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important;}
+a,a:visited{text-decoration:underline;}
+a[href]:after{content:" (" attr(href) ")";}
+img{page-break-inside:avoid;}
+img{max-width:100%!important;}
+h2,h3,p{orphans:3;widows:3;}
+h2,h3{page-break-after:avoid;}
+.navbar{display:none;}
+}
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff;}
+button,input,textarea{font-family:inherit;font-size:inherit;line-height:inherit;}
+a{color:#337ab7;text-decoration:none;}
+a:focus,a:hover{color:#23527c;text-decoration:underline;}
+a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+img{vertical-align:middle;}
+hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+h1,h2,h3{font-family:inherit;font-weight:500;line-height:1.1;color:inherit;}
+h1,h2,h3{margin-top:20px;margin-bottom:10px;}
+h1{font-size:36px;}
+h2{font-size:30px;}
+h3{font-size:24px;}
+p{margin:0 0 10px;}
+.text-center{text-align:center;}
+ul{margin-top:0;margin-bottom:10px;}
+.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
+@media (min-width:768px){
+.container{width:750px;}
+}
+@media (min-width:992px){
+.container{width:970px;}
+}
+@media (min-width:1200px){
+.container{width:1170px;}
+}
+.container-fluid{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
+.row{margin-right:-15px;margin-left:-15px;}
+.col-md-12,.col-md-3,.col-md-4,.col-md-6,.col-md-8,.col-sm-12,.col-sm-6,.col-xs-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px;}
+.col-xs-12{float:left;}
+.col-xs-12{width:100%;}
+@media (min-width:768px){
+.col-sm-12,.col-sm-6{float:left;}
+.col-sm-12{width:100%;}
+.col-sm-6{width:50%;}
+}
+@media (min-width:992px){
+.col-md-12,.col-md-3,.col-md-4,.col-md-6,.col-md-8{float:left;}
+.col-md-12{width:100%;}
+.col-md-8{width:66.66666667%;}
+.col-md-6{width:50%;}
+.col-md-4{width:33.33333333%;}
+.col-md-3{width:25%;}
+}
+.form-control{display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
+.form-control:focus{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);}
+.form-control::-moz-placeholder{color:#999;opacity:1;}
+.form-control:-ms-input-placeholder{color:#999;}
+.form-control::-webkit-input-placeholder{color:#999;}
+.form-control::-ms-expand{background-color:transparent;border:0;}
+textarea.form-control{height:auto;}
+.form-group{margin-bottom:15px;}
+.collapse{display:none;}
+.nav{padding-left:0;margin-bottom:0;list-style:none;}
+.nav>li{position:relative;display:block;}
+.nav>li>a{position:relative;display:block;padding:10px 15px;}
+.nav>li>a:focus,.nav>li>a:hover{text-decoration:none;background-color:#eee;}
+.navbar{position:relative;min-height:50px;margin-bottom:20px;border:1px solid transparent;}
+@media (min-width:768px){
+.navbar{border-radius:4px;}
+}
+@media (min-width:768px){
+.navbar-header{float:left;}
+}
+.navbar-collapse{padding-right:15px;padding-left:15px;overflow-x:visible;-webkit-overflow-scrolling:touch;border-top:1px solid transparent;-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);}
+@media (min-width:768px){
+.navbar-collapse{width:auto;border-top:0;-webkit-box-shadow:none;box-shadow:none;}
+.navbar-collapse.collapse{display:block!important;height:auto!important;padding-bottom:0;overflow:visible!important;}
+.navbar-fixed-top .navbar-collapse{padding-right:0;padding-left:0;}
+}
+.navbar-fixed-top .navbar-collapse{max-height:340px;}
+@media (max-device-width:480px) and (orientation:landscape){
+.navbar-fixed-top .navbar-collapse{max-height:200px;}
+}
+.container-fluid>.navbar-collapse,.container-fluid>.navbar-header{margin-right:-15px;margin-left:-15px;}
+@media (min-width:768px){
+.container-fluid>.navbar-collapse,.container-fluid>.navbar-header{margin-right:0;margin-left:0;}
+}
+.navbar-fixed-top{position:fixed;right:0;left:0;z-index:1030;}
+@media (min-width:768px){
+.navbar-fixed-top{border-radius:0;}
+}
+.navbar-fixed-top{top:0;border-width:0 0 1px;}
+.navbar-brand{float:left;height:50px;padding:15px 15px;font-size:18px;line-height:20px;}
+.navbar-brand:focus,.navbar-brand:hover{text-decoration:none;}
+.navbar-brand>img{display:block;}
+@media (min-width:768px){
+.navbar>.container-fluid .navbar-brand{margin-left:-15px;}
+}
+.navbar-toggle{position:relative;float:right;padding:9px 10px;margin-top:8px;margin-right:15px;margin-bottom:8px;background-color:transparent;background-image:none;border:1px solid transparent;border-radius:4px;}
+.navbar-toggle:focus{outline:0;}
+.navbar-toggle .icon-bar{display:block;width:22px;height:2px;border-radius:1px;}
+.navbar-toggle .icon-bar+.icon-bar{margin-top:4px;}
+@media (min-width:768px){
+.navbar-toggle{display:none;}
+}
+.navbar-nav{margin:7.5px -15px;}
+.navbar-nav>li>a{padding-top:10px;padding-bottom:10px;line-height:20px;}
+@media (min-width:768px){
+.navbar-nav{float:left;margin:0;}
+.navbar-nav>li{float:left;}
+.navbar-nav>li>a{padding-top:15px;padding-bottom:15px;}
+}
+@media (min-width:768px){
+.navbar-right{float:right!important;margin-right:-15px;}
+}
+.navbar-default{background-color:#f8f8f8;border-color:#e7e7e7;}
+.navbar-default .navbar-brand{color:#777;}
+.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{color:#5e5e5e;background-color:transparent;}
+.navbar-default .navbar-nav>li>a{color:#777;}
+.navbar-default .navbar-nav>li>a:focus,.navbar-default .navbar-nav>li>a:hover{color:#333;background-color:transparent;}
+.navbar-default .navbar-toggle{border-color:#ddd;}
+.navbar-default .navbar-toggle:focus,.navbar-default .navbar-toggle:hover{background-color:#ddd;}
+.navbar-default .navbar-toggle .icon-bar{background-color:#888;}
+.navbar-default .navbar-collapse{border-color:#e7e7e7;}
+.container-fluid:after,.container-fluid:before,.container:after,.container:before,.nav:after,.nav:before,.navbar-collapse:after,.navbar-collapse:before,.navbar-header:after,.navbar-header:before,.navbar:after,.navbar:before,.row:after,.row:before{display:table;content:" ";}
+.container-fluid:after,.container:after,.nav:after,.navbar-collapse:after,.navbar-header:after,.navbar:after,.row:after{clear:both;}
+/*! CSS Used from: https://vimana.studio/plugins/animate/animate.css */
+.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;}
+.fadeIn{-webkit-animation-name:fadeIn;animation-name:fadeIn;}
+.fadeInRight{-webkit-animation-name:fadeInRight;animation-name:fadeInRight;}
+.fadeInUp{-webkit-animation-name:fadeInUp;animation-name:fadeInUp;}
+/*! CSS Used from: https://vimana.studio/plugins/ionicons/ionicons.min.css */
+.ion-checkmark-round:before,.ion-close-round:before,.ion-ios-email-outline:before,.ion-ios-location-outline:before,.ion-iphone:before,.ion-record:before{display:inline-block;font-family:"Ionicons";speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;text-rendering:auto;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.ion-checkmark-round:before{content:"\f121";}
+.ion-close-round:before{content:"\f129";}
+.ion-ios-email-outline:before{content:"\f422";}
+.ion-ios-location-outline:before{content:"\f455";}
+.ion-iphone:before{content:"\f1fa";}
+.ion-record:before{content:"\f21b";}
+/*! CSS Used from: https://vimana.studio/plugins/swiper-slider/swiper.min.css */
+.swiper-container{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;z-index:1;}
+.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;-o-transition-property:-o-transform;-ms-transition-property:-ms-transform;transition-property:transform;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;}
+.swiper-wrapper{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-o-transform:translate(0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}
+.swiper-slide{-webkit-flex-shrink:0;-ms-flex:0 0 auto;flex-shrink:0;width:100%;height:100%;position:relative;}
+/*! CSS Used from: https://vimana.studio/css/web.css */
+.button{border:0;border-radius:50px;padding:7px 20px;font-size:1.2rem;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;line-height:1.42857143;margin:4px;-webkit-transition:all 0.2s ease 0s;transition:all 0.2s ease 0s;}
+.button:hover{cursor:pointer;}
+.btnHollowGreyTrans{background-color:transparent;border:1px solid #1ad4be;color:#fff;}
+.btnHollowGreyTrans:hover{background-color:#fff;color:#383838;}
+.btnHollowGreyTransBlack{background-color:transparent;border:1px solid #1ad4be;color:#1ad4be;}
+.btnHollowGreyTransBlack:hover{background-color:#1ad4be;color:#383838;}
+.btnHollowGreen{background-color:#1ad4be;border:1px solid #ccc;color:#fff;}
+.btnHollowGreen:hover{background-color:#fff;color:#383838;}
+.tag{padding:4px 14px;margin-left:1px;margin-right:1px;line-height:35px;border-radius:50px;white-space:nowrap;font-size:1.2rem;font-family:"Josefin Slab", serif;font-weight:400;-webkit-transition:all 0.4s ease 0s;transition:all 0.4s ease 0s;}
+.red-tag{background-color:#D77777;color:#fff;}
+.red-tag:hover{background-color:#E64646;cursor:pointer;}
+.vertical-list ul{padding-left:0;padding:0;margin:0;list-style:none;}
+.vertical-list ul li{list-style:none;display:block;}
+.horizontal-list ul{padding-left:0;padding:0;margin:0;}
+.horizontal-list ul li{display:inline-block;list-style:none;}
+.softhr{border-top:1px solid rgba(238, 238, 238, 0.48);}
+.swiper-slide{text-align:center;max-height:600px;}
+.swiper-container img{max-width:100%;}
+body{height:100%;overflow-x:hidden;font-size:18px;background-color:#fff;color:#383838;font-family:"Lato", sans-serif;font-weight:300;line-height:24px;margin:0;}
+a{text-decoration:none;color:#bbb7f2;}
+a:hover{text-decoration:none;}
+p{font-size:1.2rem;font-family:"Lato", sans-serif;font-weight:300;}
+h1,h2,h3{font-family:"Nixie One", cursive;}
+h1{font-size:2.5rem;font-weight:700;}
+h2{font-size:1.8rem;font-weight:700;}
+h3{font-size:1.6rem;font-weight:400;color:#BDD9EB;}
+.Hidden{display:none!important;}
+ul{padding-left:0;}
+.navbar-default .navbar-toggle{border:0;max-width:100%;}
+@media (min-width: 765px){
+.navbar{background-color:#fff;border-bottom:0;height:60px;-webkit-transition:all 0.5s ease 0s;transition:all 0.5s ease 0s;}
+.navbar .navbar-right{margin-right:15px;-webkit-transition:all 0.5s ease 0s;transition:all 0.5s ease 0s;}
+.navbar .navbar-right li{margin-right:5px;}
+.navbar .navbar-right li a{font-family:"Josefin Slab", serif;font-weight:400;}
+.navbar .navbar-right li a i{font-family:"Nixie One", cursive;margin-right:5px;}
+.navbar .navbar-nav > li{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;height:60px;}
+.navbar .navbar-nav > li a{color:#fff;font-size:1rem;font-family:"Lato", sans-serif;font-weight:300;border-radius:30px;padding:4px 20px;-webkit-transition:all 0.5s ease 0s;transition:all 0.5s ease 0s;}
+.navbar .navbar-nav > li a.contacto{background-color:#03c3ad;}
+.navbar .navbar-nav > li:active,.navbar .navbar-nav > li:focus{color:#ccc;}
+.navbar .navbar-nav > li:hover{cursor:pointer;}
+.navbar .navbar-nav > li:hover a{background-color:none;}
+.navbar .navbar-nav > li:hover a.contacto{color:#fff;}
+.navbar .navbar-brand{padding:8px 12px;-webkit-transition:all 0.5s ease 0s;transition:all 0.5s ease 0s;}
+.navbar .navbar-brand img{-webkit-transition:all 0.5s ease 0s;transition:all 0.5s ease 0s;width:150px;}
+.navbar.home-nav{background-color:transparent;}
+.navbar.home-nav .navbar-nav > li a{color:#fff;font-size:1.2rem;}
+.navbar.home-nav .navbar-nav > li:hover a{border:1px solid #03c3ad;color:#fff;}
+.navbar.home-nav .navbar-nav > li:hover a.contacto{background-color:#3356e3;border:0;color:#fff;}
+}
+@media (max-width: 765px){
+.navbar{background-color:#fff;border:0;}
+.navbar .navbar-brand img{width:100px;}
+.navbar .navbar-toggle{border-radius:0;}
+.navbar .navbar-toggle .icon-bar{background-color:#fff;}
+}
+@media (max-width: 786px){
+body{padding-top:0;}
+.navbar .navbar-toggle .icon-bar{background-color:#383838;}
+.navbar-default .navbar-nav > li > a{color:#383838;font-family:"Josefin Slab", serif;font-weight:400;font-size:1.5rem;padding-top:10px;padding-bottom:10px;border:1px solid #f9f9f9;border-radius:50px;margin-bottom:5px;}
+.navbar-default .navbar-nav > li > a:hover{color:#383838;background-color:#f9f9f9;}
+.navbar-default .navbar-collapse{border:0;}
+.navbar-default .navbar-toggle:focus,.navbar-default .navbar-toggle:hover{background-color:#fff;}
+.navbar{background-color:#fff;border:0;}
+.navbar .navbar-brand img{width:100px;}
+}
+.main-home{background:transparent;position:relative;padding-top:5%;min-height:100vh;}
+.main-home .main-info{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;z-index:5;}
+.main-home .main-info h1{color:#fff;font-size:1.5rem;margin-bottom:25px;}
+@media (max-width: 765px){
+.main-home .main-info{text-align:center;padding-top:100px;}
+.main-home .main-info img{max-width:80%;}
+.main-home .main-info .actions button{margin-bottom:15px;border:1px solid #fff;font-weight:600;}
+}
+.home-section-2{padding:50px 20px;background-color:#0d1d41;color:#fff;}
+.home-section-2 .big-text{text-align:right;}
+.home-section-2 .big-text span{font-family:"Josefin Slab", serif;font-size:3.5rem;line-height:5.1rem;}
+.home-section-2 .small-text{padding-top:10px;}
+.home-section-2 .bottom-text{text-align:center;margin-top:50px;}
+.home-section-2 .bottom-text span{font-size:1.2rem;font-weight:300;}
+@media (max-width: 765px){
+.home-section-2{padding:50px 10px;}
+.home-section-2 .big-text{text-align:left;}
+.home-section-2 .big-text span{font-size:3rem;line-height:4rem;}
+}
+@media (max-width: 435px){
+.home-section-2 .power-icons{margin-left:20px;margin-top:10px;}
+.home-section-2 .power-icons img{width:40px;}
+}
+@media (max-width: 335px){
+.home-section-2 .big-text{text-align:left;}
+.home-section-2 .big-text span{font-size:2rem;line-height:3rem;}
+}
+.home-section-3{background-color:#0d1d41;padding:50px 10px;text-align:center;}
+.home-section-3 .col-md-3{padding:0;}
+.home-section-3 .text{padding:20px;}
+.home-section-3 .text p{color:#fff;font-size:1.2rem;}
+.home-section-3 .divisor{max-width:100%;}
+.service-item{padding:50px 10px;}
+.our-services{padding:40px 0;background-color:#f9f9f9;color:#01406b;}
+.our-services h1{text-align:center;}
+.our-services .inner{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:20px;margin:0 auto;}
+.our-services .inner img{margin:0 auto;max-width:100%;}
+.our-services .inner .text-big h1{margin-bottom:0;line-height:40px;font-size:2.5rem;font-weight:700;padding-bottom:10px;color:#01406b;text-align:left;}
+.our-services .inner i{color:#03cdb7;font-size:.9rem;margin-right:5px;}
+.our-works{padding:40px 5px 30px;background-color:#fff;color:#0d1d41;text-align:center;}
+.our-works .inner{padding:20px 20px 30px;margin:auto;text-align:right;}
+.our-works .inner h1{line-height:3.3rem;margin-bottom:25px;}
+.our-works .inner p{line-height:1.5rem;font-size:1.4rem;}
+.our-works .inner p.first{margin-bottom:20px;}
+.our-works .inner p.second{margin-bottom:10px;}
+.our-works .inner img{max-width:100%;}
+.our-works .inner-mobile{display:none;}
+@media (max-width: 991px){
+.our-works .inner{padding:10px 20px 0 0;}
+.our-works .inner h1{margin-top:0;margin-bottom:5px;line-height:2.8rem;font-size:2rem;}
+.our-works .inner p{font-size:1.2rem;line-height:1.2rem;}
+}
+@media (max-width: 764px){
+.our-works .inner{text-align:left;}
+.our-works .inner h1{margin-top:0;line-height:2.8rem;font-size:2rem;}
+.our-works .inner p{font-size:1.2rem;line-height:1.2rem;}
+.our-works .inner-mobile{display:block;text-align:center;padding-bottom:30px;}
+.our-works .inner-desk{display:none;}
+}
+.contact-section{background:#1ad4be;background:-webkit-gradient(left top, right bottom, color-stop(0%, #1ad4be), color-stop(100%, #3356e3));background:linear-gradient(135deg, #1ad4be 0%, #3356e3 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ad4be', endColorstr='#3356e3', GradientType=1 );padding:30px 5px 60px;}
+.contact-section .inner{text-align:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}
+.contact-section .inner .contact-form{max-width:880px;}
+.contact-section .inner .contact-form form{color:#fff;padding:20px;}
+.contact-section .inner .contact-form form > .col-md-6{padding:0;}
+.contact-section .inner .contact-form form .form-group{margin-bottom:0;}
+.contact-section .inner .contact-form form ::-webkit-input-placeholder{color:#f9f9f9;font-size:1.3rem;font-family:"Josefin Slab", serif;font-weight:400;}
+.contact-section .inner .contact-form form ::-moz-placeholder{color:#f9f9f9;font-size:1.3rem;font-family:"Josefin Slab", serif;font-weight:400;}
+.contact-section .inner .contact-form form ::-ms-input-placeholder{color:#f9f9f9;font-size:1.3rem;font-family:"Josefin Slab", serif;font-weight:400;}
+.contact-section .inner .contact-form form ::-moz-placeholder{color:#f9f9f9;font-size:1.3rem;font-family:"Josefin Slab", serif;font-weight:400;}
+.contact-section .inner .contact-form input{height:70px;}
+.contact-section .inner .contact-form input,.contact-section .inner .contact-form textarea{border:0;border-radius:0;background-color:transparent;border:1px solid rgba(255, 255, 255, 0.5);color:#fff;-webkit-box-shadow:none;box-shadow:none;font-size:1.5rem;}
+.contact-section .inner .contact-form .contactBtn{border-radius:0;padding:5px 120px;height:50px;background-color:#fff;color:#383838;-webkit-transition:all 0.2s ease 0s;transition:all 0.2s ease 0s;}
+.contact-section .inner .contact-form .contactBtn:hover{background-color:transparent;border:1px solid #fff;color:#fff;}
+.contact-section .inner .contact-form textarea{height:210px;}
+.contact-section .inner .contact-form .form-responses{padding-top:30px;padding-bottom:20px;color:#fff;font-size:1.5rem;}
+.contact-section .inner .contact-form .form-responses i{font-size:4rem;}
+.contact-section .inner .contact-form .form-responses i.success{color:#03c3ad;}
+.contact-section .inner .contact-form .form-responses i.error{color:#D77777;}
+.contact-section .inner .contact-form .form-responses hr{margin-top:60px;}
+.contact-section .social-icons{text-align:center;margin-top:25px;}
+.contact-section .social-icons .title{margin-bottom:15px;}
+.contact-section .social-icons span{font-size:1.6rem;font-family:"Josefin Slab", serif;font-weight:400;color:#fff;}
+.contact-section .social-icons img{border-radius:100%;max-width:70px;-webkit-transition:all 0.5s ease 0s;transition:all 0.5s ease 0s;}
+.contact-section .social-icons img:hover{-webkit-box-shadow:7px 6px 5px -6px rgba(0, 0, 0, 0.75)!important;box-shadow:7px 6px 5px -6px rgba(0, 0, 0, 0.75)!important;cursor:pointer;}
+@media (max-width: 765px){
+.contact-section .social-icons img{width:75px;}
+}
+@media (max-width: 405px){
+.contact-section .social-icons img{width:45px;}
+}
+@media (max-width: 369px){
+.contact-section{padding:10px 0;}
+}
+footer{background-color:#0d1d41;padding-left:0!important;padding-right:0!important;}
+footer .footer{padding:20px 10px 40px;}
+footer .footer h2{color:#fff;}
+footer .footer .contact-data span{font-size:1.2rem;font-family:"Josefin Slab", serif;font-weight:400;color:#fff;text-align:center;}
+footer .footer .contact-data i{color:#E7E7E7;font-size:2rem;}
+footer .footer .contact-data span.icon{margin-right:10px;width:50px;}
+footer .footer .social span{color:#fff;}
+footer .copyright{background-color:#0A1120;padding:10px 5px;text-align:center;color:#fff;font-family:"Josefin Slab", serif;font-weight:400;font-size:1.4rem;}
+/*! CSS Used from: Embedded */
+.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;}
+.fb_reset>div{overflow:hidden;}
+.fb_iframe_widget{display:inline-block;position:relative;}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify;}
+.fb_iframe_widget iframe{position:absolute;}
+/*! CSS Used keyframes */
+@-webkit-keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@-webkit-keyframes fadeInRight{from{opacity:0;-webkit-transform:translate3d(100%, 0, 0);transform:translate3d(100%, 0, 0);}to{opacity:1;-webkit-transform:none;transform:none;}}
+@keyframes fadeInRight{from{opacity:0;-webkit-transform:translate3d(100%, 0, 0);transform:translate3d(100%, 0, 0);}to{opacity:1;-webkit-transform:none;transform:none;}}
+@-webkit-keyframes fadeInUp{from{opacity:0;-webkit-transform:translate3d(0, 100%, 0);transform:translate3d(0, 100%, 0);}to{opacity:1;-webkit-transform:none;transform:none;}}
+@keyframes fadeInUp{from{opacity:0;-webkit-transform:translate3d(0, 100%, 0);transform:translate3d(0, 100%, 0);}to{opacity:1;-webkit-transform:none;transform:none;}}
+/*! CSS Used fontfaces */
+@font-face{font-family:"Ionicons";src:url(https://vimana.studio/plugins/fonts/ionicons.eot?v=2.0.0);src:url(https://vimana.studio/plugins/fonts/ionicons.eot?v=2.0.0#iefix) format("embedded-opentype"),url(https://vimana.studio/plugins/fonts/ionicons.ttf?v=2.0.0) format("truetype"),url(https://vimana.studio/plugins/fonts/ionicons.woff?v=2.0.0) format("woff"),url(https://vimana.studio/plugins/fonts/ionicons.svg?v=2.0.0#Ionicons) format("svg");font-weight:normal;font-style:normal;}
+@font-face{font-family:'Josefin Slab';font-style:normal;font-weight:400;src:local('Josefin Slab Regular'), local('JosefinSlab-Regular'), url(https://fonts.gstatic.com/s/josefinslab/v8/46aYWdgz-1oFX11flmyEfegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;}
+@font-face{font-family:'Lato';font-style:normal;font-weight:300;src:local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v14/dPJ5r9gl3kK6ijoeP1IRsvY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');unicode-range:U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Lato';font-style:normal;font-weight:300;src:local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v14/EsvMC5un3kjyUhB9ZEPPwg.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;}
+@font-face{font-family:'Lato';font-style:normal;font-weight:400;src:local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/UyBMtLsHKBKXelqf4x7VRQ.woff2) format('woff2');unicode-range:U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Lato';font-style:normal;font-weight:400;src:local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;}
+@font-face{font-family:'Nixie One';font-style:normal;font-weight:400;src:local('Nixie One'), local('NixieOne-Regular'), url(https://fonts.gstatic.com/s/nixieone/v8/gQ0PT3rPU_Et2ExNz-ahmltXRa8TVwTICgirnJhmVJw.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;}
+
+</style>
+	</head>
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM4GWS3"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<header>
+			<div class="navbar navbar-default navbar-fixed-top text-center" role="navigation">        
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						</button>  
+						<a class="navbar-brand" href="https://vimana.studio"><img src="https://vimana.studio/webimages/logos/logo.png"></a>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="https://vimana.studio">Inicio</a></li>
+							<li><a href="https://vimana.studio/portfolio">Portfolio</a></li>
+							<li><a class="contacto" href="https://vimana.studio/#contact"><i class="ion-ios-email-outline"></i> Contacto</a></li>   
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.8&appId=240698342801213";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script> 
+    
+    <div id="ActualSection" data-section="home"></div> 
+    
+    <div  class="main-home" data-parallax="scroll">
+        <div class="main-info wow animated fadeIn" data-wow-delay="0s" data-wow-duration="1s">
+            <img src="https://vimana.studio/webimages/logos/main-logo.png">
+            <h1>Desarrollo Web y Diseño Gráfico</h1>
+            <div class="actions">
+                <a href="https://vimana.studio/portfolio"><button class="button btnHollowGreyTrans">Nuestro Portfolio</button></a>
+                <a href="https://vimana.studio/#contact"><button class="button btnHollowGreen">Contactanos</button></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid section-container home-section-2">
+        <div class="container">
+            <article class="row">
+                <div class="col-md-6 big-text">
+                    <span class="wow animated fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">DISEÑO</span> <br>
+                    <span class="wow animated fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">INNOVACIÓN</span> <br> 
+                    <span class="wow animated fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">CREATIVIDAD</span>
+                </div>
+                <div class="col-md-6 small-text wow animated fadeIn">
+                    <p>
+                        Somos un equipo de trabajo dedicado a crear soluciones visuales.
+                        Nos especializamos en el área del <b>diseño web</b>, <b>la programación</b>,
+                        el <b>diseño gráfico</b> y la <b>ilustración.</b> <br>
+                        Generamos contenido propio y personalizado para que cada
+                        cliente obtenga un producto único y original. <br>
+                    </p>
+                </div>     
+                <div class="icons horizontal-list power-icons">
+                    <ul>
+                        <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <img src=" https://vimana.studio/webimages/gral/home/icons/icon2.png "></li>
+                        <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+                        <img src=" https://vimana.studio/webimages/gral/home/icons/icon1.png "></li>
+                        <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+                        <img src=" https://vimana.studio/webimages/gral/home/icons/icon4.png "></li>
+                        <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <img src=" https://vimana.studio/webimages/gral/home/icons/icon3.png "></li>
+                        <li class="wow animated fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+                        <img src=" https://vimana.studio/webimages/gral/home/icons/icon5.png "></li>
+                    </ul>
+                </div>
+            </article>
+            <div class="row bottom-text wow animated fadeIn">
+                <span>Atendemos Empresas, Pymes, Proyectos y Particulares.</span> 
+            </div>
+        </div>
+    </div>
+    <div class="home-section-3 wow animated fadeIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="https://vimana.studio/webimages/gral/home/pro1.png" alt="">
+                    <h3>Concepto</h3>
+                    <img class="divisor" src="https://vimana.studio/webimages/gral/home/divisor.png" alt="">
+                    <div class="text">
+                        <p>
+                            Analizamos el perfil del cliente para detectar las cualidades a destacar.
+                            El objetivo es que en el primer vistazo sea valorado positivamente.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img src="https://vimana.studio/webimages/gral/home/pro2.png" alt="">
+                    <h3>Planificación</h3>
+                    <img class="divisor" src="https://vimana.studio/webimages/gral/home/divisor.png" alt="">
+                    <div class="text">
+                        <p>
+                            Desarrollamos y presentamos ideas. Aportamos nuestro punto de vista y nuestra experiencia con otros clientes.
+                        </p>    
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img src="https://vimana.studio/webimages/gral/home/pro3.png" alt="">
+                    <h3>Aprobación</h3>
+                    <img class="divisor" src="https://vimana.studio/webimages/gral/home/divisor.png" alt="">
+                    <div class="text">
+                        <p>
+                            Trabajamos con la aprobación del cliente. Vamos avanzando según las etapas sean resueltas con una devolución positiva.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img src="https://vimana.studio/webimages/gral/home/pro4.png" alt="">
+                    <h3>Soporte</h3>
+                    <img class="divisor" src="https://vimana.studio/webimages/gral/home/divisor.png" alt="">
+                    <div class="text">
+                        <p>
+                            Una vez en marcha le damos al proyecto el retoque necesario para encausarlo a la dirección correcta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+    
+    <div id="services" class="container-fluid section-container our-services">
+        <div class="container">
+            <div class="row row-flex row-flex-wrap service-item">
+                <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
+                    <img src="https://vimana.studio/webimages/gral/home/servicio1.png">
+                </div>
+                <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
+                    <div class="text-big">
+                        <h1>Diseño y Desarrollo Web</h1> 
+                        <img src="https://vimana.studio/webimages/gral/home/divisor2.png">    
+                    </div>
+                    <p>
+                        Desarrollamos sitios personalizados. Creados desde cero y con las últimas tecnologías web.
+                        <b>Son visibles en todo tipo de dispositivo.</b>
+                        Entregamos un código limpio y optimizado para luego incluírlo en buscadores cumpliendo con sus exigencias. <br><br>
+                        <i class="ion-record"></i> <b>Adaptables</b> | Celulares | Tablets | Notebooks | Pc <br>
+                        <i class="ion-record"></i> <b>Sitios Institucionales</b> | Económicos | Rápido Desarrollo <br>
+                        <i class="ion-record"></i> <b>Diseño gráfico</b> | Creamos las piezas necesarias para el sitio<br>
+                        <i class="ion-record"></i> <b>Relacionado con Redes Sociales</b> | Aumenta el posicionamiento<br>
+                        <i class="ion-record"></i> <b>Exposición</b> | GoogleAdwords | Facebook | Buscadores | *Opcional<br>
+                    </p>
+                </article>
+            </div>
+
+            
+
+            <div class="row row-flex row-flex-wrap service-item">
+                <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
+                    <img src="https://vimana.studio/webimages/gral/home/servicio2.png">       
+                </div>
+                <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
+                    <div class="text-big">
+                        <h1>Progamación y Desarrollo de Apps</h1> 
+                        <img src="https://vimana.studio/webimages/gral/home/divisor2.png">      
+                    </div>
+                    <p>
+                        Creamos sistemas hechos a medida según las necesidades presentadas.<br>
+                        Desarrollamos: <br>
+                        <i class="ion-record"></i> <b>Gestores de Contenido</b><br>
+                        <i class="ion-record"></i> <b>Carros de Compras</b><br>
+                        <i class="ion-record"></i> <b>Portfolios</b><br>
+                        <i class="ion-record"></i> <b>Catálogos</b><br>
+                        <i class="ion-record"></i> <b>Blogs</b> <br>
+                        <b>* Son Autoadministrables !</b>
+                        
+                    </p>
+                </article>
+            </div>
+            <div class="row row-flex row-flex-wrap service-item">
+                <div class="col-md-4 col-sm-12 col-xs-12 inner wow animated fadeIn" data-wow-delay="0.3s">
+                    <img src="https://vimana.studio/webimages/gral/home/servicio3.png">        
+                </div>
+                <article class="col-md-8 col-sm-12 col-xs-12 inner wow animated fadeInRight">
+                    <div class="text-big">
+                        <h1>Diseño Gráfico</h1> 
+                        <img src="https://vimana.studio/webimages/gral/home/divisor2.png">    
+                    </div>
+                    <p>
+                        Desarrollamos piezas personalizadas.  <br>
+                        Estudiamos el perfil de cliente para  <br>
+                        entregar un producto acorde a la imágen buscada <br><br>
+
+                        <i class="ion-record"></i> <b>Identidad Corporativa</b> | Marca | Logos <br>
+                        <i class="ion-record"></i> <b>Papelería industrial</b> | Tarjetas | Flyiers <br>
+                        <i class="ion-record"></i> <b>Publicidad</b> | Redes sociales | Plantillas | Posts <br>
+                        <i class="ion-record"></i> <b>Editorial</b> | Libros | Catálogos | Manuales | Folletos <br>
+                        <i class="ion-record"></i> <b>Packagin</b> | Etiquetas | Bolsas | Cajas <br>
+                    </p>
+                </article>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid our-works">
+        <div class="container wow animated fadeIn">
+            <div class="row">
+             
+                 
+                <div class="col-xs-12 col-sm-6 col-md-4 inner inner-mobile">
+                    <h1>NUESTRO<br>PORTFOLIO</h1>
+                    <p class="first">
+                        Una imágen vale más que un slogan.
+                    </p>
+                    <p class="second">
+                        Visitá nuestro portfolio y mirá como trabajamos.
+                    </p>
+                    <a href="https://vimana.studio/portfolio"><button class="button btnHollowGreyTransBlack">Nuestro Portfolio</button></a>
+                </div>
+                 
+                <div class="col-xs-12 col-sm-6 col-md-4 inner inner-desk">
+                    <h1>NUESTRO<br>PORTFOLIO</h1>
+                    <p class="first">
+                        Una imágen vale más <br>que un slogan.
+                    </p>
+                    <p class="second">
+                        Visitá nuestro portfolio <br> y mirá como trabajamos.
+                    </p>
+                    <a href="https://vimana.studio/portfolio"><button class="button btnHollowGreyTransBlack">Nuestro Portfolio</button></a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-8 inner">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="https://vimana.studio/webimages/gral/home/portfolioslider/port1.jpg" alt=""></div>
+                            <div class="swiper-slide"><img src="https://vimana.studio/webimages/gral/home/portfolioslider/port2.jpg" alt=""></div>
+                            <div class="swiper-slide"><img src="https://vimana.studio/webimages/gral/home/portfolioslider/port3.jpg" alt=""></div>
+                            <div class="swiper-slide"><img src="https://vimana.studio/webimages/gral/home/portfolioslider/port4.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact" class="container-fluid contact-section">
+	<div class="container wow animated fadeIn">
+		<div class="row inner">
+			<div class="col-md-12 contact-form">
+			
+			
+				<form method="POST" action="https://vimana.studio" accept-charset="UTF-8" id="MainContactForm"><input name="_token" type="hidden" value="8H5OyxYOCuUp4iPPTLIZkRSxzkt7uDDfZBjho4Ko">
+				
+					<div class="col-md-6">
+						<div class="form-group">
+							<input class="form-control" placeholder="Ingresá tu nombre/empresa" required name="name" type="text">
+						</div>
+						<div class="form-group">
+							<input class="form-control" placeholder="Ingresá tu teléfono" required name="phone" type="text">
+						</div>
+						<div class="form-group">
+							<input class="form-control" placeholder="Ingresá tu E-Mail" required name="email" type="email">
+						</div>
+							
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<textarea class="form-control" placeholder="Dejanos tu pedido o consulta. Te responderemos cuanto antes" name="message" cols="30" rows="5"></textarea>
+						</div>
+					</div>
+						<input type="hidden" name="_token" value="8H5OyxYOCuUp4iPPTLIZkRSxzkt7uDDfZBjho4Ko">
+						<input class="contactBtn" type="submit" value="Enviar">
+						
+				</form>
+				<div id="FormResponse"></div>
+				<div id="FormSuccess" class="form-responses animated fadeIn Hidden">
+					<i class="success ion-checkmark-round"></i>
+					<h2>Mensaje Enviado !</h2> 
+					Gracias por contactarse con nosotros. <br>
+					Nos estaremos comunicando a la brevedad.
+					<hr class="softhr">
+				</div>
+				<div id="FormError" class="form-responses animated fadeIn Hidden">
+					<i class="error ion-close-round"></i>
+					<h2>Ha ocurrido un error !</h2> 
+					Intente comunicarse directamente por mail o teléfono <br>
+					Gracias.
+				</div>
+			</div>
+		</div>
+
+		<div class="horizontal-list social-icons">
+			<div class="title">
+				<span>Seguí nuestro proceso creativo en las redes</span>
+			</div>
+			<ul>
+				<a href="https://www.facebook.com/studiograficovimana" target="_blank">
+					<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s"><img src="https://vimana.studio/webimages/gral/social/social1.png"></li>
+				</a>
+				<a href="https://twitter.com/StudioVimana" target="_blank">
+					<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s"><img src="https://vimana.studio/webimages/gral/social/social2.png"></li>
+				</a>
+				<a href="https://www.youtube.com/channel/UCFT-sFx3Pv-r3ozgEqqnWfA" target="_blank">
+					<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s"><img src="https://vimana.studio/webimages/gral/social/social3.png"></li>
+				</a>
+				<a href="https://es.pinterest.com/admstudiovimana/" target="_blank">
+					<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"><img src="https://vimana.studio/webimages/gral/social/social4.png"></li>
+				</a>
+				<a href="https://www.behance.net/studiovimana" target="_blank">
+					<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s"><img src="https://vimana.studio/webimages/gral/social/social5.png"></li>
+				</a>
+				<a href="https://plus.google.com/u/0/+StudioVimana" target="_blank">
+					<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.7s"><img src="https://vimana.studio/webimages/gral/social/social6.png"></li>
+				</a>
+				<a href="https://github.com/StudioVimana" target="_blank">
+					<li class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.8s"><img src="https://vimana.studio/webimages/gral/social/social7.png"></li>
+				</a>
+			</ul>
+		</div>
+	</div>
+</div>    <footer class="container-fluid">
+	<div class="container footer">
+		<div class="col-md-4 contact-data fadeIn animated wow">
+			<h2>Datos</h2><hr>
+			<span class="icon"><i class="ion-iphone"></i></span><span> (011) 15-5160-1565</span> <br>
+			<span class="icon"><i class="ion-ios-email-outline"></i></span><span> info@studiovimana.com.ar</span> <br>
+			<span class="icon"><i class="ion-ios-location-outline"></i></span><span> Buenos Aires - Argentina <br>
+		</div>
+		<div class="col-md-4 tags">
+			<h2>Portfolio</h2><hr>
+						<a href="https://vimana.studio/categories/GraphicDesign"><span class="tag red-tag wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">GraphicDesign</span></a>
+						<a href="https://vimana.studio/categories/Ilustraciones"><span class="tag red-tag wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">Ilustraciones</span></a>
+						<a href="https://vimana.studio/categories/DesarrolloWeb"><span class="tag red-tag wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">DesarrolloWeb</span></a>
+					</div>
+		<div class="col-md-4 social">
+			<h2>Seguinos</h2><hr>
+			<div class="vertical-list">
+			    <ul>
+			    	
+					<li>
+						<a href="https://twitter.com/StudioVimana" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @StudioVimana</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+					</li>
+					
+					<li>
+						<div class="fb-like" data-href="https://www.facebook.com/studiograficovimana" data-width="250px" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="copyright">
+		Desarrollado por Studio Vimana - Todos los derechos reservados - 2017
+	</div>
+</footer>		<script type="text/javascript" src="https://vimana.studio/plugins/jquery/jquery-3.3.1.min.js "></script>
+<script type="text/javascript" src="https://vimana.studio/plugins/bootstrap/tether.min.js "></script>
+<script type="text/javascript" src="https://vimana.studio/plugins/bootstrap/bootstrap3/bootstrap.min.js "></script>
+<script type="text/javascript" src="https://vimana.studio/plugins/wow/script.wow.js "></script>
+<script type="text/javascript" src="https://vimana.studio/js/web.js "></script>		    <script type="text/javascript" src="https://vimana.studio/plugins/parallax/parallax.min.js"></script>
+    
+    <script type="text/javascript" src="https://vimana.studio/plugins/swiper-slider/swiper.jquery.min.js"></script>
+		<script>    
+    // Home Parallax
+    var image = "https://vimana.studio/webimages/gral/home/home-back.jpg";
+    $('.main-home').parallax({ imageSrc: image });
+
+    // Home Slider    
+    // var swiper = new Swiper('.swiper-container');
+    var mySwiper = new Swiper('.swiper-container', {
+        // autoplay:true,
+        pagination: true,
+        // speed: 10000,
+        spaceBetween: 100
+    }); 
+
+    $(document).on('submit','#MainContactForm',function(e){
+        e.preventDefault();
+
+        var data   = $(this).serialize();
+        var route  = "https://vimana.studio/mail_sender";
+        // var route  = "https://vimana.studio/test_sender";
+        var loader = '<img src="https://vimana.studio/images/loaders/loader-sm.svg"/>' + '<div style="color: #fff; margin-left: 15px">Enviando...</div>';
+
+        $.ajax({
+            type: "POST",
+            url: route,
+            dataType: 'json',
+            data: data,
+            beforeSend: function(){
+                var loader = "<img src='https://vimana.studio/images/loaders/loader-sm.svg'>";
+                $('#ContactBtn').html('Enviando ' + loader);
+            },
+            success: function(data) {
+                $('#MainContactForm').hide();
+                $('#FormSuccess').removeClass('Hidden');
+                $('#FormResponse').hide();
+                console.log(data);
+            },
+            error: function(data) {
+                $('#FormResponse').hide();
+                $('#MainContactForm').hide();
+                $('#ContactBtn').html('ENVIAR');
+                $('#FormError').removeClass('Hidden');
+                console.log(data);
+            }
+        });
+    });
+</script>
+	</body>
+</html>
