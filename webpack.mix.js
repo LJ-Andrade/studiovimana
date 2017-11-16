@@ -20,7 +20,7 @@ mix.js('resources/assets/js/web/web.js', 'public/js')
 .sass('resources/assets/sass/web.scss', 'public/css')
 .options({
     processCssUrls: false
-}).minify('output.min.css');;
+});
 
 mix.sass('resources/assets/sass/web/web.sass', 'public/css')
 .options({
