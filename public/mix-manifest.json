@@ -4,5 +4,6 @@
     "/css/vadmin.css": "/css/vadmin.css",
     "/js/vadmin-ui.js": "/js/vadmin-ui.js",
     "/js/vadmin-functions.js": "/js/vadmin-functions.js",
-    "/js/vadmin-forms.js": "/js/vadmin-forms.js"
+    "/js/vadmin-forms.js": "/js/vadmin-forms.js",
+    "/output.min.min.css": "/output.min.min.css"
 }

@@ -16,16 +16,11 @@ let mix = require('laravel-mix');
 
 // Web
 
-mix.js('resources/assets/js/web/web.js', 'public/js').options({
-    processCssUrls: false,
-    outputStyle: 'compressed'
-});
-
-mix.sass('resources/assets/sass/web.scss', 'public/css')
+mix.js('resources/assets/js/web/web.js', 'public/js')
+.sass('resources/assets/sass/web.scss', 'public/css')
 .options({
-    processCssUrls: false,
-    outputStyle: 'compressed'
-});
+    processCssUrls: false
+}).minify('output.min.css');;
 
 mix.sass('resources/assets/sass/web/web.sass', 'public/css')
 .options({
