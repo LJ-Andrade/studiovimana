@@ -12,8 +12,8 @@
             <h1>UPS !</h1>
             <h1>La página que está buscando no existe</h1>
             <hr class="softhr">
-            <button class="button btnHollowGreen">Volver al inicio</button>
-            <button class="button btnHollowGreen">Ir al PORTFOLIO</button></button>
+            <a href="{{ url('/') }}"><button class="button btnHollowGreen">Volver al inicio</button></a>
+            <a href="{{ route('web.portfolio') }}"><button class="button btnHollowGreen">Ir al PORTFOLIO</button></button></a>
         </div>
     </div>
 
