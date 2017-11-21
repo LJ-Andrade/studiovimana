@@ -43,7 +43,6 @@ class ArticlesController extends Controller
         return view('vadmin.catalog.index')
             ->with('articles', $articles)
             ->with('categories', $categories);
-
     }
 
     public function show($id)
@@ -71,14 +70,12 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        
         $this->validate($request,[
-
-            'name'        => 'required|min:4|max:250|unique:catalog_articles',
-            'code'        => 'unique:catalog_articles,code',
-            'category_id' => 'required',
-            'slug'        => 'required|alpha_dash|min:4|max:255|unique:catalog_articles,slug',
-            'image'       => 'image',
+            'name'                 => 'required|min:4|max:250|unique:catalog_articles',
+            'code'                 => 'unique:catalog_articles,code',
+            'category_id'          => 'required',
+            'slug'                 => 'required|alpha_dash|min:4|max:255|unique:catalog_articles,slug',
+            'image'                => 'image',
 
         ],[
             'name.required'        => 'Debe ingresar un nombre',
@@ -95,20 +92,20 @@ class ArticlesController extends Controller
             'image'                => 'El archivo adjuntado no es soportado',
         ]);
     
-        try {
-            $article           = new CatalogArticle($request->all());
-            $article->user_id  = \Auth::user()->id;
-            
-            $images            = $request->file('images');
-            $imgPath           = public_path("webimages/catalogo/"); 
-            $extension         = '.jpg';
-            
-            $article->thumb    = $article->code.'-thumb'.$extension;
-            $article->save();
-            $article->atribute1()->sync($request->atribute1);
-            $article->tags()->sync($request->tags);
-            
-            $number = '0';
+        $article           = new CatalogArticle($request->all());
+        $article->user_id  = \Auth::user()->id;
+        
+        $images            = $request->file('images');
+        $imgPath           = public_path("webimages/catalogo/"); 
+        $extension         = '.jpg';
+        
+        $article->thumb    = $article->code.'-thumb'.$extension;
+        $article->save();
+        $article->atribute1()->sync($request->atribute1);
+        $article->tags()->sync($request->tags);
+        
+        $number = '0';
+        if($images){
             try {
                 foreach($images as $phisic_image)
                 {
@@ -125,18 +122,12 @@ class ArticlesController extends Controller
                 $article->delete();
                 return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
-            
             $thumb      = \Image::make($images[0]);
             $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
-            
-        } catch(\Exception $e){
-            dd($e);
         }
         
         return redirect()->route('catalogo.index')->with('message','Artículo creado');
     }
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -197,6 +188,7 @@ class ArticlesController extends Controller
 
         } catch(\Exception $e){
             dd($e);
+            
         }
           
         $thumb      = \Image::make($images[0]);
@@ -240,7 +232,7 @@ class ArticlesController extends Controller
                         File::Delete(public_path( $path . $image->name));
                     }
 
-                    $record->delete();
+                    $delete = $record->delete();
                 }
                 return response()->json([
                     'success'   => true,

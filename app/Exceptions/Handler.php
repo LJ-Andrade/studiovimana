@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
                     return redirect()->route('404');
                     break;
                 default: 
-                    return $this->renderHttpException($e);
+                    return $this->renderHttpException($exception);
                     break;
             }
         } else {

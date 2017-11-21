@@ -14,7 +14,7 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('portfolio.index')}}">Listado de Artículos</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Listado de Artículos</a></li>
 			<li class="breadcrumb-item active">Edición de Artículo</li>
 		@endslot
 		@slot('actions')
@@ -40,22 +40,16 @@
 			@include('vadmin.catalog.form')
 			@if(count($article->images) == 0 )
 			@else
-				<div class="row">
-					<div class="col-md-12 actual-images horizontal-list">
-						<h2>Imágenes publicadas</h2>
-						<div class="row">
-							<ul>
-								@foreach($article->images as $image)
-								<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
-									<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
-									<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i></div>
-								</li>
-								@endforeach
-							</ul>
-						</div>
-						<hr class="softhr">
-					</div>
-				</div>
+				@component('vadmin.components.catalogactualimg')
+					@slot('images')
+						@foreach($article->images as $image)
+						<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
+							<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
+							<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i><i class="icon-star-full"></i></div>
+						</li>
+						@endforeach
+					@endslot
+ 				@endcomponent
 			@endif
 			<div class="row centered">
 				{!! Form::submit('Actualizar artículo', ['class' => 'btn btnGreen']) !!}

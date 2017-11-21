@@ -22,9 +22,16 @@
             @endslot
             @slot('content')
             	<p>{!! $article->description !!}</p>
-            	@foreach($article->images as $image)
-					<img src="{{ asset('webimages/catalogo/'.$image->name ) }}" class="img-responsive img-article" style="max-width: 200px">
-				@endforeach
+				@component('vadmin.components.catalogactualimg')
+					@slot('images')
+						@foreach($article->images as $image)
+						<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
+							<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
+							<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i><i class="icon-star-full"></i></div>
+						</li>
+						@endforeach
+					@endslot
+ 				@endcomponent
 				<hr class="softhr">
 				Slug: <span class="badge">{!! $article->slug !!}</span>
 				<hr class="softhr">
