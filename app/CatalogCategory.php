@@ -12,7 +12,7 @@ class CatalogCategory extends Model
 
     public function article()
     {
-    	return $this->hasMany('App\CatalogArticle', 'article_id');
+        return $this->hasMany('App\CatalogArticle', 'article_id');
     }
 
     public function scopeSearchCategory($query, $name)

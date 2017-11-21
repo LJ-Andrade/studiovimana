@@ -119,14 +119,12 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('destroy_portfolio', 'Portfolio\ArticlesController@destroy');
     Route::post('destroy_categories', 'Portfolio\CategoriesController@destroy');
     Route::post('destroy_tags', 'Portfolio\TagsController@destroy');
-    Route::post('destroy_catalog', 'Catalog\ArticlesController@destroy');
+    Route::post('destroy_catalogo', 'Catalog\ArticlesController@destroy');
     Route::post('destroy_cat_categorias', 'Catalog\CategoriesController@destroy');
     Route::post('destroy_cat_tags', 'Catalog\TagsController@destroy');
     Route::post('destroy_stored_contacts', 'VadminController@destroyStoredContacts');
     Route::post('destroy_cat_atribute1', 'Catalog\CatalogAtribute1Controller@destroy');
 });
-
-
 
 
 /*

@@ -119,6 +119,7 @@ class ArticlesController extends Controller
                     $image->save();
                 }
             } catch(\Exception $e) {
+                dd($e);
                 $article->delete();
                 return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
