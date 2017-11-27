@@ -133,6 +133,14 @@ function showButtons(trigger) {
 	}
 }
 
+// Uncheck all checkboxes on reload.
+function uncheckAll() {
+	$('#TableList tbody .CheckBoxes').find('input[type="checkbox"]').each(function () {
+		$(this).prop('checked', false);
+	});
+}
+uncheckAll();
+
 /*
 |--------------------------------------------------------------------------
 | FUNCTIONS

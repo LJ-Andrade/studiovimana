@@ -10,9 +10,9 @@ class CatalogCategory extends Model
 
     protected $fillable = ['name'];
 
-    public function article()
+    public function articles()
     {
-        return $this->hasMany('App\CatalogArticle', 'article_id');
+        return $this->hasMany('App\CatalogArticle', 'category_id');
     }
 
     public function scopeSearchCategory($query, $name)

@@ -21,7 +21,7 @@
 						<h3 class="widget-title">Categorias</h3>
 						<ul>
 							@foreach($categories as $category)
-							<li class=""><a href="#">{{ $category }}</a><span></span></li>
+							<li class=""><a href="#">{{ $category->name }} ({{ $category->articles->count() }})</a><span></span></li>
 							@endforeach
 						</ul>
 					</section>

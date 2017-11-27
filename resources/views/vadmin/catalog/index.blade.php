@@ -1,5 +1,5 @@
 @extends('layouts.vadmin.main')
-@section('title', 'Vadmin | Portfolio')
+@section('title', 'Vadmin | Catálogo')
 {{-- STYLE INCLUDES --}}
 @section('styles')
 @endsection
@@ -57,7 +57,9 @@
 						@slot('tableContent', '')
 					@else
 					@slot('tableTitles')
-						<th></th>
+						<th class="w-50">
+							@component('vadmin.components.checkAllCheckBox')
+							@endcomponent
 						<th></th>
 						<th>Cód.</th>
 						<th>Título</th>
@@ -70,7 +72,7 @@
 						@foreach($articles as $item)
 							<tr>
 								<td class="w-50">
-									<label class="custom-control custom-checkbox list-checkbox">
+									<label class="CheckBoxes custom-control custom-checkbox list-checkbox">
 										<input type="checkbox" class="List-Checkbox custom-control-input row-checkbox" data-id="{{ $item->id }}">
 										<span class="custom-control-indicator"></span>
 										<span class="custom-control-description"></span>
@@ -80,12 +82,12 @@
 									@if(count($item->images))
 										<img src="{{ asset('webimages/catalogo/'. $item->images->first()->name ) }}">
 									@else
-										<img src="{{ asset('webimages/gen/genlogo.jpg') }}">
+										<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
 									@endif
 								</td>
 								<td class="w-50">{{ $item->code }}</td>
 								<td class="show-link max-text"><a href="{{ url('vadmin/catalogo/'.$item->id) }}">{{ $item->name }}</a></td>
-								<td>{{ $item->category->name }}</td>
+								<td>@if($item->category) {{ $item->category->name }} @endif</td>
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 								<td class="w-50 pad0 centered">
 									@if($item->status == '1')

@@ -36,9 +36,6 @@
 				</div>
 			</div>
 
-
-			
-
 			<div class="col-md-6">
 				<div class="content">
 					<p>{!! $article->content !!}</p>
@@ -47,7 +44,6 @@
 			</div>
         </div>
             	
-
         <div class="row pull-right">
 			<div class="info">
 				<span class="title">Categoría: </span>

@@ -37,11 +37,13 @@ class ArticlesController extends Controller
                  $articles->user;
              });
         // }
+        $cats = CatalogCategory::orderBy('id','ASC')->get();
 
         $categories = CatalogCategory::orderBy('id','ASC')->pluck('name','id');
 
         return view('vadmin.catalog.index')
             ->with('articles', $articles)
+            ->with('cats', $cats)
             ->with('categories', $categories);
     }
 

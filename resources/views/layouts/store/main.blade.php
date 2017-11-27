@@ -29,14 +29,17 @@
 		    <!-- Off-Canvas Wrapper-->
 		<div class="offcanvas-wrapper">
 		<!-- Page Title-->
-		<div class="page-title">
+		{{--  <div class="page-title">
 			<div class="container">
 			<div class="column">
 				<h1>Santa Osadía | Tienda </h1>
 			</div>
 			</div>
+		</div>  --}}
+		<br>
+		<div class="container custom-page-title">
+			<h1>Tienda</h1>
 		</div>
-		
 		@yield('content')
 		@include('layouts.store.partials.foot')
 			<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-arrow-up"></i></a>

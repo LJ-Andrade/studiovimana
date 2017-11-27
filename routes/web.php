@@ -23,7 +23,7 @@ Auth::routes();
 |--------------------------------------------------------------------------
 */
 Route::get('tienda', 'StoreController@index');
-Route::get('producto', 'StoreController@product');
+Route::get('producto/{id}', 'StoreController@product');
 
 
 /*

@@ -18,11 +18,11 @@ class StoreController extends Controller
     public function index()
     {
         $articles = CatalogArticle::orderBy('id', 'DESCC')->where('status','1')->paginate(15);
-        // $articles->each(function($articles){
-        //     $articles->category;
-        //     $articles->user;
-        // });
-        $categories = CatalogCategory::orderBy('id','ASC')->pluck('name','id');
+        $articles->each(function($articles){
+            $articles->category;
+            $articles->user;
+        });
+        $categories = CatalogCategory::all();
         $atributes1  = CatalogAtribute1::orderBy('id', 'ASC')->pluck('name', 'id');
 
     return view('store.index')
@@ -31,9 +31,10 @@ class StoreController extends Controller
         ->with('categories', $categories);
     }
 
-    public function product()
+    public function product(Request $request)
     {
-        return view('store.product');
+        $article = CatalogArticle::findOrFail($request->id);
+        return view('store.product')->with('article', $article);
     }
 
 }
