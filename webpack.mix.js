@@ -38,3 +38,11 @@ mix.sass('resources/assets/sass/vadmin/vadmin.sass', 'public/css')
        processCssUrls: false,
        outputStyle: 'compressed'
    });
+
+mix.sass('resources/assets/sass/store/store-custom.sass', 'public/css')
+   .options({
+       processCssUrls: false,
+       outputStyle: 'compressed'
+   });
+
+   

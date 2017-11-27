@@ -4,6 +4,7 @@
 
 	  <!-- Page Content-->
 	<div class="container padding-bottom-3x mb-1">
+				<div class="test-e">IHIHI</div>
 		<div class="row">
 			<!-- Products-->
 			<div class="col-xl-9 col-lg-8 push-xl-3 push-lg-4">
@@ -18,7 +19,7 @@
 			<div class="isotope-grid cols-3 mb-2">
 				<div class="gutter-sizer"></div>
 				<div class="grid-sizer"></div>
-				<!-- Product-->A
+				<!-- Product-->
 				@foreach($articles as $article)
 				<div class="grid-item">
 					<div class="product-card">
