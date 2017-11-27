@@ -4,7 +4,6 @@
 
 	  <!-- Page Content-->
 	<div class="container padding-bottom-3x mb-1">
-				<div class="test-e">IHIHI</div>
 		<div class="row">
 			<!-- Products-->
 			<div class="col-xl-9 col-lg-8 push-xl-3 push-lg-4">
