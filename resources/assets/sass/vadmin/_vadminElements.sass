@@ -280,10 +280,6 @@
 			position: relative
 			margin-right: 5px
 			margin-bottom: 5px
-			.overlayItemCenter
-				color: #EAE9E9
-				i
-					font-size: 4rem
 			&:hover
 				.overlayItemCenter
 					opacity: 1
@@ -303,7 +299,22 @@
 	@include transition(0.2s)
 	background-color: rgba(0,0,0,0.5)
 	opacity: 0
-	
+	i
+		background-color: #fff
+		padding: 10px
+		border-radius: 50%
+		font-size: 1.4rem 
+		margin: 2px
+	i.delete-img
+		&:hover
+			@include transition(0.2s)
+			background-color: $red
+			color: #fff
+	i.feature-img
+		&:hover
+			@include transition(0.2s)
+			background-color: #e9b00d
+			color: #fff		
 
 	
 

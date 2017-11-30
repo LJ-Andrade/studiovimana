@@ -43,9 +43,12 @@
 				@component('vadmin.components.catalogactualimg')
 					@slot('images')
 						@foreach($article->images as $image)
-						<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
+						<li id="Img{{ $image->id }}">	
 							<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
-							<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i><i class="icon-star-full"></i></div>
+							<div class="overlayItemCenter">
+								<i class="Delete-Product-Img icon-ios-trash-outline delete-img" data-imgid="{{ $image->id }}"></i>
+								<i class="Make-Thumb-Img icon-star-full feature-img"></i>
+							</div>
 						</li>
 						@endforeach
 					@endslot
@@ -55,7 +58,7 @@
 				{!! Form::submit('Actualizar artículo', ['class' => 'btn btnGreen']) !!}
 			</div>
 		{!! Form::close() !!}
-		
+		<div id="Error"></div>
 	</div>  
 
 @endsection
@@ -70,6 +73,7 @@
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/spectrum.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
+	@include('vadmin.components.bladejs')
 @endsection
 
 @section('custom_js')

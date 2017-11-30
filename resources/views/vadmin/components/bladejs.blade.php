@@ -1,5 +1,4 @@
 <script>
-    
     /*
     |--------------------------------------------------------------------------
     | LISTS
@@ -23,5 +22,18 @@
 
     // Pause Item
     
+    /*
+    |--------------------------------------------------------------------------
+    | PRODUCTS
+    |--------------------------------------------------------------------------
+    */
+    // Delete Image
+    
+    $(document).on('click', '.Delete-Product-Img', function(e) {
+        var id    = $(this).data('imgid');
+        console.log(id);
+        var route = "{{ url('vadmin') }}/destroy_product_image";
+        deleteAndReload(id,route,"Atención","Desea eliminar esta imágen?");
+    });
 
 </script>

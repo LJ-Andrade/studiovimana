@@ -8,7 +8,7 @@ class CatalogImage extends Model
 {
     protected $table = "catalog_images";
 
-    protected $fillable = ['name', 'article_id'];
+    protected $fillable = ['name', 'featured', 'article_id'];
 
 	public function article()
 	{

@@ -69,7 +69,7 @@
 				</div>
 				<div class="pt-1 mb-2"><span class="text-medium">Código:</span> #{{ $article->code }}</div>
 				<div class="padding-bottom-1x mb-2">
-					<span class="text-medium">Categoría:&nbsp;</span><a class="navi-link" href="#">{{ $article->category->name }}</a>
+					<span class="text-medium">Categoría:&nbsp;</span><a class="navi-link" href="#">@if($article->category) {{ $article->category->name }} @endif</a>
 				</div>
 				<hr class="mb-3">
 				<div class="d-flex flex-wrap justify-content-between">

@@ -27,7 +27,10 @@
 						@foreach($article->images as $image)
 						<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
 							<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
-							<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i><i class="icon-star-full"></i></div>
+							<div class="overlayItemCenter">
+								<i class="icon-ios-trash-outline delete-img"></i>
+								<i class="icon-star-full feature-img"></i>
+							</div>
 						</li>
 						@endforeach
 					@endslot
@@ -48,15 +51,10 @@
 				@endforeach
 				<br><br>
 				<a href="{{ url('vadmin/catalogo/'.$article->id.'/edit') }}" class="btn btnGreen"><i class="icon-pencil2"></i> Editar Artículo</a> 
-				
-            @endslot
-
+        	@endslot
         @endcomponent
     </div>
-
 @endsection
-
-
 
 @section('custom_js')
 @endsection

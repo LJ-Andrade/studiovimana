@@ -21,7 +21,6 @@ $('.Select-Chosen').chosen({
     placeholder_text_single: 'Seleccione una categoría',
 });
 
-
 // --------- Slug sanitizer -------- //
 $(".SlugInput").keyup(function(){
     var Text     = $(this).val();
@@ -37,14 +36,11 @@ $(".SlugInput").keyup(function(){
     Text         = Text.replace('ú', 'u') ;
     
     $(".SlugInput").val(Text);   
-
 });
 
 // --------- Slug AutoFillnput from title --------- //
 $("#TitleInput").keyup(function(event) {
-
     var stt = $(this).val();
-
     var Text     = $(this).val();
     Text         = Text.toLowerCase();
     var regExp   = /\s+/g;
@@ -56,9 +52,7 @@ $("#TitleInput").keyup(function(event) {
     Text         = Text.replace('í', 'i') ;
     Text         = Text.replace('ó', 'o') ;
     Text         = Text.replace('ú', 'u') ;
-    
     $(".SlugInput").val(Text);   
-
 });
 
 // $(document).ready(function() {
@@ -78,7 +72,6 @@ $("#TitleInput").keyup(function(event) {
 //                          //
 //////////////////////////////
 
-
 // Show Notes Text Area
 $('.ShowNotesTextArea').click(function(){
     var notes = $('.NotesTextArea');
@@ -97,6 +90,7 @@ $('.AddAnotherAddressBtn').click(function(){
     $('.AnotherAddress').append(addressInput);
     $('.AnotherLoc').append(locInput);
 });
+
 
 //////////////////////////////
 // 							//

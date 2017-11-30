@@ -552,14 +552,6 @@ hr {
   margin-bottom: 5px;
 }
 
-.actual-images ul li .overlayItemCenter {
-  color: #EAE9E9;
-}
-
-.actual-images ul li .overlayItemCenter i {
-  font-size: 4rem;
-}
-
 .actual-images ul li:hover .overlayItemCenter {
   opacity: 1;
 }
@@ -589,6 +581,28 @@ hr {
   transition: all 0.2s ease 0s;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
+}
+
+.overlayItemCenter i {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  margin: 2px;
+}
+
+.overlayItemCenter i.delete-img:hover {
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  background-color: #D05C5C;
+  color: #fff;
+}
+
+.overlayItemCenter i.feature-img:hover {
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  background-color: #e9b00d;
+  color: #fff;
 }
 
 .btn {
@@ -1166,4 +1180,8 @@ ul.pagination li.disabled {
 
 .alert-success {
   background-color: #8DBB61;
+}
+
+.swal2-confirm {
+  margin: 3px;
 }

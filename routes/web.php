@@ -124,6 +124,7 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('destroy_cat_tags', 'Catalog\TagsController@destroy');
     Route::post('destroy_stored_contacts', 'VadminController@destroyStoredContacts');
     Route::post('destroy_cat_atribute1', 'Catalog\CatalogAtribute1Controller@destroy');
+    Route::post('destroy_product_image', 'Catalog\ImagesController@destroy');
 });
 
 

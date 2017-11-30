@@ -120,13 +120,13 @@ class ArticlesController extends Controller
                     $image->article()->associate($article);
                     $image->save();
                 }
+                $thumb      = \Image::make($images[0]);
+                $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
             } catch(\Exception $e) {
                 dd($e);
                 $article->delete();
                 return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
-            $thumb      = \Image::make($images[0]);
-            $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
         }
         
         return redirect()->route('catalogo.index')->with('message','Artículo creado');
@@ -165,38 +165,38 @@ class ArticlesController extends Controller
         $extension = '.jpg';
         
         try {
-
             $article->thumb    = $article->code.'-thumb'.$extension;
             $article->save();
             $article->atribute1()->sync($request->atribute1);
             $article->tags()->sync($request->tags);
             
             $number = '0';
-            try {
-                foreach($images as $phisic_image)
-                {
-                    $filename = $article->code.'-'.$number++;
-                    $img      = \Image::make($phisic_image);
-                    $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
-                    
-                    $image            = new CatalogImage();
-                    $image->name      = $filename.$extension;
-                    $image->article()->associate($article);
-                    $image->save();
-                }
-            } catch(\Exception $e) {
-                $article->delete();
-                return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
-            }
 
+            if($images){
+                try {
+                    foreach($images as $phisic_image)
+                    {
+                        $filename = $article->code.'-'.$number++;
+                        $img      = \Image::make($phisic_image);
+                        $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
+                        
+                        $image            = new CatalogImage();
+                        $image->name      = $filename.$extension;
+                        $image->article()->associate($article);
+                        $image->save();
+                    }
+                    $thumb      = \Image::make($images[0]);
+                    $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
+
+                } catch(\Exception $e) {
+                    dd($e);
+                    $article->delete();
+                    return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
+                }
+            }
         } catch(\Exception $e){
             dd($e);
-            
-        }
-          
-        $thumb      = \Image::make($images[0]);
-        $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
-
+        } 
         return redirect()->route('catalogo.index')->with('message', 'Se ha editado el artículo con éxito');
     }
 
