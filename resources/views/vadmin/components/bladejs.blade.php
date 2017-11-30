@@ -36,4 +36,32 @@
         deleteAndReload(id,route,"Atención","Desea eliminar esta imágen?");
     });
 
+    $(document).on('click', '.Make-Thumb-Img', function(e) {
+        var id    = $(this).data('imgid');
+        console.log(id);
+        var route = "{{ url('vadmin/catalog_make_thumb') }}/"+id+"";
+        $.ajax({
+			url: route,
+			method: 'POST',             
+			dataType: 'JSON',
+			beforeSend: function(){
+			},
+			success: function(data){
+				console.log(data);
+			},
+			error: function(data)
+			{
+                $('#Error').html(data.responseText);
+				console.log(data);	
+			},
+			complete: function()
+			{
+			}
+		});
+
+
+    });
+
+   
+
 </script>

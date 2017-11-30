@@ -138,6 +138,16 @@ class ArticlesController extends Controller
     |--------------------------------------------------------------------------
     */
 
+    public function makeThumb(Request $request)
+    {
+        $image      = CatalogImage::findOrFail($request->id);
+        $imgPath    = public_path("webimages/catalogo/".$image->name); 
+        $extension  = '.jpg';
+        $thumb      = \Image::make($image);
+        dd($thumb);
+        $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb2'.$extension);
+    }
+
     public function edit($id)
     {   
         $tags       = CatalogTag::orderBy('name', 'DESC')->pluck('name', 'id');

@@ -106,6 +106,9 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
     Route::post('deleteArticleImg/{id}', 'Portfolio\ArticlesController@deleteArticleImg');
     // Atribute 1
     Route::resource('cat_atribute1', 'Catalog\CatalogAtribute1Controller');
+    Route::post('catalog_make_thumb/{id}', 'Catalog\ArticlesController@makeThumb');
+    
+
 });
     
 /*

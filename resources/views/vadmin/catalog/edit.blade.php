@@ -47,7 +47,7 @@
 							<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
 							<div class="overlayItemCenter">
 								<i class="Delete-Product-Img icon-ios-trash-outline delete-img" data-imgid="{{ $image->id }}"></i>
-								<i class="Make-Thumb-Img icon-star-full feature-img"></i>
+								<i class="Make-Thumb-Img icon-star-full feature-img" data-imgid="{{ $image->id }}"></i>
 							</div>
 						</li>
 						@endforeach
