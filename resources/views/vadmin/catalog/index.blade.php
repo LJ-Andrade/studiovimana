@@ -79,8 +79,8 @@
 									</label>
 								</td>
 								<td class="thumb">
-									@if(count($item->images))
-										<img src="{{ asset('webimages/catalogo/'. $item->images->first()->name ) }}">
+									@if($item->thumb != '' || $item->thumb != null)
+										<img src="{{ asset('webimages/catalogo/'. $item->thumb ) }}">
 									@else
 										<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
 									@endif

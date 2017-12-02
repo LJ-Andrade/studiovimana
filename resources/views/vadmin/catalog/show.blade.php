@@ -18,42 +18,68 @@
     <div class="row">
         @component('vadmin.components.container')
             @slot('title')
-                 <h1>{!! $article->name !!}</h1>
+                </b><h1>{!! $article->name !!}</h1>
             @endslot
             @slot('content')
-            	<p>{!! $article->description !!}</p>
-				@component('vadmin.components.catalogactualimg')
-					@slot('images')
-						@foreach($article->images as $image)
-						<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
-							<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
-							<div class="overlayItemCenter">
-								<i class="icon-ios-trash-outline delete-img"></i>
-								<i class="icon-star-full feature-img"></i>
-							</div>
-						</li>
-						@endforeach
-					@endslot
- 				@endcomponent
+            	<b>Descripción:</b> <p>{!! $article->description !!}</p>
+				<div class="row">
+					<div class="col-md-3">
+						<h2><i class="icon-star-full"></i> Imágen Destacada</h2>
+						@if($article->thumb != '')
+							<img class="Featured-Image-Container" src="{{ asset('webimages/catalogo/'.$article->thumb) }}">
+						@else
+							<img class="Featured-Image-Container" src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
+						@endif
+						
+					</div>
+					<div class="col-md-9">
+					@if(count($article->images) != 0 )
+					<div class="actual-images horizontal-list">
+						<h2>Imágenes Adicionales</h2>
+						<ul>
+							@foreach($article->images->reverse() as $image)
+							<li id="Img{{ $image->id }}">	
+								<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
+								<div class="overlayItemCenter">
+									<i class="Delete-Product-Img icon-ios-trash-outline delete-img" data-imgid="{{ $image->id }}"></i>
+								</div>
+							</li>
+							@endforeach
+						</ul>
+					</div>
+					@endif
+					</div>
+				</div>
 				<hr class="softhr">
-				Slug: <span class="badge">{!! $article->slug !!}</span>
+				<b>Slug:</b> <span class="badge">{!! $article->slug !!}</span>
 				<hr class="softhr">
-				Categoría: <span class="badge">{!! $article->category->name !!}</span>
-				<hr class="softhr">
-				Talles:
+				<b>Talles:</b>
 				@foreach($article->atribute1 as $atribute1)
 					<span class="custom-badge btnBlue">{!! $atribute1->name !!}</span>
 				@endforeach
+				| Tela: <span class="custom-badge btnRed">{{ $article->textile }}</span>
 				<hr class="softhr">
-				Etiquetas:
+				<b>Categoría:</b> <span class="custom-badge btnBlue">{!! $article->category->name !!}</span> |
+				<b>Etiquetas:</b>
 				@foreach($article->tags as $tag)
 					<span class="custom-badge btnRed">{!! $tag->name !!}</span>
 				@endforeach
+				<hr class="softhr">
+				
 				<br><br>
 				<a href="{{ url('vadmin/catalogo/'.$article->id.'/edit') }}" class="btn btnGreen"><i class="icon-pencil2"></i> Editar Artículo</a> 
         	@endslot
         @endcomponent
     </div>
+@endsection
+
+@section('scripts')
+	<script type="text/javascript" src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('plugins/jqueryFileUploader/jquery.fileuploader.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
+	@include('vadmin.components.bladejs')
 @endsection
 
 @section('custom_js')

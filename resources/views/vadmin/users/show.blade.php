@@ -1,5 +1,4 @@
 @extends('layouts.vadmin.main')
-
 @section('title', 'Vadmin | Perfil de Usuario')
 
 @section('header')
@@ -13,7 +12,6 @@
 		@endslot
 	@endcomponent
 @endsection
-
 
 @section('content')
     <div class="row">
@@ -53,23 +51,17 @@
                     {{-- <button id="UpdateProfileBtn" class="btn btnGreen"><i class="icon-check2"></i> Actualizar</button> --}}
                 </div>
             @endslot
-
         @endcomponent
     </div>
-
 @endsection
 
-
-
 @section('custom_js')
-	
 	<script>
     	$(document).ready(function() {
 			$('#Avatar').click(function(){
 				$('#ImageInput').click();
 			});       
 		});
-
 		function readURL(input) {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
@@ -85,8 +77,5 @@
 			readURL(this);
 			$('.UpdateAvatarForm').removeClass('Hidden');
 		});
-
-
 	</script>
-
 @endsection

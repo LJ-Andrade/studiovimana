@@ -38,22 +38,6 @@
 				'data-parsley-validate' => ''
 			]) !!}
 			@include('vadmin.catalog.form')
-			@if(count($article->images) == 0 )
-			@else
-				@component('vadmin.components.catalogactualimg')
-					@slot('images')
-						@foreach($article->images as $image)
-						<li id="Img{{ $image->id }}">	
-							<img src="{{ asset('webimages/catalogo/'.$image->name) }}">
-							<div class="overlayItemCenter">
-								<i class="Delete-Product-Img icon-ios-trash-outline delete-img" data-imgid="{{ $image->id }}"></i>
-								<i class="Make-Thumb-Img icon-star-full feature-img" data-imgid="{{ $image->id }}"></i>
-							</div>
-						</li>
-						@endforeach
-					@endslot
- 				@endcomponent
-			@endif
 			<div class="row centered">
 				{!! Form::submit('Actualizar artículo', ['class' => 'btn btnGreen']) !!}
 			</div>
@@ -86,55 +70,56 @@
 		// Init
 		$('.Textarea-Editor').trumbowyg();
 
+		
 
 		// ----- Image Delete Ajax ------- //
 		// Ask Delete Confirmation
-		$('.Edit_Actual_Image').click(function(){
-			var id = $(this).data('imgid');
-			confirm_delete(id, 'Cuidado','Desea eliminar esta imágen permanentemente?');
-		});
+		//$('.Edit_Actual_Image').click(function(){
+		//	var id = $(this).data('imgid');
+		//	confirm_delete(id, 'Cuidado','Desea eliminar esta imágen permanentemente?');
+		//});
 
 		// Proceed to deletion
-		function delete_item(id) {	
-		
-			var route = "{{ url('vadmin/deleteArticleImg') }}/"+id+"";
-			console.log(route);
-			$.ajax({
-					url:  route,
-					method: 'post',             
-					dataType: "json",
-					data: {id: id, _token: $('input[name="_token"]').val()
-					},
-						success: function(data){
-					},
-					complete: function(data)
-					{
-						console.log(data);
-						
-						if(data.responseText == 1)
-						{
-							swal(
-							  'Ok!',
-							  'Imágen eliminada !',
-							  'success'
-							);
-							$('#Img'+id).hide(400);
-						} else {
-							swal(
-							  'Ups!',
-							  'La imágen no se pudo eliminar ! <br> Contacte al servicio técnico.',
-							  'error'
-							);
-						}
-
-					},
-					error: function(data)
-					{
-						// console.log(data);
-					},
-				});
-
-		}
+		//function delete_item(id) {	
+		//
+		//	var route = "{{ url('vadmin/deleteArticleImg') }}/"+id+"";
+		//	console.log(route);
+		//	$.ajax({
+		//			url:  route,
+		//			method: 'post',             
+		//			dataType: "json",
+		//			data: {id: id, _token: $('input[name="_token"]').val()
+		//			},
+		//				success: function(data){
+		//			},
+		//			complete: function(data)
+		//			{
+		//				console.log(data);
+		//				
+		//				if(data.responseText == 1)
+		//				{
+		//					swal(
+		//					  'Ok!',
+		//					  'Imágen eliminada !',
+		//					  'success'
+		//					);
+		//					$('#Img'+id).hide(400);
+		//				} else {
+		//					swal(
+		//					  'Ups!',
+		//					  'La imágen no se pudo eliminar ! <br> Contacte al servicio técnico.',
+		//					  'error'
+		//					);
+		//				}
+//
+		//			},
+		//			error: function(data)
+		//			{
+		//				// console.log(data);
+		//			},
+		//		});
+//
+		//}
 	
 		
 	</script>

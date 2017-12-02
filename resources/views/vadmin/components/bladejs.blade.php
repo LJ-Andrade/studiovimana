@@ -36,32 +36,27 @@
         deleteAndReload(id,route,"Atención","Desea eliminar esta imágen?");
     });
 
-    $(document).on('click', '.Make-Thumb-Img', function(e) {
-        var id    = $(this).data('imgid');
-        console.log(id);
-        var route = "{{ url('vadmin/catalog_make_thumb') }}/"+id+"";
-        $.ajax({
-			url: route,
-			method: 'POST',             
-			dataType: 'JSON',
-			beforeSend: function(){
-			},
-			success: function(data){
-				console.log(data);
-			},
-			error: function(data)
-			{
-                $('#Error').html(data.responseText);
-				console.log(data);	
-			},
-			complete: function()
-			{
-			}
-		});
-
-
+    // Product Catalogue Featured Image    
+    $(document).ready(function() {
+        $('#ChangeFeaturedImg').click(function(){
+            $('#Single_Image').click();
+        });       
     });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-   
+            reader.onload = function (e) {
+                $('.Featured-Image-Container').attr('src', e.target.result);
+                $('.ActionContainer').removeClass('Hidden');
+            }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#Single_Image").change(function(){
+        readURL(this);
+        $('.UpdateAvatarForm').removeClass('Hidden');
+    });
+    
 
 </script>

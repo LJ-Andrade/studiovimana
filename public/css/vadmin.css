@@ -541,8 +541,59 @@ hr {
   font-size: 1rem;
 }
 
+.featured-image .inner {
+  position: relative;
+}
+
+.featured-image .inner img {
+  max-width: 100%;
+}
+
+.featured-image .inner .overlay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+
+.featured-image .inner .overlay p {
+  color: #fff;
+}
+
+.featured-image .inner .overlay i {
+  background-color: #fff;
+  border-radius: 50%;
+  color: #383838;
+  font-size: 1.5rem;
+  padding: 6px;
+}
+
+.featured-image .inner .overlay:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .actual-images ul {
-  padding: 25px 15px 25px 15px;
   cursor: pointer;
 }
 
@@ -1176,6 +1227,10 @@ ul.pagination li.disabled {
 
 .jFiler-items-default .jFiler-item {
   background-color: #fff;
+}
+
+.fileuploader {
+  margin-top: 0;
 }
 
 .alert-success {

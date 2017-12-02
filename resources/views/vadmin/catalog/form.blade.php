@@ -80,12 +80,37 @@
 </div>
 {{-- Images--}}
 <div class="row">
-    <div class="col-md-12">
-        <div class="form-group">
-            {!! Form::label('images', 'Imágenes') !!}
-            <span style="font-size: 12px"> | Formatos soportados: jpeg, jpg, png, gif</span>
-            {!! Form::file('images[]', array('multiple'=>true, 'id' => 'Multi_Images')) !!}
-            <div class="ErrorImage"></div>
+    <div class="col-md-3">
+        @component('vadmin.components.catalogthumbnail')
+            @slot('thumbnail')
+                @if(isset($article) && $article->thumb != '')
+                    <img class="Featured-Image-Container" src="{{ asset('webimages/catalogo/'.$article->thumb) }}">
+                @else
+                    <img class="Featured-Image-Container" src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
+                @endif
+            @endslot
+        @endcomponent
+    </div>
+    @if(isset($article) && count($article->images) != 0 )
+        <div class="col-md-9 actual-images horizontal-list">
+            <h2>Imágenes Publicadas</h2>
+            <ul>
+                @foreach($article->images->reverse() as $image)
+                <li id="Img{{ $image->id }}">	
+                    <img src="{{ asset('webimages/catalogo/'.$image->name) }}">
+                    <div class="overlayItemCenter">
+                        <i class="Delete-Product-Img icon-ios-trash-outline delete-img" data-imgid="{{ $image->id }}"></i>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
         </div>
     </div>
-</div>
+    <br>
+        @include('vadmin.components.addimgsform')
+    @else
+        <div class="col-md-9">
+            @include('vadmin.components.addimgsform')
+        </div>
+    </div> {{--  /Row  --}}
+    @endif

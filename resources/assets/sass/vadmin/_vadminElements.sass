@@ -273,9 +273,36 @@
 
 
 /// Image thumnbail with delete icon
+.featured-image
+	.inner
+		position: relative
+		img
+			max-width: 100%
+		.overlay
+			@include flex-column
+			background-color: rgba(0,0,0,.7)
+			opacity: 0
+			position: absolute
+			text-align: center
+			width: 100%
+			height: 100%
+			top: 0
+			left: 0
+			@include transition(0.2s)
+			p
+				color: #fff
+			i
+				background-color: #fff
+				border-radius: 50%
+				color: #383838
+				font-size: 1.5rem
+				padding: 6px
+			&:hover
+				opacity: 1
+				cursor: pointer
+
 .actual-images
 	ul 
-		padding: 25px 15px 25px 15px
 		li
 			position: relative
 			margin-right: 5px
@@ -401,7 +428,6 @@
 //            CHECKBOXES            //
 //                                  //
 //////////////////////////////////////
-
 
 /* The switch - the box around the slider */
 .switch
@@ -626,13 +652,11 @@ ul.pagination li.disabled
 	ul
 		margin-bottom: 0
 
-
 //////////////////////////////////////
 //                                  //
 //            BACKGROUNDS           //
 //                                  //
 //////////////////////////////////////
-
 
 .blue-back
 	background-color: $lightBlue

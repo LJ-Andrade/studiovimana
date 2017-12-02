@@ -101,17 +101,32 @@ class ArticlesController extends Controller
         $imgPath           = public_path("webimages/catalogo/"); 
         $extension         = '.jpg';
         
-        $article->thumb    = $article->code.'-thumb'.$extension;
+        $thumbnail         = $request->file('thumbnail');
         $article->save();
         $article->atribute1()->sync($request->atribute1);
         $article->tags()->sync($request->tags);
         
-        $number = '0';
+        $number = '1';
+        
+        if($thumbnail){
+            $thumb = \Image::make($thumbnail[0]);
+            $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
+            $article->thumb    = $article->id.'-0'.$extension;
+            $article->save();
+
+            $thumbToImg = \Image::make($thumbnail[0]);
+            $image       = new CatalogImage();
+            $image->name = $article->id.'-0'.$extension;
+            $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
+            $image->article()->associate($article);
+            $image->save();
+        } 
+
         if($images){
             try {
                 foreach($images as $phisic_image)
                 {
-                    $filename = $article->code.'-'.$number++;
+                    $filename = $article->id.'-'.$number++;
                     $img      = \Image::make($phisic_image);
                     $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
                     
@@ -120,15 +135,13 @@ class ArticlesController extends Controller
                     $image->article()->associate($article);
                     $image->save();
                 }
-                $thumb      = \Image::make($images[0]);
-                $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
+
             } catch(\Exception $e) {
                 dd($e);
                 $article->delete();
                 return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
         }
-        
         return redirect()->route('catalogo.index')->with('message','Artículo creado');
     }
 
@@ -137,16 +150,6 @@ class ArticlesController extends Controller
     | UPDATE
     |--------------------------------------------------------------------------
     */
-
-    public function makeThumb(Request $request)
-    {
-        $image      = CatalogImage::findOrFail($request->id);
-        $imgPath    = public_path("webimages/catalogo/".$image->name); 
-        $extension  = '.jpg';
-        $thumb      = \Image::make($image);
-        dd($thumb);
-        $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb2'.$extension);
-    }
 
     public function edit($id)
     {   
@@ -171,42 +174,49 @@ class ArticlesController extends Controller
         $article->fill($request->all());
         
         $images    = $request->file('images');
+        $thumbnail = $request->file('thumbnail');
         $imgPath   = public_path("webimages/catalogo/"); 
         $extension = '.jpg';
         
-        try {
-            $article->thumb    = $article->code.'-thumb'.$extension;
-            $article->save();
-            $article->atribute1()->sync($request->atribute1);
-            $article->tags()->sync($request->tags);
-            
-            $number = '0';
 
-            if($images){
-                try {
-                    foreach($images as $phisic_image)
-                    {
-                        $filename = $article->code.'-'.$number++;
-                        $img      = \Image::make($phisic_image);
-                        $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
-                        
-                        $image            = new CatalogImage();
-                        $image->name      = $filename.$extension;
-                        $image->article()->associate($article);
-                        $image->save();
-                    }
-                    $thumb      = \Image::make($images[0]);
-                    $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->code.'-thumb'.$extension);
-
-                } catch(\Exception $e) {
-                    dd($e);
-                    $article->delete();
-                    return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
-                }
-            }
-        } catch(\Exception $e){
-            dd($e);
+        $article->thumb = $article->id.'-0'.$extension;
+        $article->save();
+        $article->atribute1()->sync($request->atribute1);
+        $article->tags()->sync($request->tags);
+        
+        $number = '0';
+        if($thumbnail){
+            $thumb = \Image::make($thumbnail[0]);
+            $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
         } 
+        if($images){
+            try {
+                foreach($images as $phisic_image)
+                {
+                    $filename = $article->id.'-'.$number++;
+                    $img      = \Image::make($phisic_image);
+                    $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
+                    
+                    $image            = new CatalogImage();
+                    $image->name      = $filename.$extension;
+                    $image->article()->associate($article);
+                    $image->save();
+                }
+
+                $thumbToImg = \Image::make($thumbnail[0]);
+                $image       = new CatalogImage();
+                $image->name = $article->id.'-0'.$extension;
+                $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
+                $image->article()->associate($article);
+                $image->save();
+
+            } catch(\Exception $e) {
+                dd($e);
+                $article->delete();
+                return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
+            }
+        }
+
         return redirect()->route('catalogo.index')->with('message', 'Se ha editado el artículo con éxito');
     }
 

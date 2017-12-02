@@ -102,6 +102,7 @@ $('#Multi_Images').fileuploader({
     extensions: ['jpg', 'jpeg', 'png', 'gif'],
     limit: null,
     addMore: true,
+    maxSize: 1,
     captions: {
         button: function(options) { return 'Seleccionar ' + (options.limit == 1 ? 'File' : 'Imágen'); },
         feedback: function(options) { return 'Agregar imágenes...'; },
@@ -130,3 +131,35 @@ $('#Multi_Images').fileuploader({
     }
 });
 
+
+$('#Single_Image').fileuploader({
+    extensions: ['jpg', 'jpeg', 'png', 'gif'],
+    limit: null,
+    addMore: false,
+    captions: {
+        button: function(options) { return 'Seleccionar ' + (options.limit == 1 ? 'File' : 'Imágen'); },
+        feedback: function(options) { return 'Agregar imágenes...'; },
+        feedback2: function(options) { return options.length + ' ' + (options.length > 1 ? ' imágenes seleccionadas' : ' imágen seleccionada'); },
+        drop: 'Arrastre las imágenes aquí',
+        paste: '<div class="fileuploader-pending-loader"><div class="left-half" style="animation-duration: ${ms}s"></div><div class="spinner" style="animation-duration: ${ms}s"></div><div class="right-half" style="animation-duration: ${ms}s"></div></div> Pasting a file, click here to cancel.',
+        removeConfirmation: 'Eliminar?',
+        errors: {
+            filesLimit: 'Only ${limit} files are allowed to be uploaded.',
+            filesType: 'Only ${extensions} files are allowed to be uploaded.',
+            fileSize: '${name} is too large! Please choose a file up to ${fileMaxSize}MB.',
+            filesSizeAll: 'Files that you choosed are too large! Please upload files up to ${maxSize} MB.',
+            fileName: 'File with the name ${name} is already selected.',
+            folderUpload: 'You are not allowed to upload folders.'
+        },
+        dialogs: {
+            // alert dialog
+            alert: function(text) {
+                return alert_confirm(text);
+            },
+            // confirm dialog
+            confirm: function(text, callback) {
+                'confirm(text) ? callback() : null;'
+            }
+        },
+    }
+});

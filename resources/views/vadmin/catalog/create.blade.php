@@ -31,11 +31,8 @@
 	<div class="inner-wrapper">
 		{!! Form::open(['route' => 'catalogo.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form', 'data-parsley-validate' => '']) !!}	
 			@include('vadmin.catalog.form')
-			{{-- <div class="row centered">
-				{!! Form::submit('Agregar artículo', ['class' => 'btn btnGreen']) !!}
-			</div> --}}
 			<div class="form-actions right">
-				<a href="{{ route('portfolio.index')}}">
+				<a href="{{ route('catalogo.index')}}">
 					<button type="button" class="btn btnRed">
 						<i class="icon-cross2"></i> Cancelar
 					</button>
@@ -58,6 +55,7 @@
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/spectrum.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
+	@include('vadmin.components.bladejs')
 @endsection
 
 @section('custom_js')
