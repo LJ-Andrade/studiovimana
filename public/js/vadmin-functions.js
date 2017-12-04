@@ -250,7 +250,6 @@ function alert_ok(bigtext, smalltext) {
 }
 
 function alert_error(bigtext, smalltext) {
-
 	swal(bigtext, smalltext, 'error');
 }
 

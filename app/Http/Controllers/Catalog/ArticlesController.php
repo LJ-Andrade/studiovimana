@@ -97,34 +97,33 @@ class ArticlesController extends Controller
         $article->user_id  = \Auth::user()->id;
         
         $images            = $request->file('images');
-
         $thumbnail         = $request->file('thumbnail');
         $imgPath           = public_path("webimages/catalogo/"); 
         $extension         = '.jpg';
-         dd($thumbnail);
         
         $article->save();
         $article->atribute1()->sync($request->atribute1);
         $article->tags()->sync($request->tags);
         
-        $number = '1';
+        $number = '2';
         
-        if($thumbnail){
-            $thumb = \Image::make($thumbnail);
-            $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
-            $article->thumb    = $article->id.'-0'.$extension;
-            $article->save();
+        try {
+            if($thumbnail){
+                $thumb = \Image::make($thumbnail);
+                $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
+                $article->thumb    = $article->id.'-0'.$extension;
+                $article->save();
 
-            // $thumbToImg = \Image::make($thumbnail);
-            // $image       = new CatalogImage();
-            // $image->name = $article->id.'-0'.$extension;
-            // $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
-            // $image->article()->associate($article);
-            // $image->save();
-        }
+                $thumbToImg = \Image::make($thumbnail);
+                $image       = new CatalogImage();
+                $image->name = $article->id.'-1'.$extension;
+                $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
+                $image->article()->associate($article);
+                $image->save();
+            }
 
-        if($images){
-            try {
+            if($images){
+            
                 foreach($images as $phisic_image)
                 {
                     $filename = $article->id.'-'.$number++;
@@ -136,13 +135,13 @@ class ArticlesController extends Controller
                     $image->article()->associate($article);
                     $image->save();
                 }
-
-            } catch(\Exception $e) {
-                dd($e);
-                $article->delete();
-                return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
+
+        } catch(\Exception $e) {
+            $article->delete();
+            return redirect()->route('catalogo.index')->with('message','Error al crear el artículo: '. $e);
         }
+    
         return redirect()->route('catalogo.index')->with('message','Artículo creado');
     }
 
@@ -185,13 +184,25 @@ class ArticlesController extends Controller
         $article->atribute1()->sync($request->atribute1);
         $article->tags()->sync($request->tags);
         
-        $number = '0';
-        if($thumbnail){
-            $thumb = \Image::make($thumbnail);
-            $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
-        } 
-        if($images){
-            try {
+        $number = '2';
+        
+        try {
+            if($thumbnail){
+                $thumb = \Image::make($thumbnail);
+                $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
+                $article->thumb    = $article->id.'-0'.$extension;
+                $article->save();
+
+                $thumbToImg = \Image::make($thumbnail);
+                $image       = new CatalogImage();
+                $image->name = $article->id.'-1'.$extension;
+                $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
+                $image->article()->associate($article);
+                $image->save();
+            }
+
+            if($images){
+            
                 foreach($images as $phisic_image)
                 {
                     $filename = $article->id.'-'.$number++;
@@ -203,19 +214,11 @@ class ArticlesController extends Controller
                     $image->article()->associate($article);
                     $image->save();
                 }
-
-                $thumbToImg = \Image::make($thumbnail);
-                $image       = new CatalogImage();
-                $image->name = $article->id.'-0'.$extension;
-                $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
-                $image->article()->associate($article);
-                $image->save();
-
-            } catch(\Exception $e) {
-                dd($e);
-                $article->delete();
-                return redirect()->route('catalogo.index')->with('message','Error al crear el artículo');
             }
+
+        } catch(\Exception $e) {
+            $article->delete();
+            return redirect()->route('catalogo.index')->with('message','Error al crear el artículo: '. $e);
         }
 
         return redirect()->route('catalogo.index')->with('message', 'Se ha editado el artículo con éxito');

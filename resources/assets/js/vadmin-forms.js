@@ -104,19 +104,19 @@ $('#Multi_Images').fileuploader({
     addMore: true,
     maxSize: 1,
     captions: {
-        button: function(options) { return 'Seleccionar ' + (options.limit == 1 ? 'File' : 'Imágen'); },
+        button: function(options) { return 'Seleccionar ' + (options.limit == 1 ? 'Imágenes' : 'Imágen'); },
         feedback: function(options) { return 'Agregar imágenes...'; },
         feedback2: function(options) { return options.length + ' ' + (options.length > 1 ? ' imágenes seleccionadas' : ' imágen seleccionada'); },
         drop: 'Arrastre las imágenes aquí',
         paste: '<div class="fileuploader-pending-loader"><div class="left-half" style="animation-duration: ${ms}s"></div><div class="spinner" style="animation-duration: ${ms}s"></div><div class="right-half" style="animation-duration: ${ms}s"></div></div> Pasting a file, click here to cancel.',
         removeConfirmation: 'Eliminar?',
         errors: {
-            filesLimit: 'Only ${limit} files are allowed to be uploaded.',
-            filesType: 'Only ${extensions} files are allowed to be uploaded.',
-            fileSize: '${name} is too large! Please choose a file up to ${fileMaxSize}MB.',
-            filesSizeAll: 'Files that you choosed are too large! Please upload files up to ${maxSize} MB.',
-            fileName: 'File with the name ${name} is already selected.',
-            folderUpload: 'You are not allowed to upload folders.'
+            filesLimit: 'Solo es posible subir ${limit} imágen.',
+            filesType: 'Solo se aceptan los formatos: ${extensions}.',
+            fileSize: '${name} es muy grandes! Seleccione una de ${fileMaxSize}MB. como máximo',
+            filesSizeAll: '${name} son muy grandes! Seleccione unas de ${fileMaxSize}MB. como máximo',
+            fileName: 'La imágen con el nombre ${name} ya está seleccionada.',
+            folderUpload: 'No está permitido subir carpetas.'
         },
         dialogs: {
             // alert dialog
@@ -131,30 +131,28 @@ $('#Multi_Images').fileuploader({
     }
 });
 
-
 $('#Single_Image').fileuploader({
-    extensions: ['jpg', 'jpeg', 'png', 'gif'],
-    limit: null,
+    extensions: ['jpg', 'jpeg', 'png'],
+    limit: 1,
     addMore: false,
     captions: {
-        button: function(options) { return 'Seleccionar ' + (options.limit == 1 ? 'File' : 'Imágen'); },
+        button: function(options) { return 'Seleccionar ' + (options.limit == 1 ? 'Imágen' : 'Imágen'); },
         feedback: function(options) { return 'Agregar imágenes...'; },
         feedback2: function(options) { return options.length + ' ' + (options.length > 1 ? ' imágenes seleccionadas' : ' imágen seleccionada'); },
         drop: 'Arrastre las imágenes aquí',
         paste: '<div class="fileuploader-pending-loader"><div class="left-half" style="animation-duration: ${ms}s"></div><div class="spinner" style="animation-duration: ${ms}s"></div><div class="right-half" style="animation-duration: ${ms}s"></div></div> Pasting a file, click here to cancel.',
         removeConfirmation: 'Eliminar?',
         errors: {
-            filesLimit: 'Only ${limit} files are allowed to be uploaded.',
-            filesType: 'Only ${extensions} files are allowed to be uploaded.',
-            fileSize: '${name} is too large! Please choose a file up to ${fileMaxSize}MB.',
-            filesSizeAll: 'Files that you choosed are too large! Please upload files up to ${maxSize} MB.',
-            fileName: 'File with the name ${name} is already selected.',
-            folderUpload: 'You are not allowed to upload folders.'
+            filesLimit: 'Solo es posible subir ${limit} imágen.',
+            filesType: 'Solo se aceptan los formatos: ${extensions}.',
+            fileSize: 'La imágen pesa mucho! Elija una de ${fileMaxSize}MB como máximo.',
+            fileName: 'La imágen con ese nombre ya ha sido elegida',
+            folderUpload: 'No está permitido subir carpetas.',
         },
         dialogs: {
             // alert dialog
             alert: function(text) {
-                return alert_confirm(text);
+                return alert(text);
             },
             // confirm dialog
             confirm: function(text, callback) {
