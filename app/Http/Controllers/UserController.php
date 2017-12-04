@@ -125,6 +125,7 @@ class UserController extends Controller
 
             $user     = User::findOrFail($request->id);
             $avatar   = $request->file('avatar');
+            dd($avatar);
             $filename = $user->username.date('dmys').rand(100, 999).'.jpg';
             try{
                 Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename));

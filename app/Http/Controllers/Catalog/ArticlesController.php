@@ -11,7 +11,6 @@ use App\CatalogImage;
 use App\CatalogAtribute1;
 use File;
 
-
 class ArticlesController extends Controller
 {
 
@@ -93,15 +92,17 @@ class ArticlesController extends Controller
             'slug.unique'          => 'El slug debe ser único, algún otro artículo lo está usando',
             'image'                => 'El archivo adjuntado no es soportado',
         ]);
-    
+    	
         $article           = new CatalogArticle($request->all());
         $article->user_id  = \Auth::user()->id;
         
         $images            = $request->file('images');
+
+        $thumbnail         = $request->file('thumbnail');
         $imgPath           = public_path("webimages/catalogo/"); 
         $extension         = '.jpg';
+         dd($thumbnail);
         
-        $thumbnail         = $request->file('thumbnail');
         $article->save();
         $article->atribute1()->sync($request->atribute1);
         $article->tags()->sync($request->tags);
@@ -109,18 +110,18 @@ class ArticlesController extends Controller
         $number = '1';
         
         if($thumbnail){
-            $thumb = \Image::make($thumbnail[0]);
+            $thumb = \Image::make($thumbnail);
             $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
             $article->thumb    = $article->id.'-0'.$extension;
             $article->save();
 
-            $thumbToImg = \Image::make($thumbnail[0]);
-            $image       = new CatalogImage();
-            $image->name = $article->id.'-0'.$extension;
-            $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
-            $image->article()->associate($article);
-            $image->save();
-        } 
+            // $thumbToImg = \Image::make($thumbnail);
+            // $image       = new CatalogImage();
+            // $image->name = $article->id.'-0'.$extension;
+            // $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
+            // $image->article()->associate($article);
+            // $image->save();
+        }
 
         if($images){
             try {
@@ -186,7 +187,7 @@ class ArticlesController extends Controller
         
         $number = '0';
         if($thumbnail){
-            $thumb = \Image::make($thumbnail[0]);
+            $thumb = \Image::make($thumbnail);
             $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
         } 
         if($images){
@@ -203,7 +204,7 @@ class ArticlesController extends Controller
                     $image->save();
                 }
 
-                $thumbToImg = \Image::make($thumbnail[0]);
+                $thumbToImg = \Image::make($thumbnail);
                 $image       = new CatalogImage();
                 $image->name = $article->id.'-0'.$extension;
                 $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
