@@ -22,7 +22,7 @@
 
 		@if($messages > 0)
 			<img src="{{ asset('images/gral/cat.png') }}" alt="">
-			<div class="messages-text"><a href="{{ url('vadmin/stored_contacts')}}"><h1>Mensajes Recibidos: {{ $messages }}</h1></a></div>
+			<div class="messages-text"><a href="{{ url('vadmin/mensajes_recibidos')}}"><h1>Mensajes Recibidos: {{ $messages }}</h1></a></div>
 		@else
 			<img src="{{ asset('images/gral/catsad.png') }}" alt="">
 			<div class="messages-text"><h1>Mensajes Recibidos: 0</h1></div>
