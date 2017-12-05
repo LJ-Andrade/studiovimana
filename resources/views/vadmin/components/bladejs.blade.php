@@ -56,10 +56,8 @@
                     reader.onload = function (e) {
                         $('.Featured-Image-Container').attr('src', e.target.result);
                         $('.ActionContainer').removeClass('Hidden');
-                    }
-                    
+                    }  
                     reader.readAsDataURL(input.files[0]);
-                    
                 } else {
                     swal(
                         'Ups',
@@ -70,11 +68,46 @@
                 }  
             }
         }
-    
         $("#ThumbnailUploader").change(function(){
             readURL(this);
         });
-    
     });
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE STATUS
+    |--------------------------------------------------------------------------
+    */
+
+    function updateStatus(id, route, status, user, action)
+	{
+		$.ajax({	
+			url: route,
+			method: 'POST',             
+			dataType: 'JSON',
+			data: { id: id, status: status, user: user },
+			success: function(data){
+                if(data.response == true){
+                    switch(action) {
+                        case 'reload':
+                            location.reload();
+                            break;
+                        case 'show':
+                            console.log('Mostrar algo');
+                            break;
+                        case 'none':
+                            console.log('Actualizado - Sin Acción');
+                        default:
+                            console.log('No hay acción');
+                            break;
+                    }   
+                } 
+			},
+			error: function(data){
+				$('#Error').html(data.responseText);
+			}
+		});
+	}
+
 
 </script>

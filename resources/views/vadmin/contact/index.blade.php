@@ -47,28 +47,34 @@
 			@component('vadmin.components.list')
 				@slot('title', 'Mensajes Recibidos')
 				@slot('tableTitles')
-                    <th></th>
+                    <th class="w-20"></th>
 					<th>Nombre</th>
 					<th>E-Mail</th>
 					<th>Teléfono</th>
 					<th>Mensaje</th>
+					<th>Estado</th>
+					<th></th>
 					<th>Fecha</th>
 				@endslot
 
 				@slot('tableContent')
 					@foreach($items as $item)
 						<tr>
-                            <td>
+                            <td class="w-20">
 								<label class="custom-control custom-checkbox list-checkbox">
 									<input type="checkbox" class="List-Checkbox custom-control-input row-checkbox" data-id="{{ $item->id }}">
 									<span class="custom-control-indicator"></span>
 									<span class="custom-control-description"></span>
 								</label>
 							</td>
-							<td class="show-link max-text"><a href="{{ url('vadmin/stored_contact/'.$item->id) }}"> {{ $item->name }} </a></td>
+							<td class="show-link max-text"><a href="{{ url('vadmin/mensajes_recibidos/'.$item->id) }}"> {{ $item->name }} </a></td>
 							<td>{{ $item->email }}</td>
 							<td>{{ $item->phone }}</td>
 							<td class="max-text">{{ $item->message }}</td>
+							<td>
+								{!! Form::select('category_id', ['0' => 'No Leído', '1' => 'Leído', '2' => 'Pasado', '3' => 'Respondido'] , $item->status, ['class' => 'form-control Select-Chosen ChangeMessageStatus', 'data-id' => $item->id]) !!}
+							</td>
+							<td>{{ $item->user }}</td>
 							<td>{{ transDateAndTime($item->created_at) }}</td>
 						</tr>						
 					@endforeach
@@ -93,11 +99,20 @@
 @endsection
 
 {{-- CUSTOM JS SCRIPTS--}}
-MensajesLi
-
 @section('custom_js')
 	<script>
 		$('.AdminLi').addClass('open');
 		$('.MensajesLi').addClass('active');
+
+		$(document).on('change', '.ChangeMessageStatus', function(e) {
+			var id     = $(this).data('id');
+			var route  = "{{ url('/vadmin/message_status') }}/"+id+"";
+			var user   = "{{ Auth::user()->name }}";
+			var status = $(this).val();
+			var action = 'reload';
+			updateStatus(id, route, status, user, action);
+
+		});
+
 	</script>
 @endsection

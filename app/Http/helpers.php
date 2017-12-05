@@ -99,8 +99,28 @@ function statusTrd($status) {
             echo 'Sin listar';
             break;
     }
-
 }
+
+function messageStatusTrd($status) {
+    switch ($status) {
+        case '0':
+            echo 'No leído';
+            break;
+        case '1':
+            echo 'Leído';
+            break;
+        case '2':
+            echo 'Pasado';
+            break;
+        case '3':
+            echo 'Respondido';
+            break;
+        default:
+            echo 'Sin estado';
+            break;
+    }
+}
+    
 
 function paymentType($type) {
 

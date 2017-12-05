@@ -9,12 +9,12 @@
 		<meta name="author" content="Studio Vimana">
 		<title>@yield('title')</title>
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('vadmin-ui/app-assets/images/ico/apple-icon-60.png') }}">
-		<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('vadmin-ui/app-assets/images/ico/apple-icon-76.png') }}">
-		<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('vadmin-ui/app-assets/images/ico/apple-icon-120.png') }}">
-		<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('vadmin-ui/app-assets/images/ico/apple-icon-152.png') }}">
-		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('vadmin-ui/app-assets/images/ico/favicon.ico') }}">
-		<link rel="shortcut icon" type="image/png" href="{{ asset('vadmin-ui/app-assets/images/ico/favicon-32.png') }}">
+		<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('images/logos/vadminlogo-dark.png') }}">
+		<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('images/logos/vadminlogo-dark.pngg') }}">
+		<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('images/logos/vadminlogo-dark.png') }}">
+		<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('images/logos/vadminlogo-dark.png') }}">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logos/vadminlogo-dark.png') }}">
+		<link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/vadminlogo-dark.png') }}">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-touch-fullscreen" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="default">

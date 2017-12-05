@@ -21,15 +21,34 @@ class VadminController extends Controller
     public function storedContacts(Request $request)
     {
         $items = Contact::orderBy('id','ASC')->paginate(10);
-            return view('vadmin.contact.index')
-                ->with('items', $items);
+        return view('vadmin.contact.index')
+            ->with('items', $items);
     }
 
     public function showStoredContact(Request $request, $id)
     {
         $item = Contact::findOrFail($id);
-            return view('vadmin.contact.show')
-                ->with('item', $item);
+        return view('vadmin.contact.show')
+            ->with('item', $item);
+    }
+
+    public function updateMessageStatus(Request $request, $id)
+    {
+        try{
+            $item = Contact::findOrFail($id);
+            $item->status = $request->status;
+            $item->user = $request->user;
+            $item->save();
+            return response()->json([
+                'response'   => true,
+                'message'    => 'Mensaje Actualizado'
+            ]); 
+        } catch (\Exception $e) {
+            return response()->json([
+                'response'   => false,
+                'message'    => $e
+            ]); 
+        }
     }
 
     public function destroyStoredContacts(Request $request)

@@ -88,8 +88,10 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
     
     // -- USERS --
     Route::post('updateAvatar', 'UserController@updateAvatar');	
-    Route::get('/stored_contacts', 'VadminController@storedContacts');
-    Route::get('stored_contact/{id}', 'VadminController@showStoredContact');
+    Route::get('/mensajes_recibidos', 'VadminController@storedContacts');
+    Route::get('mensajes_recibidos/{id}', 'VadminController@showStoredContact');
+    Route::post('message_status/{id}', 'VadminController@updateMessageStatus');
+    
     
     // -- PORTFOLIO --
     Route::resource('portfolio', 'Portfolio\ArticlesController');
@@ -108,7 +110,6 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
     Route::resource('cat_atribute1', 'Catalog\CatalogAtribute1Controller');
     Route::post('catalog_make_thumb/{id}', 'Catalog\ArticlesController@makeThumb');
     
-
 });
     
 /*

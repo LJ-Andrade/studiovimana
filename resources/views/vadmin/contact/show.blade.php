@@ -6,7 +6,7 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 		     <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('vadmin/stored_contacts') }}">Mensajes Recibidos</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('vadmin/mensajes_recibidos') }}">Mensajes Recibidos</a></li>
             <li class="breadcrumb-item active">Mensaje de <b>{{ $item->name }}</b></li>
 		@endslot
 		@slot('actions')

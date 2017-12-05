@@ -138,12 +138,12 @@
 		$('.PauseArticle').click(function() {
 			var cbx = $(this);
 			if (cbx[0].checked) {
-				console.log("Error en checkbox");
+				// console.log("Error en checkbox");
 			} else {
 				console.log("Pausar");
 				var id     = cbx.data('id');
-				console.log(id);
-				updateStatus(id, '0');
+				var route = "{{ url('/vadmin/cat_article_status') }}/"+id+"";
+				updateStatus(id, route, '0');
 			}
 		});
 
@@ -152,31 +152,31 @@
 			if (cbx[0].checked) {
 				var id = cbx.data('id');
 				console.log("Activar");
-				console.log(id);
-				updateStatus(id, '1');
+				var route = "{{ url('/vadmin/cat_article_status') }}/"+id+"";
+				updateStatus(id, route, '1');
 			} else {
-				console.log("Error en checkbox");
+				//console.log("Error en checkbox");
 			}
 		});
 	});
 
-	function updateStatus(id, status)
-	{
-		var route = "{{ url('/vadmin/cat_article_status') }}/"+id+"";
-		$.ajax({
-			
-			url: route,
-			method: 'POST',             
-			dataType: 'JSON',
-			data: { id: id, status: status },
-			success: function(data){
-				console.log(data);
-			},
-			error: function(data){
-				$('#Error').html(data.responseText);
-			}
-		});
-	}
+	//function updateStatus(id, status)
+	//{
+	//	var route = "{{ url('/vadmin/cat_article_status') }}/"+id+"";
+	//	$.ajax({
+	//		
+	//		url: route,
+	//		method: 'POST',             
+	//		dataType: 'JSON',
+	//		data: { id: id, status: status },
+	//		success: function(data){
+	//			console.log(data);
+	//		},
+	//		error: function(data){
+	//			$('#Error').html(data.responseText);
+	//		}
+	//	});
+	//}
 
 	</script>
 @endsection

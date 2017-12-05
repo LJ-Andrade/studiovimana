@@ -98,7 +98,7 @@
 				</li>
 			</ul>
 			<ul class="menu-content">
-				<li class="MensajesLi"><a href="{{ url('vadmin/stored_contacts') }}" class="menu-item"><i class="icon-envelop"></i> Mensajes</a></li>
+				<li class="MensajesLi"><a href="{{ url('vadmin/mensajes_recibidos') }}" class="menu-item"><i class="icon-envelop"></i> Mensajes</a></li>
 			</ul>
 		</li>
 		
