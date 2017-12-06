@@ -22,6 +22,7 @@
             @endslot
             @slot('content')
             	<b>Descripción:</b> <p>{!! $article->description !!}</p>
+				<hr class="softhr">
 				<div class="row">
 					<div class="col-md-3">
 						<h2><i class="icon-star-full"></i> Imágen Destacada</h2>
@@ -51,13 +52,17 @@
 					</div>
 				</div>
 				<hr class="softhr">
-				<b>Slug:</b> <span class="badge">{!! $article->slug !!}</span>
+				<b>Precio:</b> <span class="custom-badge btnBlue"> $ {!! $article->price !!}</span> <br>
+				<b>Descuento: </b> <span class="custom-badge btnRed"> % {{ $article->offer }}</span> <br>
+				<b> Precio c/ Desc.: </b> <span class="custom-badge btnGreen"> $ {{ $article->price - ($article->price * $article->offer) / 100 }}</span>
 				<hr class="softhr">
+				<b>Url - Dirección web amigable (Slug):</b> <span class="badge">{!! $article->slug !!}</span>
+				<hr class="softhr">
+				<b>Tela: </b> <span class="custom-badge btnBlue">{{ $article->textile }}</span> | 
 				<b>Talles:</b>
 				@foreach($article->atribute1 as $atribute1)
-					<span class="custom-badge btnBlue">{!! $atribute1->name !!}</span>
+					<span class="custom-badge btnRed">{!! $atribute1->name !!}</span>
 				@endforeach
-				| Tela: <span class="custom-badge btnRed">{{ $article->textile }}</span>
 				<hr class="softhr">
 				<b>Categoría:</b> <span class="custom-badge btnBlue">{!! $article->category->name !!}</span> |
 				<b>Etiquetas:</b>

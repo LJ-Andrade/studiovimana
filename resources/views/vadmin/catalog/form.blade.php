@@ -19,17 +19,24 @@
 </div>
 <div class="row">
     {{--  Code  --}}
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
             {!! Form::label('code', 'Código') !!}
             {!! Form::text('code', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el código', 'required' => '']) !!}
         </div>
     </div>
     {{--  Price  --}}
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
             {!! Form::label('price', 'Precio') !!}
-            {!! Form::number('price', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el precio', 'min' => '0', 'required' => '', 'maxlength' => '30']) !!}
+            {!! Form::number('price', null, ['class' => 'form-control', 'min' => '0', 'required' => '', 'maxlength' => '30', 'step'=>'any']) !!}
+        </div>
+    </div>
+    {{--  Offer  --}}
+    <div class="col-md-2">
+        <div class="form-group">
+            {!! Form::label('offer', '% Oferta') !!}
+            {!! Form::number('offer', null, ['class' => 'form-control', 'min' => '0', 'required' => '', 'maxlength' => '30', 'step'=>'any']) !!}
         </div>
     </div>
     {{-- Slug --}}

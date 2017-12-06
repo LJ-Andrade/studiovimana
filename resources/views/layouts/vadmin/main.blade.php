@@ -39,6 +39,7 @@
   	<body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns fixed-navbar">
 
 		@include('layouts.vadmin.partials.nav')
+		@include('vadmin.components.fullLoader')
 		<div class="app-content content container-fluid">
 			<div class="content-wrapper">
 				<div class="container pad0">
@@ -104,5 +105,16 @@
 		<!-- END PAGE LEVEL JS-->
 		@yield('scripts')
 		@yield('custom_js')
+		<script>
+			$(document).on('submit', 'form', function(){
+				$('#FullLoader').removeClass('Hidden');
+			});
+			var count = 0;
+			setInterval(function(){
+				count++;
+				var dots = new Array(count % 10).join('.');
+				document.getElementById('LoadingText').innerHTML = "." + dots;
+			}, 1000);
+		</script>
 	</body>
 </html>

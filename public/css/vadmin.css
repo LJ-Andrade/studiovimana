@@ -1082,6 +1082,33 @@ ul.pagination li.disabled {
   }
 }
 
+.full-loader {
+  position: fixed;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.82);
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #383838;
+}
+
+.full-loader .loader-text {
+  width: 90px;
+}
+
 .dashboard {
   margin-top: 30px;
   text-align: center;

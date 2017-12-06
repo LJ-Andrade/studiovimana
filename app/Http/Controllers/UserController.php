@@ -113,9 +113,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect('vadmin/users')->with('Message', 'Usuario '. $user->name .'editado correctamente');
-
     }
-
 
     // ---------- Update Avatar --------------- //
     public function updateAvatar(Request $request)
@@ -125,7 +123,6 @@ class UserController extends Controller
 
             $user     = User::findOrFail($request->id);
             $avatar   = $request->file('avatar');
-            dd($avatar);
             $filename = $user->username.date('dmys').rand(100, 999).'.jpg';
             try{
                 Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename));
@@ -140,8 +137,6 @@ class UserController extends Controller
             }   catch(\Exception $e){
                 dd($e);
             }
-            
-            
         }
     }
 

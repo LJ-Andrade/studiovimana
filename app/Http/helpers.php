@@ -4,6 +4,28 @@
 //         Numbers, Calcs. & Converts       //
 //////////////////////////////////////////////
 
+function calcFinalPriceConvert($cost, $percent, $currencyActualValue)
+{
+    $percent = $cost * $percent / 100;
+    $result  = $cost + $percent;
+    $result  = $result * $currencyActualValue;
+    return $result;
+}
+    
+function calcValuePercentNeg($price, $percent)
+{
+    $percent = $price * $percent / 100;
+    $result =  $price - $percent;
+    return convertAndRoundDecimal($result, 2);
+}
+
+function calcValuePercentPos($price, $percent)
+{
+    $percent = $price * $percent / 100;
+    $result =  $price + $percent;
+    return convertAndRoundDecimal($result, 2);
+}
+
 function formatNum($number, $digits)
 {
     $root       = 10;
@@ -16,9 +38,7 @@ function convertAndRoundDecimal($number, $precision)
 {
     $number = floatval($number);
     $p      = pow(10, $precision);
-    return ceil(round($number * $p, 1)) / $p;
-    
-   
+    return ceil(round($number * $p, 1)) / $p; 
 }
 
 function round_sup($nb, $precision)
@@ -32,14 +52,8 @@ function calcFinalPrice($cost, $pje)
     return $result;
 }
 
-function calcFinalPriceConvert($cost, $percent, $currencyActualValue)
-{
-    $percent = $cost * $percent / 100;
-    $result  = $cost + $percent;
-    $result  = $result * $currencyActualValue;
-    return $result;
-}
-    
+
+
 //////////////////////////////////////////////
 //               Translations               //
 //////////////////////////////////////////////
