@@ -138,7 +138,6 @@
     <div class="container-fluid our-works">
         <div class="container wow animated fadeIn">
             <div class="row">
-             
                 {{-- Mobile --}} 
                 <div class="col-xs-12 col-sm-6 col-md-4 inner inner-mobile">
                     <h1>NUESTRO<br>PORTFOLIO</h1>
@@ -203,7 +202,6 @@
         speed: 2000
     });
     
-
     // var swiper = new Swiper('.swiper-container');
     var mySwiper = new Swiper('.swiper-container', {
         // autoplay:true,
@@ -219,10 +217,8 @@
         speed: 2500,
     }); 
 
-
     $(document).on('submit','#MainContactForm',function(e){
         e.preventDefault();
-
         var data   = $(this).serialize();
         var route  = "{{ url('mail_sender') }}";
         // var route  = "{{ url('test_sender') }}";
