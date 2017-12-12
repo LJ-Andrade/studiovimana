@@ -202,11 +202,7 @@
         speed: 2000
     });
     
-    $(".swiper-container-services").hover(function(){
-        mySwiper2.stopAutoplay();
-    }, function(){
-        mySwiper2.startAutoplay();
-    });
+
     // var swiper = new Swiper('.swiper-container');
     var mySwiper = new Swiper('.swiper-container', {
         // autoplay:true,

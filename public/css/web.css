@@ -1105,6 +1105,10 @@ ul {
   padding-left: 0;
 }
 
+.navbar-brand {
+  padding: 6px 10px;
+}
+
 .navbar-default .navbar-toggle {
   border: 0;
   max-width: 100%;
@@ -1250,7 +1254,7 @@ ul {
     border: 0;
   }
   .navbar .navbar-brand img {
-    width: 100px;
+    width: 122px;
   }
   .navbar .navbar-toggle {
     border-radius: 0;
@@ -1277,7 +1281,7 @@ ul {
     font-size: 1.5rem;
     padding-top: 10px;
     padding-bottom: 10px;
-    border: 1px solid #f9f9f9;
+    border: 1px solid #dbdada;
     border-radius: 50px;
     margin-bottom: 5px;
   }
@@ -1296,7 +1300,7 @@ ul {
     border: 0;
   }
   .navbar .navbar-brand img {
-    width: 100px;
+    width: 122px;
   }
 }
 
