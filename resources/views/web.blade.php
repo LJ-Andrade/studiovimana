@@ -173,7 +173,7 @@
             </div>
         </div>
     </div>
-    @include('layouts.web.partials.contact-tab')
+    {{--  @include('layouts.web.partials.contact-tab')  --}}
     @include('layouts.web.partials.contact')
     @include('layouts.web.partials.foot')
 @endsection
