@@ -638,17 +638,22 @@ $red1: rgb(235, 87, 87)
 	right: 0
 
 .contact-tab
-	position: fixed
-	z-index: 9999
-	right: 20px
-	bottom: 50px
-	background-color: #fff
-	border-radius: 50%
-	padding: 10px
-	@include box-shadow-soft2
-	img
-		max-width: 100%
-		width: 40px
+	display: none
+
+@media (max-width: 765px)
+	.contact-tab
+		display: block
+		position: fixed
+		z-index: 9999
+		right: 10px
+		bottom: 10px
+		background-color: #fff
+		border-radius: 50%
+		padding: 10px
+		@include box-shadow-soft2
+		img
+			max-width: 100%
+			width: 40px
 
 
 //////////////////////////////////////

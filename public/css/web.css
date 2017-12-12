@@ -734,20 +734,26 @@
 }
 
 .contact-tab {
-  position: fixed;
-  z-index: 9999;
-  right: 20px;
-  bottom: 50px;
-  background-color: #fff;
-  border-radius: 50%;
-  padding: 10px;
-  -webkit-box-shadow: 4px 3px 11px -5px rgba(0, 0, 0, 0.75);
-  box-shadow: 4px 3px 11px -5px rgba(0, 0, 0, 0.75);
+  display: none;
 }
 
-.contact-tab img {
-  max-width: 100%;
-  width: 40px;
+@media (max-width: 765px) {
+  .contact-tab {
+    display: block;
+    position: fixed;
+    z-index: 9999;
+    right: 10px;
+    bottom: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    -webkit-box-shadow: 4px 3px 11px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 3px 11px -5px rgba(0, 0, 0, 0.75);
+  }
+  .contact-tab img {
+    max-width: 100%;
+    width: 40px;
+  }
 }
 
 .pagination > li:first-child > a, .pagination > li:first-child > span {
