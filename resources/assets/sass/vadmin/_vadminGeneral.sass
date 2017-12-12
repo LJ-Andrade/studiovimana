@@ -1,153 +1,157 @@
 html
-  min-height: 100%
-  position: relative
-  font-size: 100%
+	min-height: 100%
+	position: relative
+	font-size: 100%
 
 @media (max-width: 768px)
-  html
-    overflow-x: hidden 
+	html
+		overflow-x: hidden 
     
 body
-  height: 100%
-  overflow-x: hidden
-  font-size: 16.5px
-  background-color: #fcfcfc
-  // background-color: #fff
-  color: #383838
-  font-family: $fv
-  line-height: 22px
-  // padding-top: 50px
+	height: 100%
+	overflow-x: hidden
+	font-size: 16.5px
+	background-color: #fcfcfc
+	// background-color: #fff
+	color: #383838
+	font-family: $fv
+	line-height: 22px
+	// padding-top: 50px
 a
-  text-decoration: none
-  color: #383838
-  &:hover
-    text-decoration: none
-    color: #383838
+	text-decoration: none
+	color: #383838
+	&:hover
+		text-decoration: none
+		color: #383838
 p
-  font-size: 1.2rem 
-  font-family: $fv
-  font-weight: $fvw1
+  	font-size: 1.2rem 
+  	font-family: $fv
+  	font-weight: $fvw1
 h1
-  font-size: 1.8rem
-  font-weight: $fvw2
+ 	 font-size: 1.8rem
+  	font-weight: $fvw2
 h2
-  font-size: 1.1rem
-  font-weight: $fvw3
+ 	 font-size: 1.1rem
+  	font-weight: $fvw3
 hr
-  border-top: 1px solid $dark2
+  	border-top: 1px solid $dark2
 
 .brd
-  border: 1px solid red
+  	border: 1px solid red
 .txL
-  text-align: left
+  	text-align: left
 .txR
-  text-align: right
+  	text-align: right
 .txC
-  text-align: center
+ 	 text-align: center
 .pad0
-  padding: 0
+  	padding: 0
+
+@media (max-width: 765px)
+  	.pad0765
+    	padding: 0
 .mar0
-  margin: 0
+  	margin: 0
 .margTop0
   margin-top: 0 !important
 .padTop0
-  padding-top: 0 !important
+  	padding-top: 0 !important
 .mb
-  margin-bottom: 10px 
+  	margin-bottom: 10px 
 .short-input
-  max-width: 100px
+  	max-width: 100px
 .w-20
-  width: 20px
+  	width: 20px
 .w-50
-  width: 50px
+  	width: 50px
 .w-100
-  width: 100px
+  	width: 100px
 .w-150
-  width: 150px
+  	width: 150px
 .w-200
-  width: 200px
+  	width: 200px
 
 .mw450
-  max-width: 450px
+  	max-width: 450px
 
 .ellipsis
-  overflow: hidden
-  white-space: nowrap
-  text-overflow: ellipsis
+	overflow: hidden
+	white-space: nowrap
+	text-overflow: ellipsis
   
 @media (max-width: 765px)
-  .hide765
-    display: none
+  	.hide765
+    	display: none
 
 @media (max-width: 900px)
-  .hideMobile900
-    display: none !important
+	.hideMobile900
+		display: none !important
 .Hidden
-  display: none !important
+	display: none !important
 .floatRight
-  float: right
+	float: right
 .floatLeft
-  float: left
+	float: left
 .centered
-  text-align: center
+	text-align: center
 
 /////////// FLEXBOX ////////////
 .flexCentVert
-  display: -webkit-box
-  display: -ms-flexbox
-  display: flex
-  -webkit-box-align: center
-  -ms-flex-align: center
-  -ms-grid-row-align: center
-  align-items: center
-  -webkit-box-pack: center
-  -ms-flex-pack: center
-  align-self: center
-  align-content: center
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-align: center
+	-ms-flex-align: center
+	-ms-grid-row-align: center
+	align-items: center
+	-webkit-box-pack: center
+	-ms-flex-pack: center
+	align-self: center
+	align-content: center
 
 .flexSameH
-  display: flex
-  flex-wrap: wrap
+	display: flex
+	flex-wrap: wrap
 
 .flexEqual
-  display: -webkit-box
-  display: -ms-flexbox
-  display: flex
-  height: auto
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	height: auto
 
 .flexW
-  display: -webkit-box
-  display: -ms-flexbox
-  display: flex
-  -ms-flex-wrap: wrap
-  flex-wrap: wrap
-  align-items: center
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-ms-flex-wrap: wrap
+	flex-wrap: wrap
+	align-items: center
 
 .flexV
-  display: -webkit-box
-  display: -ms-flexbox
-  display: flex
-  -webkit-box-align: center
-  -ms-flex-align: center
-  -ms-grid-row-align: center
-  align-items: center
-  -webkit-box-pack: center
-  -ms-flex-pack: center
-  justify-content: center
-  -webkit-box-orient: vertical
-  -webkit-box-direction: normal
-  -ms-flex-direction: column
-  flex-direction: column
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-align: center
+	-ms-flex-align: center
+	-ms-grid-row-align: center
+	align-items: center
+	-webkit-box-pack: center
+	-ms-flex-pack: center
+	justify-content: center
+	-webkit-box-orient: vertical
+	-webkit-box-direction: normal
+	-ms-flex-direction: column
+	flex-direction: column
 
 .flexCenter
-  display: -webkit-box
-  display: -ms-flexbox
-  display: flex
-  -webkit-box-align: center
-  -ms-flex-align: center
-  -ms-grid-row-align: center
-  align-items: center
-  -webkit-box-pack: center
-  -ms-flex-pack: center
-  justify-content: center
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-align: center
+	-ms-flex-align: center
+	-ms-grid-row-align: center
+	align-items: center
+	-webkit-box-pack: center
+	-ms-flex-pack: center
+	justify-content: center
 

@@ -106,7 +106,7 @@
 		</li>
 		<li class="nav-item"><a href="#"><i class="icon-support"></i><span class="menu-title">Soporte</span></a>
 		</li>
-		<li class="nav-item"><a href="#"><i class="icon-document-text"></i><span class="menu-title">Documentación</span></a>
+		<li class="nav-item DocsLi"><a href="{{ url('vadmin/docs') }}"><i class="icon-document-text"></i><span class="menu-title">Documentación</span></a>
 		</li>
 	</ul>
 	</div>

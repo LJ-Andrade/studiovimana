@@ -32,15 +32,17 @@
 			</div>
 		@endslot
 		@slot('searcher')
-			@include('vadmin.portfolio.searcher')
+			@include('vadmin.catalog.searcher')
 		@endslot
 	@endcomponent
 @endsection
 
-{{--  If section has fixed actions  --}}
-@section('top-space')
-<div class="top-space"></div>
-@endsection
+@if(isset($_GET['title']) || isset($_GET['category']))
+	{{--  If section has fixed actions  --}}
+	@section('top-space')
+		<div class="top-space"></div>
+	@endsection
+@endif
 
 {{-- CONTENT --}}
 @section('content')
@@ -89,7 +91,13 @@
 								<td class="w-50">{{ $item->code }}</td>
 								<td class="show-link max-text"><a href="{{ url('vadmin/catalogo/'.$item->id) }}">{{ $item->name }}</a></td>
 								<td>$ {{ $item->price }}</td>
-								<td>% {{ $item->offer }} ($ {{ calcValuePercentNeg($item->price, $item->offer) }})</td>
+								<td>
+									@if($item->offer == '0')
+									-
+									@else
+									$ {{ calcValuePercentNeg($item->price, $item->offer).' (%'. $item->offer.')' }}
+									@endif
+								</td>
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 								<td class="w-50 pad0 centered">
 									@if($item->status == '1')

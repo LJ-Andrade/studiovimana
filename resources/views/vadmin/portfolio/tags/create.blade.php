@@ -21,19 +21,33 @@
 
 @section('content')
 	<div class="inner-wrapper">
-		{!! Form::open(['route' => 'tags.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form mw450', 'data-parsley-validate' => '']) !!}	
-			@include('vadmin.portfolio.tags.form')
-			<div class="form-actions right">
-				<a href="{{ route('tags.index')}}">
-					<button type="button" class="btn btnRed">
-						<i class="icon-cross2"></i> Cancelar
-					</button>
-				</a>
-				<button type="submit" class="btn btnGreen">
-					<i class="icon-check2"></i> Guardar
-				</button>
+		<div class="row">
+			<div class="col-md-5">
+				{!! Form::open(['route' => 'tags.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form mw450', 'data-parsley-validate' => '']) !!}	
+					@include('vadmin.portfolio.tags.form')
+					<div class="form-actions right">
+						<a href="{{ route('tags.index')}}">
+							<button type="button" class="btn btnRed">
+								<i class="icon-cross2"></i> Cancelar
+							</button>
+						</a>
+						<button type="submit" class="btn btnGreen">
+							<i class="icon-check2"></i> Guardar
+						</button>
+					</div>
+				{!! Form::close() !!}
 			</div>
-		{!! Form::close() !!}
+			<div class="col-md-7 pad0765">
+				@component('vadmin.components.infoContainer')
+					@slot('text')
+					Las <b>etiquetas</b> (o tags) son palabras claves que permiten agrupar artículos con una característica particular.
+					Estas pueden ser compartidas entre artículos que pertenezcan a distintas categorías.
+					Luego permitirá a los usuarios que filtren los items en los buscadores de la web según sus preferencias. <br><br>
+					<b>Ejemplos de etiquetas:</b> Rojo, Verde, Largo, Corto, Con Costuras, Sin Costuras, En Oferta, Liquidación, etc. 
+					@endslot
+				@endcomponent
+			</div>
+		</div>
 	</div>  
 @endsection
 

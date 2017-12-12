@@ -38,9 +38,13 @@
 @endsection
 
 {{--  If section has fixed actions  --}}
-@section('top-space')
-<div class="top-space"></div>
-@endsection
+
+@if(isset($_GET['title']) || isset($_GET['category']))
+	{{--  If section has fixed actions  --}}
+	@section('top-space')
+		<div class="top-space"></div>
+	@endsection
+@endif
 
 {{-- CONTENT --}}
 @section('content')

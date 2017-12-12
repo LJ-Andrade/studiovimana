@@ -11,7 +11,7 @@
     {{-- Slug --}}
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::label('slug', 'Url - Dirección web') !!}
+            {!! Form::label('slug', 'Url Amigable - Dirección web') !!}
             {!! Form::text('slug', null, ['class' => 'SlugInput form-control', 'placeholder' => 'Dirección visible (en explorador)', 'id' => 'SlugInput', 'required' => '']) !!}
             <div class="slug2"></div>
         </div>

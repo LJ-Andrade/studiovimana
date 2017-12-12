@@ -733,6 +733,22 @@
   right: 0;
 }
 
+.contact-tab {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  -webkit-box-shadow: 4px 3px 11px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 3px 11px -5px rgba(0, 0, 0, 0.75);
+}
+
+.contact-tab img {
+  max-width: 100%;
+  width: 40px;
+}
+
 .pagination > li:first-child > a, .pagination > li:first-child > span {
   border-radius: 0 !important;
 }
@@ -1330,7 +1346,7 @@ ul {
 }
 
 .main-home .main-info h1 {
-  color: #fff;
+  color: #0d1d41;
   font-size: 1.5rem;
   margin-bottom: 25px;
 }
@@ -1477,51 +1493,30 @@ ul {
   color: #01406b;
 }
 
+.our-services .inner {
+  overflow: hidden;
+}
+
+.our-services .inner .column1 img {
+  max-width: 100%;
+}
+
+.our-services .inner .column2 p, .our-services .inner .column2 h1 {
+  text-align: left;
+}
+
 .our-services h1 {
   text-align: center;
 }
 
-.our-services .inner {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -ms-grid-row-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding: 20px;
-  margin: 0 auto;
+.our-services:hover {
+  cursor: move;
+  cursor: grab;
+  cursor: -webkit-grab;
 }
 
-.our-services .inner object, .our-services .inner img {
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-.our-services .inner .text-big h1 {
-  margin-bottom: 0;
-  line-height: 40px;
-  font-size: 2.5rem;
-  font-weight: 700;
-  padding-bottom: 10px;
-  color: #01406b;
-  text-align: left;
-}
-
-.our-services .inner .action {
-  margin-top: 40px;
-}
-
-.our-services .inner i {
-  color: #03cdb7;
-  font-size: .9rem;
-  margin-right: 5px;
+.swiper-container-services .swiper-slide {
+  max-height: none;
 }
 
 .our-works {
@@ -1590,6 +1585,7 @@ ul {
 
 @media (max-width: 764px) {
   .our-works .inner {
+    padding: 5px;
     text-align: left;
   }
   .our-works .inner h1 {

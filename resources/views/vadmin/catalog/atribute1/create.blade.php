@@ -30,19 +30,32 @@
 
 @section('content')
 	<div class="inner-wrapper">
-		{!! Form::open(['route' => 'cat_atribute1.store', 'method' => 'POST', 'class' => 'row big-form mw450', 'data-parsley-validate' => '']) !!}	
-			@include('vadmin.catalog.atribute1.form')
-			<div class="form-actions right">
-				<a href="{{ route('cat_atribute1.index')}}">
-					<button type="button" class="btn btnRed">
-						<i class="icon-cross2"></i> Cancelar
-					</button>
-				</a>
-				<button type="submit" class="btn btnGreen">
-					<i class="icon-check2"></i> Guardar
-				</button>
+		<div class="row">
+			<div class="col-md-5">
+				{!! Form::open(['route' => 'cat_atribute1.store', 'method' => 'POST', 'class' => 'row big-form mw450', 'data-parsley-validate' => '']) !!}	
+					@include('vadmin.catalog.atribute1.form')
+					<div class="form-actions right">
+						<a href="{{ route('cat_atribute1.index')}}">
+							<button type="button" class="btn btnRed">
+								<i class="icon-cross2"></i> Cancelar
+							</button>
+						</a>
+						<button type="submit" class="btn btnGreen">
+							<i class="icon-check2"></i> Guardar
+						</button>
+					</div>
+				{!! Form::close() !!}
 			</div>
-		{!! Form::close() !!}
+			<div class="col-md-7">
+				@component('vadmin.components.infoContainer')
+					@slot('text')
+					Agregue los <b>talles</b> correspondientes a sus modelos. <br>
+					Luego saldrán en el catálogo sobre la imágen del producto y a su vez los usuarios podrán filtrar los artículos por talle. <br><br>
+					<b>Ejemplos de talles:</b> S, SM, X, XL, etc. 
+					@endslot
+				@endcomponent
+			</div>
+		</div>
 	</div>  
 @endsection
 

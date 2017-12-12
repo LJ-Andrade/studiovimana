@@ -37,10 +37,12 @@
 	@endcomponent
 @endsection
 
-{{--  If section has fixed actions  --}}
-@section('top-space')
-<div class="top-space"></div>
-@endsection
+@if(isset($_GET['name']))
+	{{--  If section has fixed actions  --}}
+	@section('top-space')
+		<div class="top-space"></div>
+	@endsection
+@endif
 
 {{-- CONTENT --}}
 @section('content')

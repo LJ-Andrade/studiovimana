@@ -1,5 +1,4 @@
 @extends('layouts.vadmin.main')
-
 {{-- PAGE TITLE --}}
 @section('title', 'Vadmin | Usuarios')
 
