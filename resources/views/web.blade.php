@@ -191,18 +191,6 @@
     var image = "{{ asset('webimages/gral/home/home-back.jpg') }}";
     $('.main-home').parallax({ imageSrc: image });
 
-    // Home Slider    
-    //var mySwiper2 = new Swiper('.swiper-container-services', {
-    //    autoplay: true,
-    //    autoplay: {
-    //        delay: 4000,
-    //    },
-    //    spaceBetween: 500,
-    //    slidesPerView: 1,
-    //    speed: 1500,
-    //    loop: true,
-    //}); 
-
     var mySwiper2 = new Swiper('.swiper-container-services', {
         grabCursor: true,
         autoplay: true,
