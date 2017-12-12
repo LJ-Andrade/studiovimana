@@ -194,6 +194,7 @@
     var mySwiper2 = new Swiper('.swiper-container-services', {
         grabCursor: true,
         autoplay: true,
+        autoHeight: true,
         spaceBetween: 150,
         autoplay: {
             delay: 4000,
