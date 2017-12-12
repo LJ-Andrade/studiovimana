@@ -735,6 +735,7 @@
 
 .contact-tab {
   position: fixed;
+  z-index: 9999;
   right: 20px;
   bottom: 50px;
   background-color: #fff;
