@@ -70,7 +70,6 @@ uncheckAll();
 */
 
 deleteRecord = function(id, route, bigtext, smalltext) {
-	
 	swal({
 		title: bigtext,
 		text: smalltext,
@@ -165,9 +164,6 @@ deleteAndReload = function(id, route, bigtext, smalltext) {
 	});
 
 }
-
-
-
 
 /*
 |--------------------------------------------------------------------------

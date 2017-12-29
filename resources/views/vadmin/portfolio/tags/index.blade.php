@@ -42,6 +42,10 @@
 	@section('top-space')
 		<div class="top-space"></div>
 	@endsection
+@else
+	@section('top-space')
+		<div class="top-space-small"></div>
+	@endsection
 @endif
 
 {{-- CONTENT --}}

@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="keywords" content="">
 		<meta name="author" content="Vimana Studio">
-		<title>{{ config('app.name', 'Vadmin') }}</title>
+		<title>{{ config('app.name') }}</title>
 		<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('images/logos/vadminlogo-dark.png') }}">
 		<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('images/logos/vadminlogo-dark.pngg') }}">
 		<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('images/logos/vadminlogo-dark.png') }}">

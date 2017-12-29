@@ -15,9 +15,10 @@
 @section('content')
 	<div class="dashboard">
 		<div class="main-title">BIENVENIDOS AL ESPECTACULAR ADMINISTRADOR <b class="black">VADMIN</b> DE <br>
-		
 			<img src="{{ asset('webimages/logos/logo.png') }}" alt="">
-		
+			<div><br>
+			Rol de Usuario: {{ roleTrd(Auth::user()->role) }} <br>
+			Grupo: {{ groupTrd(Auth::user()->group) }}</div>
 		</div>
 
 		@if($messages > 0)

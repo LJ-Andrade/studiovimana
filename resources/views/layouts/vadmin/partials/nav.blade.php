@@ -10,12 +10,12 @@
 		<div class="navbar-container content container-fluid">
 			<div id="navbar-mobile" class="collapse navbar-toggleable-sm">
 				<ul class="nav navbar-nav">
-					<li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5">         </i></a></li>
+					<li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5"></i></a></li>
 					<li class="nav-item hidden-sm-down"><a href="#" class="nav-link nav-link-expand"><i class="ficon icon-expand2"></i></a></li>
 				</ul>
 				<ul class="nav navbar-nav float-xs-right">
-					<li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="{{ asset('images/users/'.Auth::user()->avatar ) }}" alt="avatar"><i></i></span><span class="user-name">{{ Auth::user()->name }}</span></a>
-						<div class="dropdown-menu dropdown-menu-right"><a href="{{ url('vadmin/users/'.Auth::user()->id) }}" class="dropdown-item"><i class="icon-head"></i> Perfil</a><a href="#" class="dropdown-item"><i class="icon-mail6"></i> My Inbox</a><a href="#" class="dropdown-item">
+					<li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="{{ asset('images/users/'.Auth::user()->avatar ) }}" alt="avatar" class="CheckImg"><i></i></span><span class="user-name">{{ Auth::user()->name }}</span></a>
+						<div class="dropdown-menu dropdown-menu-right"><a href="{{ url('vadmin/users/'.Auth::user()->id) }}"  class="dropdown-item"><i class="icon-head"></i> Perfil</a><a href="#" class="dropdown-item"><i class="icon-mail6"></i> My Inbox</a><a href="#" class="dropdown-item">
 							<div class="dropdown-divider"></div>
 							<a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 								<i class="icon-power3"></i> Desconectar

@@ -8,7 +8,7 @@ class CatalogArticle extends Model
 {
     protected $table = "catalog_articles";
 
-    protected $fillable = ['name', 'code', 'price', 'offer', 'textile', 'description', 'category_id', 'user_id', 'thumb', 'status', 'slug'];
+    protected $fillable = ['name', 'code', 'stock', 'stockmin', 'price', 'offer', 'textile', 'description', 'category_id', 'user_id', 'thumb', 'status', 'slug'];
 
      public function category(){
     	return $this->belongsTo('App\CatalogCategory');

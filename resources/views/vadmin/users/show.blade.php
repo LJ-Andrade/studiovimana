@@ -24,9 +24,9 @@
                     <div class="inner">
                         <div class="image">
                             @if($user->avatar == '')
-                                <img id="Avatar" class="Image-Container" src="{{ asset('images/users/default.jpg') }}" alt="Imágen de Usuario">
+                                <img id="Avatar" class="Image-Container CheckImg" src="{{ asset('images/users/default.jpg') }}" alt="Imágen de Usuario">
                             @else	
-                                <img id="Avatar" class="Image-Container" src="{{ asset('images/users/'.$user->avatar) }}" alt="Imágen de Usuario">
+                                <img id="Avatar" class="Image-Container CheckImg" src="{{ asset('images/users/'.$user->avatar) }}" alt="Imágen de Usuario">
                             @endif
                             <span class="over-text">Cambiar imágen</span>
                         </div>

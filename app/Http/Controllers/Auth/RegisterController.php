@@ -52,22 +52,39 @@ class RegisterController extends Controller
             'username' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
+            ]);
+        }
+        
+        /**
+         * Create a new user instance after a valid registration.
+         *
+         * @param  array  $data
+         * @return \App\User
+         */
     protected function create(array $data)
     {
+        switch($data['usertype']){
+            case '99':
+                $role  = "3";
+                $group = "2";
+                break;
+            case '111':
+                $role  = "3";
+                $group = "1";
+                break;
+            default:
+                $group = "2";
+                $role  = "3";
+        }        
+        
         return User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'group' => $group,
+            'role' => $role
         ]);
     }
+
 }

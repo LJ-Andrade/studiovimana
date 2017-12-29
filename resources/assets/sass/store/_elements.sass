@@ -1,3 +1,57 @@
+//////////////////////////////////////
+//                                  //
+//              COLORS              //
+//                                  //
+//////////////////////////////////////
+
+$orange:  #dc9f1d
+$orangeH: #ceaa5f
+$greenD:  #8DBB61
+$greenL:  #9FD56B
+$green:   #8DBB61
+$greenH:  #9FD56B
+$blue:    #5D76C9
+$blueH:   #7689C8
+$lblue:   #0da9ef
+$red:     #D05C5C
+$redH:    #C47777
+
+//////////////////////////////////////
+//                                  //
+//           BACKGROUNDS            //
+//                                  //
+//////////////////////////////////////
+
+.blue-back
+	background-color: $blue
+
+.green-back
+	background-color: $green
+
+.red-back
+	background-color: $red
+
+.grey-back
+	background-color: #f3f3f3
+
+.hollow-back-white
+	border: 1px solid white
+	background-color: transparent
+
+.hollow-back-lblue
+	border: 1px solid $lblue
+	background-color: transparent
+	color: #383838
+
+.trans-back-lblue
+	border: 1px solid $lblue
+	background-color: rgba(255,255,255,.5)
+	color: #383838
+//////////////////////////////////////
+//                                  //
+//           PAGINATION             //
+//                                  //
+//////////////////////////////////////
 
 ul.pagination
 	// border-color: #0da9ef
@@ -39,35 +93,82 @@ ul.pagination li a.active,ul.pagination li.active
 	background-color: #0da9ef
 	color: #fff
 
-// ul.pagination li a
-// 	color: black
-// 	transition: background-color .3s
-// 	border: none
+//////////////////////////////////////
+//                                  //
+//       CONTAINERS / ITEMS         //
+//                                  //
+//////////////////////////////////////
 
-// ul.pagination li a.active
-// 	background-color: #4CAF50
-// 	color: white
+.grid-item
+	.product-card
+		.product-thumb
+			.inner
+				position: relative
+				.data
+					position: absolute
+					opacity: 0
+					width: 100%
+					height: 100%
+					background-color: rgba(255,255,255,.7)
+					@include transition(0.2s)
+					color: #383838
+					div.text
+						font-size: 1rem
+						padding: 10px
+						width: 100%
+						
+					&:hover
+						opacity: 1
 
-// ul.pagination li.active
-// 	/*background-color: #4CAF50;*/
-// 	background-color: #1D2B36
-// 	padding: 8px 12px
-// 	color: white
+.widget
+	.inline
+		ul
+			padding-left: 0
+			padding: 0
+			margin: 0
+			li
+				min-width: 60px
+				display: inline-block
+				list-style: none
 
-// ul.pagination li.disabled
-// 	background-color: #f9f9f9
-// 	&:hover	
-// 		cursor: not-allowed
-	
+.site-logo
+	width: 190px
 
-// /*ul.pagination li a:hover:not(.active) {background-color: #ddd;}*/
-// ul.pagination li a:hover
-// 	background-color: #606975
-// 	color: #fff
+//////////////////////////////////////
+//                                  //
+//       BUTTONS / TRIGGERS         //
+//                                  //
+//////////////////////////////////////
 
-// ul.pagination li.disabled
-//     /*background-color: #cccccc;*/
-//     color: #ddd
-//     padding: 8px 12px
-//     border: 1px solid #ddd
-//     margin: 4px
+.custom-badge
+	display: inline-block
+	min-width: 10px
+	padding: 3px 7px
+	font-size: 12px
+	font-weight: 700
+	line-height: 1
+	text-align: center
+	white-space: nowrap
+	vertical-align: middle
+	border-radius: 10px
+	margin-bottom: 5px
+
+
+.navbar-sticky
+	.toolbar
+		.inner
+			.tools
+				.account
+					img
+						border-radius: 50%
+
+//////////////////////////////////////
+//                                  //
+//             FORMS                //
+//                                  //
+//////////////////////////////////////
+
+.centered-form
+	@include flex-column
+	.inner
+		max-width: 500px

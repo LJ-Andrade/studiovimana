@@ -29,11 +29,17 @@
 					<!-- Widget Size Filter-->
 					<section class="widget">
 						<h3 class="widget-title">Talles</h3>
-						@foreach($atributes1 as $atribute1)
-							<label class="custom-control custom-checkbox d-block">
-								<input class="custom-control-input" type="checkbox"><span class="custom-control-indicator"></span><span>{{ $atribute1 }}</span>
-							</label>
-						@endforeach
+						<div class="inline">
+							<ul>
+							@foreach($atributes1 as $atribute1)
+								<li>
+								<label class="custom-control custom-checkbox d-block">
+									<input class="custom-control-input" type="checkbox"><span class="custom-control-indicator"></span><span>{{ $atribute1 }}</span>
+								</label>
+								</li>
+							@endforeach
+							</ul>
+						</div>
 					</section>
 				</aside>
 			</div>

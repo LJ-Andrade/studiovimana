@@ -4,6 +4,24 @@
 
 Vadmin es un gestor de contenido. Permite el manejo de distintas secciones de una web como ser un blog, un catálogo, un portfolio, etc. Dispone de un módulo de gestión de usuarios, donde los mismo pueden tener distintos tipos de permisos y pertenecer a grupos. Por ejemplo: Clientes, Usuarios, Administradores.
 
+# Usuarios / Vadmin
+## Tipos de Usuario (role)
+- 1 Superadmin 
+- 2 Admin 
+- 3 User 
+- 4 Guest
+
+## Grupos (group)
+- 1 Member
+- 2 Client
+- 3 ClientBig
+
+# Usuarios / Tienda
+## Grupos (group)
+- 1 Client
+- 2 ClientBig
+- 3 Other
+
 ## Funciones y Métodos
 
 ### Actualizar estados:

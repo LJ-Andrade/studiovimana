@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>Santa Osadía | Tienda</title>
+		<title>Tienda</title>
 		<!-- SEO Meta Tags-->
 		<meta name="description" content="Unishop - Universal E-Commerce Template">
 		<meta name="keywords" content="shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
@@ -26,8 +26,10 @@
 	</head>
 	<!-- Body-->
 	<body>
-		@include('layouts.store.partials.nav')
-		    <!-- Off-Canvas Wrapper-->
+		@include('layouts.store.partials.topbar')
+		@include('layouts.store.partials.mobilemenu')
+		@include('layouts.store.partials.nav') {{-- ToolBar in inside this nav include --}}
+		<!-- Off-Canvas Wrapper-->
 		<div class="offcanvas-wrapper">
 		<!-- Page Title-->
 		{{--  <div class="page-title">
@@ -37,7 +39,6 @@
 			</div>
 			</div>
 		</div>  --}}
-		{{--  sd  --}}
 		<br>
 		<div class="container custom-page-title">
 			<h1>Tienda</h1>
@@ -50,5 +51,11 @@
 		<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 		<script src="{{ asset('store-ui/js/vendor.min.js') }}"></script>
 		<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
+		<script>
+			$('.CheckImg').on('error', function(){
+				var defaultImg = "{{ asset('images/users/default.jpg') }}"
+				$(this).attr('src', defaultImg);
+			});
+		</script>
 	</body>
 </html>

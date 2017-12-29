@@ -148,7 +148,6 @@ uncheckAll();
 */
 
 deleteRecord = function deleteRecord(id, route, bigtext, smalltext) {
-
 	swal({
 		title: bigtext,
 		text: smalltext,

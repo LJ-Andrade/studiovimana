@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Middleware\Admins;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web
@@ -23,8 +20,9 @@ Auth::routes();
 |--------------------------------------------------------------------------
 */
 Route::get('tienda', 'StoreController@index');
+Route::get('tiendalogin', 'StoreController@login');
+Route::get('tiendaregister', 'StoreController@register');
 Route::get('producto/{id}', 'StoreController@product');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -58,35 +56,17 @@ Route::post('mail_sender', 'WebController@mail_sender');
 
 /*
 |--------------------------------------------------------------------------
-| VADmin
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/home', 'VadminController@index')->middleware('auth');
-Route::get('/vadmin', 'VadminController@index')->middleware('auth');
-
-/*
-|--------------------------------------------------------------------------
-| Users
-|--------------------------------------------------------------------------
-*/
-
-// Route::get('profile', 'UsersController@profile');
-// Route::post('profile', 'UsersController@updateAvatar');	
-
-Route::prefix('vadmin')->middleware('auth')->group(function () {
-    Route::resource('users', 'UserController')->middleware('Admins');
-});
-
-/*
-|--------------------------------------------------------------------------
 | VADMIN / SECTIONS
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'vadmin', 'middleware' => ['auth:web']], function(){
+
+    Route::get('/home', 'VadminController@index');
+    Route::get('/', 'VadminController@index');
     
     // -- USERS --
+    Route::resource('users', 'UserController');
     Route::post('updateAvatar', 'UserController@updateAvatar');	
     Route::get('/mensajes_recibidos', 'VadminController@storedContacts');
     Route::get('mensajes_recibidos/{id}', 'VadminController@showStoredContact');
@@ -101,6 +81,10 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
 
     // -- CATALOG --
     Route::resource('catalogo', 'Catalog\ArticlesController');
+    Route::post('update_catalog_stock/{id}', 'Catalog\ArticlesController@updateStock');
+    Route::post('update_catalog_price/{id}', 'Catalog\ArticlesController@updatePrice');
+    Route::post('update_catalog_offer/{id}', 'Catalog\ArticlesController@updateOffer');
+    
     Route::resource('cat_categorias', 'Catalog\CategoriesController');
     Route::resource('cat_tags', 'Catalog\TagsController');
     Route::post('cat_article_status/{id}', 'Catalog\ArticlesController@updateStatus');
@@ -114,7 +98,6 @@ Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
         return view('vadmin.docs');
     });
 
-    
 });
     
 /*

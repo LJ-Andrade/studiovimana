@@ -74,7 +74,6 @@ function roleTrd($role)
         case 4:
             echo 'Invitado';
             break;
-
         default:
             echo '';
             break;

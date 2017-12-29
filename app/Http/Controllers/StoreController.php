@@ -31,6 +31,17 @@ class StoreController extends Controller
         ->with('categories', $categories);
     }
 
+    public function login()
+    {
+        return view('store.login');
+    }
+
+    public function register()
+    {
+        return view('store.register');
+    }
+
+
     public function product(Request $request)
     {
         $article = CatalogArticle::findOrFail($request->id);

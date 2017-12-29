@@ -260,6 +260,47 @@ class ArticlesController extends Controller
             ]);
     }
 
+    public function updateStock(Request $request, $id)
+    {   
+        $item          = CatalogArticle::find($id);
+        $item->stock   = $request->value;
+        $item->save();
+
+        return response()->json([
+            "response" => '1',
+            "newstock" => $item->stock,
+            "action"   => $request->action
+        ]);
+    }
+
+    public function updatePrice(Request $request, $id)
+    {   
+        $item          = CatalogArticle::find($id);
+        $item->price   = $request->value;
+        $item->save();
+
+        return response()->json([
+            "response" => '1',
+            "newprice" => $item->price,
+            "action"   => $request->action
+        ]);
+    }
+
+    public function updateOffer(Request $request, $id)
+    {   
+        $item          = CatalogArticle::find($id);
+        $item->offer   = $request->value;
+        $item->save();
+
+        return response()->json([
+            "response" => '1',
+            "newoffer" => $item->offer,
+            "action"   => $request->action
+        ]);
+    }
+
+
+
     /*
     |--------------------------------------------------------------------------
     | DESTROY

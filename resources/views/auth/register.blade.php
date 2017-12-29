@@ -71,6 +71,7 @@
                             </div>
                         </fieldset>
                         {{-- Submit --}}
+                        <input type="hidden" name="usertype" value="111">
                         <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock2"></i> Registrarse</button>
                     </form>
                 </div>

@@ -1,0 +1,73 @@
+@extends('layouts.store.main')
+
+@section('content')
+<div class="container padding-bottom-3x mb-2">
+	<div class="row centered-form">
+        <form class="login-box form-simple inner" method="POST" action="{{ route('register') }}">
+            {{ csrf_field() }}
+            <h3>Registrarse</h3>
+            <div class="row">
+                {{-- Username --}}
+                <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                    <label for="reg-fn">Nombre de Usuario (Apodo)</label>
+                    <input id="username" type="text" name="username" class="form-control round" placeholder="Ingrese su nombre de usuario" value="{{ old('name') }}" required>
+                    @if ($errors->has('username'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('username') }}</strong>
+                        </span>
+                    @endif
+                </div> 	
+                {{-- Name and Surname --}}
+                <div class="col-sm-6 form-group{{ $errors->has('name') ? ' has-error' : '' }} ">
+                    <label for="reg-fn">Nombre y Apellido</label>
+                    <input id="name" type="text" name="name" class="form-control round" placeholder="Ingrese su nombre" value="{{ old('name') }}" required>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                {{-- E-mail --}}
+                <div class="col-sm-12 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="reg-fn">E-Mail</label>
+                    <input id="name" type="text" name="email" class="form-control round" placeholder="Ingrese su email" value="{{ old('email') }}" required>
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div> 	
+            </div>
+            <div class="row">
+                {{-- Password --}}
+                <div class="col-sm-6 form-group{{ $errors->has('password') ? ' has-error' : '' }} position-relative has-icon-left">
+                    <label for="reg-fn">Contraseña</label>
+                    <input id="password" type="password"  name="password" class="form-control round" placeholder="Contraseña" required>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                </div> 	
+                {{-- Password Confirmation --}}
+                <div class="col-sm-6 form-group{{ $errors->has('password') ? ' has-error' : '' }} position-relative has-icon-left">
+                    <label for="reg-fn">Confirmar Contraseña</label>
+                    <input id="password-confirm" type="password" name="password_confirmation" class="form-control round" placeholder="Confirme Contraseña" required>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <input type="hidden" name="usertype" value="99">
+            {{-- Submit --}}
+            <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock2"></i> Registrarse</button>
+        </form>
+        <span>Ya tiene cuenta? | <a href="{{ url('tiendalogin') }}">Ingresar</a></span>
+	</div>
+</div>
+@endsection
+    

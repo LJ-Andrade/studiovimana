@@ -1,3 +1,36 @@
+.blue-back {
+  background-color: #5D76C9;
+}
+
+.green-back {
+  background-color: #8DBB61;
+}
+
+.red-back {
+  background-color: #D05C5C;
+}
+
+.grey-back {
+  background-color: #f3f3f3;
+}
+
+.hollow-back-white {
+  border: 1px solid white;
+  background-color: transparent;
+}
+
+.hollow-back-lblue {
+  border: 1px solid #0da9ef;
+  background-color: transparent;
+  color: #383838;
+}
+
+.trans-back-lblue {
+  border: 1px solid #0da9ef;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #383838;
+}
+
 ul.pagination {
   display: block;
   margin: 0;
@@ -40,4 +73,84 @@ ul.pagination li a.active, ul.pagination li.active {
   border-color: #0da9ef;
   background-color: #0da9ef;
   color: #fff;
+}
+
+.grid-item .product-card .product-thumb .inner {
+  position: relative;
+}
+
+.grid-item .product-card .product-thumb .inner .data {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  color: #383838;
+}
+
+.grid-item .product-card .product-thumb .inner .data div.text {
+  font-size: 1rem;
+  padding: 10px;
+  width: 100%;
+}
+
+.grid-item .product-card .product-thumb .inner .data:hover {
+  opacity: 1;
+}
+
+.widget .inline ul {
+  padding-left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.widget .inline ul li {
+  min-width: 60px;
+  display: inline-block;
+  list-style: none;
+}
+
+.site-logo {
+  width: 190px;
+}
+
+.custom-badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.navbar-sticky .toolbar .inner .tools .account img {
+  border-radius: 50%;
+}
+
+.centered-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.centered-form .inner {
+  max-width: 500px;
 }

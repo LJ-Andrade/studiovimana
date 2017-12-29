@@ -42,6 +42,10 @@
 	@section('top-space')
 		<div class="top-space"></div>
 	@endsection
+@else
+	@section('top-space')
+		<div class="top-space-small"></div>
+	@endsection
 @endif
 
 {{-- CONTENT --}}
@@ -65,12 +69,12 @@
 						<th></th>
 						<th>Cód.</th>
 						<th>Título</th>
+						<th>Stock</th>
 						<th>Precio</th>
-						<th>Oferta</th>
+						<th>Oferta (%)</th>
 						<th>Fecha de Creación</th>
 						<th>Estado</th>
 					@endslot
-
 					@slot('tableContent')
 						@foreach($articles as $item)
 							<tr>
@@ -90,14 +94,36 @@
 								</td>
 								<td class="w-50">{{ $item->code }}</td>
 								<td class="show-link max-text"><a href="{{ url('vadmin/catalogo/'.$item->id) }}">{{ $item->name }}</a></td>
-								<td>$ {{ $item->price }}</td>
-								<td>
-									@if($item->offer == '0')
-									-
+								{{--  STOCK  --}}
+								<td class="Modificable-Stock-Input modificable-input">
+									@if($item->stock > $item->stockmin)
+										<input class="UpdateStockInput List-Input Hidden" type="number" name="stock">
+										<div class="DisplayStockData">{{ $item->stock }}</div>
+										<div class="UpdateStockBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
 									@else
-									$ {{ calcValuePercentNeg($item->price, $item->offer).' (%'. $item->offer.')' }}
+										<input class="UpdateStockInput List-Input Hidden" type="number" name="stock">
+										<div class="DisplayStockData custom-badge btnRed">{{ $item->stock }}</div>
+										<div class="UpdateStockBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
 									@endif
 								</td>
+								{{--  PRICE  --}}
+								<td class="Modificable-Price-Input modificable-input">
+									<input class="UpdatePriceInput List-Input Hidden" type="text" name="price">
+									<span class="Extra-Data">$ </span><span class="DisplayPriceData">{{ $item->price }}</span>
+									<div class="UpdatePriceBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
+								</td>
+								{{--  OFFER PERCENT and PRICE  --}}
+								<td class="Modificable-Offer-Input modificable-input">
+									@if($item->offer == '0')
+									<input class="UpdateOfferInput List-Input Hidden" type="text" name="price">
+									<span class="Extra-Data">-</span>
+									@else
+									<input class="UpdateOfferInput List-Input Hidden" type="text" name="price">
+									<span class="Extra-Data">%</span><span class="DisplayOfferData">{{ $item->offer }}</span><span class="Extra-Data"> ($ {{ calcValuePercentNeg($item->price, $item->offer) }})</span>
+									@endif
+									<div class="UpdateOfferBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
+								</td>
+								{{--  DATE   --}}
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 								<td class="w-50 pad0 centered">
 									@if($item->status == '1')
@@ -114,12 +140,11 @@
 										Sin estado
 									@endif
 								</td>
-							</tr>						
+							</tr>					
 						@endforeach
 						@endif
 				@endslot
 			@endcomponent
-			
 			{{--  Pagination  --}}
 			@if(isset($_GET['title']))
 				{!! $articles->appends(['title' => $_GET['title']])->render() !!}
@@ -141,10 +166,11 @@
 {{-- CUSTOM JS SCRIPTS--}}
 @section('custom_js')
 	<script>
-	$('.CatalogLi').addClass('open');
-	$('.CatalogList').addClass('active');
-
 	$(document).ready(function(e) {
+		$('.CatalogLi').addClass('open');
+		$('.CatalogList').addClass('active');
+
+		// Article Status
 		$('.PauseArticle').click(function() {
 			var cbx = $(this);
 			if (cbx[0].checked) {
@@ -169,24 +195,6 @@
 			}
 		});
 	});
-
-	//function updateStatus(id, status)
-	//{
-	//	var route = "{{ url('/vadmin/cat_article_status') }}/"+id+"";
-	//	$.ajax({
-	//		
-	//		url: route,
-	//		method: 'POST',             
-	//		dataType: 'JSON',
-	//		data: { id: id, status: status },
-	//		success: function(data){
-	//			console.log(data);
-	//		},
-	//		error: function(data){
-	//			$('#Error').html(data.responseText);
-	//		}
-	//	});
-	//}
 
 	</script>
 @endsection

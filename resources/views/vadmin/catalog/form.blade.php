@@ -1,7 +1,6 @@
-
 {{-- Title --}}
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             {!! Form::label('name', 'Nombre') !!}
             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Título del artículo', 'id' => 'TitleInput', 
@@ -9,12 +8,20 @@
         </div>
     </div>
     {{-- Slug --}}
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             {!! Form::label('slug', 'Url Amigable - Dirección web') !!}
             {!! Form::text('slug', null, ['class' => 'SlugInput form-control', 'placeholder' => 'Dirección visible (en explorador)', 'id' => 'SlugInput', 'required' => '']) !!}
             <div class="slug2"></div>
         </div>
+    </div>
+    <div class="col-md-2">
+        {!! Form::label('stock', 'Stock') !!}
+        {!! Form::number('stock', null, ['class' => 'form-control', 'placeholder' => 'Stock']) !!}
+    </div>
+    <div class="col-md-2">
+        {!! Form::label('stockmin', 'Stock Mínimo') !!}
+        {!! Form::number('stockmin', null, ['class' => 'form-control', 'placeholder' => 'Stock mínimo']) !!}
     </div>
 </div>
 <div class="row">
