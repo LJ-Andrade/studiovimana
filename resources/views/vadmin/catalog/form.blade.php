@@ -43,7 +43,7 @@
     <div class="col-md-2">
         <div class="form-group">
             {!! Form::label('offer', '% Oferta') !!}
-            {!! Form::number('offer', null, ['class' => 'form-control', 'min' => '0', 'required' => '', 'maxlength' => '30', 'step'=>'any']) !!}
+            {!! Form::number('offer', '0', ['class' => 'form-control', 'min' => '0', 'maxlength' => '30', 'step'=>'any']) !!}
         </div>
     </div>
     {{-- Slug --}}

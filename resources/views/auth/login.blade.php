@@ -13,7 +13,7 @@
             </div>
             <div class="card-body collapse in">
                 <div class="card-block">
-                    <form class="form-horizontal form-simple" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal form-simple" method="POST" action="{{ route('vadmin.login.submit') }}">
                         {{ csrf_field() }}
                         <fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }} position-relative has-icon-left mb-0">
                             <input id="email" type="text" name="email" class="form-control round" placeholder="Ingrese su Email" value="{{ old('email') }}" required>

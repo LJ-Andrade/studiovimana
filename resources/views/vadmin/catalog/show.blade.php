@@ -31,7 +31,6 @@
 						@else
 							<img class="Featured-Image-Container" src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
 						@endif
-						
 					</div>
 					<div class="col-md-9">
 					@if(count($article->images) != 0 )
@@ -53,7 +52,14 @@
 				</div>
 				<hr class="softhr">
 				<b>Precio:</b> <span class="custom-badge btnBlue"> $ {!! $article->price !!}</span> <br>
-				<b>Descuento: </b> <span class="custom-badge btnRed"> % {{ $article->offer }}</span> <br>
+				<b>Descuento: </b> 
+					<span class="custom-badge btnRed">
+						@if($article->offer == null || $article->offer == '0')
+						Sin descuento						
+						@else %  {{ $article->offer }}
+						@endif
+					</span> 
+				<br>
 				<b> Precio c/ Desc.: </b> <span class="custom-badge btnGreen"> $ {{ $article->price - ($article->price * $article->offer) / 100 }}</span>
 				<hr class="softhr">
 				<b>Url - Dirección web amigable (Slug):</b> <span class="badge">{!! $article->slug !!}</span>

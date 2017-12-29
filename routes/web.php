@@ -13,6 +13,10 @@ Route::get('/', [
 ]);
 
 Auth::routes();
+Route::get('/vadmin/login', 'AdminLoginController@showLoginForm')->name('vadmin.login');
+Route::post('/vadmin/login', 'AdminLoginController@login')->name('vadmin.login.submit');
+Route::get('/vadmin', 'AdminController@index')->name('vadmin');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,10 +64,10 @@ Route::post('mail_sender', 'WebController@mail_sender');
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'vadmin', 'middleware' => ['auth:web']], function(){
+Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
 
-    Route::get('/home', 'VadminController@index');
-    Route::get('/', 'VadminController@index');
+    //Route::get('/home', 'VadminController@index');
+    //Route::get('/', 'VadminController@index');
     
     // -- USERS --
     Route::resource('users', 'UserController');

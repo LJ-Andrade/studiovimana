@@ -92,7 +92,11 @@ class ArticlesController extends Controller
             'slug.unique'          => 'El slug debe ser único, algún otro artículo lo está usando',
             'image'                => 'El archivo adjuntado no es soportado',
         ]);
-    	
+        
+        if($request->offer == null){
+            $request->offer = '0';
+        }
+        
         $article           = new CatalogArticle($request->all());
         $article->user_id  = \Auth::user()->id;
         
