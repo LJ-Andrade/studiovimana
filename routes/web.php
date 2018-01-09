@@ -19,7 +19,6 @@ Route::get('/', [
 */
 
 Auth::routes();
-<<<<<<< HEAD
 Route::group(['prefix'=> 'vadmin'], function() {
     
     // Login Routes...
@@ -40,12 +39,6 @@ Route::group(['prefix'=> 'vadmin'], function() {
 
     // Route::get('/home', 'VadminController@index');
     // Route::get('/vadmin', 'VadminController@index');
-=======
-Route::get('/vadmin/login', 'AdminLoginController@showLoginForm')->name('vadmin.login');
-Route::post('/vadmin/login', 'AdminLoginController@login')->name('vadmin.login.submit');
-Route::get('/vadmin', 'AdminController@index')->name('vadmin');
-
->>>>>>> 545029fb7112fc3e168bdd2fbd8b2db034b5d8f9
 
 /*
 |--------------------------------------------------------------------------
@@ -101,11 +94,7 @@ Route::post('mail_sender', 'WebController@mail_sender');
 |--------------------------------------------------------------------------
 */
 
-<<<<<<< HEAD
 Route::group(['prefix' => 'vadmin'], function(){
-=======
-Route::group(['prefix' => 'vadmin', 'middleware' => ['auth']], function(){
->>>>>>> 545029fb7112fc3e168bdd2fbd8b2db034b5d8f9
 
     //Route::get('/home', 'VadminController@index');
     //Route::get('/', 'VadminController@index');
