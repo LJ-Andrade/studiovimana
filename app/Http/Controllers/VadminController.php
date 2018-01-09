@@ -9,13 +9,13 @@ class VadminController extends Controller
 {   
     public function __construct()
     {
-        //$this->middleware('auth:user');
+        $this->middleware('auth:user');
     }
     
     public function index(Request $request)
     {
-        $messages = Contact::get()->count();
-        return view('vadmin')->with('messages', $messages);
+        $messages = Contact::where('status', '=', '0')->count();
+        return view('vadmin.vadmin')->with('messages', $messages);
     }
 
     public function storedContacts(Request $request)

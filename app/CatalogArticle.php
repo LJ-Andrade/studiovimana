@@ -10,15 +10,23 @@ class CatalogArticle extends Model
 
     protected $fillable = ['name', 'code', 'stock', 'stockmin', 'price', 'offer', 'textile', 'description', 'category_id', 'user_id', 'thumb', 'status', 'slug'];
 
-     public function category(){
+    public function category(){
     	return $this->belongsTo('App\CatalogCategory');
     }
 
-     public function user(){
+    public function fav(){
+    	return $this->belongsTo('App\CatalogFav', 'article_id');
+    }
+
+    public function client(){
+    	return $this->belongsTo('App\Client');
+    }
+
+    public function user(){
     	return $this->belongsTo('App\User');
     }
 
-     public function images(){
+    public function images(){
     	return $this->hasMany('App\CatalogImage', 'article_id');
     }
 

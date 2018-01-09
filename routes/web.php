@@ -12,17 +12,67 @@ Route::get('/', [
 	'uses' => 'WebController@home',
 ]);
 
+/*
+|--------------------------------------------------------------------------
+| VAdmin
+|--------------------------------------------------------------------------
+*/
+
 Auth::routes();
+Route::group(['prefix'=> 'vadmin'], function() {
+    
+    // Login Routes...
+        Route::get('login', ['as' => 'vadmin.login', 'uses' => 'Auth\LoginController@showLoginForm']);
+        Route::post('login', ['uses' => 'Auth\LoginController@login']);
+        Route::post('logout', ['as' => 'vadmin.logout', 'uses' => 'Auth\LoginController@logout']);
+    
+    // Registration Routes...
+        Route::get('register', ['as' => 'vadmin.register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+        Route::post('register', ['uses' => 'Auth\RegisterController@register']);
+    
+    // Password Reset Routes...
+        Route::get('password/reset', ['as' => 'vadmin.password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+        Route::post('password/email', ['as' => 'vadmin.password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+        Route::get('password/reset/{token}', ['as' => 'vadmin.password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
+        Route::post('password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
+    });
+
+    // Route::get('/home', 'VadminController@index');
+    // Route::get('/vadmin', 'VadminController@index');
 
 /*
 |--------------------------------------------------------------------------
 | Store
 |--------------------------------------------------------------------------
 */
-Route::get('tienda', 'StoreController@index');
-Route::get('tiendalogin', 'StoreController@login');
-Route::get('tiendaregister', 'StoreController@register');
-Route::get('producto/{id}', 'StoreController@product');
+    Route::get('tienda', ['as' => 'store', 'uses' => 'StoreController@index']);
+    
+    Route::group(['prefix'=> 'tienda'], function() {        
+        // Sections    
+        Route::get('articulo/{id}', 'StoreController@show')->middleware('customer');
+        Route::get('cuenta', ['as' => 'store.client-account', 'uses' => 'StoreController@clientProfile'])->middleware('customer');
+        Route::get('favoritos', ['as' => 'store.client-wishlist', 'uses' => 'StoreController@clientWishlist'])->middleware('customer');
+        Route::post('addArticleToFavs', ['as' => 'customer.addArticleToFavs', 'uses' => 'StoreController@addArticleToFavs']);
+        Route::post('removeArticleFromFavs', ['as' => 'customer.removeArticleFromFavs', 'uses' => 'StoreController@removeArticleFromFavs']);
+        Route::post('removeAllArticlesFromFavs', ['as' => 'customer.removeAllArticlesFromFavs', 'uses' => 'StoreController@removeAllArticlesFromFavs']);
+
+        // Login Routes...
+        Route::get('login', ['as' => 'customer.login', 'uses' => 'CustomerAuth\LoginController@showLoginForm']);
+        Route::post('login', ['uses' => 'CustomerAuth\LoginController@login']);
+        Route::post('logout', ['as' => 'customer.logout', 'uses' => 'CustomerAuth\LoginController@logout']);
+        
+        // Registration Routes...
+        Route::get('register', ['as' => 'customer.register', 'uses' => 'CustomerAuth\RegisterController@showRegistrationForm']);
+        Route::post('register', ['uses' => 'CustomerAuth\RegisterController@register']);
+        
+        // Password Reset Routes...
+        Route::get('password/reset', ['as' => 'customer.password.reset', 'uses' => 'CustomerAuth\ForgotPasswordController@showLinkRequestForm']);
+        Route::post('password/email', ['as' => 'customer.password.email', 'uses' => 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail']);
+        Route::get('password/reset/{token}', ['as' => 'customer.password.reset.token', 'uses' => 'CustomerAuth\ResetPasswordController@showResetForm']);
+        Route::post('password/reset', ['uses' => 'CustomerAuth\ResetPasswordController@reset']);
+        
+            
+    });
 
 /*
 |--------------------------------------------------------------------------
@@ -30,28 +80,12 @@ Route::get('producto/{id}', 'StoreController@product');
 |--------------------------------------------------------------------------
 */
 
-Route::get('portfolio', [
-	'as'   => 'web.portfolio',
-	'uses' => 'WebController@portfolio',
-]);
-
+Route::get('portfolio', ['as'   => 'web.portfolio',	'uses' => 'WebController@portfolio']);
 // Show Article / Catalogue
-Route::get('article/{slug}', [
-	'uses' => 'WebController@showWithSlug',
-	'as'   => 'web.portfolio.article'
-])->where('slug', '[\w\d\-\_]+');
-
+Route::get('article/{slug}', ['uses' => 'WebController@showWithSlug', 'as'   => 'web.portfolio.article'])->where('slug', '[\w\d\-\_]+');
 // Article Searcher
-Route::get('categories/{name}', [
-	'uses' => 'WebController@searchCategory',
-	'as'   => 'web.search.category'
-]);
-
-Route::get('tag/{name}', [
-	'uses' => 'WebController@searchTag',
-	'as'   => 'web.search.tag'
-]);
-
+Route::get('categories/{name}', ['uses' => 'WebController@searchCategory', 'as'   => 'web.search.category']);
+Route::get('tag/{name}', ['uses' => 'WebController@searchTag', 'as'   => 'web.search.tag']);
 Route::post('mail_sender', 'WebController@mail_sender');
 
 /*
@@ -60,7 +94,7 @@ Route::post('mail_sender', 'WebController@mail_sender');
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'vadmin', 'middleware' => ['auth:web']], function(){
+Route::group(['prefix' => 'vadmin'], function(){
 
     Route::get('/home', 'VadminController@index');
     Route::get('/', 'VadminController@index');

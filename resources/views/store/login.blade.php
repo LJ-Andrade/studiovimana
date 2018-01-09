@@ -1,9 +1,9 @@
 @extends('layouts.store.main')
 
 @section('content')
-<div class="container padding-bottom-3x mb-2">
+<div class="container padding-bottom-3x mb-2 marg-top-25">
 	<div class="row centered-form">
-		<form class="login-box inner" method="POST" action="{{ route('login') }}">
+		<form class="login-box inner" method="POST" action="{{ route('customer.login') }}">
 			{{ csrf_field() }}
 			<h3>Ingresar</h3>
 			<fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }} position-relative has-icon-left mb-0">

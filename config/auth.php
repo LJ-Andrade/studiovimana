@@ -44,9 +44,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'client' => [
+        'customer' => [
             'driver' => 'session',
-            'provider' => 'clients',
+            'provider' => 'customer',
         ],
 
         'api' => [
@@ -77,7 +77,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-        'clients' => [
+        'customer' => [
             'driver' => 'eloquent',
             'model' => App\Client::class,
         ],

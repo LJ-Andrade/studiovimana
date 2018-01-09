@@ -163,12 +163,14 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
+        /*
+        * Package Service Providers...
+        */
         // To send data to views (Categories, tags)
         App\Providers\ComposerServiceProvider::class,
-
-        /*
-         * Package Service Providers...
-         */
+        // Debug Bar
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -178,8 +180,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
-
+    
     ],
 
     /*
@@ -228,6 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // Packages
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

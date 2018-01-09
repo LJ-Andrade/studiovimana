@@ -1,5 +1,11 @@
 @extends('layouts.store.main')
 
+@section('header-image')
+	<div class="index-header">
+		<img src="{{ asset('store-ui/images/home/banner.jpg') }}" alt="">
+	</div>
+@endsection
+
 @section('content')
 	<!-- Page Content-->
 	<div class="container padding-bottom-3x mb-1">
@@ -15,7 +21,7 @@
 					<div class="grid-item">
 						<div class="product-card">
 							{{--  <div class="product-badge text-danger">50% Off</div>  --}}
-							<a class="product-thumb" href="{{ url('producto/'.$article->id) }}">
+							<a class="product-thumb" href="{{ url('tienda/articulo/'.$article->id) }}">
 								<div class="inner">
 									<div class="data">
 										<div class="text">
@@ -36,17 +42,26 @@
 							</a>
 							<h4 class="product-price">
 								@if($article->offer > 0)
-									<del>$ {{ $article->price }}</del> $ {{ calcValuePercentNeg($article->price, $article->offer) }}
+								<del>$ {{ $article->price }}</del> $ {{ calcValuePercentNeg($article->price, $article->offer) }}
 								@else
-									$ {{ $article->price }}
+								$ {{ $article->price }}
 								@endif
 							</h4>
 							<div class="product-buttons">
-								<button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="A Favoritos"><i class="icon-heart"></i></button>
-								<button class="btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!">Agregar</button>
+								@if(Auth::guard('customer')->check())
+								{{--  Check if product is in favs  --}}
+									<button class="AddToFavs btn btn-outline-secondary btn-sm btn-wishlist
+									@if(in_array($article->id, $favs['articleFavs'])) addedToFavs @endif
+									" data-id="{{ $article->id }}" data-customerid="{{ Auth::guard('customer')->user()->id }}" data-toggle="tooltip" title="A Favoritos"><i class="icon-heart"></i></button>
+									<button class="btn btn-outline-primary btn-sm" data-id="{{ $article->id }}" data-customerid="{{ Auth::guard('customer')->user()->id }}" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Producto" data-toast-message="Agregado!">Agregar</button>
+								@else 
+									<a href="{{ route('customer.login') }}" class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Agregar a Favoritos"><i class="icon-heart"></i></a>	
+									<a href="{{ route('customer.login') }}" class="btn btn-outline-primary btn-sm">Agregar</a>
+								@endif
 							</div>
 						</div>
 					</div>
+					{{ $article->catalogfavs }}
 					@endforeach
 				</div>
 				<!-- Pagination-->
@@ -55,5 +70,11 @@
 			@include('store.components.sidebar')
 		</div>
 	</div>
+	<div id="Error"></div>
 @endsection
+
+@section('custom_js')
+	@include('store.components.bladejs')
+@endsection
+
 	

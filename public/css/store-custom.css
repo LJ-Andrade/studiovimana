@@ -116,6 +116,10 @@ ul.pagination li a.active, ul.pagination li.active {
   width: 190px;
 }
 
+.index-header {
+  margin-bottom: 25px;
+}
+
 .custom-badge {
   display: inline-block;
   min-width: 10px;
@@ -153,4 +157,14 @@ ul.pagination li a.active, ul.pagination li.active {
 
 .centered-form .inner {
   max-width: 500px;
+}
+
+.addedToFavs {
+  background-color: #D05C5C;
+  color: #fff;
+  border: 0;
+}
+
+.marg-top-25 {
+  margin-top: 25px;
 }

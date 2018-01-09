@@ -99,8 +99,8 @@ function groupTrd($group)
     }
 }
 
-function statusTrd($status) {
-
+function statusTrd($status)
+{
     switch ($status) {
         case 'activo':
             echo 'En lista';
@@ -114,7 +114,8 @@ function statusTrd($status) {
     }
 }
 
-function messageStatusTrd($status) {
+function messageStatusTrd($status)
+{
     switch ($status) {
         case '0':
             echo 'No leído';
@@ -135,8 +136,8 @@ function messageStatusTrd($status) {
 }
     
 
-function paymentType($type) {
-
+function paymentType($type)
+{
     switch ($type) {
         case 'E':
             echo 'Efectivo';
@@ -156,8 +157,8 @@ function paymentType($type) {
     }
 }
 
-function movementType($type) {
-
+function movementType($type)
+{
     switch ($type) {
         case 'E':
             echo 'Efectivo';
@@ -186,8 +187,8 @@ function movementType($type) {
     }
 }
 
-function compType($type){
-
+function compType($type)
+{
     switch ($type) {
         case 'F':
             $comprobante = 'Factura';
@@ -256,7 +257,8 @@ function getMonthName($month)
 //              Date Formats                //
 //////////////////////////////////////////////
 
-function transDateT($data){
+function transDateT($data)
+{
     if($data != null){
         $a        = explode(' ', $data);
         $b        = explode('-', $a[0]);
@@ -267,7 +269,8 @@ function transDateT($data){
     }
 }
 
-function transDateAndTime($data){
+function transDateAndTime($data)
+{
     if($data != null){
         $a        = explode(' ', $data);
         $b        = explode('-', $a[0]);
@@ -281,7 +284,8 @@ function transDateAndTime($data){
     }
 }
 
-function transDateTO($data){
+function transDateTO($data)
+{
     if($data != null){
         $a        = explode('-', $data);
         $date     = $a[2].'/'.$a[1].'/'.$a[0];
@@ -295,9 +299,25 @@ function transDateTO($data){
 //             Misc. Functions              //
 //////////////////////////////////////////////
 
-function getUrl(){
+function getUrl()
+{
     $url = $_SERVER['REQUEST_URI'];
     return $url;
 }
 
-
+// This class is for get View Name
+// Ex of use = To show Active Menu Links
+class Menu
+{
+    public static function activeMenu($uri='')
+    {
+     $active = '';
+   
+     if (Request::is(Request::segment(1) . '/' . $uri . '/*') || Request::is(Request::segment(1) . '/' . $uri) || Request::is($uri))
+     {
+      $active = 'active';
+     }
+   
+     return $active;
+    }   
+}

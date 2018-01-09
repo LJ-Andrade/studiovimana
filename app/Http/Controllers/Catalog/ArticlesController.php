@@ -94,7 +94,7 @@ class ArticlesController extends Controller
         ]);
     	
         $article           = new CatalogArticle($request->all());
-        $article->user_id  = \Auth::user()->id;
+        $article->user_id  = \Auth::guard('user')->user()->id;
         
         $images            = $request->file('images');
         $thumbnail         = $request->file('thumbnail');

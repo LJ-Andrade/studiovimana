@@ -1,9 +1,9 @@
 @extends('layouts.store.main')
 
 @section('content')
-<div class="container padding-bottom-3x mb-2">
+<div class="container padding-bottom-3x mb-2 marg-top-25">
 	<div class="row centered-form">
-        <form class="login-box form-simple inner" method="POST" action="{{ route('register') }}">
+        <form class="login-box form-simple inner" method="POST" action="{{ route('customer.register') }}">
             {{ csrf_field() }}
             <h3>Registrarse</h3>
             <div class="row">
@@ -29,8 +29,18 @@
                 </div>
             </div>
             <div class="row">
+                {{-- Username --}}
+                <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                    <label for="reg-fn">Nombre de Usuario</label>
+                    <input id="name" type="text" name="username" class="form-control round" placeholder="Nombre de Usuario" value="{{ old('username') }}" required>
+                    @if ($errors->has('username'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('username') }}</strong>
+                        </span>
+                    @endif
+                </div> 	
                 {{-- E-mail --}}
-                <div class="col-sm-12 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <div class="col-sm-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="reg-fn">E-Mail</label>
                     <input id="name" type="text" name="email" class="form-control round" placeholder="Ingrese su email" value="{{ old('email') }}" required>
                     @if ($errors->has('email'))
@@ -62,7 +72,7 @@
                     @endif
                 </div>
             </div>
-            <input type="hidden" name="usertype" value="99">
+            <input type="hidden" name="group" value="1">
             {{-- Submit --}}
             <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock2"></i> Registrarse</button>
         </form>

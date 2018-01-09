@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Scope;
 
 class User extends Authenticatable
 {
+
+    protected $guard = 'user';
+
     protected $fillable = [
         'name', 'username', 'email', 'password', 'role', 'group', 'avatar'
     ];
@@ -19,8 +22,8 @@ class User extends Authenticatable
     public function scopeSearchname($query, $name)
     {
         $query->where('name', 'LIKE', "%$name%")
-            ->orWhere('username', 'LIKE', "%$name%")
-            ->orWhere('email', 'LIKE', "%$name%");
+              ->orWhere('username', 'LIKE', "%$name%")
+              ->orWhere('email', 'LIKE', "%$name%");
     }
 
     public function scopeSearchrole($query, $role)
@@ -37,7 +40,4 @@ class User extends Authenticatable
     {
         $query->where('role', $role)->where('group', $group);
     }
-
-    
-
 }

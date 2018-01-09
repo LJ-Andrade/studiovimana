@@ -3,7 +3,7 @@
 		<div class="col-md-4 contact-data fadeIn animated wow">
 			<h2>Datos</h2><hr>
 			<span class="icon"><i class="ion-iphone"></i></span><span> (011) 15-5160-1565</span> <br>
-			<span class="icon"><i class="ion-ios-email-outline"></i></span><span> info@studiovimana.com.ar</span> <br>
+			<span class="icon"><i class="ion-ios-email-outline"></i></span><span> info@vimana.studio</span> <br>
 			<span class="icon"><i class="ion-ios-location-outline"></i></span><span> Buenos Aires - Argentina <br>
 		</div>
 		<div class="col-md-4 tags">

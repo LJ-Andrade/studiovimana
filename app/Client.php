@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Scope;
+use App\CatalogFav;
 
 class Client extends Authenticatable
 {
-    protected $guard = 'clients';
+    protected $guard = 'customer';
 
     protected $fillable = [
         'name', 'username', 'email', 'password', 'group', 'avatar'
@@ -16,6 +17,12 @@ class Client extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Relations
+    public function catalogFavs()
+    {
+    	return $this->hasMany(CatalogFav::class);
+    }
 
     // Search Scopes 
     public function scopeSearchname($query, $name)

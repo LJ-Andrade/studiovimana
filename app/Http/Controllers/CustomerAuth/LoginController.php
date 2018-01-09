@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\CustomerAuth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Client;
 
-class LoginStoreController extends Controller
+class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -33,11 +34,12 @@ class LoginStoreController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('/')->except('logout');
-    }
+    //public function __construct()
+    //{
+    //    $this->middleware('guest')->except('logout');
+    //}
 
+    // Use this to login with username
     protected function credentials(Request $request)
     {
         $field = filter_var($request->get($this->username()), FILTER_VALIDATE_EMAIL)
@@ -49,4 +51,25 @@ class LoginStoreController extends Controller
             'password' => $request->password,
         ];
     }
+
+    protected function guard(){
+        return auth()->guard('customer');
+    }
+
+    public function showLoginForm(){
+        return view('store.login');
+    }
+
+    /**
+     * Log the client out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request){
+        $this->guard('customer')->logout();
+        $request->session()->invalidate();
+        return redirect('/tienda');
+    }
+
 }

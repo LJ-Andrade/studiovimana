@@ -33,10 +33,10 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+    //public function __construct()
+    //{
+    //    $this->middleware('guest')->except('logout');
+    //}
 
     protected function credentials(Request $request)
     {
@@ -48,5 +48,19 @@ class LoginController extends Controller
             $field => $request->get($this->username()),
             'password' => $request->password,
         ];
+    }
+
+    protected function guard(){
+        return auth()->guard('user');
+    }
+
+    public function showLoginForm(){
+        return view('auth.login');
+    }
+
+    public function logout(Request $request){
+        $this->guard('user')->logout();
+        $request->session()->invalidate();
+        return redirect('/login');
     }
 }
