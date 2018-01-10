@@ -97,7 +97,7 @@ Route::post('mail_sender', 'WebController@mail_sender');
 Route::group(['prefix' => 'vadmin'], function(){
 
     //Route::get('/home', 'VadminController@index');
-    //Route::get('/', 'VadminController@index');
+    Route::get('/', 'VadminController@index');
     
     // -- USERS --
     Route::resource('users', 'UserController');
