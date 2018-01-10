@@ -45,7 +45,7 @@
 						<h2>Imágenes publicadas</h2>
 						<ul>
 							@foreach($article->images as $image)
-							<li id="Img{{ $image->id }}" class="Edit_Actual_Image" data-imgid="{{ $image->id }}">	
+							<li id="Img{{ $image->id }}" class="Delete-Porfolio-Img" data-imgid="{{ $image->id }}">	
 								<img src="{{ asset('webimages/portfolio/'.$image->name) }}">
 								<div class="overlayItemCenter"><i class="icon-ios-trash-outline"></i></div>
 							</li>
@@ -74,6 +74,7 @@
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/spectrum.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('plugins/colorpicker/jquery.spectrum-es.js')}} "></script>
 	<script type="text/javascript" src="{{ asset('js/vadmin-forms.js') }}" ></script>
+	@include('vadmin.components.bladejs')
 @endsection
 
 @section('custom_js')
@@ -89,52 +90,52 @@
 
 		// ----- Image Delete Ajax ------- //
 		// Ask Delete Confirmation
-		$('.Edit_Actual_Image').click(function(){
-			var id = $(this).data('imgid');
-			confirm_delete(id, 'Cuidado','Desea eliminar esta imágen permanentemente?');
-		});
-
+		//$('.Edit_Actual_Image').click(function(){
+		//	var id = $(this).data('imgid');
+		//	confirm_delete(id, 'Cuidado','Desea eliminar esta imágen permanentemente?');
+		//});
+//
 		// Proceed to deletion
-		function delete_item(id) {	
-		
-			var route = "{{ url('vadmin/deleteArticleImg') }}/"+id+"";
-			console.log(route);
-			$.ajax({
-					url:  route,
-					method: 'post',             
-					dataType: "json",
-					data: {id: id, _token: $('input[name="_token"]').val()
-					},
-						success: function(data){
-					},
-					complete: function(data)
-					{
-						console.log(data);
-						
-						if(data.responseText == 1)
-						{
-							swal(
-							  'Ok!',
-							  'Imágen eliminada !',
-							  'success'
-							);
-							$('#Img'+id).hide(400);
-						} else {
-							swal(
-							  'Ups!',
-							  'La imágen no se pudo eliminar ! <br> Contacte al servicio técnico.',
-							  'error'
-							);
-						}
-
-					},
-					error: function(data)
-					{
-						// console.log(data);
-					},
-				});
-
-		}
+		//function delete_item(id) {	
+		//
+		//	var route = "{{ url('vadmin/deleteArticleImg') }}/"+id+"";
+		//	console.log(route);
+		//	$.ajax({
+		//			url:  route,
+		//			method: 'post',             
+		//			dataType: "json",
+		//			data: {id: id, _token: $('input[name="_token"]').val()
+		//			},
+		//				success: function(data){
+		//			},
+		//			complete: function(data)
+		//			{
+		//				console.log(data);
+		//				
+		//				if(data.responseText == 1)
+		//				{
+		//					swal(
+		//					  'Ok!',
+		//					  'Imágen eliminada !',
+		//					  'success'
+		//					);
+		//					$('#Img'+id).hide(400);
+		//				} else {
+		//					swal(
+		//					  'Ups!',
+		//					  'La imágen no se pudo eliminar ! <br> Contacte al servicio técnico.',
+		//					  'error'
+		//					);
+		//				}
+//
+		//			},
+		//			error: function(data)
+		//			{
+		//				// console.log(data);
+		//			},
+		//		});
+//
+		//}
 	
 		
 	</script>

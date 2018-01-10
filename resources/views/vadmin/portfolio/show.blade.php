@@ -22,9 +22,18 @@
             @endslot
             @slot('content')
             	<p>{!! $article->content !!}</p>
-            	@foreach($article->images as $image)
-					<img src="{{ asset('webimages/portfolio/'.$image->name ) }}" class="img-responsive img-article" style="max-width: 200px">
-				@endforeach
+				<div class="actual-images  horizontal-list">
+					<ul>
+					@foreach($article->images as $image)
+						<li id="Img{{ $image->id }}">
+							<img src="{{ asset('webimages/portfolio/'.$image->name ) }}" class="img-responsive img-article" style="max-width: 200px">
+							<div class="overlayItemCenter">
+								<i class="Delete-Porfolio-Img icon-ios-trash-outline delete-img" data-imgid="{{ $image->id }}"></i>
+							</div>
+						</li>
+					@endforeach
+					</ul>
+				</div>
 				<hr class="softhr">
 				Slug: <span class="badge">{!! $article->slug !!}</span>
 				<hr class="softhr">
@@ -36,15 +45,14 @@
 				@endforeach
 				<br><br>
 				<a href="{{ url('vadmin/portfolio/'.$article->id.'/edit') }}" class="btn btnGreen"><i class="icon-pencil2"></i> Editar Artículo</a> 
-				
             @endslot
-
         @endcomponent
     </div>
-
 @endsection
 
-
+@section('scripts')
+	@include('vadmin.components.bladejs')
+@endsection
 
 @section('custom_js')
 @endsection

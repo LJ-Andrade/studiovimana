@@ -69,59 +69,6 @@
 		$.trumbowyg.svgPath = '{{ asset('plugins/texteditor/icons.svg') }}';
 		// Init
 		$('.Textarea-Editor').trumbowyg();
-
-		
-
-		// ----- Image Delete Ajax ------- //
-		// Ask Delete Confirmation
-		//$('.Edit_Actual_Image').click(function(){
-		//	var id = $(this).data('imgid');
-		//	confirm_delete(id, 'Cuidado','Desea eliminar esta imágen permanentemente?');
-		//});
-
-		// Proceed to deletion
-		//function delete_item(id) {	
-		//
-		//	var route = "{{ url('vadmin/deleteArticleImg') }}/"+id+"";
-		//	console.log(route);
-		//	$.ajax({
-		//			url:  route,
-		//			method: 'post',             
-		//			dataType: "json",
-		//			data: {id: id, _token: $('input[name="_token"]').val()
-		//			},
-		//				success: function(data){
-		//			},
-		//			complete: function(data)
-		//			{
-		//				console.log(data);
-		//				
-		//				if(data.responseText == 1)
-		//				{
-		//					swal(
-		//					  'Ok!',
-		//					  'Imágen eliminada !',
-		//					  'success'
-		//					);
-		//					$('#Img'+id).hide(400);
-		//				} else {
-		//					swal(
-		//					  'Ups!',
-		//					  'La imágen no se pudo eliminar ! <br> Contacte al servicio técnico.',
-		//					  'error'
-		//					);
-		//				}
-//
-		//			},
-		//			error: function(data)
-		//			{
-		//				// console.log(data);
-		//			},
-		//		});
-//
-		//}
-	
-		
 	</script>
 
 @endsection

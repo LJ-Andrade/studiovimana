@@ -94,7 +94,7 @@ Route::post('mail_sender', 'WebController@mail_sender');
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'vadmin'], function(){
+Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
 
     //Route::get('/home', 'VadminController@index');
     Route::get('/', 'VadminController@index');
@@ -140,7 +140,7 @@ Route::group(['prefix' => 'vadmin'], function(){
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('vadmin')->middleware('auth')->group(function () {
+Route::prefix('vadmin')->middleware('admin')->group(function () {
     Route::post('destroy_users', 'UserController@destroy');
     Route::post('destroy_portfolio', 'Portfolio\ArticlesController@destroy');
     Route::post('destroy_categories', 'Portfolio\CategoriesController@destroy');
@@ -151,6 +151,7 @@ Route::prefix('vadmin')->middleware('auth')->group(function () {
     Route::post('destroy_stored_contacts', 'VadminController@destroyStoredContacts');
     Route::post('destroy_cat_atribute1', 'Catalog\CatalogAtribute1Controller@destroy');
     Route::post('destroy_product_image', 'Catalog\ImagesController@destroy');
+    Route::post('destroy_portfolio_image', 'Portfolio\ImagesController@destroy');
 });
 
 

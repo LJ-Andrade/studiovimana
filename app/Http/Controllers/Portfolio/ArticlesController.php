@@ -69,8 +69,8 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
+        
         $this->validate($request,[
-
             'title'       => 'required|min:4|max:250|unique:articles',
             'category_id' => 'required',
             'slug'        => 'required|alpha_dash|min:5|max:255|unique:articles,slug',
@@ -93,16 +93,16 @@ class ArticlesController extends Controller
             'image'                => 'El archivo adjuntado no es soportado',
         ]);
 
-        $path             = public_path("webimages/portfolio/"); 
-        $article          = new Article($request->all());
+        $path = public_path("webimages/portfolio/"); 
+        $article = new Article($request->all());
 
-        $article->user_id = \Auth::user()->id;
+        $article->user_id = auth()->guard('user')->user()->id;
         $article->save();
 
         // Sync() fills pivote table. Gets un array.
         $article->tags()->sync($request->tags);
 
-        $images           = $request->file('images');
+        $images = $request->file('images');
 
         if ($article->save() && $images)
         {

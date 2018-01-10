@@ -76,7 +76,7 @@
 						@foreach($articles as $item)
 							<tr>
 								<td class="w-50">
-									<label class="custom-control custom-checkbox list-checkbox">
+									<label class="CheckBoxes custom-control custom-checkbox list-checkbox">
 										<input type="checkbox" class="List-Checkbox custom-control-input row-checkbox" data-id="{{ $item->id }}">
 										<span class="custom-control-indicator"></span>
 										<span class="custom-control-description"></span>
@@ -86,7 +86,7 @@
 									@if(count($item->images))
 										<img src="{{ asset('webimages/portfolio/'. $item->images->first()->name ) }}">
 									@else
-										<img src="{{ asset('webimages/gen/genlogo.jpg') }}">
+										<img src="{{ asset('images/gen/default.jpg') }}">
 									@endif
 								</td>
 								<td class="show-link max-text"><a href="{{ url('vadmin/portfolio/'.$item->id) }}">{{ $item->title }}</a></td>
@@ -145,8 +145,8 @@
 			} else {
 				console.log("Pausar");
 				var id     = cbx.data('id');
-				console.log(id);
-				updateStatus(id, '0');
+				var route = "{{ url('/vadmin/updateStatus') }}/"+id+"";
+				updateStatus(id, route, '0');
 			}
 		});
 
@@ -154,33 +154,13 @@
 			var cbx = $(this);
 			if (cbx[0].checked) {
 				var id = cbx.data('id');
-				console.log("Activar");
-				console.log(id);
-				updateStatus(id, '1');
+				var route = "{{ url('/vadmin/updateStatus') }}/"+id+"";
+				updateStatus(id, route, '1');
 			} else {
 				console.log("Error en checkbox");
 			}
 		});
 	});
-
-	function updateStatus(id, status)
-	{
-		var route = "{{ url('/vadmin/updateStatus') }}/"+id+"";
-		$.ajax({
-			
-			url: route,
-			method: 'post',             
-			dataType: 'json',
-			data: { id: id, status: status
-			},
-			success: function(data){
-				console.log(data);
-			},
-			error: function(data){
-				$('#Error').html(data.responseText);
-			}
-		});
-	}
 
 	</script>
 @endsection
