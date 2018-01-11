@@ -11,7 +11,7 @@ class CatalogFav extends Model
 
     public function client()
 	{
-	   	return $this->belongsTo('App\Client', 'id');
+	   	return $this->belongsTo('App\Customer', 'id');
     }
     
     public function article()

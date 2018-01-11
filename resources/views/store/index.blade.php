@@ -50,12 +50,19 @@
 							<div class="product-buttons">
 								@if(Auth::guard('customer')->check())
 								{{--  Check if product is in favs  --}}
-									<button class="AddToFavs btn btn-outline-secondary btn-sm btn-wishlist
+								<button class="AddToFavs btn btn-outline-secondary btn-sm-round btn-wishlist
 									@if(in_array($article->id, $favs['articleFavs'])) addedToFavs @endif
-									" data-id="{{ $article->id }}" data-customerid="{{ Auth::guard('customer')->user()->id }}" data-toggle="tooltip" title="A Favoritos"><i class="icon-heart"></i></button>
-									<button class="btn btn-outline-primary btn-sm" data-id="{{ $article->id }}" data-customerid="{{ Auth::guard('customer')->user()->id }}" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Producto" data-toast-message="Agregado!">Agregar</button>
+									" data-id="{{ $article->id }}" data-customerid="{{ $user->id }}" data-toggle="tooltip" title="A Favoritos"><i class="icon-heart"></i></button>
+								
+								<form class="pad0" action="{{ url('/cart') }}" method="POST">
+									{{ csrf_field() }}
+									<input name="product_id" type="hidden" value="{{ $article->id }}">
+									<input name="quantity" type="hidden" value="1">
+									<input name="discount" type="hidden" value="0">
+									<button type="submit" class="btn btn-outline-primary btn-sm" data-id="{{ $article->id }}" data-customerid="{{ $user->id }}">Agregar</button>
+								</form>
 								@else 
-									<a href="{{ route('customer.login') }}" class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Agregar a Favoritos"><i class="icon-heart"></i></a>	
+									<a href="{{ route('customer.login') }}" class="btn btn-outline-secondary btn-sm-round btn-wishlist" data-toggle="tooltip" title="Agregar a Favoritos"><i class="icon-heart"></i></a>	
 									<a href="{{ route('customer.login') }}" class="btn btn-outline-primary btn-sm">Agregar</a>
 								@endif
 							</div>

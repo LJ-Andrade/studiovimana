@@ -79,7 +79,7 @@ return [
         ],
         'customer' => [
             'driver' => 'eloquent',
-            'model' => App\Client::class,
+            'model' => App\Customer::class,
         ],
 
         // 'users' => [
@@ -110,7 +110,7 @@ return [
             'expire' => 15,
         ],
         'clients' => [
-            'provider' => 'clients',
+            'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
         ],

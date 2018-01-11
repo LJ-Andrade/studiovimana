@@ -138,6 +138,15 @@ ul.pagination li a.active, ul.pagination li.active {
   border-radius: 50%;
 }
 
+.btn-sm-round {
+  height: 36px;
+  padding: 0 7px;
+  border-radius: 18px;
+  font-size: 12px;
+  line-height: 34px;
+  width: 37px;
+}
+
 .centered-form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -167,4 +176,19 @@ ul.pagination li a.active, ul.pagination li.active {
 
 .marg-top-25 {
   margin-top: 25px;
+}
+
+.pad0 {
+  padding: 0;
+}
+
+.horizontal-list ul {
+  padding-left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.horizontal-list ul li {
+  display: inline-block;
+  list-style: none;
 }

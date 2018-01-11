@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Store;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Auth;
 use App\CatalogCategory;
 use App\CatalogArticle;
@@ -25,6 +27,7 @@ class StoreController extends Controller
         //     $articles->category;
         //     $articles->user;
         // });
+        $user       = auth()->guard('customer')->user();
         $categories = CatalogCategory::all();
         $atributes1 = CatalogAtribute1::orderBy('id', 'ASC')->pluck('name', 'id');
         $favs       = $this->getCustomerFavs();
@@ -33,18 +36,9 @@ class StoreController extends Controller
         ->with('articles', $articles)
         ->with('atributes1', $atributes1)
         ->with('categories', $categories)
+        ->with('user', $user)
         ->with('favs', $favs);
     }
-
-    // public function login()
-    // {
-    //     return view('store.login');
-    // }
-
-    // public function register()
-    // {
-    //     return view('store.register');
-    // }
 
     public function clientProfile(Request $request){
         $favs    = $this->getCustomerFavs();

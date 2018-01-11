@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\CatalogCategory;
-use App\Mail\NewCategory;
-use Mail;
 
 class CategoriesController extends Controller
 {
@@ -56,12 +54,8 @@ class CategoriesController extends Controller
         ]);
 
         $category = new CatalogCategory($request->all());
-        Mail::to("javzero@hotmail.com")->send(new NewCategory($request->all()));
         $category->save();
         
-
-
-
         return redirect()->route('cat_categorias.index')->with('message','Categoría creada');
     }
 

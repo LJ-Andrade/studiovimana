@@ -9,4 +9,9 @@ class Cart extends Model
     protected $table = "carts";
 
     protected $fillable = ['status', 'order_date', 'arrived_date'];
+
+    public function cartDetails(){
+    	return $this->hasMany('App\CartDetail');
+    }
+
 }

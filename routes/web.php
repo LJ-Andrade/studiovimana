@@ -45,16 +45,19 @@ Route::group(['prefix'=> 'vadmin'], function() {
 | Store
 |--------------------------------------------------------------------------
 */
-    Route::get('tienda', ['as' => 'store', 'uses' => 'StoreController@index']);
+    Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index']);
+    Route::post('/cart', 'Store\CartDetailController@store');    
     
     Route::group(['prefix'=> 'tienda'], function() {        
+        // Cart
+        
         // Sections    
-        Route::get('articulo/{id}', 'StoreController@show')->middleware('customer');
-        Route::get('cuenta', ['as' => 'store.client-account', 'uses' => 'StoreController@clientProfile'])->middleware('customer');
-        Route::get('favoritos', ['as' => 'store.client-wishlist', 'uses' => 'StoreController@clientWishlist'])->middleware('customer');
-        Route::post('addArticleToFavs', ['as' => 'customer.addArticleToFavs', 'uses' => 'StoreController@addArticleToFavs']);
-        Route::post('removeArticleFromFavs', ['as' => 'customer.removeArticleFromFavs', 'uses' => 'StoreController@removeArticleFromFavs']);
-        Route::post('removeAllArticlesFromFavs', ['as' => 'customer.removeAllArticlesFromFavs', 'uses' => 'StoreController@removeAllArticlesFromFavs']);
+        Route::get('articulo/{id}', 'Store\StoreController@show')->middleware('customer');
+        Route::get('cuenta', ['as' => 'store.client-account', 'uses' => 'Store\StoreController@clientProfile'])->middleware('customer');
+        Route::get('favoritos', ['as' => 'store.client-wishlist', 'uses' => 'Store\StoreController@clientWishlist'])->middleware('customer');
+        Route::post('addArticleToFavs', ['as' => 'customer.addArticleToFavs', 'uses' => 'Store\StoreController@addArticleToFavs']);
+        Route::post('removeArticleFromFavs', ['as' => 'customer.removeArticleFromFavs', 'uses' => 'Store\StoreController@removeArticleFromFavs']);
+        Route::post('removeAllArticlesFromFavs', ['as' => 'customer.removeAllArticlesFromFavs', 'uses' => 'Store\StoreController@removeAllArticlesFromFavs']);
 
         // Login Routes...
         Route::get('login', ['as' => 'customer.login', 'uses' => 'CustomerAuth\LoginController@showLoginForm']);

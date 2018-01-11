@@ -5,7 +5,7 @@ namespace App\Http\Controllers\CustomerAuth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Client;
+use App\Customer;
 
 class LoginController extends Controller
 {

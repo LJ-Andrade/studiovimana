@@ -19,7 +19,7 @@ class CatalogArticle extends Model
     }
 
     public function client(){
-    	return $this->belongsTo('App\Client');
+    	return $this->belongsTo('App\Customer');
     }
 
     public function user(){

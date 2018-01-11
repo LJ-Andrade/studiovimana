@@ -5,10 +5,13 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Scope;
 use App\CatalogFav;
+use App\Cart;
 
-class Client extends Authenticatable
+class Customer extends Authenticatable
 {
     protected $guard = 'customer';
+
+    protected $table = 'customers';
 
     protected $fillable = [
         'name', 'username', 'email', 'password', 'group', 'avatar'
@@ -22,6 +25,25 @@ class Client extends Authenticatable
     public function catalogFavs()
     {
     	return $this->hasMany(CatalogFav::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function getCartAttribute()
+    {
+        $cart = $this->carts()->where('status', 'Active')->first();
+        if($cart){
+            return $cart;
+        } else {
+            $cart = new Cart();
+            $cart->status = 'Active';
+            $cart->user_id = $this->id;
+            $cart->save(); 
+            return $cart;
+        }
     }
 
     // Search Scopes 
