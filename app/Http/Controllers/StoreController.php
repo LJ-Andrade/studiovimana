@@ -79,12 +79,12 @@ class StoreController extends Controller
             $customer = auth()->guard('customer')->user();
         } else {
             $favs = null;
+            $customer = null;
         }
         
         return view('store.client-wishlist')
             ->with('customer', $customer)
-            ->with('favs', $favs)
-            ->with('message', 'Mensaje');
+            ->with('favs', $favs);
     }
     
     public function getCustomerFavs(){
