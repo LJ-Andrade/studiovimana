@@ -7,9 +7,9 @@ class CatalogFav extends Model
 {
     protected $table = "catalog_favs";
 
-    protected $fillable = ['client_id', 'article_id'];
+    protected $fillable = ['customer_id', 'article_id'];
 
-    public function client()
+    public function customer()
 	{
 	   	return $this->belongsTo('App\Customer', 'id');
     }

@@ -40,3 +40,9 @@ Mediante JSON devuelve: <br>
 - response: TRUE o FALSE <br>
 - message: En caso de error devuelve info (/Exception $e) <br>
 
+## CRUDS
+Comando para generar CRUDS desde consola
+
+php artisan crud:generate Posts --fields='title#string; content#text; category#select#options={"technology": "Technology", "tips": "Tips", "health": "Health"}' --view-path=admin --controller-namespace=Admin --route-group=admin --form-helper=html
+
+php artisan crud:generate Shippings --fields='name#string' --view-path=Vadmin/Catalog --controller-namespace=Catalog --route-group=Vadmin

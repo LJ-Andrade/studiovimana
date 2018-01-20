@@ -6,6 +6,39 @@
 	</div>
 @endsection
 
+@section('modal')
+	@component('store.components.modal')
+		@slot('id','AddArticleModal')
+		@slot('content')
+			<form action="">
+				<div class="form-group row">
+					<label class="col-2 col-form-label" for="text-input">Text</label>
+					<div class="col-10">
+						<input class="ArticleId form-control" type="text" name="articleid" value="">
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-4 margin-bottom-1x">
+						<label for="">Cantidad</label>
+						<div class="input-group">
+							<input class="form-control" type="number" min="1" value="1"><span class="input-group-addon"><i class="icon-layers"></i></span>
+						</div>
+					</div>
+					<div class="col-sm-4 margin-bottom-1x">
+						<label for="">Talle</label>
+						<div class="input-group">
+							<span id="SizesSelectModal"></span>
+						</div>
+					</div>
+				</div>
+			</form>
+		@endslot
+		@slot('button')
+			<button class="btn btn-primary btn-sm" type="button">Agregar</button>
+		@endslot
+	@endcomponent
+@endsection
+
 @section('content')
 	<!-- Page Content-->
 	<div class="container padding-bottom-3x mb-1">
@@ -29,6 +62,7 @@
 											<b>Talles: </b>
 											@foreach($article->atribute1 as $atribute)
 												<span class="custom-badge trans-back-lblue">{{ $atribute->name }}</span> 	
+												<?php $sizes[] = $atribute->id ?>
 											@endforeach
 										</div>
 									</div>
@@ -38,11 +72,11 @@
 									<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}" alt="Product"></a>
 									@endif
 								</div>
-								<h3 class="product-title"><a href="shop-single.html">{{ $article->name }}</a></h3>
+								<h3 class="product-title max-text"><a href="">{{ $article->name }}</a></h3>
 							</a>
 							<h4 class="product-price">
-								@if($article->offer > 0)
-								<del>$ {{ $article->price }}</del> $ {{ calcValuePercentNeg($article->price, $article->offer) }}
+								@if($article->discount > 0)
+								<del>$ {{ $article->price }}</del> $ {{ calcValuePercentNeg($article->price, $article->discount) }}
 								@else
 								$ {{ $article->price }}
 								@endif
@@ -52,15 +86,17 @@
 								{{--  Check if product is in favs  --}}
 								<button class="AddToFavs btn btn-outline-secondary btn-sm-round btn-wishlist
 									@if(in_array($article->id, $favs['articleFavs'])) addedToFavs @endif
-									" data-id="{{ $article->id }}" data-customerid="{{ $user->id }}" data-toggle="tooltip" title="A Favoritos"><i class="icon-heart"></i></button>
-								
-								<form class="pad0" action="{{ url('/cart') }}" method="POST">
+									" data-id="{{ $article->id }}" data-toggle="tooltip" title="A Favoritos"><i class="icon-heart"></i>
+								</button>
+
+								<a href="{{ url('tienda/articulo/'.$article->id) }}" class="btn btn-outline-primary btn-sm">Agregar</a>
+
+								{{--  <form class="pad0" action="{{ url('/tienda/cart') }}" method="POST">
 									{{ csrf_field() }}
-									<input name="product_id" type="hidden" value="{{ $article->id }}">
+									<input name="article_id" type="hidden" value="{{ $article->id }}">
 									<input name="quantity" type="hidden" value="1">
 									<input name="discount" type="hidden" value="0">
-									<button type="submit" class="btn btn-outline-primary btn-sm" data-id="{{ $article->id }}" data-customerid="{{ $user->id }}">Agregar</button>
-								</form>
+								</form>  --}}
 								@else 
 									<a href="{{ route('customer.login') }}" class="btn btn-outline-secondary btn-sm-round btn-wishlist" data-toggle="tooltip" title="Agregar a Favoritos"><i class="icon-heart"></i></a>	
 									<a href="{{ route('customer.login') }}" class="btn btn-outline-primary btn-sm">Agregar</a>

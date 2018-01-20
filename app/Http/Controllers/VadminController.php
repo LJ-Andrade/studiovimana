@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Contact;
+use App\Cart;
 
 class VadminController extends Controller
 {   
@@ -16,6 +17,13 @@ class VadminController extends Controller
     {
         $messages = Contact::where('status', '=', '0')->count();
         return view('vadmin.vadmin')->with('messages', $messages);
+    }
+
+    public function storeControlPanel(Request $request)
+    {
+        $activeCarts = Cart::where('status', 'Active')->count();
+        return view('vadmin.catalog.control-panel')
+            ->with('activeCarts', $activeCarts);
     }
 
     public function storedContacts(Request $request)

@@ -14,7 +14,7 @@ class Customer extends Authenticatable
     protected $table = 'customers';
 
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'group', 'avatar'
+        'name', 'surname', 'username', 'email', 'address', 'province_id', 'location_id', 'cp', 'phone', 'phone2', 'password', 'group', 'avatar'
     ];
 
     protected $hidden = [
@@ -34,13 +34,13 @@ class Customer extends Authenticatable
 
     public function getCartAttribute()
     {
-        $cart = $this->carts()->where('status', 'Active')->first();
+        $cart = $this->carts()->where('status', 'Active')->where('customer_id', $this->id)->first();
         if($cart){
             return $cart;
         } else {
             $cart = new Cart();
             $cart->status = 'Active';
-            $cart->user_id = $this->id;
+            $cart->customer_id = $this->id;
             $cart->save(); 
             return $cart;
         }

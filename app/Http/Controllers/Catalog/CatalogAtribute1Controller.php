@@ -8,12 +8,10 @@ use App\CatalogAtribute1;
 
 class CatalogAtribute1Controller extends Controller
 {
-
     // routeGroup: 
     // viewName:   catalog-atribute1
     // crudName:   catalogatribute1
     // crudNameSingular: catalogatribute1
-    // fileSnippet: 
 
     /*
     |--------------------------------------------------------------------------

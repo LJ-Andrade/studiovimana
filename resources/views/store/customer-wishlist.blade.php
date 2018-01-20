@@ -34,17 +34,21 @@
 												</div>
 												<div>Disponibilidad:
 													<div class="d-inline text-success">
-														@if($fav->article->stock > 1)
-														En stock
+														@if($fav->article->status == '0')
+															No disponible
 														@else
-														Sin Stock
+															@if($fav->article->stock > 1)
+															En stock
+															@else
+															Sin Stock
+															@endif
 														@endif
 													</div>
 												</div>
 											</div>
 										</div>
 									</td>
-									<td class="text-center"><a class="RemoveFromFavs remove-from-cart" data-favid="{{ $fav->id }}" data-toggle="tooltip" title="Remover de Favoritos"><i class="icon-cross"></i></a></td>
+									<td class="text-center"><a class="RemoveFromFavs remove-from-cart cursor-pointer" data-favid="{{ $fav->id }}" data-toggle="tooltip" title="Remover de Favoritos"><i class="icon-cross"></i></a></td>
 								</tr>
 								@endforeach
 							@else 

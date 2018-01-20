@@ -3,14 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CartDetail;
 
 class Cart extends Model
 {
     protected $table = "carts";
 
-    protected $fillable = ['status', 'order_date', 'arrived_date'];
+    protected $fillable = ['customer_id', 'status', 'shipping', 'payment_method', 'payment_token', 'order_date', 'arrived_date'];
 
-    public function cartDetails(){
+    public function details(){
     	return $this->hasMany('App\CartDetail');
     }
 

@@ -93,8 +93,8 @@ class ArticlesController extends Controller
             'image'                => 'El archivo adjuntado no es soportado',
         ]);
         
-        if($request->offer == null){
-            $request->offer = '0';
+        if($request->discount == null){
+            $request->discount = '0';
         }
         
         $article           = new CatalogArticle($request->all());
@@ -210,10 +210,15 @@ class ArticlesController extends Controller
         $article->atribute1()->sync($request->atribute1);
         $article->tags()->sync($request->tags);
         
-        $number = $article->images->last()->name;
-        $number = explode('-',$number);
-        $number = explode('.',$number[1]);
-        $number = ($number[0]+'1');
+        if(!$article->images->isEmpty()){
+            $number = $article->images->last()->name;
+            $number = explode('-',$number);
+            $number = explode('.',$number[1]);
+            $number = ($number[0]+'1');
+        } else {
+            $number = '1';
+        }
+
                 
         try {
             if($thumbnail){
@@ -290,15 +295,15 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function updateOffer(Request $request, $id)
+    public function updateDiscount(Request $request, $id)
     {   
         $item          = CatalogArticle::find($id);
-        $item->offer   = $request->value;
+        $item->discount   = $request->value;
         $item->save();
 
         return response()->json([
             "response" => '1',
-            "newoffer" => $item->offer,
+            "newdiscount" => $item->discount,
             "action"   => $request->action
         ]);
     }

@@ -42,12 +42,36 @@
 	<!-- main menu content-->
 	<div class="main-menu-content">
 	<ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-		
-		{{--  CATALOGO  --}}
-		<li class="nav-item has-sub CatalogLi"><a href="#"><i class="icon-cart4"></i><span data-i18n="nav.menu_levels.main" class="menu-title">Catálogo</span></a>
+		{{--  Tienda  --}}
+		<li class="nav-item has-sub {{ Menu::activeMenu('vadmin-tienda') }}"><a href="#"><i class="icon-cart4"></i><span data-i18n="nav.menu_levels.main" class="menu-title">Tienda</span></a>
 			<ul class="menu-content" style="">
-				<li class="CatalogList"><a href="{{ route('catalogo.index') }}" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-				<li class="CatalogNew"><a href="{{ route('catalogo.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Producto</a></li>
+				<li class="{{ Menu::activeMenu('panel-de-control') }}"><a href="{{ route('storeControlPanel') }}" class="menu-item"> Control de Tienda</a></li>
+				<li class="has-sub is-shown"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
+						<i class="icon-coin-dollar"></i>Métodos de Pago</a>
+						<ul class="menu-content" style="">
+							<li class="is-shown {{ Menu::activeMenu('payments') }}"><a href="{{ route('payments.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
+								<i class="icon-list"></i> Listado</a></li>
+							<li class="is-shown {{ Menu::activeMenu('payments') }}"><a href="{{ route('payments.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
+								<i class="icon-plus-round"></i> Nuevo</a></li>
+						</ul>
+					</li>
+				<li class="has-sub is-shown"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
+					<i class="icon-rocket"></i>Métodos de Envío</a>
+					<ul class="menu-content" style="">
+						<li class="is-shown {{ Menu::activeMenu('shippings') }}" ><a href="{{ route('shippings.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
+							<i class="icon-list"></i> Listado</a></li>
+						<li class="is-shown {{ Menu::activeMenu('shippings') }}"><a href="{{ route('shippings.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
+							<i class="icon-plus-round"></i> Nuevo</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+		{{--  CATALOGO  --}}
+		<li class="nav-item has-sub {{ Menu::activeMenu('catalogo') }}"><a href="#"><i class="icon-clipboard"></i><span data-i18n="nav.menu_levels.main" class="menu-title">Catálogo</span></a>
+			<ul class="menu-content" style="">
+				<li class="{{ Menu::activeMenu('catalogo.index') }}"><a href="{{ route('catalogo.index') }}" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+				<li class="{{ Menu::activeMenu('catalogo/create') }}"><a href="{{ route('catalogo.create') }}" class="menu-item"><i class="icon-plus-round"></i> Nuevo Producto</a></li>
 				<li class="has-sub is-shown CatalogCategoriesLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">Categorías</a>
 					<ul class="menu-content" style="">
 						<li class="is-shown CatalogCategoriesList"><a href="{{ route('cat_categorias.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>

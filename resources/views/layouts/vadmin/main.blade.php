@@ -105,10 +105,11 @@
 		@yield('scripts')
 		@yield('custom_js')
 		<script>
-			$('#FullLoader').addClass('Hidden');
-			$(document).on('submit', 'form', function(){
-				$('#FullLoader').removeClass('Hidden');
-			});
+			//$('#FullLoader').addClass('Hidden');
+			//$(document).on('submit', 'form', function(){
+			//	$('#FullLoader').removeClass('Hidden');
+			//});
+
 			var count = 0;
 			setInterval(function(){
 				count++;

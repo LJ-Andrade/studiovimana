@@ -17,28 +17,6 @@
                         </span>
                     @endif
                 </div> 	
-                {{-- Name and Surname --}}
-                <div class="col-sm-6 form-group{{ $errors->has('name') ? ' has-error' : '' }} ">
-                    <label for="reg-fn">Nombre y Apellido</label>
-                    <input id="name" type="text" name="name" class="form-control round" placeholder="Ingrese su nombre" value="{{ old('name') }}" required>
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                {{-- Username --}}
-                <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                    <label for="reg-fn">Nombre de Usuario</label>
-                    <input id="name" type="text" name="username" class="form-control round" placeholder="Nombre de Usuario" value="{{ old('username') }}" required>
-                    @if ($errors->has('username'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('username') }}</strong>
-                        </span>
-                    @endif
-                </div> 	
                 {{-- E-mail --}}
                 <div class="col-sm-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="reg-fn">E-Mail</label>
@@ -48,7 +26,29 @@
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
+                </div> 
+            </div>
+            <div class="row">
+                {{-- Name --}}
+                <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                    <label for="reg-fn">Nombre</label>
+                    <input id="name" type="text" name="name" class="form-control round" placeholder="Nombre de Usuario" value="{{ old('username') }}" required>
+                    @if ($errors->has('username'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('username') }}</strong>
+                        </span>
+                    @endif
                 </div> 	
+                {{-- Surname --}}
+                <div class="col-sm-6 form-group{{ $errors->has('name') ? ' has-error' : '' }} ">
+                    <label for="reg-fn">Apellido</label>
+                    <input id="name" type="text" name="surname" class="form-control round" placeholder="Ingrese su nombre" value="{{ old('name') }}" required>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
             <div class="row">
                 {{-- Password --}}

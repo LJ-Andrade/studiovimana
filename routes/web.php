@@ -46,15 +46,34 @@ Route::group(['prefix'=> 'vadmin'], function() {
 |--------------------------------------------------------------------------
 */
     Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index']);
-    Route::post('/cart', 'Store\CartDetailController@store');    
     
     Route::group(['prefix'=> 'tienda'], function() {        
-        // Cart
+        // Customer Actions
+        Route::group(['middleware'=> 'customer'], function() {
+            // Cart
+            // Route::post('/cart', 'Store\CartDetailController@store');
+            Route::post('addtocart', ['as' => 'store.addtocart', 'uses' => 'Store\CartDetailController@store']);
+            Route::post('removefromcart', ['as' => 'store.removefromcart', 'uses' => 'Store\CartDetailController@destroy']);
+            Route::get('checkout', ['as' => 'store.checkout', 'uses' => 'Store\StoreController@checkout']);
+            Route::post('updateCustomerData', ['as' => 'store.updateCustomerData', 'uses' => 'Store\StoreController@updateCustomerData']);
+            //Route::post('envio', ['as' => 'store.checkoutShipping', 'uses' => 'Store\StoreController@checkoutShipping']);
+            
         
-        // Sections    
-        Route::get('articulo/{id}', 'Store\StoreController@show')->middleware('customer');
-        Route::get('cuenta', ['as' => 'store.client-account', 'uses' => 'Store\StoreController@clientProfile'])->middleware('customer');
-        Route::get('favoritos', ['as' => 'store.client-wishlist', 'uses' => 'Store\StoreController@clientWishlist'])->middleware('customer');
+            // Sections    
+            Route::get('articulo/{id}', 'Store\StoreController@show');
+            Route::get('cuenta', ['as' => 'store.customer-account', 'uses' => 'Store\StoreController@customerAccount']);
+            Route::get('favoritos', ['as' => 'store.customer-wishlist', 'uses' => 'Store\StoreController@customerWishlist']);
+            Route::get('pedidos', ['as' => 'store.customer-orders', 'uses' => 'Store\StoreController@customerOrders']);
+            Route::get('pedido', ['as' => 'store.cartdetail', 'uses' => 'Store\StoreController@customerCartDetail']);
+            Route::get('carroactivo', ['as' => 'store.activecart', 'uses' => 'Store\StoreController@customerActiveCartDetail']);
+
+            // Customers
+            Route::post('updateCustomer', ['as' => 'store.updateCustomer', 'uses' => 'Store\CustomerController@update']);
+            Route::get('updatePassword', ['as' => 'store.updatePassword', 'uses' => 'Store\StoreController@updatePassword']);
+            Route::post('updatePassword', ['as' => 'store.updatePassword', 'uses' => 'Store\CustomerController@updatePassword']);
+            
+        });
+
         Route::post('addArticleToFavs', ['as' => 'customer.addArticleToFavs', 'uses' => 'Store\StoreController@addArticleToFavs']);
         Route::post('removeArticleFromFavs', ['as' => 'customer.removeArticleFromFavs', 'uses' => 'Store\StoreController@removeArticleFromFavs']);
         Route::post('removeAllArticlesFromFavs', ['as' => 'customer.removeAllArticlesFromFavs', 'uses' => 'Store\StoreController@removeAllArticlesFromFavs']);
@@ -120,7 +139,8 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     Route::resource('catalogo', 'Catalog\ArticlesController');
     Route::post('update_catalog_stock/{id}', 'Catalog\ArticlesController@updateStock');
     Route::post('update_catalog_price/{id}', 'Catalog\ArticlesController@updatePrice');
-    Route::post('update_catalog_offer/{id}', 'Catalog\ArticlesController@updateOffer');
+    Route::post('update_catalog_discount/{id}', 'Catalog\ArticlesController@updateDiscount');
+    Route::get('panel-de-control', ['as' => 'storeControlPanel', 'uses' => 'VadminController@storeControlPanel']);
     
     Route::resource('cat_categorias', 'Catalog\CategoriesController');
     Route::resource('cat_tags', 'Catalog\TagsController');
@@ -129,6 +149,10 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     // Atribute 1
     Route::resource('cat_atribute1', 'Catalog\CatalogAtribute1Controller');
     Route::post('catalog_make_thumb/{id}', 'Catalog\ArticlesController@makeThumb');
+    // Shipping
+    Route::resource('shippings', 'Catalog\ShippingsController');
+    // Payments Methods
+    Route::resource('payments', 'Catalog\PaymentsController');
 
     // -- DOCS --
     Route::get('docs', function () {
@@ -155,6 +179,7 @@ Route::prefix('vadmin')->middleware('admin')->group(function () {
     Route::post('destroy_cat_atribute1', 'Catalog\CatalogAtribute1Controller@destroy');
     Route::post('destroy_product_image', 'Catalog\ImagesController@destroy');
     Route::post('destroy_portfolio_image', 'Portfolio\ImagesController@destroy');
+    Route::post('destroy_shippings', 'Catalog\ShippingsController@destroy');
 });
 
 

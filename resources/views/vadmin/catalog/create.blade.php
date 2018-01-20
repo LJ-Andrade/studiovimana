@@ -61,8 +61,8 @@
 @section('custom_js')
 	
 	<script>
-		$('.CatalogLi').addClass('open');
-		$('.CatalogNew').addClass('active');
+		//$('.CatalogLi').addClass('open');
+		//$('.CatalogNew').addClass('active');
 		// ------------------- Textarea Text Editor --------------------------- //
 		// Path to icons
 		$.trumbowyg.svgPath = '{{ asset('plugins/texteditor/icons.svg') }}';

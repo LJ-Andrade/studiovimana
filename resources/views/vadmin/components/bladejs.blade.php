@@ -40,22 +40,22 @@
         modificableInput(actualElement, ".DisplayPriceData", ".UpdatePriceBtn");
     });
 
-    // Modificable Offer Input
-    $('.Modificable-Offer-Input').click(function(){
+    // Modificable Discount Input
+    $('.Modificable-Discount-Input').click(function(){
         var actualElement = $(this);
-        modificableInput(actualElement, ".DisplayOfferData", ".UpdateOfferBtn");
+        modificableInput(actualElement, ".DisplayDiscountData", ".UpdateDiscountBtn");
     });
 
     function modificableInput(actualElement, displayDiv, btn){
         // Show All Display Items
         $(".DisplayPriceData").removeClass('Hidden');
         $(".DisplayStockData").removeClass('Hidden');
-        $(".DisplayOfferData").removeClass('Hidden');
+        $(".DisplayDiscountData").removeClass('Hidden');
         $(".Extra-Data").removeClass('Hidden');
         // Hide All Unused Items
         $(".UpdatePriceBtn").addClass('Hidden');
         $(".UpdateStockBtn").addClass('Hidden');
-        $(".UpdateOfferBtn").addClass('Hidden');
+        $(".UpdateDiscountBtn").addClass('Hidden');
         $("Input").addClass('Hidden');
         $(btn).addClass('Hidden');
 
@@ -124,24 +124,24 @@
         }
     });
 
-    // Update Offer -------------------------------------------------------
-    $(".UpdateOfferInput").on("keypress", function(e) {
+    // Update Discount -------------------------------------------------------
+    $(".UpdateDiscountInput").on("keypress", function(e) {
         if(e.which == 13) {
-            $(this).siblings('.UpdateOfferBtn').click();
+            $(this).siblings('.UpdateDiscountBtn').click();
         }
     });
 
-    $(".UpdateOfferBtn").click(function(){
+    $(".UpdateDiscountBtn").click(function(){
         var id     = $(this).data('id');
-        var route  = "{{ url('vadmin/update_catalog_offer') }}/"+id+"";
-        var value  = $(this).siblings(".UpdateOfferInput").val();
-        $(this).siblings(".DisplayOfferData").removeClass("Hidden");
-        $(this).siblings(".DisplayOfferData").removeClass("Hidden");
-        $(this).siblings(".DisplayOfferData").html(value);
+        var route  = "{{ url('vadmin/update_catalog_discount') }}/"+id+"";
+        var value  = $(this).siblings(".UpdateDiscountInput").val();
+        $(this).siblings(".DisplayDiscountData").removeClass("Hidden");
+        $(this).siblings(".DisplayDiscountData").removeClass("Hidden");
+        $(this).siblings(".DisplayDiscountData").html(value);
         var action = "reload";
         if(validateIntOrFloat(value)){
             var loader = $(this).parent().html("<img src='{{ asset('images/gral/loader-sm.svg') }}'>");
-            updateOffer(route, id, value, action, loader);
+            updateDiscount(route, id, value, action, loader);
         }
     });
 
@@ -197,7 +197,14 @@
         });
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | CUSTOMERS
+    |--------------------------------------------------------------------------
+    */
     
+    //$('.ModifyPassword').css('display', 'none');
+
     /*
     |--------------------------------------------------------------------------
     | UPDATES
@@ -230,7 +237,8 @@
                 } 
 			},
 			error: function(data){
-				$('#Error').html(data.responseText);
+                //$('#Error').html(data.responseText);
+                console.log(data);
 			}
 		});
 	}
@@ -253,7 +261,7 @@
             },
             error: function(data){
                 console.log(data);
-                $('#Error').html(data.responseText);
+                //$('#Error').html(data.responseText);
             }
         }); 
     }
@@ -277,13 +285,13 @@
             },
             error: function(data){
                 console.log(data);
-                $('#Error').html(data.responseText);
+                //$('#Error').html(data.responseText);
             }
         }); 
     }
 
-    // Update Offer  ---------------------------------------------------------
-    function updateOffer(route, id, value, action, loader){
+    // Update Discount  ---------------------------------------------------------
+    function updateDiscount(route, id, value, action, loader){
         var data = { route: route, id: id, value: value, action: action};
         $.ajax({
             url: route,
@@ -301,7 +309,7 @@
             },
             error: function(data){
                 console.log(data);
-                $('#Error').html(data.responseText);
+                //$('#Error').html(data.responseText);
             }
         }); 
     }
@@ -374,4 +382,7 @@
                 '<i class="ion-checkmark-round"></i> Ok!'
             });
     }
+
+
+
 </script>

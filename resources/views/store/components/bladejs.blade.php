@@ -1,6 +1,85 @@
 <script>
         /*
         |--------------------------------------------------------------------------
+        | CART
+        |--------------------------------------------------------------------------
+        */
+        
+        $(document).on("click", "#AddArticleToCart", function(e){
+            var route     = "{{ route('store.addtocart') }}";
+            var articleid = $(this).data('articleid');
+            var size      = $('#SelectedSize').val();
+            var quantity  = $('#SelectedQuantity').val();
+
+            AddArticleToCart(route, articleid, size, quantity);
+        });
+
+        $(document).on("click", ".RemoveArticleFromCart", function(e){
+            var route     = "{{ route('store.removefromcart') }}";
+            var detailid = $(this).data('detailid');
+            
+            RemoveArticleFromCart(route, detailid)
+        });
+
+
+        function AddArticleToCart(route, articleid, size, quantity){
+            $.ajax({	
+                url: route,
+                method: 'POST',             
+                dataType: 'JSON',
+                data: { article_id: articleid, size: size, quantity: quantity },
+                success: function(data){
+                    $('#Error').html(data.responseText);
+                    //console.log(data);
+                    var action = 'reload';
+                    var time   = 1000;
+                    if(data.response == true){
+                        toast_success('Ok!', 'Producto agregado al carro | Talle: ' + size + ' | Cantidad: ' + quantity, 'bottomCenter', action, time);
+                    }  else {
+                        //$('#Error').html(data.message['errorInfo']);
+                        toast_error('Ups!', 'Error', 'bottomCenter', action, time);
+                        console.log(data);
+                    }
+                },
+                error: function(data){
+                    $('#Error').html(data.responseText);
+                    console.log(data);
+                }
+            });
+        }
+
+        function RemoveArticleFromCart(route, detailid){
+            $.ajax({	
+                url: route,
+                method: 'POST',             
+                dataType: 'JSON',
+                data: { detailid: detailid },
+                success: function(data){
+                    console.log(data);
+                    var action = 'reload';
+                    var time   = 500;
+                    if(data.response == true){
+                        if(data.doaction == 'back'){
+                            window.location.href = "{{ URL::to('tienda') }}"
+                        } else {
+                            toast_success('Ok!', 'Producto removido del carro', 'bottomCenter', action, time);
+                        }
+                    }  else {
+                        //$('#Error').html(data.message['errorInfo']);
+                        toast_error('Ups!', 'Error', 'bottomCenter', action, time);
+                        console.log(data);
+                    }
+                },
+                error: function(data){
+                    $('#Error').html(data.responseText);
+                    console.log(data);
+                }
+            });
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
         | WHISH-LISTS
         |--------------------------------------------------------------------------
         */
@@ -8,11 +87,10 @@
         $(document).on("click", ".AddToFavs", function(e){
             e.preventDefault();
             var articleid  = $(this).data('id');
-            var customerid = $(this).data('customerid');
             var favid      = $(this).data('favid');
             action         = 'show';
             displayButton  = $(this);
-            addArticleToFavs(favid, articleid, customerid, action, displayButton);
+            addArticleToFavs(favid, articleid, action, displayButton);
         });
 
         // Remove Article from WishList
@@ -27,15 +105,15 @@
             e.preventDefault();
             var customerid = $(this).data('customerid');
             action         = 'reload';
-            removeArticlesFromFavs(customerid, action);
+            removeAllArticlesFromFavs(customerid, action);
         });
 
-        function addArticleToFavs(favid, articleid, customerid, action, displayButton){
+        function addArticleToFavs(favid, articleid, action, displayButton){
             $.ajax({	
                 url: "{{ route('customer.addArticleToFavs') }}",
                 method: 'POST',             
                 dataType: 'JSON',
-                data: { fav_id: favid, client_id: customerid, article_id: articleid },
+                data: { fav_id: favid, article_id: articleid },
                 success: function(data){
 					$('#Error').html(data.responseText);
 					console.log(data);
@@ -46,6 +124,7 @@
                                 break;
                             case 'show':
                                 displayButton.addClass('addedToFavs');
+                                toast_success('Ok!', 'Producto agregado a favoritos', 'bottomCenter');
                                 break;
                             case 'none':
                                 console.log('Actualizado - Sin Acción');
@@ -55,19 +134,21 @@
                         } 
                     } else if(data.response == true && data.result == 'removed') {
                             displayButton.removeClass('addedToFavs');
+                            toast_success('Ok!', 'Producto eliminado de favoritos', 'bottomCenter');
                     }  else {
-                    $('#Error').html(data.message['errorInfo']);
+                    //$('#Error').html(data.message['errorInfo']);
                     console.log(data);
                     }
                 },
                 error: function(data){
-                    $('#Error').html(data.responseText);
+                   // $('#Error').html(data.responseText);
                     console.log(data);
                 }
             });
         }
 
         function removeArticleFromFavs(favid, action){
+            var doaction = action;
             $.ajax({	
                 url: "{{ route('customer.removeArticleFromFavs') }}",
                 method: 'POST',             
@@ -77,28 +158,29 @@
 					$('#Error').html(data.responseText);
 					console.log(data);
                     if(data.response == true){
-                        switch(action) {
+                        console.log(doaction);
+                        switch(doaction) {
                             case 'reload':
-                                location.reload();
+                                var action = 'reload';
+                                toast_success('Ok!', 'Producto eliminado de favoritos', 'bottomCenter', action, 1000);
                                 break;
                             default:
                                 console.log('No hay acción');
                                 break;
                         } 
                     } else {
-                    $('#Error').html(data.message['errorInfo']);
+                    //$('#Error').html(data.message['errorInfo']);
                     console.log(data);
                     }
                 },
                 error: function(data){
-                    $('#Error').html(data.responseText);
+                    //$('#Error').html(data.responseText);
                     console.log(data);
                 }
             });
         }
         
-        function removeArticlesFromFavs(customerid, action){
-            console.log('iojd');
+        function removeAllArticlesFromFavs(customerid, action){
             $.ajax({	
                 url: "{{ route('customer.removeAllArticlesFromFavs') }}",
                 method: 'POST',             
@@ -127,4 +209,5 @@
                 }
             });
         }
+
 </script>

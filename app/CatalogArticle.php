@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CartDetail;
 
 class CatalogArticle extends Model
 {
     protected $table = "catalog_articles";
 
-    protected $fillable = ['name', 'code', 'stock', 'stockmin', 'price', 'offer', 'textile', 'description', 'category_id', 'user_id', 'thumb', 'status', 'slug'];
+    protected $fillable = ['name', 'code', 'stock', 'stockmin', 'price', 'discount', 'textile', 'description', 'category_id', 'user_id', 'thumb', 'status', 'slug'];
 
     public function category(){
     	return $this->belongsTo('App\CatalogCategory');
@@ -17,8 +18,12 @@ class CatalogArticle extends Model
     public function fav(){
     	return $this->belongsTo('App\CatalogFav', 'article_id');
     }
+    
+    public function cartDetails(){
+    	return $this->hasMany('App\CartDetail', 'id');
+    }
 
-    public function client(){
+    public function customer(){
     	return $this->belongsTo('App\Customer');
     }
 

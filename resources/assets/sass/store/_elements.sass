@@ -192,10 +192,53 @@ ul.pagination li a.active,ul.pagination li.active
 //////////////////////////////////////
 
 
+// Index List
+.product-card
+	.max-text
+		max-height: 100px
+		overflow: hidden
+		white-space: nowrap
+		text-overflow: ellipsis
+
+
 .addedToFavs
 	background-color: $red
 	color: #fff
 	border: 0
+.dropdown-product-item > .dropdown-product-info
+	max-width: 148px
+	width: 148px
+	padding-left: 0
+.dropdown-product-item > .dropdown-product-custom-thumb > img
+	border-radius: 50%
+	max-width: 100%
+	width: 70px
+	min-width: 70px
+	height: 70px
+
+.toolbar .cart > .toolbar-dropdown
+	width: 300px
+	padding-left: 18px !important
+	max-height: 400px
+	overflow-y: scroll
+	overflow-x: hidden
+	
+.user-info-wrapper
+	padding-top: 20px
+	padding-bottom: 20px
+	.user-info .user-data
+		padding-top: 26px
+
+//////////////////////////////////////
+//                                  //
+//             ALERTS               //
+//                                  //
+//////////////////////////////////////
+
+.alert-success
+	background-color: rgba(161, 147, 231, 0.1)
+	color: #000
+	margin-top: 20px
 
 //////////////////////////////////////
 //                                  //
@@ -207,6 +250,10 @@ ul.pagination li a.active,ul.pagination li.active
 	margin-top: 25px
 .pad0
 	padding: 0
+.cursor-pointer
+	&:hover
+		cursor: pointer
+
 
 .horizontal-list
 	ul

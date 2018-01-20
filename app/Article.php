@@ -10,15 +10,18 @@ class Article extends Model
 
     protected $fillable = ['title', 'code', 'price', 'content', 'atribute1_id', 'category_id', 'user_id', 'status', 'slug'];
 
-    public function category(){
+    public function category()
+    {
     	return $this->belongsTo('App\Category');
     }
 
-    public function user(){
+    public function user()
+    {
     	return $this->belongsTo('App\User');
     }
 
-    public function images(){
+    public function images()
+    {
     	return $this->hasMany('App\Image');
     }
 

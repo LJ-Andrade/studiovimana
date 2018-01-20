@@ -114,6 +114,30 @@ function statusTrd($status)
     }
 }
 
+function orderStatusTrd($status)
+{
+    switch ($status) {
+        case 'Active':
+            echo '<span class="text-info">Activa</span>';
+            break;
+        case 'Pending':
+            echo '<span class="text-warning">Pendiente</span>';
+            break;
+        case 'Approved':
+            echo '<span class="text-success">Aprobada</span>';
+            break;
+        case 'Cancelled':
+            echo '<span class="text-danger">Cancelada</span>';
+            break;
+        case 'Finished':
+            echo '<span class="text-muted">Finalizada</span>';
+            break;
+        default:
+            echo 'Sin Estado';
+            break;
+    }
+}
+
 function messageStatusTrd($status)
 {
     switch ($status) {
@@ -134,7 +158,44 @@ function messageStatusTrd($status)
             break;
     }
 }
-    
+
+function transDateT($data)
+{
+    if($data != null){
+        $a        = explode(' ', $data);
+        $b        = explode('-', $a[0]);
+        $date     = $b[2]."/".$b[1]."/".$b[0];
+        return $date;
+    } else {
+        return '';
+    }
+}
+
+function transDateAndTime($data)
+{
+    if($data != null){
+        $a        = explode(' ', $data);
+        $b        = explode('-', $a[0]);
+        $pretime  = explode(':', $a[1]);
+        $time     = $pretime[0].':'.$pretime[1];
+        $date     = $b[2]."/".$b[1]."/".$b[0];
+        $datetime = $date.' ('.$time.')';
+        return $datetime;
+    } else {
+        return '';
+    }
+}
+
+function transDateTO($data)
+{
+    if($data != null){
+        $a        = explode('-', $data);
+        $date     = $a[2].'/'.$a[1].'/'.$a[0];
+        return $date;
+    } else {
+        return '';
+    }
+}
 
 function paymentType($type)
 {
@@ -206,7 +267,6 @@ function compType($type)
     return $comprobante;
 }
 
-
 function getMonthName($month)
 {
     switch ($month) {
@@ -250,50 +310,9 @@ function getMonthName($month)
         return 'Sin Mes';
         break;
     }
-
 }
 
-//////////////////////////////////////////////
-//              Date Formats                //
-//////////////////////////////////////////////
 
-function transDateT($data)
-{
-    if($data != null){
-        $a        = explode(' ', $data);
-        $b        = explode('-', $a[0]);
-        $date     = $b[2]."/".$b[1]."/".$b[0];
-        return $date;
-    } else {
-        return '';
-    }
-}
-
-function transDateAndTime($data)
-{
-    if($data != null){
-        $a        = explode(' ', $data);
-        $b        = explode('-', $a[0]);
-        $pretime  = explode(':', $a[1]);
-        $time     = $pretime[0].':'.$pretime[1];
-        $date     = $b[2]."/".$b[1]."/".$b[0];
-        $datetime = $date.' ('.$time.')';
-        return $datetime;
-    } else {
-        return '';
-    }
-}
-
-function transDateTO($data)
-{
-    if($data != null){
-        $a        = explode('-', $data);
-        $date     = $a[2].'/'.$a[1].'/'.$a[0];
-        return $date;
-    } else {
-        return '';
-    }
-}
 
 //////////////////////////////////////////////
 //             Misc. Functions              //

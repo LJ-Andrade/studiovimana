@@ -112,16 +112,16 @@
 									<span class="Extra-Data">$ </span><span class="DisplayPriceData">{{ $item->price }}</span>
 									<div class="UpdatePriceBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
 								</td>
-								{{--  OFFER PERCENT and PRICE  --}}
-								<td class="Modificable-Offer-Input modificable-input">
-									@if($item->offer == '0')
-									<input class="UpdateOfferInput List-Input Hidden" type="text" name="price">
+								{{--  Discount PERCENT and PRICE  --}}
+								<td class="Modificable-Discount-Input modificable-input">
+									@if($item->discount == '0')
+									<input class="UpdateDiscountInput List-Input Hidden" type="text" name="price">
 									<span class="Extra-Data">-</span>
 									@else
-									<input class="UpdateOfferInput List-Input Hidden" type="text" name="price">
-									<span class="Extra-Data">%</span><span class="DisplayOfferData">{{ $item->offer }}</span><span class="Extra-Data"> ($ {{ calcValuePercentNeg($item->price, $item->offer) }})</span>
+									<input class="UpdateDiscountInput List-Input Hidden" type="text" name="price">
+									<span class="Extra-Data">%</span><span class="DisplayDiscountData">{{ $item->discount }}</span><span class="Extra-Data"> ($ {{ calcValuePercentNeg($item->price, $item->discount) }})</span>
 									@endif
-									<div class="UpdateOfferBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
+									<div class="UpdateDiscountBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
 								</td>
 								{{--  DATE   --}}
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
@@ -167,8 +167,8 @@
 @section('custom_js')
 	<script>
 	$(document).ready(function(e) {
-		$('.CatalogLi').addClass('open');
-		$('.CatalogList').addClass('active');
+		//$('.CatalogLi').addClass('open');
+		//$('.CatalogList').addClass('active');
 
 		// Article Status
 		$('.PauseArticle').click(function() {
