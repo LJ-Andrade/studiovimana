@@ -26,6 +26,12 @@ function calcValuePercentPos($price, $percent)
     return convertAndRoundDecimal($result, 2);
 }
 
+function calcPercent($price, $percent)
+{
+    $percent = $price * $percent / 100;
+    return convertAndRoundDecimal($percent, 2);
+}
+
 function formatNum($number, $digits)
 {
     $root       = 10;

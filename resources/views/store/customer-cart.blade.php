@@ -22,7 +22,8 @@
                             
                             <tr id="Detail{{$item->id}}">
                                 <td>
-                                    <div class="product-item"><a class="product-thumb" href="{{ url('tienda/articulo/'.$item->article->id) }}"><img src="{{ asset('webimages/catalogo/'. $item->article->thumb ) }}" alt="Product"></a>
+                                    <div class="product-item"><a class="product-thumb" href="{{ url('tienda/articulo/'.$item->article->id) }}">
+                                        <img src="{{ asset('webimages/catalogo/'. $item->article->thumb ) }}" alt="{{ $item->name }}"></a>
                                         <div class="product-info">
                                         <h4 class="product-title"><a href="{{ url('tienda/articulo/'.$item->article->id) }}">{{ $item->article->name }}</a></h4>
                                         <span><em>Categoría:</em> {{ $item->article->category->name}}</span>
@@ -32,7 +33,7 @@
                                 </td>
                                 <td class="text-center">{{ $item->size }}</td>
                                 <td class="text-center">{{ $item->quantity }}</td>
-                                <td class="text-center text-lg text-medium">$ {{ $item->price }}</td>
+                                <td class="text-center text-lg text-medium">$ {{ $item->article->price }}</td>
                                 {{--  <td class="text-center"><a class="RemoveArticleFromCart cursor-pointer" data-detailid="{{ $item->id }}"><i class="icon-cross"></i></a></td>  --}}
                             </tr>
 

@@ -7,15 +7,11 @@
 		<!-- Checkout Adress-->
 		<div class="col-xl-9 col-lg-8">
 			@component('layouts.store.partials.checkout-steps')
-				@slot('step1', 'Datos')
-				@slot('step2', 'Método de Envío')
-				@slot('step3', 'Método de Pago')
-				@slot('step4', 'Resumen')
 				@slot('step1status', 'active')
 			@endcomponent
 			<h4>Billing Address</h4>
 			<hr class="padding-bottom-1x">
-			<form class="row" method="POST" action="{{ route('store.updateCustomerData') }}">
+			<form class="row" method="POST" action="{{ route('store.checkoutCustomerData') }}">
 				{{ csrf_field() }}
 				<div class="col-md-6">
 					<div class="form-group">

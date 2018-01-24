@@ -8,5 +8,5 @@
 </div>
 <div class="form-group">
     {!! Form::label('percent', 'Porcentaje') !!}
-    {!! Form::text('percent', null, ['class' => 'form-control', 'placeholder' => 'Ingrese porcentaje si corresponde']) !!}
+    {!! Form::number('percent', null, ['class' => 'form-control', 'min' => '0', 'step' => 'any', 'placeholder' => 'Ingrese porcentaje si corresponde']) !!}
 </div>  

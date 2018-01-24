@@ -198,7 +198,6 @@ deleteRecord = function deleteRecord(id, route, bigtext, smalltext) {
 };
 
 deleteAndReload = function deleteAndReload(id, route, bigtext, smalltext) {
-
 	swal({
 		title: bigtext,
 		text: smalltext,

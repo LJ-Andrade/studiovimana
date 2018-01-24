@@ -107,7 +107,6 @@ class PaymentsController extends Controller
 
     public function destroy(Request $request)
     {   
-        
         $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);
         
         if(is_array($ids)) {

@@ -55,7 +55,15 @@ Route::group(['prefix'=> 'vadmin'], function() {
             Route::post('addtocart', ['as' => 'store.addtocart', 'uses' => 'Store\CartDetailController@store']);
             Route::post('removefromcart', ['as' => 'store.removefromcart', 'uses' => 'Store\CartDetailController@destroy']);
             Route::get('checkout', ['as' => 'store.checkout', 'uses' => 'Store\StoreController@checkout']);
-            Route::post('updateCustomerData', ['as' => 'store.updateCustomerData', 'uses' => 'Store\StoreController@updateCustomerData']);
+            Route::post('envio', ['as' => 'store.checkoutCustomerData', 'uses' => 'Store\StoreController@checkoutCustomerData']);
+            Route::get('envio', ['as' => 'store.checkoutShippingGet', 'uses' => 'Store\StoreController@checkoutShippingGet']);
+            Route::post('pago', ['as' => 'store.checkoutShipping', 'uses' => 'Store\StoreController@checkoutShipping']);
+            Route::get('pago', ['as' => 'store.checkoutPaymentGet', 'uses' => 'Store\StoreController@checkoutPaymentGet']);
+            Route::post('resumen', ['as' => 'store.checkoutPayment', 'uses' => 'Store\StoreController@checkoutPayment']);
+            
+            
+            Route::get('resumen', ['as' => 'store.checkoutReview', 'uses' => 'Store\StoreController@checkoutReview']);
+            
             //Route::post('envio', ['as' => 'store.checkoutShipping', 'uses' => 'Store\StoreController@checkoutShipping']);
             
         
@@ -180,6 +188,7 @@ Route::prefix('vadmin')->middleware('admin')->group(function () {
     Route::post('destroy_product_image', 'Catalog\ImagesController@destroy');
     Route::post('destroy_portfolio_image', 'Portfolio\ImagesController@destroy');
     Route::post('destroy_shippings', 'Catalog\ShippingsController@destroy');
+    Route::post('destroy_payments', 'Catalog\PaymentsController@destroy');
 });
 
 

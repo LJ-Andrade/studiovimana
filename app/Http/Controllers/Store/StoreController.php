@@ -13,7 +13,7 @@ use App\CatalogAtribute1;
 use App\CatalogFav;
 use App\Customer;
 use App\Shipping;
-use App\Payments;
+use App\Payment;
 
 // Prov
 use App\Cart;
@@ -32,7 +32,6 @@ class StoreController extends Controller
         
     }
     
-
     public function index()
     {
         $articles = CatalogArticle::orderBy('id', 'DESCC')->where('status','1')->paginate(15);
@@ -84,8 +83,7 @@ class StoreController extends Controller
             ->with('activeCart', $activeCart);
     }
     
-
-    public function updateCustomerData(Request $request)
+    public function checkoutCustomerData(Request $request)
     {
             $user = auth()->guard('customer')->user();
             $item = Customer::find($user->id);
@@ -112,17 +110,63 @@ class StoreController extends Controller
                 ->with('items', $items);
     }
 
+    public function checkoutShippingGet()
+    {
+        $items = Shipping::all();
+        $activeCart = $this->getActiveCart();
+        return view('store.checkout-shipping')
+            ->with('activeCart', $activeCart)
+            ->with('items', $items);
+    }
+
     // Checkout Step 2
+    public function checkoutShipping(Request $request)
+    {   
+        $shipping = Shipping::findOrFail($request->shipping_id);
+        $cart = Cart::where('customer_id', auth()->guard('customer')->user()->id)->where('status', '=', 'active')->first();
+        $cart->shipping_id = $request->shipping_id;
+        $cart->save();
+        
+        $items = Payment::all();
+        $activeCart = $this->getActiveCart();
+        return view('store.checkout-payment')
+            ->with('activeCart', $activeCart)
+            ->with('items', $items);
+    }
 
-    // public function checkoutShipping(Request $request)
-    // {   
-    //         $activeCart = $this->getActiveCart();
-    //         $items = Shipping::all();
-    //         return view('store.checkout-shipping')
-    //             ->with('activeCart', $activeCart)
-    //             ->with('items', $items);
-    // }
+    // Checkout Step 3
+    public function checkoutPayment(Request $request)
+    {
+        $payment = Payment::findOrFail($request->payment_method_id);
+        $cart = Cart::where('customer_id', auth()->guard('customer')->user()->id)->where('status', '=', 'active')->first();
+        $cart->payment_method_id = $request->payment_method_id;
+        $cart->save();
+        
+        $activeCart = $this->getActiveCart();
+        
+        return view('store.checkout-review')
+            ->with('activeCart', $activeCart);
+    }
+        
+    public function checkoutPaymentGet()
+    {
+        $items = Payment::all();
+        $activeCart = $this->getActiveCart();
+        return view('store.checkout-payment')
+            ->with('activeCart', $activeCart)
+            ->with('items', $items);
+    }
 
+
+    public function checkoutReview(Request $request)
+    {
+        $activeCart = $this->getActiveCart();
+        return view('store.checkout-review')
+            ->with('activeCart', $activeCart);
+    }
+
+
+    
     public function checkoutCheckData(Request $request)
     {
         // Check if customer data has null or empty values
@@ -142,6 +186,7 @@ class StoreController extends Controller
             return back()->with('message','Debe completar todos los datos requeridos');
         }    
     }
+
 
     /*
     |--------------------------------------------------------------------------
