@@ -34,7 +34,7 @@
 								<td class="align-middle">
 									<label class="custom-control custom-radio">
 										<input class="custom-control-input" name="payment_method_id" value="{{ $item->id }}" 
-										@if($activeCart['activeCart']->payment->id == $item->id)
+										@if($activeCart['activeCart']->payment !=null && $activeCart['activeCart']->payment->id == $item->id)
 										checked="checked"
 										@else 
 										@endif
@@ -57,7 +57,7 @@
 				</div>
 			</form>
 		</div>
-			<!-- Sidebar          -->
+		<!-- Sidebar          -->
 		<div class="col-xl-3 col-lg-4">
 			@include('layouts.store.partials.checkout-aside')
 		</div>

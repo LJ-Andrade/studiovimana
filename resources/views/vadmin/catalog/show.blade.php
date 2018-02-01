@@ -1,13 +1,13 @@
 @extends('layouts.vadmin.main')
 
-@section('title', 'Vadmin | Previsualización de Artículo')
+@section('title', 'Vadmin | Previsualización de Item')
 
 @section('header')
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Artículos</a></li>
-            <li class="breadcrumb-item active">Previsualización del artículo <b></b></li>
+            <li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Listado de Items</a></li>
+            <li class="breadcrumb-item active">Previsualización del Item <b></b></li>
 		@endslot
 		@slot('actions')
 		@endslot
@@ -19,9 +19,10 @@
         @component('vadmin.components.container')
             @slot('title')
                 </b><h1>{!! $article->name !!}</h1>
+				<p class="text-muted">Código: #{!! $article->code !!} </p>
             @endslot
             @slot('content')
-            	<b>Descripción:</b> <p>{!! $article->description !!}</p>
+				<b>Descripción:</b> <p>{!! $article->description !!}</p>
 				<hr class="softhr">
 				<div class="row">
 					<div class="col-md-3">
@@ -62,22 +63,21 @@
 				<br>
 				<b> Precio c/ Desc.: </b> <span class="custom-badge btnGreen"> $ {{ $article->price - ($article->price * $article->offer) / 100 }}</span>
 				<hr class="softhr">
-				<b>Url - Dirección web amigable (Slug):</b> <span class="badge">{!! $article->slug !!}</span>
-				<hr class="softhr">
-				<b>Tela: </b> <span class="custom-badge btnBlue">{{ $article->textile }}</span> | 
-				<b>Talles:</b>
+				<b>Cualidades:</b>
 				@foreach($article->atribute1 as $atribute1)
-					<span class="custom-badge btnRed">{!! $atribute1->name !!}</span>
-				@endforeach
+				<span class="custom-badge btnRed">{!! $atribute1->name !!}</span>
+				@endforeach <br>
+				<b>Propiedad: </b> <span class="custom-badge btnBlue">{{ $article->textile }}</span>
 				<hr class="softhr">
 				<b>Categoría:</b> <span class="custom-badge btnBlue">{!! $article->category->name !!}</span> |
 				<b>Etiquetas:</b>
 				@foreach($article->tags as $tag)
-					<span class="custom-badge btnRed">{!! $tag->name !!}</span>
+				<span class="custom-badge btnRed">{!! $tag->name !!}</span>
 				@endforeach
 				<hr class="softhr">
 				
-				<br><br>
+				<b>Url - Dirección web amigable (Slug):</b> <span class="badge">{!! $article->slug !!}</span>
+				<hr class="softhr">
 				<a href="{{ url('vadmin/catalogo/'.$article->id.'/edit') }}" class="btn btnGreen"><i class="icon-pencil2"></i> Editar Artículo</a> 
         	@endslot
         @endcomponent

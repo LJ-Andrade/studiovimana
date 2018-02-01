@@ -15,7 +15,7 @@ class AdminMiddleware
     public function handle($request, Closure $next, $guard = 'user')
     {
         if(!auth()->guard($guard)->check()){
-            return Redirect::back()->with('message','No tiene los permisos necesarios para realizar esa acción');
+            return redirect('/vadmin/login');
         }
         return $next($request);
     }

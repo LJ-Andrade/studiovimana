@@ -25,7 +25,6 @@
 					</div>
 						{{ csrf_field() }}
 						{!! Form::submit('Enviar', ['class' => 'contactBtn']) !!}
-						
 				{!! Form::close() !!}
 				<div id="FormResponse"></div>
 				<div id="FormSuccess" class="form-responses animated fadeIn Hidden">

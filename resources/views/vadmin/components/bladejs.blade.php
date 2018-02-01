@@ -248,7 +248,7 @@
         var data = { route: route, id: id, value: value, action: action};
         $.ajax({
             url: route,
-            type: 'post',
+            type: 'POST',
             dataType: 'JSON',
             data: data,
             beforeSend: function(){
@@ -271,7 +271,7 @@
         var data = { route: route, id: id, value: value, action: action};
         $.ajax({
             url: route,
-            type: 'post',
+            type: 'POST',
             dataType: 'JSON',
             data: data,
             beforeSend: function(){
@@ -295,7 +295,7 @@
         var data = { route: route, id: id, value: value, action: action};
         $.ajax({
             url: route,
-            type: 'post',
+            type: 'POST',
             dataType: 'JSON',
             data: data,
             beforeSend: function(){
@@ -382,7 +382,6 @@
                 '<i class="ion-checkmark-round"></i> Ok!'
             });
     }
-
 
 
 </script>

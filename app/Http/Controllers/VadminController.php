@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Cart;
+use App\User;
 
 class VadminController extends Controller
 {   
@@ -15,8 +16,7 @@ class VadminController extends Controller
     
     public function index(Request $request)
     {
-        $messages = Contact::where('status', '=', '0')->count();
-        return view('vadmin.vadmin')->with('messages', $messages);
+        return view('vadmin.vadmin');
     }
 
     public function storeControlPanel(Request $request)
@@ -25,6 +25,17 @@ class VadminController extends Controller
         return view('vadmin.catalog.control-panel')
             ->with('activeCarts', $activeCarts);
     }
+
+    public function docs(Request $request)
+    {
+        return view('vadmin.support.docs');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | MESSAGES / CONTACTS
+    |--------------------------------------------------------------------------
+    */
 
     public function storedContacts(Request $request)
     {
@@ -56,6 +67,57 @@ class VadminController extends Controller
                 'response'   => false,
                 'message'    => $e
             ]); 
+        }
+    }
+
+    public function setMessageAsReaded(Request $request){
+        // Set All messages as readed
+        $user = auth()->guard('user')->user();
+        if($request->id == null){
+            try{
+                $items = Contact::where('status', '0')->get();
+                foreach($items as $item){
+                    $item->status = '1';
+                    $item->user = $user->name;
+                    $item->save();
+                }
+                $newMessagesN = Contact::where('status', '=', '0')->count();
+                return response()->json([
+                    'response'    => true,
+                    'message'     => 'Mensaje Actualizado',
+                    'newMessagesN' => $newMessagesN
+                ]); 
+    
+            } catch (\Exception $e) {
+                return response()->json([
+                    'response'   => false,
+                    'message'    => $e
+                ]); 
+            }
+        } else { 
+            // Set Specific messages as readed    
+            $id = $request->id;
+            
+            
+            try{
+                $item = Contact::findOrFail($id);
+                $item->status = '1';
+                $item->user = $user->name;
+                $item->save();
+                $newMessagesN = Contact::where('status', '=', '0')->count(); 
+
+                return response()->json([
+                    'response'    => true,
+                    'message'     => 'Mensaje Actualizado',
+                    'newMessagesN' => $newMessagesN
+                ]); 
+
+            } catch (\Exception $e) {
+                return response()->json([
+                    'response'   => false,
+                    'message'    => $e
+                ]); 
+            }
         }
     }
 

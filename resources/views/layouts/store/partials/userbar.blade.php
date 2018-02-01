@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 @else  
-                <div class="cart"><a href="cart.html"></a><i class="icon-bag"></i><span class="count">0</span>
+                <div class="cart"><a href="#"></a><i class="icon-bag"></i><span class="count">0</span>
                 </div>
                 @endif
             @else

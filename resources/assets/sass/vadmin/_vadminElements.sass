@@ -147,7 +147,9 @@
 
 .documentation
 	p
-		font-size: 1rem
+		font-size: 1.1rem
+		font-weight: 300
+		line-height: 23px
 //////////////////////////////////////
 //                                  //
 //            SEARCH                //
@@ -737,20 +739,26 @@ ul.pagination li.disabled
 //////////////////////////////////////
 
 .login-page
-	@include black-gradient
+	@include deep-space-gradient
 
 .login-container
 	@include flex-center
 	.inner
+		@include box-shadow-soft
+		border-radius: 20px
 		width: 400px
 		max-width: 100%
 		margin-top: 150px
+		.card
+			border-radius: 20px
 		.card-header
 			padding: 0
+			background-color: transparent
 		.rememberme-box
 			margin-top: 10px
 		.card-footer
 			font-size: 0.8rem
+			background-color: transparent
 		fieldset
 			margin-bottom: 10px
 		input

@@ -8,12 +8,12 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('categories.index')}}">Etiquetas del Catálogo</a></li>
-			<li class="breadcrumb-item active">Nueva Etiqueta</li>
+			<li class="breadcrumb-item"><a href="{{ route('cat_tags.index')}}">Listado de etiquetas</a></li>
+			<li class="breadcrumb-item active">Nueva etiqueta</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h1>Nueva Etiqueta de Catálogo</h1>
+				<h1>Nueva Etiqueta</h1>
 			</div>
 		@endslot
 	@endcomponent
@@ -24,9 +24,9 @@
 		<div class="row">
 			<div class="col-md-5">
 			{!! Form::open(['route' => 'cat_tags.store', 'method' => 'POST', 'files' => true, 'class' => 'row big-form mw450', 'data-parsley-validate' => '']) !!}	
-				@include('vadmin.portfolio.tags.form')
+				@include('vadmin.catalog.tags.form')
 				<div class="form-actions right">
-					<a href="{{ route('tags.index')}}">
+					<a href="{{ route('cat_tags.index')}}">
 						<button type="button" class="btn btnRed">
 							<i class="icon-cross2"></i> Cancelar
 						</button>
@@ -40,10 +40,9 @@
 			<div class="col-md-7">
 				@component('vadmin.components.infoContainer')
 					@slot('text')
-					Las <b>etiquetas</b> (o tags) son palabras claves que permiten agrupar artículos con una característica particular.
-					Estas pueden ser compartidas entre artículos que pertenezcan a distintas categorías.
+					Las <b>etiquetas</b> (o tags) son palabras claves que permiten agrupar items con una característica particular.
+					Estas pueden ser compartidas entre items que pertenezcan a distintas categorías.
 					Luego permitirá a los usuarios que filtren los items en los buscadores de la web según sus preferencias. <br><br>
-					<b>Ejemplos de etiquetas:</b> Rojo, Verde, Largo, Corto, Con Costuras, Sin Costuras, En Oferta, Liquidación, etc. 
 					@endslot
 				@endcomponent
 			</div>

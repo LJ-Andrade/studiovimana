@@ -1,5 +1,5 @@
 @extends('layouts.vadmin.main')
-@section('title', 'Vadmin | Catálogo')
+@section('title', 'Vadmin | Item')
 {{-- STYLE INCLUDES --}}
 @section('styles')
 @endsection
@@ -9,12 +9,23 @@
 	@component('vadmin.components.headerfixed')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Productos del Catálogo</li>
+            <li class="breadcrumb-item active">Listado de Items</li>
 		@endslot
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('catalogo.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Producto</a>
+				<a href="{{ route('catalogo.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Item</a>
+				{{--  Actions  --}}
+				<div class="btn-group">
+					<button type="button" class="btn dropdown-toggle btnBlue" 
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Acciones</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Descargar Pdf</a>
+						<a class="dropdown-item" href="#">Descargar Excel</a>
+						{{--  <div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Separated link</a>  --}}
+					</div>
+				</div>
 				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
 				{{-- Edit --}}
 				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
@@ -52,16 +63,10 @@
 @section('content')
 	<div class="list-wrapper">
 		{{-- Search --}}
-		{{-- Test --}}
-		<div id="TestBox" class="col-xs-12 test-box Hidden">
-		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('title', 'Productos de Catálogo')
-					@if($articles->count() == '0')
-						@slot('tableTitles', '')
-						@slot('tableContent', '')
-					@else
+				@slot('title', 'Listado de Items')
+					@if(!$articles->count() == '0')
 					@slot('tableTitles')
 						<th class="w-50">
 							@component('vadmin.components.checkAllCheckBox')
@@ -72,7 +77,7 @@
 						<th>Stock</th>
 						<th>Precio</th>
 						<th>Oferta (%)</th>
-						<th>Fecha de Creación</th>
+						<th>Categoría</th>
 						<th>Estado</th>
 					@endslot
 					@slot('tableContent')
@@ -92,7 +97,7 @@
 										<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
 									@endif
 								</td>
-								<td class="w-50">{{ $item->code }}</td>
+								<td class="w-50">#{{ $item->code }}</td>
 								<td class="show-link max-text"><a href="{{ url('vadmin/catalogo/'.$item->id) }}">{{ $item->name }}</a></td>
 								{{--  STOCK  --}}
 								<td class="Modificable-Stock-Input modificable-input">
@@ -124,7 +129,7 @@
 									<div class="UpdateDiscountBtn action-button Hidden" data-id="{{ $item->id }}"><i class="icon-checkmark2"></i></div>
 								</td>
 								{{--  DATE   --}}
-								<td class="w-200">{{ transDateT($item->created_at) }}</td>
+								<td class="w-200">{{ $item->category->name }}</td>
 								<td class="w-50 pad0 centered">
 									@if($item->status == '1')
 										<label class="switch">
@@ -142,6 +147,15 @@
 								</td>
 							</tr>					
 						@endforeach
+						@else 
+							@slot('tableTitles')
+								<th></th>
+							@endslot
+							@slot('tableContent')
+								<tr>
+									<td class="w-200">No se han encontrado items</td>
+								</tr>
+							@endslot
 						@endif
 				@endslot
 			@endcomponent

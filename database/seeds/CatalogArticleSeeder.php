@@ -12,6 +12,6 @@ class CatalogArticleSeeder extends Seeder
      */
     public function run()
     {
-        factory(CatalogArticle::class,10)->create();
+        //factory(CatalogArticle::class,10)->create();
     }
 }

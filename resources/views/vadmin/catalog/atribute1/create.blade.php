@@ -1,14 +1,5 @@
-{{-- 
-    modelName:       CatalogAtribute1 
-    routeGroup:      
-    viewName:        catalog-atribute1
-    viewTemplateDir: vadmin\catalog.catalog-atribute1
-    cudeNameCap:     Catalogatribute1
-    crudName:        catalogatribute1
---}}
-
 @extends('layouts.vadmin.main')
-@section('title', 'VADmin | Nuevo Talle')
+@section('title', 'VADmin | Nuevo Atributo')
 
 @section('styles')
 @endsection
@@ -17,12 +8,12 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('cat_atribute1.index')}}">Listado de talles</a></li>
-			<li class="breadcrumb-item active">Nuevo talle</li>
+			<li class="breadcrumb-item"><a href="{{ route('cat_atribute1.index')}}">Listado de atributos</a></li>
+			<li class="breadcrumb-item active">Nuevo atributo</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h1>Nuevo Talle</h1>
+				<h1>Nuevo atributo</h1>
 			</div>
 		@endslot
 	@endcomponent
@@ -49,9 +40,11 @@
 			<div class="col-md-7">
 				@component('vadmin.components.infoContainer')
 					@slot('text')
-					Agregue los <b>talles</b> correspondientes a sus modelos. <br>
-					Luego saldrán en el catálogo sobre la imágen del producto y a su vez los usuarios podrán filtrar los artículos por talle. <br><br>
-					<b>Ejemplos de talles:</b> S, SM, X, XL, etc. 
+					Agregue los <b>atributos</b> correspondientes. <br>
+					Luego estarán disponibles como opción al momento de cargar items para la <b>Sección1</b><br>
+					Estos atributos permitirán a los usuarios filtrar los items desde la web y facilitan a los administradores la carga de datos. 
+					<br>
+					
 					@endslot
 				@endcomponent
 			</div>

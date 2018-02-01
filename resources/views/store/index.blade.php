@@ -2,41 +2,8 @@
 
 @section('header-image')
 	<div class="index-header">
-		<img src="{{ asset('store-ui/images/home/banner.jpg') }}" alt="">
+		
 	</div>
-@endsection
-
-@section('modal')
-	@component('store.components.modal')
-		@slot('id','AddArticleModal')
-		@slot('content')
-			<form action="">
-				<div class="form-group row">
-					<label class="col-2 col-form-label" for="text-input">Text</label>
-					<div class="col-10">
-						<input class="ArticleId form-control" type="text" name="articleid" value="">
-					</div>
-				</div>
-				<div class="form-group row">
-					<div class="col-sm-4 margin-bottom-1x">
-						<label for="">Cantidad</label>
-						<div class="input-group">
-							<input class="form-control" type="number" min="1" value="1"><span class="input-group-addon"><i class="icon-layers"></i></span>
-						</div>
-					</div>
-					<div class="col-sm-4 margin-bottom-1x">
-						<label for="">Talle</label>
-						<div class="input-group">
-							<span id="SizesSelectModal"></span>
-						</div>
-					</div>
-				</div>
-			</form>
-		@endslot
-		@slot('button')
-			<button class="btn btn-primary btn-sm" type="button">Agregar</button>
-		@endslot
-	@endcomponent
 @endsection
 
 @section('content')

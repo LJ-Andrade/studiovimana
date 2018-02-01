@@ -43,7 +43,50 @@ class CatalogArticle extends Model
     	return $this->belongsToMany('App\CatalogTag');
     }
 
-    public function scopeSearch($query, $title)
+    public function scopeActive($query){
+        return $query->where('status', '1');
+    }
+
+    public function scopeSearch($query, $code=null, $name=null, $category=null)
+    {   
+        //dd($code." ".$name." ".$category);
+        if($code != null && $name != null & $category != null)
+        {
+            return $query
+            ->where('code', 'like', "%" . $code . "%")
+            ->where('name', 'like', "%" . $name . "%")
+            ->where('category_id', '=', $category);
+            
+        } elseif($name != null && $category != null)
+        {
+            return $query
+                ->where('name', 'like', "%" . $name . "%")
+                ->where('category_id', '=', $category);
+        } elseif($code != null && $category != null)
+        {
+            return $query
+            ->where('code', 'like', "%" . $code . "%")
+            ->where('category_id', '=', $category);
+        } elseif($name != null && $code != null)
+        {
+            return $query
+            ->where('code', 'like', "%" . $code . "%")
+            ->where('name', '=', $name);
+        } elseif($code != null)
+        {
+            return $query->where('code', 'like', "%" . $code . "%");
+        } elseif($name != null) 
+        {
+            return $query->where('name', 'like', "%" . $name . "%");
+        } elseif($category != null)
+        {
+            return $query->where('category_id', '=', $category);
+        }
+    }
+
+
+
+    public function scopeSearchtitle($query, $title)
     {
         return $query->where('name', 'LIKE', "%$title%");
     }

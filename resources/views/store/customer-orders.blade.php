@@ -45,14 +45,16 @@
                         <tr>
                             <td>
                                 No se han realizado órdenes al momento.
-                            </tr>
+                            </td>
+                            <td></td><td></td><td></td><td></td><td></td>
+
                         </td>
                         @endif
                         </tbody>
                     </table>
                 </div>
                 <hr>
-                <div class="text-right"><a class="btn btn-link-primary margin-bottom-none" href="#"><i class="icon-download"></i>&nbsp;Order Details</a></div>
+            
             </div>
             
 		</div>

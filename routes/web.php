@@ -14,34 +14,6 @@ Route::get('/', [
 
 /*
 |--------------------------------------------------------------------------
-| VAdmin
-|--------------------------------------------------------------------------
-*/
-
-Auth::routes();
-Route::group(['prefix'=> 'vadmin'], function() {
-    
-    // Login Routes...
-        Route::get('login', ['as' => 'vadmin.login', 'uses' => 'Auth\LoginController@showLoginForm']);
-        Route::post('login', ['uses' => 'Auth\LoginController@login']);
-        Route::post('logout', ['as' => 'vadmin.logout', 'uses' => 'Auth\LoginController@logout']);
-    
-    // Registration Routes...
-        Route::get('register', ['as' => 'vadmin.register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
-        Route::post('register', ['uses' => 'Auth\RegisterController@register']);
-    
-    // Password Reset Routes...
-        Route::get('password/reset', ['as' => 'vadmin.password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
-        Route::post('password/email', ['as' => 'vadmin.password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
-        Route::get('password/reset/{token}', ['as' => 'vadmin.password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
-        Route::post('password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
-    });
-
-    // Route::get('/home', 'VadminController@index');
-    // Route::get('/vadmin', 'VadminController@index');
-
-/*
-|--------------------------------------------------------------------------
 | Store
 |--------------------------------------------------------------------------
 */
@@ -60,13 +32,11 @@ Route::group(['prefix'=> 'vadmin'], function() {
             Route::post('pago', ['as' => 'store.checkoutShipping', 'uses' => 'Store\StoreController@checkoutShipping']);
             Route::get('pago', ['as' => 'store.checkoutPaymentGet', 'uses' => 'Store\StoreController@checkoutPaymentGet']);
             Route::post('resumen', ['as' => 'store.checkoutPayment', 'uses' => 'Store\StoreController@checkoutPayment']);
-            
-            
             Route::get('resumen', ['as' => 'store.checkoutReview', 'uses' => 'Store\StoreController@checkoutReview']);
             
-            //Route::post('envio', ['as' => 'store.checkoutShipping', 'uses' => 'Store\StoreController@checkoutShipping']);
+            //Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'MercadoPagoController@getCreatePreference']);
+            Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'Store\StoreController@mpConnect']);
             
-        
             // Sections    
             Route::get('articulo/{id}', 'Store\StoreController@show');
             Route::get('cuenta', ['as' => 'store.customer-account', 'uses' => 'Store\StoreController@customerAccount']);
@@ -118,9 +88,38 @@ Route::get('categories/{name}', ['uses' => 'WebController@searchCategory', 'as' 
 Route::get('tag/{name}', ['uses' => 'WebController@searchTag', 'as'   => 'web.search.tag']);
 Route::post('mail_sender', 'WebController@mail_sender');
 
+
 /*
 |--------------------------------------------------------------------------
-| VADMIN / SECTIONS
+| VADMIN
+|--------------------------------------------------------------------------
+*/
+
+Auth::routes();
+Route::group(['prefix'=> 'vadmin'], function() {
+    
+    // Login Routes...
+        Route::get('login', ['as' => 'vadmin.login', 'uses' => 'Auth\LoginController@showLoginForm']);
+        Route::post('login', ['uses' => 'Auth\LoginController@login']);
+        Route::post('logout', ['as' => 'vadmin.logout', 'uses' => 'Auth\LoginController@logout']);
+    
+    // Registration Routes...
+        Route::get('register', ['as' => 'vadmin.register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+        Route::post('register', ['uses' => 'Auth\RegisterController@register']);
+    
+    // Password Reset Routes...
+        Route::get('password/reset', ['as' => 'vadmin.password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+        Route::post('password/email', ['as' => 'vadmin.password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+        Route::get('password/reset/{token}', ['as' => 'vadmin.password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
+        Route::post('password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
+    });
+
+    // Route::get('/home', 'VadminController@index');
+    // Route::get('/vadmin', 'VadminController@index');
+
+/*
+|--------------------------------------------------------------------------
+| Vadmin - Sections
 |--------------------------------------------------------------------------
 */
 
@@ -132,10 +131,13 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     // -- USERS --
     Route::resource('users', 'UserController');
     Route::post('updateAvatar', 'UserController@updateAvatar');	
+    Route::post('message_status/{id}', 'VadminController@updateMessageStatus');
+
+    // -- MESSAGES --
     Route::get('/mensajes_recibidos', 'VadminController@storedContacts');
     Route::get('mensajes_recibidos/{id}', 'VadminController@showStoredContact');
-    Route::post('message_status/{id}', 'VadminController@updateMessageStatus');
-        
+    Route::post('setMessageAsReaded', 'VadminController@setMessageAsReaded');
+    
     // -- PORTFOLIO --
     Route::resource('portfolio', 'Portfolio\ArticlesController');
     Route::resource('categories', 'Portfolio\CategoriesController');
@@ -162,16 +164,18 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     // Payments Methods
     Route::resource('payments', 'Catalog\PaymentsController');
 
-    // -- DOCS --
-    Route::get('docs', function () {
-        return view('vadmin.docs');
-    });
+    // -- SUPPORT --
+    Route::get('docs', function(){ return view('vadmin.support.docs'); });
+    Route::get('help', function(){ return view('vadmin.support.help'); });
+
+    // Exports
+    Route::get('exportViewPdf/{view}/{model}/{filename}', ['as' => 'vadmin.exportViewPdf', 'uses' => 'invoiceController@exportViewPdf']);
 
 });
     
 /*
 |--------------------------------------------------------------------------
-| Destroy
+| Vadmin - Destroy
 |--------------------------------------------------------------------------
 */
 

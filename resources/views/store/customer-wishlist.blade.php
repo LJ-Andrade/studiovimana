@@ -18,7 +18,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							@if(!$favs['favs']->isEmpty())
+
+							@if(!$favs['favs'])
 								@foreach($favs['favs'] as $fav)	
 								<tr>
 									<td>

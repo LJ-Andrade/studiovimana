@@ -61,7 +61,7 @@ class CatalogAtribute1Controller extends Controller
         $item = new CatalogAtribute1($request->all());
         $item->save();
 
-        return redirect()->route('cat_atribute1.index')->with('message','Talle Creado');
+        return redirect()->route('cat_atribute1.index')->with('message','Atributo Creado');
 
     }
 
@@ -91,7 +91,7 @@ class CatalogAtribute1Controller extends Controller
         $item->fill($request->all());
         $item->save();
 
-        return redirect()->route('cat_atribute1.index')->with('message','Item Editada');
+        return redirect()->route('cat_atribute1.index')->with('message','Atributo actualizado');
     }
 
     /*

@@ -1,5 +1,5 @@
 @extends('layouts.vadmin.main')
-@section('title', 'VADmin | Nuevo Artículo')
+@section('title', 'VADmin | Nuevo Item')
 
 @section('styles')
 	{!! Html::style('plugins/texteditor/trumbowyg.min.css') !!}
@@ -14,12 +14,12 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Productos del Catálogo</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Listado de Items</a></li>
 			<li class="breadcrumb-item active">Creación</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h1>Creación de nuevo Producto</h1>
+				<h1>Creación de nuevo Item</h1>
 				{{-- Edit --}}
 				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
 			</div>

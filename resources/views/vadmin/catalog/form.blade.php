@@ -49,7 +49,7 @@
     {{-- Slug --}}
     <div class="col-md-3">
         <div class="form-group">
-            {!! Form::label('atribute1', 'Talles') !!}
+            {!! Form::label('atribute1', 'Cualidades') !!}
             {!! Form::select('atribute1[]', $atribute1, null, ['class' => 'Select-Atribute form-control', 'multiple']) !!}
             <div class="slug2"></div>
         </div>
@@ -57,8 +57,8 @@
     {{--  Textile  --}}
     <div class="col-md-3">
         <div class="form-group">
-            {!! Form::label('textile', 'Textil') !!}
-            {!! Form::text('textile', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el textil', 
+            {!! Form::label('textile', 'Propiedades') !!}
+            {!! Form::text('textile', null, ['class' => 'form-control', 'placeholder' => 'Ingrese una propiedad', 
             'required' => '', 'maxlength' => '50']) !!}
         </div>
     </div>
@@ -80,7 +80,7 @@
     {{-- Tags--}}
     <div class="col-md-4 col-sm-6 col-xs-12">
         <div class="form-group">
-            {!! Form::label('tags', 'Tags') !!}
+            {!! Form::label('tags', 'Etiquetas') !!}
             {!! Form::select('tags[]', $tags, null, ['class' => ' Select-Tags form-control', 'multiple', 'required' => '']) !!}
         </div>
     </div>

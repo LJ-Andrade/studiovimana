@@ -4,9 +4,3 @@
     <a class="@if(isset($step2status)) {{ $step2status }} @endif" href="{{ route('store.checkoutShippingGet') }}"><span class="angle"></span>2. Método de Envío</a>
     <a class="@if(isset($step1status)) {{ $step1status }} @endif" href="{{ route('store.checkout') }}"><span class="angle"></span>1. Datos</a>
 </div>
-
-
-@slot('step1', 'Datos')
-@slot('step2', 'Método de Envío')
-@slot('step3', 'Método de Pago')
-@slot('step4', 'Resumen')

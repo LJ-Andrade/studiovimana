@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema; 
+use View;
+use App\Contact;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        Carbon::setLocale('es');
+        $newMessages = Contact::where('status', '=', '0')->get();
+        View::share('newMessages', $newMessages);
     }
 
     /**

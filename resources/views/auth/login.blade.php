@@ -7,11 +7,12 @@
         <div class="card border-grey border-lighten-3 m-0">
             <div class="card-header no-border">
                 <div class="card-title text-xs-center">
-                    <div class="p-1"><img src="{{ asset('vadmin-ui/app-assets/images/logo/robust-logo-dark.png') }}" alt="branding logo"></div>
+                    <div class="p-1"><img src="{{ asset('vadmin-ui/app-assets/images/logo/app-logo2.png') }}" alt="branding logo"></div>
                 </div>
-                <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Ingreso al Sistema</span></h6>
+                {{--  <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2" style="margin-top: 0"><span>Ingreso al Sistema</span></h6>  --}}
             </div>
             <div class="card-body collapse in">
+                <div class="container" style="text-align: center">Usuario: <b>visitante</b> | Contraseña: <b>123456</b> </div>
                 <div class="card-block">
                     <form class="form-horizontal form-simple" method="POST" action="{{ route('vadmin.login') }}">
                         {{ csrf_field() }}
@@ -59,4 +60,5 @@
         </div>
     </div>
 </section>
+
 @endsection

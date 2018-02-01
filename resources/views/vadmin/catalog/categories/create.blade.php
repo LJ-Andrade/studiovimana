@@ -8,12 +8,12 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('categories.index')}}">Listado de Categorías</a></li>
-			<li class="breadcrumb-item active">Nueva Categoría</li>
+			<li class="breadcrumb-item"><a href="{{ route('cat_categorias.index')}}">Listado de categorías</a></li>
+			<li class="breadcrumb-item active">Nueva categoría</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h1>Nueva categoría del catálogo</h1>
+				<h1>Nueva categoría</h1>
 			</div>
 		@endslot
 	@endcomponent
@@ -43,7 +43,6 @@
 					Las <b>categorías</b> siven para organizar el contenido del catálogo. Permiten una mejor segmentación del contenido.
 					Se utilizan palabras o frases para agrupar artículos de igual temática.
 					Esto permitirá luego que los usuarios filtren los items en los buscadores de la web según sus preferencias. <br><br>
-					<b>Ejemplos de categorías:</b> Vestidos, Pantalones, Remeras, Medias, Camperas, etc. 
 					@endslot
 				@endcomponent
 			</div>

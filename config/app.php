@@ -167,19 +167,23 @@ return [
         /*
         * Package Service Providers...
         */
-        // To send data to views (Categories, tags)
+        // To send data to all views (Categories, tags)
         App\Providers\ComposerServiceProvider::class,
-        // Debug Bar
-        Barryvdh\Debugbar\ServiceProvider::class,
-
+        
         /*
-         * Application Service Providers...
-         */
+        * Application Service Providers...
+        */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // MercadoPago Api
+        SantiGraviano\LaravelMercadoPago\Providers\MercadoPagoServiceProvider::class,
+        // Debug Bar
+        Barryvdh\Debugbar\ServiceProvider::class,
+        // PDF Exports
+        Barryvdh\DomPDF\ServiceProvider::class,
     
     ],
 
@@ -229,9 +233,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        // Packages
+        // Custom Packages
+        // DebugBar
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
+        // Mercado Pago
+        'MP' => SantiGraviano\LaravelMercadoPago\Facades\MP::class,
+        // PDF Exports
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

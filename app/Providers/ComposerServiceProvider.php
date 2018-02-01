@@ -8,21 +8,12 @@ use Illuminate\Support\Facades\View;
 
 class ComposerServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
+ 
     public function boot()
     {
         View::composer(['web.portfolio.portfolio'], 'App\Http\ViewComposers\ShowTagsCategories');
     }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
+ 
     public function register()
     {
         //

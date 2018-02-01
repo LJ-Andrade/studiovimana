@@ -19,7 +19,7 @@
         <span><i class="icon-heart "></i>Favoritos</span>
         </span>
     </a>
-    <a class="list-group-item justify-content-between" href="{{ route('store.customer-account') }}">
+    <a class="list-group-item justify-content-between" href="#">
         <span><i class="icon-tag"></i>Ayuda y Reclamos</span>
     </a>
     <a class="list-group-item" href="{{ route('store') }}"><i class="icon-arrow-left"></i> Volver a la Tienda</a>

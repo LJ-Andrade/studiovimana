@@ -1,5 +1,5 @@
 @extends('layouts.vadmin.main')
-@section('title', 'VADmin | Editar Artículo')
+@section('title', 'VADmin | Editar Item')
 
 @section('styles')
 	{!! Html::style('plugins/texteditor/trumbowyg.min.css') !!}
@@ -14,8 +14,8 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Listado de Artículos</a></li>
-			<li class="breadcrumb-item active">Edición de Artículo</li>
+			<li class="breadcrumb-item"><a href="{{ route('catalogo.index')}}">Listado de Items</a></li>
+			<li class="breadcrumb-item active">Edición de Item</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
@@ -39,7 +39,7 @@
 			]) !!}
 			@include('vadmin.catalog.form')
 			<div class="row centered">
-				{!! Form::submit('Actualizar artículo', ['class' => 'btn btnGreen']) !!}
+				{!! Form::submit('Actualizar item', ['class' => 'btn btnGreen']) !!}
 			</div>
 		{!! Form::close() !!}
 		<div id="Error"></div>

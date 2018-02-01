@@ -22,34 +22,33 @@ class ArticlesController extends Controller
 
     public function index(Request $request)
     {
-        $title    = $request->get('name');
-        // $category = $request->get('category');
+        $code     = $request->get('code');
+        $name     = $request->get('name');
+        $category = $request->get('category');
+        
+        if(isset($code) || isset($name) || isset($category))
+        {
+            $articles = CatalogArticle::search($code, $name, $category)->orderBy('id', 'ASC')->paginate(15); 
+        } else {
+            $articles = CatalogArticle::orderBy('id', 'DESCC')->paginate(15);    
+        }
 
-        // if(isset($title)){
-        //     $articles = Catalog\Catalog::searchtitle($title)->orderBy('id', 'ASC')->paginate(15); 
-        // } elseif(isset($category)) {
-        //     $articles = Catalog::where('category_id', $category)->orderBy('id', 'ASC')->paginate(15);
-        // } else {
-             $articles = CatalogArticle::orderBy('id', 'DESCC')->paginate(15);
-             $articles->each(function($articles){
-                 $articles->category;
-                 $articles->user;
-             });
-        // }
-        $cats = CatalogCategory::orderBy('id','ASC')->get();
-
+        //$cats = CatalogCategory::orderBy('id','ASC')->get();
         $categories = CatalogCategory::orderBy('id','ASC')->pluck('name','id');
 
         return view('vadmin.catalog.index')
             ->with('articles', $articles)
-            ->with('cats', $cats)
             ->with('categories', $categories);
     }
 
     public function show($id)
     {
         $article = CatalogArticle::find($id);
-        return view('vadmin.catalog.show')->with('article', $article);
+        if($article == null){
+            return back();
+        } else {
+            return view('vadmin.catalog.show')->with('article', $article);
+        }
     }
 
     /*
@@ -146,7 +145,7 @@ class ArticlesController extends Controller
             return redirect()->route('catalogo.index')->with('message','Error al crear el artículo: '. $e);
         }
     
-        return redirect()->route('catalogo.index')->with('message','Artículo creado');
+        return redirect()->route('catalogo.index')->with('message','Item creado');
     }
 
     /*
@@ -195,7 +194,7 @@ class ArticlesController extends Controller
             'slug.max'             => 'El slug debe tener 255 caracteres como máximo',
             'slug.max'             => 'El slug debe tener guiones bajos en vez de espacios',
             'slug.unique'          => 'El slug debe ser único, algún otro artículo lo está usando',
-            'image'                => 'El archivo adjuntado no es soportado',
+            'image'                => 'El archivo adjunto no es soportado',
         ]);
 
         $article->fill($request->all());
@@ -252,10 +251,10 @@ class ArticlesController extends Controller
 
         } catch(\Exception $e) {
             $article->delete();
-            return redirect()->route('catalogo.index')->with('message','Error al crear el artículo: '. $e);
+            return redirect()->route('catalogo.index')->with('message','Error al crear el item: '. $e);
         }
 
-        return redirect()->route('catalogo.index')->with('message', 'Se ha editado el artículo con éxito');
+        return redirect()->route('catalogo.index')->with('message', 'Se ha editado el item con éxito');
     }
 
     public function updateStatus(Request $request, $id)

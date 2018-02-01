@@ -36,7 +36,7 @@
 									<td class="align-middle">
 										<label class="custom-control custom-radio">
 											<input class="custom-control-input" name="shipping_id" value="{{ $item->id }}"
-											@if($activeCart['activeCart']->shipping->id == $item->id)
+											@if($activeCart['activeCart']->shipping != null && $activeCart['activeCart']->shipping->id == $item->id)
 											checked="checked"										
 											@endif
 											 type="radio">

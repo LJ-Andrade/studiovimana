@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Agregar Producto al Carro de Compras</h4>
+                <h4 class="modal-title">{{ $title }}</h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -15,3 +15,6 @@
         </div>
     </div>
 </div>
+
+<!-- Trigger the modal with a button -->
+{{--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>  --}}

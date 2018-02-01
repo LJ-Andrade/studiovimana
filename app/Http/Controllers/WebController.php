@@ -33,16 +33,16 @@ class WebController extends Controller
     		->with('articles', $articles);
     }
 
-    public function searchCategory($name)
-    {
-        $category = Category::SearchCategory($name)->first();
-        $articles=$category->article()->paginate(12);
-        $articles->each(function($articles){
-                $articles->category;
-                $articles->images;
-        });
-        return view('web.portfolio.portfolio')->with('articles', $articles);
-    }
+	public function searchCategory($name)
+	{
+		$category = Category::SearchCategory($name)->first();
+		$articles=$category->article()->paginate(12);
+		$articles->each(function($articles){
+				$articles->category;
+				$articles->images;
+		});
+		return view('web.portfolio.portfolio')->with('articles', $articles);
+	}
 
     public function searchTag($name)
     {

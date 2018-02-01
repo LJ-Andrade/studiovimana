@@ -10,12 +10,12 @@
 	@component('vadmin.components.headerfixed')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin.catalogo.atribute1')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Talles</li>
+            <li class="breadcrumb-item active">Atributos</li>
 		@endslot
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('cat_atribute1.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Talle</a>
+				<a href="{{ route('cat_atribute1.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Atributo</a>
 				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
 				{{-- Edit --}}
 				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
@@ -59,17 +59,13 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('title', 'CatalogAtribute1')
-					@if($atribute1->count() == '0')
-						@slot('tableTitles', '')
-						@slot('tableContent', '')
-					@else
+				@slot('title', 'Atributos')
+					@if(!$atribute1->count() == '0')
 					@slot('tableTitles')
 						<th></th>
 						<th>Nombre</th>
 						<th>Fecha de Creación</th>
 					@endslot
-
 					@slot('tableContent')
 						@foreach($atribute1 as $item)
 							<tr>
@@ -84,6 +80,15 @@
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 							</tr>						
 						@endforeach
+						@else
+						@slot('tableTitles')
+							<th></th>
+						@endslot
+						@slot('tableContent')
+							<tr>
+								<td class="w-200">No se han encontrado items</td>
+							</tr>
+						@endslot
 					@endif
 				@endslot
 			@endcomponent

@@ -9,7 +9,7 @@ class CreateShippingsTable extends Migration
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string(''name')->nullable();
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
