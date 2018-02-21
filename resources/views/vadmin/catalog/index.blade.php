@@ -47,14 +47,13 @@
 	@endsection
 @endif
 
-
-
 {{-- CONTENT --}}
 @section('content')
 	<div class="list-wrapper">
 		{{-- Search --}}
 		<div class="row">
 			@component('vadmin.components.list')
+			
 				@slot('actions')
 					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
 					@if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']))

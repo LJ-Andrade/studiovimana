@@ -48,12 +48,13 @@
 										</div>
 									</div>
 									@if($article->thumb)
-									<img src="{{ asset('webimages/catalogo/'.$article->thumb) }}" alt="Product">
+									<img src="{{ asset('webimages/catalogo/'.$article->thumb) }}" alt="Producto del Catálogo">
 									@else
-									<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}" alt="Product"></a>
+									<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}" alt="Producto del Catálogo"></a>
 									@endif
 								</div>
-								<h3 class="product-title max-text"><a href="">{{ $article->name }}</a></h3>
+								<a href="{{ url('tienda/articulo/'.$article->id) }}"><h3 class="product-title max-text">{{ $article->name }}</h3></a>
+
 							</a>
 							<h4 class="product-price">
 								@if($article->discount > 0)
