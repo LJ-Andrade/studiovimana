@@ -244,10 +244,13 @@
                 console.log(data);
                 if(data.response == true){
                     // Redirect to MP
-                    var href = data.result.response.init_point;
-                    if(href != undefined){
+                    if(data.result.response.init_point != undefined){
+                        var href = data.result.response.init_point;
                         console.log(href);
                         window.location.replace(href);
+                    } else {
+                        console.log('Error en MP');
+                        btnLoader.hide();        
                     }
                 } else {
                 $('#Error').html(data.result);
