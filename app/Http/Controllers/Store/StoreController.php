@@ -241,7 +241,7 @@ class StoreController extends Controller
             //return dd($preference['response']['init_point']);
             return response()->json(['response' => true, 'result' => $preference]);
         } catch (\Exception $e){
-            return response()->json(['response' => fase, 'result' => $e]);
+            return response()->json(['response' => false, 'result' => $e]);
         }
     }
 
