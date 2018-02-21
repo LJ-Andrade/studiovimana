@@ -247,7 +247,7 @@
                     if(data.result.response.init_point != undefined){
                         var href = data.result.response.init_point;
                         console.log(href);
-                        window.location.replace(href);
+                        //window.location.replace(href);
                     } else {
                         console.log('Error en MP');
                         btnLoader.hide();        
