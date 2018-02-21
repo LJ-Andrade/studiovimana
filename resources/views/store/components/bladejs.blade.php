@@ -261,7 +261,6 @@
                 $('#Error').html(data.responseText);
             },
             complete: function(){
-                btnLoader.hide();
             }
         });
     }
