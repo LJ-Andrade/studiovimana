@@ -234,12 +234,12 @@ class StoreController extends Controller
             ],
         ];
         //dd($preferenceData);
+        $preference = MP::create_preference($preferenceData);
+        $initPoint = $preference['response']['init_point'];
+        return response()->json(['response' => true, 'result' => $preference]);
         try{
-            $preference = MP::create_preference($preferenceData);
             //return dd($preference);
-            $initPoint = $preference['response']['init_point'];
             //return dd($preference['response']['init_point']);
-            return response()->json(['response' => true, 'result' => $preference]);
         } catch (\Exception $e){
             return response()->json(['response' => false, 'result' => $e]);
         }
