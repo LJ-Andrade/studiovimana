@@ -17,6 +17,6 @@ class invoiceController extends Controller
         $pdf = PDF::loadView($view, array('items' => $items));
         $pdf->setPaper('A4', 'landscape');
 
-        return $pdf->stream($filename.'.pdf');
+        return $pdf->download($filename.'.pdf');
     }
 }
