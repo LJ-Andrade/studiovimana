@@ -1,5 +1,5 @@
 @extends('layouts.web.main')
-@section('title', 'StudioVimana | Inicio')
+@section('title', 'Vimana Studio | Inicio')
 
 @section('styles')
     {{-- Slider --}}

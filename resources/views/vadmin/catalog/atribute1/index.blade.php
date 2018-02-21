@@ -9,7 +9,7 @@
 @section('header')
 	@component('vadmin.components.headerfixed')
 		@slot('breadcrums')
-		    <li class="breadcrumb-item"><a href="{{ url('vadmin.catalogo.atribute1')}}">Inicio</a></li>
+		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item active">Atributos</li>
 		@endslot
 		@slot('actions')

@@ -21,6 +21,7 @@
 						@endforeach
 					</ul>
 				</div>
+				<a class="btn btn-outline-secondary" href="{{ route('store') }}"><i class="icon-arrow-left"></i>&nbsp;Volver a la tienda</a>
 			</div>
 
 			<div class="col-md-6">

@@ -212,6 +212,16 @@ ul.pagination li a.active, ul.pagination li.active {
   padding-top: 26px;
 }
 
+@media (max-width: 660px) {
+  .checkout-steps {
+    display: none;
+  }
+}
+
+.top-info {
+  padding-bottom: 20px;
+}
+
 .alert-success {
   background-color: rgba(161, 147, 231, 0.1);
   color: #000;

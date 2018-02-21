@@ -1,7 +1,7 @@
 <!-- Sidebar          -->
 <div class="col-xl-3 col-lg-4 pull-xl-9 pull-lg-8">
 	<aside class="sidebar">
-		<section class="widget widget">
+		<section class="widget">
 			<div class="shop-sorting">
 				<select class="form-control" id="sorting">
 				<option>Menor Precio</option>
@@ -14,8 +14,6 @@
 				<span class="text-muted">Mostrando:&nbsp;</span><span>1 - 12 items</span>  --}}
 			</div>
 		</section>
-
-		<div class="padding-top-2x hidden-lg-up"></div>
 		<!-- Widget Categories-->
 		<section class="widget widget-categories">
 			<h3 class="widget-title">Categorias</h3>

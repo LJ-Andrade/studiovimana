@@ -24,7 +24,6 @@
 			@endsection
 
 			<h4>Resumen</h4>
-			<hr class="padding-bottom-1x">
 			{{--  Order Data  (Cart total is in checkout-aside ) --}}
 			<input id="CartId" type="hidden" name="cartid" value="{{ $activeCart['activeCart']->id }}">
 

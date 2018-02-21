@@ -13,9 +13,23 @@
 			<!-- Products-->
 			<div class="col-xl-9 col-lg-8 push-xl-3 push-lg-4">
 				<!-- Products Grid-->
+				@if(count($_GET) > 0)
+					<div class="top-info">
+						<a href="{{ url('tienda') }}" class="btn btn-outline-primary btn-sm">Mostrar Todos</a> 
+						<br>	
+						@if($articles->count() == '1')
+							{{ $articles->count() }} artículo encontrado <br>
+						@elseif($articles->count() == '0')
+							No hay artículos
+						@else
+							{{ $articles->count() }} artículos encontrados <br>
+						@endif
+					</div>
+				@endif
 				<div class="isotope-grid cols-3 mb-2">
 					<div class="gutter-sizer"></div>
 					<div class="grid-sizer"></div>
+					
 					<!-- Product-->
 					@foreach($articles as $article)
 					<div class="grid-item">

@@ -45,13 +45,12 @@ class StoreController extends Controller
             $articles = CatalogArticle::orderBy('id', 'DESCC')->active()->paginate(15);
         }
 
-
-        // $articles->each(function($articles){
-            //     $articles->category;
-            //     $articles->user;
-            // });
         $user       = auth()->guard('customer')->user();
-        $categories = CatalogCategory::all();
+
+        // Get only categories with active products
+        $categories = CatalogCategory::with(['articles' => function($query) { 
+            $query->where('status','=', '1'); }])->get();
+
         $tags       = CatalogTag::orderBy('id', 'ASC')->select('name', 'id')->get();
         $atributes1 = CatalogAtribute1::orderBy('id', 'ASC')->select('name', 'id')->get();
             
@@ -60,11 +59,11 @@ class StoreController extends Controller
 
         return view('store.index')
             ->with('articles', $articles)
-            ->with('atributes1', $atributes1)
             ->with('categories', $categories)
             ->with('tags', $tags)
             ->with('user', $user)
             ->with('favs', $favs)
+            ->with('atributes1', $atributes1)
             ->with('activeCart', $activeCart);
     }
     

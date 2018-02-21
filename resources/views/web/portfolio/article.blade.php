@@ -1,6 +1,7 @@
 @extends('layouts.web.main')
 
-@section('title', 'Studio Vimana | Portfolio')
+
+@section('title', 'Vimana Studio '. $article->title)
 
 @section('styles')
 	<link rel="stylesheet" type="text/css" href="{{ secure_asset('plugins/swiper-slider/swiper.min.css') }}">
@@ -69,29 +70,23 @@
 
 @section('custom_js')
     <script type="text/javascript">
-
 		$('body').addClass('portfolio-body');
 	
-		var mySwiper = new Swiper ('.swiper-container', {
-		// Optional parameters
-		direction: 'horizontal',
-		loop: true,
-		autoHeight: true,
-		
-		// If we need pagination
-		pagination: '.swiper-pagination',
-		
-		// Navigation arrows
-		nextButton: '.swiper-button-next',
-		prevButton: '.swiper-button-prev',
-		
-		// And if we need scrollbar
-		scrollbar: '.swiper-scrollbar',
-	})        
-
-
+			var mySwiper = new Swiper ('.swiper-container', {
+			// Optional parameters
+			direction: 'horizontal',
+			loop: true,
+			autoHeight: true,
+			
+			// If we need pagination
+			pagination: '.swiper-pagination',
+			
+			// Navigation arrows
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			
+			// And if we need scrollbar
+			scrollbar: '.swiper-scrollbar',
+		})        
     </script>
 @endsection
-
-
-
