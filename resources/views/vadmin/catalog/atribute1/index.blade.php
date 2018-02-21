@@ -59,6 +59,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
+				@slot('actions')
 				@slot('title', 'Atributos')
 					@if(!$atribute1->count() == '0')
 					@slot('tableTitles')

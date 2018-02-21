@@ -28,7 +28,6 @@
 				{{-- If Search --}}
 				@if(isset($_GET['name']))
 				<a href="{{ url('vadmin/shipping') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
-				<div class="results">{{ $shipping->total() }} resultados de búsqueda</div>
 				@endif
 			</div>
 		@endslot
@@ -52,6 +51,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
+				@slot('actions')
 				@slot('title', 'Métodos de Envío')
 					@if($shippings->count() == '0')
 						@slot('tableTitles', '')

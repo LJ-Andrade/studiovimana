@@ -12,7 +12,7 @@
                 <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Creación de Cuenta</span></h6>
             </div>
             <div class="card-body collapse in">	
-                <div class="card-block">
+                <div class="card-block" style="padding: 20px 10px">
                     <form class="form-horizontal form-simple" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
                         {{-- Name --}}

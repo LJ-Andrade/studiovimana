@@ -12,7 +12,7 @@
                 {{--  <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2" style="margin-top: 0"><span>Ingreso al Sistema</span></h6>  --}}
             </div>
             <div class="card-body collapse in">
-                <div class="container" style="text-align: center">Usuario: <b>visitante</b> | Contraseña: <b>123456</b> </div>
+                <div class="container" style="text-align: center">Gestor de Contenido</div>
                 <div class="card-block">
                     <form class="form-horizontal form-simple" method="POST" action="{{ route('vadmin.login') }}">
                         {{ csrf_field() }}
@@ -52,7 +52,7 @@
             <div class="card-footer">
                 <div class="">
                     <p class="float-sm-left text-xs-center m-0">
-                        <a class="card-link" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
+                        <!-- <a class="card-link" href="{{ route('password.request') }}">Olvidé mi contraseña</a> -->
                     </p>
                     <p class="float-sm-right text-xs-center m-0"> <a href="{{ route('register') }}" class="card-link"><b>Registrarse</b></a></p>
                 </div>
@@ -62,3 +62,4 @@
 </section>
 
 @endsection
+    

@@ -10,6 +10,7 @@ use App\CatalogArticle;
 use App\CatalogImage;
 use App\CatalogAtribute1;
 use File;
+use PDF;
 
 class ArticlesController extends Controller
 {
@@ -28,9 +29,9 @@ class ArticlesController extends Controller
         
         if(isset($code) || isset($name) || isset($category))
         {
-            $articles = CatalogArticle::search($code, $name, $category)->orderBy('id', 'ASC')->paginate(15); 
+            $articles = CatalogArticle::search($code, $name, $category)->orderBy('id', 'ASC')->paginate(10); 
         } else {
-            $articles = CatalogArticle::orderBy('id', 'DESCC')->paginate(15);    
+            $articles = CatalogArticle::orderBy('id', 'DESCC')->paginate(10);    
         }
 
         //$cats = CatalogCategory::orderBy('id','ASC')->get();
@@ -50,6 +51,33 @@ class ArticlesController extends Controller
             return view('vadmin.catalog.show')->with('article', $article);
         }
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | EXPORT
+    |--------------------------------------------------------------------------
+    */
+
+    public function exportPdf($params)
+    {   
+        parse_str($params , $query);
+        $code     = $query['code'];
+        $name     = $query['name'];
+        $category = $query['category'];
+
+        if(isset($code) || isset($name) || isset($category))
+        {
+            $items = CatalogArticle::search($code, $name, $category)->orderBy('id', 'ASC')->paginate(15); 
+        } else {
+            $items = CatalogArticle::orderBy('id', 'DESCC')->paginate(15);    
+        }
+        
+        $pdf = PDF::loadView('vadmin.catalog.invoice', array('items' => $items));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->download('listado-catalogo.pdf');
+        
+    }
+
 
     /*
     |--------------------------------------------------------------------------

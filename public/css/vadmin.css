@@ -1277,6 +1277,35 @@ form .form-actions {
   padding-bottom: 0;
 }
 
+.tooltip-inner {
+  background-color: #1D2B36;
+}
+
+.tooltip.top .tooltip-arrow {
+  border-top-color: #1D2B36;
+}
+
+.tooltip.right .tooltip-arrow {
+  border-right-color: #1D2B36;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #1D2B36;
+}
+
+.tooltip.left .tooltip-arrow {
+  border-left-color: #1D2B36;
+}
+
+.card-header .list-actions {
+  padding-top: 3px;
+}
+
+.card-header .list-actions i {
+  color: #908b6d;
+  font-size: 1.5rem;
+}
+
 .trumbowyg-button-pane {
   background-color: #DADADA;
 }

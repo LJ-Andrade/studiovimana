@@ -88,7 +88,6 @@ Route::get('categories/{name}', ['uses' => 'WebController@searchCategory', 'as' 
 Route::get('tag/{name}', ['uses' => 'WebController@searchTag', 'as'   => 'web.search.tag']);
 Route::post('mail_sender', 'WebController@mail_sender');
 
-
 /*
 |--------------------------------------------------------------------------
 | VADMIN
@@ -169,7 +168,10 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     Route::get('help', function(){ return view('vadmin.support.help'); });
 
     // Exports
-    Route::get('exportViewPdf/{view}/{model}/{filename}', ['as' => 'vadmin.exportViewPdf', 'uses' => 'invoiceController@exportViewPdf']);
+    Route::get('exportViewPdf/{view}/{params}/{model}/{filename}', ['as' => 'vadmin.exportViewPdf', 'uses' => 'invoiceController@exportViewPdf']);
+
+    Route::get('exportCatalogListPdf/{params}', ['as' => 'vadmin.exportCatalogListPdf', 'uses' => 'Catalog\ArticlesController@exportPdf']);
+    
 
 });
     

@@ -15,17 +15,6 @@
 			{{-- Actions --}}
 			<div class="list-actions">
 				<a href="{{ route('catalogo.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Item</a>
-				{{--  Actions  --}}
-				<div class="btn-group">
-					<button type="button" class="btn dropdown-toggle btnBlue" 
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Acciones</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Descargar Pdf</a>
-						<a class="dropdown-item" href="#">Descargar Excel</a>
-						{{--  <div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Separated link</a>  --}}
-					</div>
-				</div>
 				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
 				{{-- Edit --}}
 				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
@@ -36,9 +25,8 @@
 				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
-				@if(isset($_GET['title']) || isset($_GET['category']))
+				@if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']))
 				<a href="{{ url('vadmin/catalogo') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
-				<div class="results">{{ $articles->total() }} resultados de búsqueda</div>
 				@endif
 			</div>
 		@endslot
@@ -59,12 +47,24 @@
 	@endsection
 @endif
 
+
+
 {{-- CONTENT --}}
 @section('content')
 	<div class="list-wrapper">
 		{{-- Search --}}
 		<div class="row">
 			@component('vadmin.components.list')
+				@slot('actions')
+					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
+					@if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']))
+						<a href="{{ route('vadmin.exportCatalogListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+					@else
+						<a href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'params' => '-', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+					@endif
+					<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>
+				@endslot
+
 				@slot('title', 'Listado de Items')
 					@if(!$articles->count() == '0')
 					@slot('tableTitles')

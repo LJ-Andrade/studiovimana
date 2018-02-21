@@ -27,8 +27,7 @@
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
 				@if(isset($_GET['name']))
-				<a href="{{ url('vadmin/payment') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
-				<div class="results">{{ $Payment->total() }} resultados de búsqueda</div>
+				<a href="{{ url('vadmin/payments') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
 				@endif
 			</div>
 		@endslot
@@ -52,6 +51,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
+				@slot('actions')
 				@slot('title', 'Métodos de Pago')
 					@if($items->count() == '0')
 						@slot('tableTitles', '')

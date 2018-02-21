@@ -64,6 +64,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
+				@slot('actions')	
 				@slot('title', 'Usuarios del Sistema')
 				@slot('tableTitles')
 					@if(!$items->isEmpty())

@@ -58,6 +58,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
+				@slot('actions')
 				@slot('title', 'Listado de Usuarios')
 					@if($articles->count() == '0')
 						@slot('tableTitles', '')

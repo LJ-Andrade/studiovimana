@@ -8,9 +8,9 @@ use PDF;
 
 class invoiceController extends Controller
 {
-    public function exportViewPdf($view, $model, $filename)
+    // Exports ALL data of a model
+    public function exportViewPdf($view, $params, $model, $filename)
     {   
-        
         $prefix = "App";
         $modelname = $prefix . "\\". $model;
         $items = $modelname::all();
