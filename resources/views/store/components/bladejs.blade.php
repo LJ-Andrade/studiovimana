@@ -1,3 +1,4 @@
+
 <script>
 
     var loader = "<img src='{{ asset('images/gral/loader-sm.svg') }}'>";
@@ -217,12 +218,12 @@
     | MERCADO PAGO CHECKOUT
     |--------------------------------------------------------------------------
     */
-    $('#MpModalBtn').click(function(){            
+    $('#MpModalBtn').click(function(){
         var responseDiv = $('#MpResponse');
         var redirectBtn = $('#MpRedirect');
         var cartId      = $('#CartId').val();
         var cartTotal   = $('#CartTotal').val();
-        
+
         createPreference(cartId, cartTotal, responseDiv, redirectBtn);
     });
     //url: "{{ route('store.getCreatePreference') }}",
@@ -231,9 +232,9 @@
         var btnLoader   = $('.CheckOutLoader').html(loader);
         btnLoader.hide();
 
-        $.ajax({	
+        $.ajax({
             url: "{{ route('store.getCreatePreference') }}",
-            method: 'POST',             
+            method: 'POST',
             dataType: 'JSON',
             data: { cartId: cartId, cartTotal: cartTotal },
             beforeSend: function(){
@@ -244,10 +245,10 @@
                 if(data.response == true){
                     // Redirect to MP
                     var href = data.result;
-                    window.location.replace(href);
+	            window.location.replace(href);
                 } else {
                 $('#Error').html(data.result);
-                console.log(data);
+ 	               console.log(data);
                 }
             },
             error: function(data){
