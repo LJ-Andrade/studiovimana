@@ -243,7 +243,8 @@
                 console.log(data);
                 if(data.response == true){
                     // Redirect to MP
-                    var href = data.result;
+                    var href = data.result.response.init_point;
+                    console.log(href);
                     window.location.replace(href);
                 } else {
                 $('#Error').html(data.result);

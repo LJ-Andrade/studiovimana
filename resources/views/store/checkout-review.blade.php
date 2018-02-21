@@ -114,7 +114,7 @@
 				<div class="column">
 					{{--  data-toggle="modal" data-target="#MpModal1"  --}}
 					<button id="MpModalBtn" type="button" class="btn btn-info btn-lg">
-						<span class="hidden-xs-down">Continuar&nbsp;</span><i class="icon-arrow-right"></i><span class="CheckOutLoader"></span>
+						<span class="hidden-xs-down">Pagar&nbsp;</span><i class="icon-arrow-right"></i><span class="CheckOutLoader"></span>
 					</button>
 				</div>
 				@else
