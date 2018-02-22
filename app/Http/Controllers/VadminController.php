@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Contact;
 use App\Cart;
 use App\User;
+use Mail;
+use App\Mail\SendMail;
 
 class VadminController extends Controller
 {   
@@ -155,6 +157,14 @@ class VadminController extends Controller
                     ]);    
                 }
         }
+    }
+
+    public function sendMail()
+    {
+        //dd('Ok, estoy en mail');
+        $test = Cart::where('status', 'Active');
+        Mail::to('javzero1@gmail.com')->send(new SendMail($test));
+        return view('vadmin.vadmin')->with('message','Mail Enviado');
     }
 
 }

@@ -60,8 +60,7 @@
 					@else
 						<a href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.users.invoice', 'params' => '-', 'model' => 'User', 'filename' => 'listado-de-usuarios']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
 					@endif
-					<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>
-					
+						<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>	
 				@endslot	
 				@slot('title', 'Usuarios del Sistema')
 				@slot('tableTitles')

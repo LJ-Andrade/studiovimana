@@ -121,8 +121,10 @@ Route::group(['prefix'=> 'vadmin'], function() {
 | Vadmin - Sections
 |--------------------------------------------------------------------------
 */
+Route::get('mailtest', 'VadminController@sendMail');
 
 Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
+
 
     //Route::get('/home', 'VadminController@index');
     Route::get('/', 'VadminController@index');
@@ -205,3 +207,4 @@ Route::prefix('vadmin')->middleware('admin')->group(function () {
 */
 Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound']);
 Route::get('500', ['as' => '500', 'uses' => 'ErrorController@fatal']);
+

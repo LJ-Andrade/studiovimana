@@ -37,9 +37,14 @@
 	@endcomponent
 @endsection
 
+{{--  If section has fixed actions  --}}
+@section('top-space')
+	<div class="top-space"></div>
+@endsection
+
 {{-- CONTENT --}}
 @section('content')
-	<div class="list-wrapper" style="margin-top: 115px;">
+	<div class="list-wrapper">
 		{{-- Test --}}
 		<div id="TestBox" class="col-xs-12 test-box Hidden">
 		</div>

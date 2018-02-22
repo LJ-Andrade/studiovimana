@@ -17,6 +17,7 @@
 
 	<div class="content-body"><!--native-font-stack -->
 		<section id="global-settings" class="card">
+			<a class="btn btnBlue" href="{{ url('mailtest') }}">Test</a>
 			<div class="card-header">
 				<h4 class="card-title">Bienvenid@ a Vadmin</h4>
 			</div>
