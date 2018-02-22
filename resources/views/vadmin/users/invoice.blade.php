@@ -1,25 +1,21 @@
 @extends('layouts.vadmin.invoice')
 
-@section('title','Listado de Usuarios')
+@section('title', 'Listado de Usuarios')
 
 @section('table-titles')
-    <th>Usuario</th>
+    <th>Cód.</th>
     <th>Nombre</th>
-    <th>Email</th>
-    <th>Rol</th>
-    <th>Grupo</th>
-    <th>Fecha de Ingreso</th>
+    <th>E-Mail</th>
+    
 @endsection
 
 @section('table-content')
     @foreach($items as $item)
     <tr>
-        <td class="show-link">{{ $item->username }}</td>
-        <td>{{ $item->name }}</td>
-        <td>{{ $item->email }}</td>
-        <td>{{ roleTrd($item->role) }}</td>
-        <td>{{ groupTrd($item->group) }}</td>
-        <td>{{ transDateT($item->created_at) }}</td>
-    </tr>						
-    @endforeach
+        <td class="w-50">#{{ $item->id }}</td>
+        <td class="max-text">{{ $item->name }}</td>
+        <td class="">{{ $item->email }}</td>
+        
+        @endforeach			
+    </tr>
 @endsection

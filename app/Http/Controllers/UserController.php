@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use Image;
 use File;
+use PDF;
 
 class UserController extends Controller
 {
@@ -45,6 +46,49 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('vadmin.users.show', compact('user'));
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | EXPORT
+    |--------------------------------------------------------------------------
+    */
+
+    public function exportPdf($params)
+    {   
+        parse_str($params , $query);
+        if(isset($query['name'])){
+            $name = $query['name'];
+        } else { $name = '';}
+
+        if(isset($query['role'])){
+            $role = $query['role'];
+        } else { $role = '';}
+
+        if(isset($query['group'])){
+            $group = $query['group'];
+        } else { $group = '';}
+
+           
+
+        if(isset($name) && $name != ''){
+            $items = User::searchname($name)->orderBy('id', 'ASC')->paginate(15); 
+        } else if(isset($role) && isset($group) && $role != '*' && $group != '*' ) {
+            $items = User::searchrolegroup($role, $group)->orderBy('id', 'ASC')->paginate(15); 
+        } else if(isset($role) && $role != '*') {
+            $items = User::searchrole($role)->orderBy('id', 'ASC')->paginate(15); 
+        } else if(isset($group) && $group != '*'){ 
+            $items = User::searchgroup($group)->orderBy('id', 'ASC')->paginate(15); 
+        } else {
+            $items = User::orderBy('id', 'ASC')->paginate(15); 
+        } 
+        
+        $pdf = PDF::loadView('vadmin.users.invoice', array('items' => $items));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->download('listado-usuarios.pdf');
+        
+    }
+
+
 
     /*
     |--------------------------------------------------------------------------

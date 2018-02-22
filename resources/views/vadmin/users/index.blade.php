@@ -17,20 +17,9 @@
 			{{-- Actions --}}
 			<div class="list-actions">
 				<a href="{{ route('users.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Usuario</a>
-				{{--  Actions  --}}
-				<div class="btn-group">
-					<button type="button" class="btn dropdown-toggle btnBlue" 
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Acciones</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.users.invoice', 'model' => 'User', 'filename' => 'usuarios']) }}">Descargar Pdf</a>
-						<a class="dropdown-item" href="#">Descargar Excel</a>
-						{{--  <div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Separated link</a>  --}}
-					</div>
-				</div>
 				<button id="SearchFiltersBtn" class="btn btnGreen"><i class="icon-ios-search-strong"></i></button>
 				@if(Auth::guard('user')->user()->role <= 2)
-					{{-- Edit --}}
+				{{-- Edit --}}
 				<a href="#" id="EditBtn" class="btn btn-sm btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
 				<input id="EditId" type="hidden">
 				{{-- Delete --}}
@@ -64,7 +53,16 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('actions')	
+				@slot('actions')
+					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
+					@if(isset($_GET['name']) || isset($_GET['role']) || isset($_GET['group']))
+						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+					@else
+						<a href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.users.invoice', 'params' => '-', 'model' => 'User', 'filename' => 'listado-de-usuarios']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+					@endif
+					<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>
+					
+				@endslot	
 				@slot('title', 'Usuarios del Sistema')
 				@slot('tableTitles')
 					@if(!$items->isEmpty())
