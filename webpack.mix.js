@@ -30,24 +30,27 @@ mix.sass('resources/assets/sass/web/web.sass', 'public/css')
 });
 */
 
-// Vadmin 
-mix.js('resources/assets/js/vadmin-ui.js', 'public/js');
-mix.js('resources/assets/js/vadmin-functions.js', 'public/js');
-mix.js('resources/assets/js/vadmin-forms.js', 'public/js');
-
-mix.sass('resources/assets/sass/vadmin/vadmin.sass', 'public/css')
+// Web
+mix.js('resources/assets/js/web/web.js', 'public/js');
+mix.sass('resources/assets/sass/web/web.sass', 'public/css')
 .options({
     processCssUrls: false,
     outputStyle: 'compressed'
 });
 
+// Store
 mix.sass('resources/assets/sass/store/store-custom.sass', 'public/css')
 .options({
     processCssUrls: false,
     outputStyle: 'compressed'
 });
 
-mix.sass('resources/assets/sass/web/web.sass', 'public/css')
+// Vadmin 
+mix.js('resources/assets/js/vadmin-ui.js', 'public/js');
+mix.js('resources/assets/js/vadmin-functions.js', 'public/js');
+mix.js('resources/assets/js/vadmin-forms.js', 'public/js');
+
+mix.sass('resources/assets/sass/vadmin/vadmin.sass', 'public/css')
 .options({
     processCssUrls: false,
     outputStyle: 'compressed'

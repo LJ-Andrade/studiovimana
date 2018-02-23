@@ -162,9 +162,16 @@ class VadminController extends Controller
     public function sendMail()
     {
         //dd('Ok, estoy en mail');
-        $test = Cart::where('status', 'Active');
-        Mail::to('javzero1@gmail.com')->send(new SendMail($test));
-        return view('vadmin.vadmin')->with('message','Mail Enviado');
-    }
+        $subject = 'Asunto de la notificación';
+        $content = 'Pruebita';
 
+        try {
+            Mail::to(APP_EMAIL_1)->send(new SendMail($subject, $content));
+
+            return redirect('vadmin')->with('message','Mail Enviado');
+        } catch (\Exception $e) {
+            dd($e);
+            return view('vadmin.vadmin')->with('error', 'Ha ocurrido un error '. $e);
+        }
+    }
 }

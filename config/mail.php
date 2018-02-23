@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'vadmin@vimana.studio'),
+        'address' => env('MAIL_FROM_ADDRESS', 'info@vimana.studio'),
         'name' => env('MAIL_FROM_NAME', 'Vadmin'),
     ],
 

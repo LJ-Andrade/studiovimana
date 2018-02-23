@@ -121,7 +121,7 @@ Route::group(['prefix'=> 'vadmin'], function() {
 | Vadmin - Sections
 |--------------------------------------------------------------------------
 */
-Route::get('mailtest', 'VadminController@sendMail');
+Route::get('sendmail', 'VadminController@sendMail');
 
 Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
 

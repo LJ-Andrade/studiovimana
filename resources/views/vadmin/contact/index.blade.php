@@ -50,7 +50,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('actions')
+				@slot('actions', '')
 				@slot('title', 'Mensajes Recibidos')
 				@slot('tableTitles')
                     <th class="w-20"></th>

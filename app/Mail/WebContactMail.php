@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendMail extends Mailable
+class WebContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,7 +32,7 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->subject)->markdown('vadmin.components.mailMain')
-            ->with(['message' => $this->content]);
+        return $this->subject($this->subject)->markdown('vadmin.components.mailWebContact')
+            ->with(['content' => $this->content]);
     }
 }

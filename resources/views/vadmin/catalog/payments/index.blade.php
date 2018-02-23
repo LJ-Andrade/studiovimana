@@ -51,7 +51,7 @@
 		</div>
 		<div class="row">
 			@component('vadmin.components.list')
-				@slot('actions')
+				@slot('actions', '')
 				@slot('title', 'Métodos de Pago')
 					@if($items->count() == '0')
 						@slot('tableTitles', '')

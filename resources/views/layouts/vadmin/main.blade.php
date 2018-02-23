@@ -124,6 +124,14 @@
 				var defaultImg = "{{ asset('images/users/default.jpg') }}"
 				$(this).attr('src', defaultImg);
 			});
+
+			$('.BtnLoader').click(function(){
+				var loadertext = $(this).data('loadertext');
+				var svg  = "<img src='{{ asset('images/gral/loader-sm.svg') }}'>";
+				$(this).html(svg + ' ' + loadertext);
+			});
+
+
 		</script>
 	</body>
 </html>

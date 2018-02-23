@@ -1390,6 +1390,10 @@ form .form-actions {
   margin-top: 0;
 }
 
+.alert {
+  margin-top: 15px;
+}
+
 .alert-success {
   background-color: #8DBB61;
 }

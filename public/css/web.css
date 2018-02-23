@@ -98,6 +98,10 @@
   color: #fff;
 }
 
+.btnBlue a {
+  color: #fff;
+}
+
 .btnBlue:hover, .btnBlue:active, .btnBlue:focus {
   background-color: #82a2c9;
   color: #fff;
