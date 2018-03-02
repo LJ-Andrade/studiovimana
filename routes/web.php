@@ -172,8 +172,11 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     // Exports
     Route::get('exportViewPdf/{view}/{params}/{model}/{filename}', ['as' => 'vadmin.exportViewPdf', 'uses' => 'invoiceController@exportViewPdf']);
 
-    Route::get('exportCatalogListPdf/{params}', ['as' => 'vadmin.exportCatalogListPdf', 'uses' => 'Catalog\ArticlesController@exportPdf']);
     Route::get('exportUsersListPdf/{params}', ['as' => 'vadmin.exportUsersListPdf', 'uses' => 'UserController@exportPdf']);
+    Route::get('exportUsersListXls/{params}', ['as' => 'vadmin.exportUsersListXls', 'uses' => 'UserController@exportXls']);
+    
+    Route::get('exportCatalogListPdf/{params}', ['as' => 'vadmin.exportCatalogListPdf', 'uses' => 'Catalog\ArticlesController@exportPdf']);
+    Route::get('exportCatalogListXls/{params}', ['as' => 'vadmin.exportCatalogListXls', 'uses' => 'Catalog\ArticlesController@exportExcel']);
 
 });
     

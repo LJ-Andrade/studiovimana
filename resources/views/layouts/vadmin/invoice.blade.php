@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>@yield('title')</title>
         <link rel="shortcut icon" href="{{ asset('webimages/logos/favicon.png') }}"><!-- Favicon -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/invoice.css') }}">
@@ -26,3 +24,4 @@
         </div>
     </body>
 </html>
+

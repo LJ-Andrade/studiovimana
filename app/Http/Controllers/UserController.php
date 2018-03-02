@@ -8,6 +8,7 @@ use Auth;
 use Image;
 use File;
 use PDF;
+use Excel;
 
 class UserController extends Controller
 {
@@ -21,18 +22,19 @@ class UserController extends Controller
         $name  = $request->get('name');
         $role  = $request->get('role');
         $group = $request->get('group');
-        
-        if(isset($name) && $name != ''){
-            $items = User::searchname($name)->orderBy('id', 'ASC')->paginate(15); 
-        } else if(isset($role) && isset($group) && $role != '*' && $group != '*' ) {
-            $items = User::searchrolegroup($role, $group)->orderBy('id', 'ASC')->paginate(15); 
-        } else if(isset($role) && $role != '*') {
-            $items = User::searchrole($role)->orderBy('id', 'ASC')->paginate(15); 
-        } else if(isset($group) && $group != '*'){ 
-            $items = User::searchgroup($group)->orderBy('id', 'ASC')->paginate(15); 
-        } else {
-            $items = User::orderBy('id', 'ASC')->paginate(15); 
-        }        
+        $paginate = 15;
+
+        if(isset($name)){
+            $items = User::searchName($name)->orderBy('id', 'ASC')->paginate($paginate); 
+        }
+        elseif(isset($role) || isset($group))
+        {
+            $items = User::searchRoleGroup($role, $group)->orderBy('id', 'ASC')->paginate($paginate); 
+        }
+        else 
+        {
+            $items = User::orderBy('id', 'ASC')->paginate($paginate); 
+        }
 
         return view('vadmin.users.index')
             ->with('items', $items)
@@ -55,37 +57,44 @@ class UserController extends Controller
 
     public function exportPdf($params)
     {   
-        parse_str($params , $query);
-        if(isset($query['name'])){
-            $name = $query['name'];
-        } else { $name = '';}
-
-        if(isset($query['role'])){
-            $role = $query['role'];
-        } else { $role = '';}
-
-        if(isset($query['group'])){
-            $group = $query['group'];
-        } else { $group = '';}
-
-           
-
-        if(isset($name) && $name != ''){
-            $items = User::searchname($name)->orderBy('id', 'ASC')->paginate(15); 
-        } else if(isset($role) && isset($group) && $role != '*' && $group != '*' ) {
-            $items = User::searchrolegroup($role, $group)->orderBy('id', 'ASC')->paginate(15); 
-        } else if(isset($role) && $role != '*') {
-            $items = User::searchrole($role)->orderBy('id', 'ASC')->paginate(15); 
-        } else if(isset($group) && $group != '*'){ 
-            $items = User::searchgroup($group)->orderBy('id', 'ASC')->paginate(15); 
-        } else {
-            $items = User::orderBy('id', 'ASC')->paginate(15); 
-        } 
-        
+        $items = $this->getData($params);
+        dd($items);
         $pdf = PDF::loadView('vadmin.users.invoice', array('items' => $items));
         $pdf->setPaper('A4', 'landscape');
-        return $pdf->download('listado-usuarios.pdf');
+        return $pdf->download('listado-de-usuarios.pdf');
         
+    }
+
+    public function exportXls($params)
+    {   
+        $items = $this->getData($params);
+        Excel::create('listado-de-usuarios', function($excel) use($items){
+            $excel->sheet('Listado', function($sheet) use($items) {   
+                $sheet->loadView('vadmin.users.invoice-excel', 
+                compact('items'));
+            });
+        })->export('xls');         
+    }
+
+
+    public function getData($params)
+    {
+        if($params == 'all'){
+            $items = User::orderBy('id', 'ASC')->get(); 
+            return $items;
+        }
+
+        parse_str($params , $query);
+        if(isset($query['name'])){
+            return $items = User::searchname($query['name'])->orderBy('id', 'ASC')->get(); 
+        }
+
+        if(isset($query['role']) || isset($query['group']) ){
+            return $items = User::searchRoleGroup($query['role'], $query['group'])->orderBy('id', 'ASC')->get();
+        } 
+
+        $items = User::orderBy('id', 'ASC')->get(); 
+        return $items;
     }
 
 
@@ -107,7 +116,7 @@ class UserController extends Controller
         $this->validate($request,[
             'name'           => 'required',
             'email'          => 'min:3|max:250|required|unique:users,email',
-            'password'       => 'min:4|max:120|required|',
+            'password'       => 'min:4|max:12listado-usuarios0|required|',
             
         ],[
             'email.required' => 'Debe ingresar un email',

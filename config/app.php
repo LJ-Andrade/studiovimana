@@ -182,8 +182,10 @@ return [
         SantiGraviano\LaravelMercadoPago\Providers\MercadoPagoServiceProvider::class,
         // Debug Bar
         Barryvdh\Debugbar\ServiceProvider::class,
-        // PDF Exports
+        // PDF Export
         Barryvdh\DomPDF\ServiceProvider::class,
+        // Excel Export
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     
     ],
 
@@ -238,8 +240,10 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         // Mercado Pago
         'MP' => SantiGraviano\LaravelMercadoPago\Facades\MP::class,
-        // PDF Exports
+        // PDF Export
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        // Excel Export
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

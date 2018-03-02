@@ -44,8 +44,7 @@
 			</div>
 			</div>
 		</div>  --}}
-		<div class="container custom-page-title">
-			{{--  <h1>Tienda</h1>  --}}
+		<div class="container-fluid custom-page-title pad0">
 			@yield('header-image')
 			@include('layouts.store.partials.alerts')
 		</div>

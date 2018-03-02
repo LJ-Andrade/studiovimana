@@ -40,6 +40,6 @@
         </td>
         {{--  DATE   --}}
         <td class="w-200">{{ $item->category->name }}</td>		
-        @endforeach			
     </tr>
+    @endforeach			
 @endsection

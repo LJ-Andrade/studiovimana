@@ -2,7 +2,7 @@
 
 @section('header-image')
 	<div class="index-header">
-		
+		<img src="{{ asset('store-ui/images/home/banner1.png') }}" alt=""> 
 	</div>
 @endsection
 

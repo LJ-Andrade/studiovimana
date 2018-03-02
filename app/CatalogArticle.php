@@ -84,8 +84,6 @@ class CatalogArticle extends Model
         }
     }
 
-
-
     public function scopeSearchtitle($query, $title)
     {
         return $query->where('name', 'LIKE', "%$title%");

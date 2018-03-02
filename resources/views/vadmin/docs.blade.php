@@ -33,6 +33,6 @@
 
 @section('custom_js')
 	<script>
-	    $('.DocsLi').addClass('active');
+	    
     </script>
 @endsection

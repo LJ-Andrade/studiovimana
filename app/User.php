@@ -19,25 +19,36 @@ class User extends Authenticatable
     ];
 
     // Search Scopes 
-    public function scopeSearchname($query, $name)
+    public function scopeSearchName($query, $name)
     {
         $query->where('name', 'LIKE', "%$name%")
               ->orWhere('username', 'LIKE', "%$name%")
               ->orWhere('email', 'LIKE', "%$name%");
     }
 
-    public function scopeSearchrole($query, $role)
+    public function scopeSearchRole($query, $role)
     {
         $query->where('role', $role);
     }
 
-    public function scopeSearchgroup($query, $group)
+    public function scopeSearchGroup($query, $group)
     {
         $query->where('group', $group);
     }
 
-    public function scopeSearchrolegroup($query, $role, $group)
+    public function scopeSearchRoleGroup($query, $role=null, $group=null)
     {
-        $query->where('role', $role)->where('group', $group);
+        if($role != null && $group != null)
+        {
+            return $query->where('role', $role)->where('group', $group);
+        } 
+        elseif($role != null)
+        {
+            return $query->where('role', $role);
+        }
+        elseif($group != null)
+        {
+            return $query->where('group', $group);
+        }
     }
 }

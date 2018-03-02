@@ -11,6 +11,7 @@ use App\CatalogImage;
 use App\CatalogAtribute1;
 use File;
 use PDF;
+use Excel;
 
 class ArticlesController extends Controller
 {
@@ -60,7 +61,34 @@ class ArticlesController extends Controller
 
     public function exportPdf($params)
     {   
+        $items = $this->getData($params);
+
+        $pdf = PDF::loadView('vadmin.catalog.invoice', array('items' => $items));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->download('listado-catalogo.pdf');
+    }
+
+    public function exportExcel($params)
+    {
+        $items = $this->getData($params);
+        
+		Excel::create('Excel', function($excel) use($items){
+            $excel->sheet('Listado', function($sheet) use($items) {   
+                $sheet->loadView('vadmin.catalog.invoice-excel', 
+                compact('items'));
+            });
+        })->export('xls');       
+    }
+
+    public function getData($params)
+    {
+        if($params == 'all'){
+            $items = CatalogArticle::orderBy('id', 'DESCC')->paginate(15);    
+            return $items;
+        }
+
         parse_str($params , $query);
+
         $code     = $query['code'];
         $name     = $query['name'];
         $category = $query['category'];
@@ -71,11 +99,8 @@ class ArticlesController extends Controller
         } else {
             $items = CatalogArticle::orderBy('id', 'DESCC')->paginate(15);    
         }
-        
-        $pdf = PDF::loadView('vadmin.catalog.invoice', array('items' => $items));
-        $pdf->setPaper('A4', 'landscape');
-        return $pdf->download('listado-catalogo.pdf');
-        
+
+        return $items;
     }
 
 

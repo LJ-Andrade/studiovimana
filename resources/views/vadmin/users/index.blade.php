@@ -20,7 +20,7 @@
 				<button id="SearchFiltersBtn" class="btn btnGreen"><i class="icon-ios-search-strong"></i></button>
 				@if(Auth::guard('user')->user()->role <= 2)
 				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btn-sm btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
 				<input id="EditId" type="hidden">
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
@@ -54,13 +54,21 @@
 		<div class="row">
 			@component('vadmin.components.list')
 				@slot('actions')
-					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
 					@if(isset($_GET['name']) || isset($_GET['role']) || isset($_GET['group']))
+						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+						<a href="{{ route('vadmin.exportUsersListXls', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
+					@else
+						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+						<a href="{{ route('vadmin.exportUsersListXls', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
+					@endif
+
+					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
+					{{-- @if(isset($_GET['name']) || isset($_GET['role']) || isset($_GET['group']))
 						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
 					@else
 						<a href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.users.invoice', 'params' => '-', 'model' => 'User', 'filename' => 'listado-de-usuarios']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
 					@endif
-						<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>	
+						<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>	 --}}
 				@endslot	
 				@slot('title', 'Usuarios del Sistema')
 				@slot('tableTitles')

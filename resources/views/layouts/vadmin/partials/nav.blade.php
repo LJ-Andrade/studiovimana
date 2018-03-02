@@ -197,8 +197,8 @@
 		<li class="navigation-header"><span data-i18n="nav.category.support">Secciones Públicas</span>
 			<i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
 		</li>
-		<li class="nav-item"><a href="{{ url('/') }}"><i class="icon-feed"></i><span class="menu-title">Web</span></a></li>
-		<li class="nav-item"><a href="{{ url('/tienda') }}"><i class="icon-cart4"></i><span class="menu-title">Catálogo</span></a></li>
+		<li class="nav-item"><a href="{{ url('/') }}" target="_blank"><i class="icon-feed"></i><span class="menu-title">Web</span></a></li>
+		<li class="nav-item"><a href="{{ url('/tienda') }}" target="_blank"><i class="icon-cart4"></i><span class="menu-title">Catálogo</span></a></li>
 
 		<li class="navigation-header"><span data-i18n="nav.category.support">Ayuda</span>
 			<i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>

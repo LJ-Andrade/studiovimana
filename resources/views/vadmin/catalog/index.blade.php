@@ -55,13 +55,13 @@
 			@component('vadmin.components.list')
 			
 				@slot('actions')
-					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
 					@if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']))
 						<a href="{{ route('vadmin.exportCatalogListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+						<a href="{{ route('vadmin.exportCatalogListXls', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
 					@else
-						<a href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'params' => '-', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+						<a href="{{ route('vadmin.exportCatalogListPdf', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+						<a href="{{ route('vadmin.exportCatalogListXls', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
 					@endif
-					<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>
 				@endslot
 
 				@slot('title', 'Listado de Items')
@@ -180,8 +180,6 @@
 @section('custom_js')
 	<script>
 	$(document).ready(function(e) {
-		//$('.CatalogLi').addClass('open');
-		//$('.CatalogList').addClass('active');
 
 		// Article Status
 		$('.PauseArticle').click(function() {

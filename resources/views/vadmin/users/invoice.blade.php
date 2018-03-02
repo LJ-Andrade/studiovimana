@@ -6,7 +6,6 @@
     <th>Cód.</th>
     <th>Nombre</th>
     <th>E-Mail</th>
-    
 @endsection
 
 @section('table-content')
@@ -14,8 +13,7 @@
     <tr>
         <td class="w-50">#{{ $item->id }}</td>
         <td class="max-text">{{ $item->name }}</td>
-        <td class="">{{ $item->email }}</td>
-        
-        @endforeach			
+        <td class="">{{ $item->email }}</td>    
     </tr>
+    @endforeach			
 @endsection
