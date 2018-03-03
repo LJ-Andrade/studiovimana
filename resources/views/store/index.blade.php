@@ -39,12 +39,19 @@
 								<div class="inner">
 									<div class="data">
 										<div class="text">
-											<b>Tela: </b><span class="custom-badge trans-back-lblue">{{ $article->textile }}</span> <br>
-											<b>Talles: </b>
-											@foreach($article->atribute1 as $atribute)
-												<span class="custom-badge trans-back-lblue">{{ $atribute->name }}</span> 	
-												<?php $sizes[] = $atribute->id ?>
-											@endforeach
+											@if(!$article->textile == '')
+												<b>Tela: </b>
+												<hr>
+												<span class="item">{{ $article->textile }}</span> <br><br>
+											@endif
+											@if(!$article->atribute1->isEmpty())
+												<b>Talles: </b> 
+												<hr>
+												@foreach($article->atribute1 as $atribute)
+													<span class="custom-badge hollow-white">{{ $atribute->name }}</span> 	
+													<?php $sizes[] = $atribute->id ?>
+												@endforeach
+											@endif
 										</div>
 									</div>
 									@if($article->thumb)

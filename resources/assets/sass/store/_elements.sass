@@ -43,10 +43,6 @@ $redH:    #C47777
 	background-color: transparent
 	color: #383838
 
-.trans-back-lblue
-	border: 1px solid $lblue
-	background-color: rgba(255,255,255,.5)
-	color: #383838
 
 //////////////////////////////////////
 //                                  //
@@ -107,18 +103,36 @@ ul.pagination li a.active,ul.pagination li.active
 				position: relative
 				.data
 					position: absolute
+					text-align: center
 					opacity: 0
 					width: 100%
 					height: 100%
-					background-color: rgba(255,255,255,.7)
+					background-color: rgba(241, 230, 226, 0.7)
 					@include transition(0.2s)
 					color: #383838
-					div.text
+					.text
 						font-size: 1rem
 						padding: 10px
-						width: 100%
-						
-					&:hover
+						padding-top: 25px
+						width: 100%	
+						hr
+							display: block
+							position: relative
+							padding: 0
+							margin: 2px auto
+							height: 0
+							width: 100%
+							max-height: 0
+							line-height: 0
+							clear: both
+							border: none
+							border-bottom: 1px solid #ffffff
+							max-width: 90px
+						span.item
+							font-size: 1.1rem
+							font-weight: 300
+				&:hover
+					.data
 						opacity: 1
 
 .widget
@@ -137,6 +151,9 @@ ul.pagination li a.active,ul.pagination li.active
 
 .index-header
 	margin-bottom: 25px
+
+.product-gallery
+	padding-top: 20px
 //////////////////////////////////////
 //                                  //
 //       BUTTONS / TRIGGERS         //
@@ -156,6 +173,14 @@ ul.pagination li a.active,ul.pagination li.active
 	border-radius: 10px
 	margin-bottom: 5px
 
+.hollow-white
+	border: 1px solid #fff
+	background-color: transparent
+	color: #383838
+	font-size: 1rem
+	border-radius: 50px
+	font-weight: 300
+	margin-top: 5px
 
 .navbar-sticky
 	.toolbar

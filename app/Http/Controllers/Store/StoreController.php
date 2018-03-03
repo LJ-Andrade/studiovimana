@@ -73,9 +73,13 @@ class StoreController extends Controller
         $activeCart = $this->getActiveCart();
         
         $user    = auth()->guard('customer')->user();
-        $isFav   = CatalogFav::where('customer_id', '=', $user->id)->where('article_id', '=', $article->id)->get();
-        if(!$isFav->isEmpty()){
-            $isFav = true;
+        if($user){
+            $isFav   = CatalogFav::where('customer_id', '=', $user->id)->where('article_id', '=', $article->id)->get();
+            if(!$isFav->isEmpty()){
+                $isFav = true;
+            } else {
+                $isFav = false;
+            }
         } else {
             $isFav = false;
         }

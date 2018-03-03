@@ -21,6 +21,8 @@ Route::get('/', [
     
     Route::group(['prefix'=> 'tienda'], function() {        
         // Customer Actions
+        Route::get('articulo/{id}', 'Store\StoreController@show');
+        
         Route::group(['middleware'=> 'customer'], function() {
             // Cart
             // Route::post('/cart', 'Store\CartDetailController@store');
@@ -38,7 +40,6 @@ Route::get('/', [
             Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'Store\StoreController@mpConnect']);
             
             // Sections    
-            Route::get('articulo/{id}', 'Store\StoreController@show');
             Route::get('cuenta', ['as' => 'store.customer-account', 'uses' => 'Store\StoreController@customerAccount']);
             Route::get('favoritos', ['as' => 'store.customer-wishlist', 'uses' => 'Store\StoreController@customerWishlist']);
             Route::get('pedidos', ['as' => 'store.customer-orders', 'uses' => 'Store\StoreController@customerOrders']);

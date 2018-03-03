@@ -150,14 +150,14 @@
         var id    = $(this).data('imgid');
         console.log(id);
         var route = "{{ url('vadmin') }}/destroy_product_image";
-        deleteAndReload(id,route,"Atención","Desea eliminar esta imágen?");
+        deleteAndReload(id, route, "Atención","Desea eliminar esta imágen?");
     });
 
     $(document).on('click', '.Delete-Porfolio-Img', function(e) {
         var id    = $(this).data('imgid');
         var route = "{{ url('vadmin') }}/destroy_portfolio_image";
         // console.log(id + ' | ' + route);
-        deleteAndReload(id,route,"Atención","Desea eliminar esta imágen?");
+        deleteAndReload(id, route, "Atención","Desea eliminar esta imágen?");
     });
 
     // Product Catalogue Featured Image ------------------------------------

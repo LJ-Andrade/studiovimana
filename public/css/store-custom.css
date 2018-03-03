@@ -25,12 +25,6 @@
   color: #383838;
 }
 
-.trans-back-lblue {
-  border: 1px solid #0da9ef;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #383838;
-}
-
 ul.pagination {
   display: block;
   margin: 0;
@@ -81,22 +75,44 @@ ul.pagination li a.active, ul.pagination li.active {
 
 .grid-item .product-card .product-thumb .inner .data {
   position: absolute;
+  text-align: center;
   opacity: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(241, 230, 226, 0.7);
   -webkit-transition: all 0.2s ease 0s;
   transition: all 0.2s ease 0s;
   color: #383838;
 }
 
-.grid-item .product-card .product-thumb .inner .data div.text {
+.grid-item .product-card .product-thumb .inner .data .text {
   font-size: 1rem;
   padding: 10px;
+  padding-top: 25px;
   width: 100%;
 }
 
-.grid-item .product-card .product-thumb .inner .data:hover {
+.grid-item .product-card .product-thumb .inner .data .text hr {
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 2px auto;
+  height: 0;
+  width: 100%;
+  max-height: 0;
+  line-height: 0;
+  clear: both;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  max-width: 90px;
+}
+
+.grid-item .product-card .product-thumb .inner .data .text span.item {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.grid-item .product-card .product-thumb .inner:hover .data {
   opacity: 1;
 }
 
@@ -120,6 +136,10 @@ ul.pagination li a.active, ul.pagination li.active {
   margin-bottom: 25px;
 }
 
+.product-gallery {
+  padding-top: 20px;
+}
+
 .custom-badge {
   display: inline-block;
   min-width: 10px;
@@ -132,6 +152,16 @@ ul.pagination li a.active, ul.pagination li.active {
   vertical-align: middle;
   border-radius: 10px;
   margin-bottom: 5px;
+}
+
+.hollow-white {
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #383838;
+  font-size: 1rem;
+  border-radius: 50px;
+  font-weight: 300;
+  margin-top: 5px;
 }
 
 .navbar-sticky .toolbar .inner .tools .account img {

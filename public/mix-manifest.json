@@ -1,8 +1,8 @@
 {
     "/js/web.js": "/js/web.js",
-    "/css/vadmin.css": "/css/vadmin.css",
-    "/css/store-custom.css": "/css/store-custom.css",
     "/css/web.css": "/css/web.css",
+    "/css/store-custom.css": "/css/store-custom.css",
+    "/css/vadmin.css": "/css/vadmin.css",
     "/js/vadmin-ui.js": "/js/vadmin-ui.js",
     "/js/vadmin-functions.js": "/js/vadmin-functions.js",
     "/js/vadmin-forms.js": "/js/vadmin-forms.js"
