@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Scope;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
-
+    use Notifiable;
     protected $guard = 'user';
 
     protected $fillable = [
@@ -51,4 +53,16 @@ class User extends Authenticatable
             return $query->where('group', $group);
         }
     }
+
+     /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
 }

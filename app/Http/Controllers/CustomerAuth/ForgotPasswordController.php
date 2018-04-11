@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\CustomerAuth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+//Password Broker Facade
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -25,8 +28,19 @@ class ForgotPasswordController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->middleware('guest');
+    // }
+
+    public function showLinkRequestForm()
     {
-        $this->middleware('guest');
+        return view('store.passwords.email');
     }
+    
+    public function broker()
+    {
+         return Password::broker('customer');
+    }
+
 }

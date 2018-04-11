@@ -52,7 +52,7 @@
             <div class="card-footer">
                 <div class="">
                     <p class="float-sm-left text-xs-center m-0">
-                        <!-- <a class="card-link" href="{{ route('password.request') }}">Olvidé mi contraseña</a> -->
+                        <a class="card-link" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
                     </p>
                     <p class="float-sm-right text-xs-center m-0"> <a href="{{ route('register') }}" class="card-link"><b>Registrarse</b></a></p>
                 </div>

@@ -11,9 +11,9 @@
                 {{--  <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2" style="margin-top: 0"><span>Ingreso al Sistema</span></h6>  --}}
             </div>
             <div class="card-body collapse in">
-                <div class="container" style="text-align: center">Gestor de Contenido</div>
+                <div class="container" style="text-align: center">Tienda</div>
                     <div class="card-block">
-                        <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('customer.password.request') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="token" value="{{ $token }}">
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -62,7 +62,7 @@
                 <div class="">
                     <p class="float-sm-left text-xs-center m-0">
                     </p>
-                    <p class="float-sm-right text-xs-center m-0"> <a href="{{ route('register') }}" class="card-link"><b>Registrarse</b></a></p>
+                    <p class="float-sm-right text-xs-center m-0"> <a href="{{ route('customer.register') }}" class="card-link"><b>Registrarse</b></a></p>
                 </div>
             </div>
         </div>

@@ -48,7 +48,6 @@ return [
             'driver' => 'session',
             'provider' => 'customer',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -109,9 +108,9 @@ return [
             'table' => 'password_resets',
             'expire' => 15,
         ],
-        'clients' => [
+        'customer' => [
             'provider' => 'customers',
-            'table' => 'password_resets',
+            'table' => 'customer_password_resets',
             'expire' => 60,
         ],
     ],

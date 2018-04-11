@@ -174,4 +174,22 @@ class VadminController extends Controller
             return view('vadmin.vadmin')->with('error', 'Ha ocurrido un error '. $e);
         }
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | CONFIGS
+    |--------------------------------------------------------------------------
+    */
+
+    public function configs()
+    {
+        return view('vadmin.configs');
+    }
+
+    public function infophp()
+    {
+        phpinfo();
+    }
+
+
 }

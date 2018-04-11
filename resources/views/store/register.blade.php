@@ -1,5 +1,21 @@
 @extends('layouts.store.main')
 
+@section('styles')
+	<style>
+		body {
+			background: url('../store/backlogin.jpg') no-repeat center center;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover ;
+		}
+
+		.offcanvas-wrapper {
+			background: transparent
+		}
+	</style>
+@endsection
+
 @section('content')
 <div class="container padding-bottom-3x mb-2 marg-top-25">
 	<div class="row centered-form">
@@ -74,9 +90,9 @@
             </div>
             <input type="hidden" name="group" value="1">
             {{-- Submit --}}
-            <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock2"></i> Registrarse</button>
+            <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock"></i> Registrarse</button>
+            <div class="bottom-text">Ya tiene cuenta? | <a href="{{ route('customer.login') }}">Ingresar</a></div>
         </form>
-        <span>Ya tiene cuenta? | <a href="{{ url('tiendalogin') }}">Ingresar</a></span>
 	</div>
 </div>
 @endsection

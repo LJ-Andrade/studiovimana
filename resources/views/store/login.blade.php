@@ -1,5 +1,21 @@
 @extends('layouts.store.main')
 
+@section('styles')
+	<style>
+		body {
+			background: url('../store/backlogin.jpg') no-repeat center center;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover ;
+		}
+
+		.offcanvas-wrapper {
+			background: transparent
+		}
+	</style>
+@endsection
+
 @section('content')
 <div class="container padding-bottom-3x mb-2 marg-top-25">
 	<div class="row centered-form">
@@ -27,17 +43,19 @@
 						</span>
 					@endif
 				</div>
-			</fieldset>
-			<fieldset class="form-group position-relative">
 				<button type="submit" class="btn btn-primary btn-block">
 					<i class="icon-unlock2"></i> Conectar
 				</button>
 				<div class="col-md-6 col-xs-12 text-xs-center text-md-left rememberme-box">
 					<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
 				</div>
+				<div class="col-md-6 col-xs-12 text-xs-center text-md-left rememberme-box">
+				<br>
+					<a href="{{ route('customer.password.reset') }}">Olvidé mi contraseña</a>
+				</div>
 			</fieldset>
+			<div class="bottom-text">No tiene cuenta? | <a href="{{ route('customer.register') }}">Registrarme</a></div>
 		</form>
-		<span>No tiene cuenta? | <a href="{{ url('tiendaregister') }}">Registrarme</a></span>
 	</div>
 </div>
 @endsection

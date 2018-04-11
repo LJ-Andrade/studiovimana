@@ -174,7 +174,7 @@
 				</li>
 			</ul>
 		</li>
-{{--  
+		{{--  
 		<li class="nav-item"><a href="#"><i class="icon-cog"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Administración</span></a>
 			<ul class="menu-content" style="">
 			</ul>
@@ -194,6 +194,13 @@
 			@endif
 		</a></li>
 
+		{{-- Tools --}}
+		<li class="navigation-header"><span data-i18n="nav.category.support">Herramientas</span>
+			<i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
+		</li>
+		<li class="nav-item"><a href="{{ route('vadmin.mailChecker') }}" target="_blank"><i class="icon-feed"></i><span class="menu-title">MailChecker</span></a></li>
+		<li class="nav-item"><a href="{{ route('vadmin.configs') }}" target="_blank"><i class="icon-feed"></i><span class="menu-title">Configuraciones</span></a></li>
+		{{-- Public sections --}}
 		<li class="navigation-header"><span data-i18n="nav.category.support">Secciones Públicas</span>
 			<i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
 		</li>

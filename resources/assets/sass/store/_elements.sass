@@ -154,6 +154,39 @@ ul.pagination li a.active,ul.pagination li.active
 
 .product-gallery
 	padding-top: 20px
+
+.login-box
+	background: #fff
+	margin-top: 100px
+	position: relative
+	padding-bottom: 50px
+	.bottom-text
+		position: absolute
+		width: 100%
+		text-align: center
+		bottom: 10px
+		left: 0
+
+@media (max-width: 481px)
+	.navbar
+		.site-branding
+			position: relative
+			@include flex-center
+			.site-logo
+				padding: 10px 0
+				img
+					width: 150px
+		.toolbar
+			position: relative
+			@include flex-center
+			margin: 0
+			height: auto
+			left: auto
+			right: auto
+
+@media (max-width: 265px)
+	.navbar .toolbar .tools
+		@include flex-column
 //////////////////////////////////////
 //                                  //
 //       BUTTONS / TRIGGERS         //

@@ -23,6 +23,7 @@
 		<!-- Main Template Styles-->
 		<link id="mainStyles" rel="stylesheet" media="screen" href="{{ asset('store-ui/css/styles.min.css') }}">
 		<link id="mainStyles" rel="stylesheet" media="screen" href="{{ asset('css/store-custom.css') }}">
+		@yield('styles')
 		<!-- Modernizr-->
 		<script src="{{ asset('store-ui/js/modernizr.min.js') }}"></script>
 			  

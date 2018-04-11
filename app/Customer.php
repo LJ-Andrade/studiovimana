@@ -59,4 +59,10 @@ class Customer extends Authenticatable
         $query->where('role', $role);
     }   
 
+    //Send password reset notification
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetCustomerPasswordNotification($token));
+    }
+
 }

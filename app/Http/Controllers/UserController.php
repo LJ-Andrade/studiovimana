@@ -12,6 +12,7 @@ use Excel;
 
 class UserController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | DISPLAY
