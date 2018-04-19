@@ -9,7 +9,7 @@
             <div class="col-lg-8">
                 <br>                    
                 <div class="padding-top-2x mt-2 hidden-lg-up"></div>
-                <form class="row" method="POST" action="{{ route('store.updateCustomerData') }}">
+                <form class="row" method="POST" action="{{ route('store.updateCustomer') }}">
                     {{ csrf_field() }}
                     <div class="col-md-6">
                         <div class="form-group">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <a href="{{ route('store.updatePassword') }}" class="btn btn-primary margin-right-none" type="button">Modificar Contraseña</a>
+                        {{-- <a href="{{ route('store.updatePassword') }}" class="btn btn-primary margin-right-none" type="button">Modificar Contraseña</a> --}}
                     </div>
                     <div class="col-12">
                         <hr class="mt-2 mb-3">

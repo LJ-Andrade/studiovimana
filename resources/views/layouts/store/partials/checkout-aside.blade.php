@@ -21,9 +21,8 @@
             </td>
         </tr>
         <tr>
-            
             @if($activeCart['activeCart']->payment !=null && $activeCart['activeCart']->payment->percent > '0')
-            <td>Recargo: (% {{ $activeCart['activeCart']->payment->percent }}) </td>
+            <td>Recargo por forma de pago: (% {{ $activeCart['activeCart']->payment->percent }}) </td>
             <td class="text-medium">
                 <?php $chargesCost = calcPercent($activeCart['cartTotal'], $activeCart['activeCart']->payment->percent) ?>
                 $ {{ $chargesCost }}
@@ -39,7 +38,7 @@
         </tr>
         <tr>
             <td></td>
-            <td class="text-lg text-medium">Total $ {{ $activeCart['cartTotal'] + $shippingCost + $chargesCost  }}</td>
+            <td class="text-lg text-medium"><h4>Total $ {{ $activeCart['cartTotal'] + $shippingCost + $chargesCost  }}</h4></td>
             <input id="CartTotal" type="hidden" name="carttotal" value="{{ $activeCart['cartTotal'] + $shippingCost + $chargesCost }}">
         </tr>
         </table>

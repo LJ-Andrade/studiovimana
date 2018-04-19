@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container padding-bottom-3x mb-2 marg-top-25">
+	<div class="back-to-store"><a href="{{ url('tienda') }}"><i class="icon-arrow-left"></i> Volver a la tienda</a></div>
     <div class="row">
 		<!-- Checkout Adress-->
 		<div class="col-xl-9 col-lg-8">
@@ -61,7 +62,9 @@
 							<td class="text-center text-lg text-medium">${{ $item->article->price }}</td>
 							@endif
 							
-							<td class="text-center"><a class="btn btn-outline-primary btn-sm" href="cart.html">Edit</a></td>
+							<td class="text-center">
+								<a class="RemoveArticleFromCart btn btn-outline-primary btn-sm" data-detailid="{{ $item->id }}">x</a>
+							</td>
 						</tr>
 						{{--  <input type="text" name="id[]" value="{{ $item->article->id }}">  --}}
 						{{--  <input type="text" name="name[]" value="{{ $item->article->name }}">  --}}
@@ -71,10 +74,10 @@
 			</div>
 			<div class="shopping-cart-footer">
 				<div class="column"></div>
-				<div class="column text-lg">Subtotal: <span class="text-medium">${{ $activeCart['cartTotal'] }}</span></div>
+				<div class="column text-lg"><h4>Subtotal: <span class="text-medium">${{ $activeCart['cartTotal'] }}</span></h4></div>
 			</div>
 			<?php $user = auth()->guard('customer')->user() ?>
-			<div class="row padding-top-1x mt-3">
+			<div class="row review-bottom padding-top-1x mt-3">
 				<div class="col-sm-6">
 					<h5>Datos de entrega:</h5>
 					<ul class="list-unstyled">

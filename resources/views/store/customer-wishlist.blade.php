@@ -14,43 +14,55 @@
 						<thead>
 							<tr>
 								<th>Productos Favoritos</th>
+								@if($favs['favs']->count() > '0')
 								<th class="text-center"><a class="RemoveAllFromFavs btn btn-sm btn-outline-danger" data-customerid="{{ $customer->id }}" href="">Limpiar Lista</a></th>
+								@endif
 							</tr>
 						</thead>
 						<tbody>
+							
+							@if($favs['favs']->count() > '0')
+								@foreach($favs['favs'] as $item)
 
-							@if(!$favs['favs'])
-								@foreach($favs['favs'] as $fav)	
-								<tr>
-									<td>
-										<div class="product-item"><a class="product-thumb" href="shop-single.html"><img src="{{ asset('webimages/catalogo/'.$fav->article->thumb) }}" alt="Product"></a>
-											<div class="product-info">
-												<h4 class="product-title"><a href="shop-single.html">{{ $fav->article->name }}</a></h4>
-												<div class="text-lg text-medium text-muted">
-														@if($fav->article->offer > 0)
-														<del>$ {{ $fav->article->price }}</del> $ {{ calcValuePercentNeg($fav->article->price, $fav->article->offer) }}
-														@else
-														$ {{ $fav->article->price }}
-														@endif
-												</div>
-												<div>Disponibilidad:
-													<div class="d-inline text-success">
-														@if($fav->article->status == '0')
-															No disponible
-														@else
-															@if($fav->article->stock > 1)
-															En stock
+									@if(!$item == null)
+									<tr>
+										<td>
+											<div class="product-item">
+												<a class="product-thumb" href="{{ url('tienda/articulo/'.$item->article->id) }}">
+													@if($item->article->thumb)
+													<img src="{{ asset('webimages/catalogo/'.$item->article->thumb) }}" alt="Product">
+													@else
+													<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}" alt="Producto del Catálogo">
+													@endif
+												</a>
+												<div class="product-info">
+													<h4 class="product-title"><a href="{{ url('tienda/articulo/'.$item->article->id) }}">{{ $item->article->name }}</a></h4>
+													<div class="text-lg text-medium text-muted">
+															{{-- @if($item->article->offer > 0)
+															<del>$ {{ $item->article->price }}</del> $ {{ calcValuePercentNeg($item->article->price, $item->article->offer) }}
 															@else
-															Sin Stock
+															$ {{ $item->article->price }}
+															@endif --}}
+													</div>
+													<div>Disponibilidad:
+														<div class="d-inline text-success">
+															@if($item->article->status == '0')
+																No disponible
+															@else
+																@if($item->article->stock > 1)
+																En stock
+																@else
+																Sin Stock
+																@endif
 															@endif
-														@endif
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-									</td>
-									<td class="text-center"><a class="RemoveFromFavs remove-from-cart cursor-pointer" data-favid="{{ $fav->id }}" data-toggle="tooltip" title="Remover de Favoritos"><i class="icon-cross"></i></a></td>
-								</tr>
+										</td>
+										<td class="text-center"><a class="RemoveFromFavs remove-from-cart cursor-pointer" data-favid="{{ $item->id }}" data-toggle="tooltip" title="Remover de Favoritos"><i class="icon-cross"></i></a></td>
+									</tr>
+									@endif
 								@endforeach
 							@else 
 								<tr>

@@ -311,7 +311,12 @@ class StoreController extends Controller
         if(!$activeCart){
         } else {
             foreach($activeCart->details as $item){
-                $cartTotal += $item->article->price;
+                if($item->discount > '0'){
+                    $cartTotal += calcValuePercentNeg($item->price, $item->discount);
+                } else {
+                    
+                    $cartTotal += $item->price;
+                }
             }
         }
     
@@ -356,15 +361,25 @@ class StoreController extends Controller
     public function getCustomerFavs()
     {
         if(auth()->guard('customer')->check()){
-            $favs        = CatalogFav::where('customer_id', '=', auth()->guard('customer')->user()->id)->get();
+            $favs = CatalogFav::where('customer_id', '=', auth()->guard('customer')->user()->id)->get();
+            
             $articleFavs = CatalogFav::where('customer_id', '=', auth()->guard('customer')->user()->id)->pluck('article_id');
             $articleFavs = $articleFavs->toArray();
+        
+            // Delete fav if product was removed and fav wasn't
+            foreach($favs as $item){
+                if(is_null($item->article)){
+                    $item->delete();
+                }
+            }
+
         } else {
             $favs = null;
             $articleFavs = null;
         }
+        
         return array("articleFavs" => $articleFavs,
-                     "favs" => $favs);
+                      "favs" => $favs);
     }
 
     public function addArticleToFavs(Request $request)

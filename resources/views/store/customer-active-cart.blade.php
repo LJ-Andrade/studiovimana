@@ -43,10 +43,8 @@
                                 </td>
                                 <td class="text-center">
                                     {{ $item->quantity }}
-                                    {{--  <div class="count-input">
-                                        <input id="SelectedQuantity" class="form-control" type="number" min="1" value="{{ $item->quantity }}">
-                                    </div>  --}}
                                 </td>
+                                
                                 @if($item->article->discount > 0)
                                     <td class="text-center text-lg text-medium">
                                         <del class="text-muted text-normal">$ {{ $item->article->price }}</del>
@@ -56,10 +54,10 @@
                                     <td class="text-center text-lg text-medium">$ {{ $item->article->price }}</td>
                                 @endif
                                 
-                                <td class="text-center"><a class="RemoveArticleFromCart cursor-pointer" data-detailid="{{ $item->id }}"><i class="icon-cross"></i></a></td>
-                            </tr>
-
-                            
+                                <td class="text-center"><a class="RemoveArticleFromCart cursor-pointer" data-detailid="{{ $item->id }}">
+                                    <i class="icon-cross"></i></a>
+                                </td>
+                            </tr>                           
                             @endforeach
                         @else
                             <tr>

@@ -17,13 +17,12 @@ class CartDetailController extends Controller
         $cartDetail->article_id = $request->article_id;
         $cartDetail->quantity = $request->quantity;
         $cartDetail->size = $request->size;
-
+        
+        // check and set if article has discount
         $article = CatalogArticle::where('id', $request->article_id)->first();
-        if($article->discount > 0){
-            $cartDetail->price = calcValuePercentNeg($article->price, $article->discount);
-        } else {
-            $cartDetail->price = $article->price;
-        }
+        $cartDetail->price = $article->price;
+        $cartDetail->discount = $article->discount;
+        
         $cartDetail->save();
 
         return response()->json(['response' => true, 'result' => 'done', 'message' => 'done']); 

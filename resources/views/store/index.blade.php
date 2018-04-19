@@ -57,7 +57,8 @@
 									@if($article->thumb)
 									<img src="{{ asset('webimages/catalogo/'.$article->thumb) }}" alt="Producto del Catálogo">
 									@else
-									<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}" alt="Producto del Catálogo"></a>
+									
+									<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}" alt="Producto del Catálogo">
 									@endif
 								</div>
 								<a href="{{ url('tienda/articulo/'.$article->id) }}"><h3 class="product-title max-text">{{ $article->name }}</h3></a>

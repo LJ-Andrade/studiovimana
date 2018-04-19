@@ -72,7 +72,7 @@
     <script type="text/javascript">
 		$('body').addClass('portfolio-body');
 	
-			var mySwiper = new Swiper ('.swiper-container', {
+		var mySwiper = new Swiper ('.swiper-container', {
 			// Optional parameters
 			direction: 'horizontal',
 			loop: true,
@@ -87,6 +87,6 @@
 			
 			// And if we need scrollbar
 			scrollbar: '.swiper-scrollbar',
-		})        
+		});    
     </script>
 @endsection

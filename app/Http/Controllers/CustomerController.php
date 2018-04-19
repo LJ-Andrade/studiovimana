@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Customer;
 use Auth;
 use Image;
 use File;
 use PDF;
 use Excel;
 
-class UserController extends Controller
+class CustomerController extends Controller
 {
 
     /*
@@ -26,18 +26,18 @@ class UserController extends Controller
         $paginate = 15;
 
         if(isset($name)){
-            $items = User::searchName($name)->orderBy('id', 'ASC')->paginate($paginate); 
+            $items = Customer::searchName($name)->orderBy('id', 'ASC')->paginate($paginate); 
         }
         elseif(isset($role) || isset($group))
         {
-            $items = User::searchRoleGroup($role, $group)->orderBy('id', 'ASC')->paginate($paginate); 
+            $items = Customer::searchRoleGroup($role, $group)->orderBy('id', 'ASC')->paginate($paginate); 
         }
         else 
         {
-            $items = User::orderBy('id', 'ASC')->paginate($paginate); 
+            $items = Customer::orderBy('id', 'ASC')->paginate($paginate); 
         }
 
-        return view('vadmin.users.index')
+        return view('vadmin.customers.index')
             ->with('items', $items)
             ->with('name', $name)
             ->with('role', $role)
@@ -46,8 +46,8 @@ class UserController extends Controller
     
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('vadmin.users.show', compact('user'));
+        $Customer = Customer::findOrFail($id);
+        return view('vadmin.customers.show', compact('Customer'));
     }
 
     /*
@@ -60,7 +60,7 @@ class UserController extends Controller
     {   
         $items = $this->getData($params);
         dd($items);
-        $pdf = PDF::loadView('vadmin.users.invoice', array('items' => $items));
+        $pdf = PDF::loadView('vadmin.customers.invoice', array('items' => $items));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->download('listado-de-usuarios.pdf');
         
@@ -71,7 +71,7 @@ class UserController extends Controller
         $items = $this->getData($params);
         Excel::create('listado-de-usuarios', function($excel) use($items){
             $excel->sheet('Listado', function($sheet) use($items) {   
-                $sheet->loadView('vadmin.users.invoice-excel', 
+                $sheet->loadView('vadmin.customers.invoice-excel', 
                 compact('items'));
             });
         })->export('xls');         
@@ -81,24 +81,24 @@ class UserController extends Controller
     public function getData($params)
     {
         if($params == 'all'){
-            $items = User::orderBy('id', 'ASC')->get(); 
+            $items = Customer::orderBy('id', 'ASC')->get(); 
             return $items;
         }
 
         parse_str($params , $query);
         if(isset($query['name'])){
-            return $items = User::searchname($query['name'])->orderBy('id', 'ASC')->get(); 
+            return $items = Customer::searchname($query['name'])->orderBy('id', 'ASC')->get(); 
         }
 
         if(isset($query['role']) && isset($query['group']) ){
-            return $items = User::searchRoleGroup($query['role'], $query['group'])->orderBy('id', 'ASC')->get();
+            return $items = Customer::searchRoleGroup($query['role'], $query['group'])->orderBy('id', 'ASC')->get();
         } elseif(isset($query['group'])){
-            return $items = User::searchRoleGroup($query['group'])->orderBy('id', 'ASC')->get();
+            return $items = Customer::searchRoleGroup($query['group'])->orderBy('id', 'ASC')->get();
         } elseif(isset($query['role'])){
-            return $items = User::searchRoleGroup($query['role'])->orderBy('id', 'ASC')->get();
+            return $items = Customer::searchRoleGroup($query['role'])->orderBy('id', 'ASC')->get();
         } 
 
-        $items = User::orderBy('id', 'ASC')->get(); 
+        $items = Customer::orderBy('id', 'ASC')->get(); 
         return $items;
     }
 
@@ -112,15 +112,15 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('vadmin.users.create');
+        return view('vadmin.customers.create');
     }
 
     public function store(Request $request)
     {
-        $user = new User($request->all());
+        $Customer = new Customer($request->all());
         $this->validate($request,[
             'name'           => 'required',
-            'email'          => 'min:3|max:250|required|unique:users,email',
+            'email'          => 'min:3|max:250|required|unique:customers,email',
             'password'       => 'min:4|max:12listado-usuarios0|required|',
             
         ],[
@@ -131,15 +131,15 @@ class UserController extends Controller
 
         if($request->file('avatar') != null){
             $avatar   = $request->file('avatar');
-            $filename = $user->username.'.jpg';
-            Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename));
-            $user->avatar = $filename;
+            $filename = $Customer->Customername.'.jpg';
+            Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
+            $Customer->avatar = $filename;
         }
 
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $Customer->password = bcrypt($request->password);
+        $Customer->save();
 
-        return redirect('vadmin/users')->with('message', 'Usuario agregado correctamente');
+        return redirect('vadmin/customers')->with('message', 'Usuario agregado correctamente');
     }
 
     /*
@@ -149,23 +149,23 @@ class UserController extends Controller
     */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('vadmin.users.edit', compact('user'));
+        $Customer = Customer::findOrFail($id);
+        return view('vadmin.customers.edit', compact('Customer'));
     }
 
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $Customer = Customer::findOrFail($id);
         $this->validate($request,[
             'name' => 'required|max:255',
-            'username' => 'required|max:20|unique:users,username,'.$user->id,
-            'email' => 'required|email|max:255|unique:users,email,'.$user->id,
+            'Customername' => 'required|max:20|unique:customers,Customername,'.$Customer->id,
+            'email' => 'required|email|max:255|unique:customers,email,'.$Customer->id,
             'password' => 'required|min:6|confirmed',
             
         ],[
             'name.required' => 'Debe ingresar un nombre',
-            'username.required' => 'Debe ingresar un nombre de usuario',
-            'username.unique' => 'El nombre de usuario ya está siendo utilizado',
+            'Customername.required' => 'Debe ingresar un nombre de usuario',
+            'Customername.unique' => 'El nombre de usuario ya está siendo utilizado',
             'email.required' => 'Debe ingresar un email',
             'email.unique' => 'El email ya existe',
             'password.min' => 'El password debe tener al menos :min caracteres',
@@ -173,19 +173,19 @@ class UserController extends Controller
             'password.confirmed' => 'Las contraseñas no coinciden',
         ]);
 
-        $user->fill($request->all());
+        $Customer->fill($request->all());
 
-        $user->password = bcrypt($request->password);
+        $Customer->password = bcrypt($request->password);
         if($request->file('avatar') != null){
             $avatar   = $request->file('avatar');
-            $filename = $user->username.'.jpg';
-            Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename));
-            $user->avatar = $filename;
+            $filename = $Customer->Customername.'.jpg';
+            Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
+            $Customer->avatar = $filename;
         }
 
-        $user->save();
+        $Customer->save();
 
-        return redirect('vadmin/users')->with('Message', 'Usuario '. $user->name .'editado correctamente');
+        return redirect('vadmin/customers')->with('Message', 'Usuario '. $Customer->name .'editado correctamente');
     }
 
     // ---------- Update Avatar --------------- //
@@ -194,19 +194,19 @@ class UserController extends Controller
         
         if ($request->hasFile('avatar')) {
 
-            $user     = User::findOrFail($request->id);
+            $Customer     = Customer::findOrFail($request->id);
             $avatar   = $request->file('avatar');
-            $filename = $user->id.'.jpg';
+            $filename = $Customer->id.'.jpg';
             try{
-                Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/users/'.$filename));
-                if ($user->avatar != "default.jpg") {
-                    $path     = public_path('images/users/');
-                    $lastpath = $user->avatar;
+                Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
+                if ($Customer->avatar != "default.jpg") {
+                    $path     = public_path('images/customers/');
+                    $lastpath = $Customer->avatar;
                     File::Delete($path . $lastpath);   
                 }
-                $user->avatar = $filename;
-                $user->save();
-                return redirect('vadmin/users/'.$user->id)->with('message', 'Avatar actualizado');
+                $Customer->avatar = $filename;
+                $Customer->save();
+                return redirect('vadmin/customers/'.$Customer->id)->with('message', 'Avatar actualizado');
             }   catch(\Exception $e){
                 dd($e);
             }
@@ -229,7 +229,7 @@ class UserController extends Controller
         if(is_array($ids)) {
             try {
                 foreach ($ids as $id) {
-                    $record = User::find($id);
+                    $record = Customer::find($id);
                     $record->delete();
                 }
                 return response()->json([
@@ -243,7 +243,7 @@ class UserController extends Controller
             }
         } else {
             try {
-                $record = User::find($id);
+                $record = Customer::find($id);
                 $record->delete();
                     return response()->json([
                         'success'   => true,

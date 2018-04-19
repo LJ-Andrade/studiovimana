@@ -173,7 +173,6 @@ ul.pagination li a.active,ul.pagination li.active
 			position: relative
 			@include flex-center
 			.site-logo
-				padding: 10px 0
 				img
 					width: 150px
 		.toolbar
@@ -185,8 +184,9 @@ ul.pagination li a.active,ul.pagination li.active
 			right: auto
 
 @media (max-width: 265px)
-	.navbar .toolbar .tools
-		@include flex-column
+	// .navbar .toolbar .tools
+	// 	@include flex-column
+
 //////////////////////////////////////
 //                                  //
 //       BUTTONS / TRIGGERS         //
@@ -230,7 +230,6 @@ ul.pagination li a.active,ul.pagination li.active
 	font-size: 12px
 	line-height: 34px
 	width: 37px
-
 
 //////////////////////////////////////
 //                                  //
@@ -278,7 +277,18 @@ ul.pagination li a.active,ul.pagination li.active
 	max-height: 400px
 	overflow-y: scroll
 	overflow-x: hidden
-	
+
+.navbar-sticky	
+	.toolbar 
+		white-space: nowrap
+		.inner 
+			@include flex-center
+			margin-bottom: 10px
+			.tools
+				height: auto
+				display: inline-flex
+		
+
 .user-info-wrapper
 	padding-top: 20px
 	padding-bottom: 20px
@@ -292,6 +302,26 @@ ul.pagination li a.active,ul.pagination li.active
 .top-info
 	padding-bottom: 20px
 
+@media (max-width: 1070px)
+	.toolbar 
+		.tools
+			display: table-cell
+			vertical-align: middle
+			.account
+				display: block
+
+@media (max-width: 991px)
+	.sidebar
+		max-width: 100%
+
+.review-bottom
+	background: #f9f9f97d
+	
+.back-to-store
+	margin-bottom: 10px
+	a
+		text-decoration: none
+		font-size: 1rem
 //////////////////////////////////////
 //                                  //
 //             ALERTS               //

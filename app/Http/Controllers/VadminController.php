@@ -39,9 +39,31 @@ class VadminController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function storedContacts(Request $request)
-    {
-        $items = Contact::orderBy('id','ASC')->paginate(10);
+    public function storedContacts($status)
+    {   
+        
+        switch($status){
+            case '*':
+                $items = Contact::where('status', '!=', '3')->orderBy('id','DESC')->paginate(10);
+                break;
+            case '3':
+                $items = Contact::where('status', '3')->orderBy('id','DESC')->paginate(10);
+                break;
+            default;
+                $items = Contact::where('status', '!=', '3')->orderBy('id','DESC')->paginate(10);
+        }
+                
+        return view('vadmin.contact.index')
+            ->with('items', $items);
+    }
+
+    public function searchStoredContact(Request $request)
+    {   
+        $items = Contact::where('name', 'LIKE', "%$request->searchTerm%")
+            ->orWhere('email', 'LIKE', "%$request->searchTerm%")
+            ->orderBy('id','DESC')
+            ->paginate(10);
+
         return view('vadmin.contact.index')
             ->with('items', $items);
     }

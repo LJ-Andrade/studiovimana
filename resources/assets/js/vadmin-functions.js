@@ -151,6 +151,7 @@ deleteAndReload = function(id, route, bigtext, smalltext) {
 					location.reload();
 				} else {
 					alert_error('Ups!','Ha ocurrido un error (Puede que este registro tenga relación con otros items en el sistema). Debe eliminar primero los mismos.');
+					console.log(data);
 					return false;
 				}
 			},

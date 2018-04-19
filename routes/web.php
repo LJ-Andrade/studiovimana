@@ -134,7 +134,7 @@ Route::group(['prefix' => 'vadmin'], function(){
     Route::get('exportCatalogListXls/{params}', ['as' => 'vadmin.exportCatalogListXls', 'uses' => 'Catalog\ArticlesController@exportExcel']);
     Route::get('mailChecker', ['as' => 'vadmin.mailChecker', 'uses' => 'ToolsController@mailChecker']);
     Route::get('configs', ['as' => 'vadmin.configs', 'uses' => 'VadminController@configs']);
-    Route::get('infophp', ['as' => 'vadmin.infophp', 'uses' => 'VadminController@infophp'])->middleware('admin');
+    // Route::get('infophp', ['as' => 'vadmin.infophp', 'uses' => 'VadminController@infophp'])->middleware('admin');
 
 });
 
@@ -147,8 +147,12 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     Route::resource('users', 'UserController');
     Route::post('message_status/{id}', 'VadminController@updateMessageStatus');
 
+    // -- CUSTOMERS --
+    Route::resource('customers', 'CustomerController');
+
     // -- MESSAGES --
-    Route::get('/mensajes_recibidos', 'VadminController@storedContacts');
+    Route::get('/mensajes_recibidos/{status}', 'VadminController@storedContacts');
+    Route::post('buscar_mensajes_recibidos', ['as' => 'searchStoredContact', 'uses' => 'VadminController@searchStoredContact']);
     Route::get('mensajes_recibidos/{id}', 'VadminController@showStoredContact');
     Route::post('setMessageAsReaded', 'VadminController@setMessageAsReaded');
     

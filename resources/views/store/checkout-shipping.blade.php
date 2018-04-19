@@ -3,6 +3,7 @@
 @section('content')
 
   <div class="container padding-bottom-3x mb-2 marg-top-25">
+  	<div class="back-to-store"><a href="{{ url('tienda') }}"><i class="icon-arrow-left"></i> Volver a la tienda</a></div>
     <div class="row">
 		<!-- Checkout Adress-->
 		<div class="col-xl-9 col-lg-8">

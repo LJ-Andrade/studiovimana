@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\CatalogCategory;
 use App\CatalogTag;
 use App\CatalogArticle;
+use App\CatalogFav;
 use App\CatalogImage;
 use App\CatalogAtribute1;
 use File;
@@ -375,7 +376,15 @@ class ArticlesController extends Controller
 
         if(is_array($ids)) {
             try {
+
                 foreach ($ids as $id) {
+                    // Check existence of related favs and delete
+                    $relatedFavs = CatalogFav::where('article_id', $id)->get();
+                    if(!$relatedFavs->isEmpty()){
+                        foreach($relatedFavs as $relatedFav){
+                            $relatedFav->delete();
+                        }
+                    }
                     $record = CatalogArticle::find($id);
                     $record->tags()->detach();
                     $record->atribute1()->detach();
@@ -399,6 +408,7 @@ class ArticlesController extends Controller
             }
         } else {
             try {
+                dd($ids);
                 $record = CatalogArticle::find($id);
                 $record->tags()->detach();
                 $record->atribute1()->detach();

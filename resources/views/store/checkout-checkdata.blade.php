@@ -3,13 +3,15 @@
 @section('content')
 
   <div class="container padding-bottom-3x mb-2 marg-top-25">
+  	<div class="back-to-store"><a href="{{ url('tienda') }}"><i class="icon-arrow-left"></i> Volver a la tienda</a></div>
     <div class="row">
 		<!-- Checkout Adress-->
+		
 		<div class="col-xl-9 col-lg-8">
 			@component('layouts.store.partials.checkout-steps')
 				@slot('step1status', 'active')
 			@endcomponent
-			<h4>Billing Address</h4>
+			<h4>Comprobar datos</h4>
 			<hr class="padding-bottom-1x">
 			<form class="row" method="POST" action="{{ route('store.checkoutCustomerData') }}">
 				{{ csrf_field() }}
@@ -78,7 +80,7 @@
 						<i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Volver al Carro</span></a>
 					</div>
 					<div class="column"><button type ="submit" class="btn btn-primary">
-						<span class="hidden-xs-down">Continuar&nbsp;</span><i class="icon-arrow-right"></i></button>
+						<span class="">Continuar&nbsp;</span><i class="icon-arrow-right"></i></button>
 					</div>
 				</div>
 			</form>
