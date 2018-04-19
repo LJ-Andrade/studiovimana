@@ -79,7 +79,7 @@
 									" data-id="{{ $article->id }}" data-toggle="tooltip" title="A Favoritos"><i class="icon-heart"></i>
 								</button>
 
-								<a href="{{ url('tienda/articulo/'.$article->id) }}" class="btn btn-outline-primary btn-sm">Agregar</a>
+								<a href="{{ url('tienda/articulo/'.$article->id) }}" class="btn btn-outline-primary btn-sm">Ver</a>
 
 								{{--  <form class="pad0" action="{{ url('/tienda/cart') }}" method="POST">
 									{{ csrf_field() }}

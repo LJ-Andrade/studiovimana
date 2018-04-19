@@ -271,12 +271,19 @@ ul.pagination li a.active,ul.pagination li.active
 	min-width: 70px
 	height: 70px
 
-.toolbar .cart > .toolbar-dropdown
-	width: 300px
-	padding-left: 18px !important
-	max-height: 400px
-	overflow-y: scroll
-	overflow-x: hidden
+@media (min-width: 481px)
+	.toolbar .cart > .toolbar-dropdown
+		width: 300px
+		padding-left: 18px !important
+		max-height: 400px
+		overflow-y: scroll
+		overflow-x: hidden
+
+@media (max-width: 481px)
+	.toolbar-user-dropdown
+		position: fixed
+		top: 150px
+		left: 10px !important
 
 .navbar-sticky	
 	.toolbar 

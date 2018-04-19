@@ -28,9 +28,9 @@
                 </ul>
             </div>
                 @if($activeCart['activeCart'])
-                <div class="cart"><a href="{{ route('store.activecart') }}"></a><i class="icon-bag"></i><span class="count">{{ $activeCart['activeCart']->details->count() }}</span>
+                <div class="cart"><i class="icon-bag"></i><span class="count">{{ $activeCart['activeCart']->details->count() }}</span>
                     <span class="subtotal">$ {{ $activeCart['cartTotal'] }}</span>
-                    <div class="toolbar-dropdown">
+                    <div class="toolbar-dropdown toolbar-user-dropdown">
                         @foreach($activeCart['activeCart']->details as $detail)
                             <div class="dropdown-product-item">
                                 <span class="RemoveArticleFromCart dropdown-product-remove" data-detailid="{{ $detail->id }}">
