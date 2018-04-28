@@ -197,6 +197,35 @@ class VadminController extends Controller
         }
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | GENERIC FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
+	public function updateStatus($model, $id)
+    {
+            $model_name = '\\App\\'.$model;
+            $model = new $model_name;
+            
+            $item = $model->find($id);
+            if($item->status == '0'){
+                $item->status = '1';
+            } else {
+                $item->status = '0';
+            }
+
+            $item->save();
+
+            return response()->json([
+                "success" => true,
+                "newStatus" => $item->status
+            ]);
+	}
+    
+    
+
     /*
     |--------------------------------------------------------------------------
     | CONFIGS

@@ -9,6 +9,7 @@
         <div class="form-group">
             <button type="submit" id="SearchFiltersBtn" class="btnSm btnGreen actionBtn">Buscar</button>
         </div>
+        <hr class="softhr">
     {!! Form::close() !!}
     {!! Form::open(['id' => 'SearchForm', 'method' => 'GET', 'route' => 'users.index', 'class' => 'form-inline col-md-8 col-sm-12', 'role' => 'search']) !!} 
         <div class="form-group">

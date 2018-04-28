@@ -9,3 +9,4 @@ searchFilters.hide();
 $('#SearchFiltersBtn').on('click', function(){
     searchFilters.toggle(100);
 });
+

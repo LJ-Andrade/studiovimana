@@ -98,9 +98,9 @@
         @component('vadmin.components.catalogthumbnail')
             @slot('thumbnail')
                 @if(isset($article) && $article->thumb != '')
-                    <img class="Featured-Image-Container" src="{{ asset('webimages/catalogo/'.$article->thumb) }}">
+                    <img class="CheckImg Featured-Image-Container" src="{{ asset('webimages/catalogo/'.$article->thumb) }}">
                 @else
-                    <img class="Featured-Image-Container" src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
+                    <img class="CheckImg Featured-Image-Container" src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
                 @endif
             @endslot
         @endcomponent
@@ -111,7 +111,7 @@
             <ul>
                 @foreach($article->images->reverse() as $image)
                 <li id="Img{{ $image->id }}">	
-                    <img src="{{ asset('webimages/catalogo/'.$image->name) }}">
+                    <img class="CheckImg" src="{{ asset('webimages/catalogo/'.$image->name) }}">
                     <div class="overlayItemCenter">
                         <i class="Delete-Product-Img icon-ios-trash-outline delete-img" data-imgid="{{ $image->id }}"></i>
                     </div>

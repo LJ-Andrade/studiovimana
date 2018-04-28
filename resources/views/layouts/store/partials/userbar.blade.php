@@ -5,7 +5,7 @@
             {{--  <div class="search"><i class="icon-search"></i></div>  --}}
             @if(Auth::guard('customer')->check())
             <div class="account"><a href="#" onclick="event.preventDefault();"></a>
-                    <img src="{{ asset('images/users/'.Auth::guard('customer')->user()->avatar ) }}" class="CheckImg" alt="">
+                    <img src="{{ asset('webimages/customers/'.Auth::guard('customer')->user()->avatar ) }}" class="CheckImg" alt="">
                 @if(Auth::guard('customer')->user()->avatar)
                 @else
                     <i class="icon-head"></i>
@@ -27,7 +27,7 @@
                     {{ csrf_field() }}
                 </ul>
             </div>
-                @if($activeCart['activeCart'])
+                @if(isset($activeCart['activeCart']))
                 <div class="cart"><i class="icon-bag"></i><span class="count">{{ $activeCart['activeCart']->details->count() }}</span>
                     <span class="subtotal">$ {{ $activeCart['cartTotal'] }}</span>
                     <div class="toolbar-dropdown toolbar-user-dropdown">

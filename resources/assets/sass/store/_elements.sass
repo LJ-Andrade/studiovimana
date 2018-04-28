@@ -18,6 +18,15 @@ $redH:    #C47777
 
 //////////////////////////////////////
 //                                  //
+//            HELPERS               //
+//                                  //
+//////////////////////////////////////
+
+.Hidden
+	display: none !important
+
+//////////////////////////////////////
+//                                  //
 //           BACKGROUNDS            //
 //                                  //
 //////////////////////////////////////
@@ -187,6 +196,10 @@ ul.pagination li a.active,ul.pagination li.active
 	// .navbar .toolbar .tools
 	// 	@include flex-column
 
+.user-info-wrapper .user-info .user-avatar>img
+	width: 150px
+	height: 120px
+
 //////////////////////////////////////
 //                                  //
 //       BUTTONS / TRIGGERS         //
@@ -329,6 +342,7 @@ ul.pagination li a.active,ul.pagination li.active
 	a
 		text-decoration: none
 		font-size: 1rem
+
 //////////////////////////////////////
 //                                  //
 //             ALERTS               //
@@ -339,6 +353,16 @@ ul.pagination li a.active,ul.pagination li.active
 	background-color: rgba(161, 147, 231, 0.1)
 	color: #000
 	margin-top: 20px
+
+.centered-notification
+	text-align: center
+	margin-top: 150px
+	font-size: 1.5rem
+	.content
+		padding: 10px
+		background: #f9f9f9
+	.bottom
+		margin-top: 50px
 
 //////////////////////////////////////
 //                                  //

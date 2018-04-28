@@ -8,7 +8,7 @@
 @endsection
 {{-- CONTENT --}}
 @section('header')
-	@component('vadmin.components.headerfixed')
+	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item active">Listado de Usuarios</li>
@@ -20,12 +20,12 @@
 				<button id="SearchFiltersBtn" class="btn btnGreen"><i class="icon-ios-search-strong"></i></button>
 				@if(Auth::guard('user')->user()->role <= 2)
 				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
 				<input id="EditId" type="hidden">
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
 				<input id="ModelName" type="hidden" value="users">
-				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				@endif
 				{{-- If Search --}}
@@ -39,11 +39,6 @@
 			@include('vadmin.users.searcher')
 		@endslot
 	@endcomponent
-@endsection
-
-{{--  If section has fixed actions  --}}
-@section('top-space')
-<div class="top-space"></div>
 @endsection
 
 @section('content')
@@ -61,14 +56,6 @@
 						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
 						<a href="{{ route('vadmin.exportUsersListXls', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
 					@endif
-
-					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
-					{{-- @if(isset($_GET['name']) || isset($_GET['role']) || isset($_GET['group']))
-						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
-					@else
-						<a href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.users.invoice', 'params' => '-', 'model' => 'User', 'filename' => 'listado-de-usuarios']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
-					@endif
-						<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>	 --}}
 				@endslot	
 				@slot('title', 'Usuarios del Sistema')
 				@slot('tableTitles')
@@ -81,7 +68,7 @@
 						<th>Email</th>
 						<th>Rol</th>
 						<th>Grupo</th>
-						<th>Fecha de Ingreso</th>
+						<td>Estado</td>
 					@else
 						<th></th>
 					@endif
@@ -105,7 +92,14 @@
 								<td>{{ $item->email }}</td>
 								<td>{{ roleTrd($item->role) }}</td>
 								<td>{{ groupTrd($item->group) }}</td>
-								<td>{{ transDateT($item->created_at) }}</td>
+								<td class="w-50 pad0 centered">
+									<label class="switch">
+										<input class="UpdateStatus switch-checkbox" type="checkbox" 
+										data-model="User" data-id="{{ $item->id }}"
+										@if($item->status == '1') checked @endif>
+										<span class="slider round"></span>
+									</label>
+								</td>
 							</tr>						
 						@endforeach
 					@else

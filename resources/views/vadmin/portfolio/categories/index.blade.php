@@ -6,7 +6,7 @@
 
 {{-- HEADER --}}
 @section('header')
-	@component('vadmin.components.headerfixed')
+	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item active">Listado de Categorías</li>
@@ -17,12 +17,12 @@
 				<a href="{{ route('categories.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nueva Categoría</a>
 				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
 				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
 				<input id="EditId" type="hidden">
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
 				<input id="ModelName" type="hidden" value="categories">
-				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
 				@if(isset($_GET['name']))
@@ -36,17 +36,6 @@
 		@endslot
 	@endcomponent
 @endsection
-
-@if(isset($_GET['name']))
-	{{--  If section has fixed actions  --}}
-	@section('top-space')
-		<div class="top-space"></div>
-	@endsection
-@else
-	@section('top-space')
-		<div class="top-space-small"></div>
-	@endsection
-@endif
 
 {{-- CONTENT --}}
 @section('content')

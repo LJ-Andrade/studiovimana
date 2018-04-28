@@ -29,13 +29,18 @@ Route::post('mail_sender', 'WebController@mail_sender');
 | Store
 |--------------------------------------------------------------------------
 */
-Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index']);
 
-Route::group(['prefix'=> 'tienda'], function() {        
+Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
+Route::get('tienda/proceso', function(){ return view('store.proceso'); })->middleware('active-customer');
+
+Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function() {        
     // Customer Actions
     Route::get('articulo/{id}', 'Store\StoreController@show');
     
+
     Route::group(['middleware'=> 'customer'], function() {
+        Route::post('updateCustomerAvatar', 'CustomerController@updateCustomerAvatar');
+        
         // Cart
         // Route::post('/cart', 'Store\CartDetailController@store');
         Route::post('addtocart', ['as' => 'store.addtocart', 'uses' => 'Store\CartDetailController@store']);
@@ -127,9 +132,15 @@ Route::group(['prefix' => 'vadmin'], function(){
     // Exports
     Route::get('exportViewPdf/{view}/{params}/{model}/{filename}', ['as' => 'vadmin.exportViewPdf', 'uses' => 'invoiceController@exportViewPdf']);
     
+    // Export Users
     Route::get('exportUsersListPdf/{params}', ['as' => 'vadmin.exportUsersListPdf', 'uses' => 'UserController@exportPdf']);
     Route::get('exportUsersListXls/{params}', ['as' => 'vadmin.exportUsersListXls', 'uses' => 'UserController@exportXls']);
+    // Export Customers
+    Route::get('exportCustomersListPdf/{params}', ['as' => 'vadmin.exportCustomersListPdf', 'uses' => 'CustomerController@exportPdf']);
+    Route::get('exportCustomersListXls/{params}', ['as' => 'vadmin.exportCustomersListXls', 'uses' => 'CustomerController@exportXls']);
     
+
+
     Route::get('exportCatalogListPdf/{params}', ['as' => 'vadmin.exportCatalogListPdf', 'uses' => 'Catalog\ArticlesController@exportPdf']);
     Route::get('exportCatalogListXls/{params}', ['as' => 'vadmin.exportCatalogListXls', 'uses' => 'Catalog\ArticlesController@exportExcel']);
     Route::get('mailChecker', ['as' => 'vadmin.mailChecker', 'uses' => 'ToolsController@mailChecker']);
@@ -143,12 +154,16 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     //Route::get('/home', 'VadminController@index');
     Route::get('/', 'VadminController@index');
     
+    Route::post('updateStatus/{model}/{id}', 'VadminController@updateStatus');
+
     // -- USERS --
     Route::resource('users', 'UserController');
     Route::post('message_status/{id}', 'VadminController@updateMessageStatus');
 
     // -- CUSTOMERS --
     Route::resource('customers', 'CustomerController');
+    Route::post('updateCustomerGroup', 'CustomerController@updateCustomerGroup');
+    
 
     // -- MESSAGES --
     Route::get('/mensajes_recibidos/{status}', 'VadminController@storedContacts');
@@ -160,7 +175,7 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     Route::resource('portfolio', 'Portfolio\ArticlesController');
     Route::resource('categories', 'Portfolio\CategoriesController');
     Route::resource('tags', 'Portfolio\TagsController');
-    Route::post('updateStatus/{id}', 'Portfolio\ArticlesController@updateStatus');
+    // Route::post('updateStatus/{id}', 'Portfolio\ArticlesController@updateStatus');
     Route::post('deleteArticleImg/{id}', 'Portfolio\ArticlesController@deleteArticleImg');
 
     // -- CATALOG --
@@ -194,6 +209,7 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
 
 Route::prefix('vadmin')->middleware('admin')->group(function () {
     Route::post('destroy_users', 'UserController@destroy');
+    Route::post('destroy_customers', 'CustomerController@destroy');
     Route::post('destroy_portfolio', 'Portfolio\ArticlesController@destroy');
     Route::post('destroy_categories', 'Portfolio\CategoriesController@destroy');
     Route::post('destroy_tags', 'Portfolio\TagsController@destroy');

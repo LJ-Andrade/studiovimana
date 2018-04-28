@@ -52,16 +52,23 @@ class LoginController extends Controller
         ];
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->status == 0){
+            $request->session()->invalidate();
+            auth()->guard()->logout();
+            return redirect('tienda/proceso');
+        }
+    }
+
     protected function guard(){
         return auth()->guard('customer');
     }
 
     public function showLoginForm(){
         if(auth()->guard('customer')->check()){
-            //dd('Estoy Logueado');
             return redirect('tienda');
         } else {
-            //dd('No Estoy Logueado');
             return view('store.login');
         }
     }

@@ -21,16 +21,16 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $name  = $request->get('name');
-        $role  = $request->get('role');
         $group = $request->get('group');
         $paginate = 15;
 
-        if(isset($name)){
+        if(isset($name))
+        {
             $items = Customer::searchName($name)->orderBy('id', 'ASC')->paginate($paginate); 
         }
-        elseif(isset($role) || isset($group))
+        elseif(isset($group))
         {
-            $items = Customer::searchRoleGroup($role, $group)->orderBy('id', 'ASC')->paginate($paginate); 
+            $items = Customer::searchGroup($group)->orderBy('id', 'ASC')->paginate($paginate); 
         }
         else 
         {
@@ -40,14 +40,13 @@ class CustomerController extends Controller
         return view('vadmin.customers.index')
             ->with('items', $items)
             ->with('name', $name)
-            ->with('role', $role)
             ->with('group', $group);
     }
     
     public function show($id)
     {
-        $Customer = Customer::findOrFail($id);
-        return view('vadmin.customers.show', compact('Customer'));
+        $customer = Customer::findOrFail($id);
+        return view('vadmin.customers.show', compact('customer'));
     }
 
     /*
@@ -59,17 +58,16 @@ class CustomerController extends Controller
     public function exportPdf($params)
     {   
         $items = $this->getData($params);
-        dd($items);
         $pdf = PDF::loadView('vadmin.customers.invoice', array('items' => $items));
         $pdf->setPaper('A4', 'landscape');
-        return $pdf->download('listado-de-usuarios.pdf');
+        return $pdf->download('listado-de-clientes.pdf');
         
     }
 
     public function exportXls($params)
     {   
         $items = $this->getData($params);
-        Excel::create('listado-de-usuarios', function($excel) use($items){
+        Excel::create('listado-de-clientes', function($excel) use($items){
             $excel->sheet('Listado', function($sheet) use($items) {   
                 $sheet->loadView('vadmin.customers.invoice-excel', 
                 compact('items'));
@@ -90,13 +88,10 @@ class CustomerController extends Controller
             return $items = Customer::searchname($query['name'])->orderBy('id', 'ASC')->get(); 
         }
 
-        if(isset($query['role']) && isset($query['group']) ){
-            return $items = Customer::searchRoleGroup($query['role'], $query['group'])->orderBy('id', 'ASC')->get();
-        } elseif(isset($query['group'])){
-            return $items = Customer::searchRoleGroup($query['group'])->orderBy('id', 'ASC')->get();
-        } elseif(isset($query['role'])){
-            return $items = Customer::searchRoleGroup($query['role'])->orderBy('id', 'ASC')->get();
+        if(isset($query['group'])){
+            return $items = Customer::searchGroup($query['group'])->orderBy('id', 'ASC')->get();
         } 
+        
 
         $items = Customer::orderBy('id', 'ASC')->get(); 
         return $items;
@@ -139,7 +134,7 @@ class CustomerController extends Controller
         $Customer->password = bcrypt($request->password);
         $Customer->save();
 
-        return redirect('vadmin/customers')->with('message', 'Usuario agregado correctamente');
+        return redirect('vadmin/customers')->with('message', 'Cliente creado correctamente');
     }
 
     /*
@@ -189,31 +184,44 @@ class CustomerController extends Controller
     }
 
     // ---------- Update Avatar --------------- //
-    public function updateAvatar(Request $request)
-    {
+
+
+    public function updateCustomerAvatar(Request $request){
         
         if ($request->hasFile('avatar')) {
+            $customer = Customer::findOrFail(Auth::guard('customer')->user()->id);
+            $avatar = $request->file('avatar');
+            $filename = $customer->id.'.jpg';
 
-            $Customer     = Customer::findOrFail($request->id);
-            $avatar   = $request->file('avatar');
-            $filename = $Customer->id.'.jpg';
+            $path = public_path('webimages/customers/');
             try{
-                Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
-                if ($Customer->avatar != "default.jpg") {
-                    $path     = public_path('images/customers/');
-                    $lastpath = $Customer->avatar;
-                    File::Delete($path . $lastpath);   
+                if (!file_exists($path)) {
+                    $oldmask = umask(0);
+                    mkdir($path, 0777);
+                    umask($oldmask);
                 }
-                $Customer->avatar = $filename;
-                $Customer->save();
-                return redirect('vadmin/customers/'.$Customer->id)->with('message', 'Avatar actualizado');
+                
+                Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save($path.$filename);
+                $customer->avatar = $filename;
+                $customer->save();
+
+                return back();
             }   catch(\Exception $e){
                 dd($e);
             }
         }
     }
 
+    public function updateCustomerGroup(Request $request){
+        $customer = Customer::find($request->id);
+        $customer->group = $request->group;
+        $customer->save();
 
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Grupo actualizado'
+        ]);    
+    }
     /*
     |--------------------------------------------------------------------------
     | DESTROY
@@ -226,35 +234,20 @@ class CustomerController extends Controller
         
         $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);
         
-        if(is_array($ids)) {
-            try {
-                foreach ($ids as $id) {
-                    $record = Customer::find($id);
-                    $record->delete();
-                }
-                return response()->json([
-                    'success'   => true,
-                ]); 
-            }  catch (\Exception $e) {
-                return response()->json([
-                    'success'   => false,
-                    'error'    => 'Error: '.$e
-                ]);    
-            }
-        } else {
-            try {
+        try {
+            foreach ($ids as $id) {
                 $record = Customer::find($id);
                 $record->delete();
-                    return response()->json([
-                        'success'   => true,
-                    ]);  
-                    
-                } catch (\Exception $e) {
-                    return response()->json([
-                        'success'   => false,
-                        'error'    => 'Error: '.$e
-                    ]);    
-                }
+            }
+            return response()->json([
+                'success'   => true,
+            ]); 
+        }  catch (\Exception $e) {
+            return response()->json([
+                'success'   => false,
+                'error'    => 'Error: '.$e
+            ]);    
         }
+        
     }
 }

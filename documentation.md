@@ -24,7 +24,7 @@ Vadmin es un gestor de contenido. Permite el manejo de distintas secciones de un
 
 ## Funciones y Métodos
 
-### Actualizar estados:
+<!-- ### Actualizar estados:
 Con esta función se pueden actualizar estados de distintos items (Ej. Artículos, productos, mensajes y demás) <br>
 <b>Lenguaje:</b> Javascript (JQuery) <br>
 <b>Función:</b> updateStatus(id, route, status, user, action);
@@ -38,7 +38,7 @@ Parámetros <br>
 
 Mediante JSON devuelve: <br>
 - response: TRUE o FALSE <br>
-- message: En caso de error devuelve info (/Exception $e) <br>
+- message: En caso de error devuelve info (/Exception $e) <br> -->
 
 ## CRUDS
 Comando para generar CRUDS desde consola
@@ -46,3 +46,14 @@ Comando para generar CRUDS desde consola
 php artisan crud:generate Posts --fields='title#string; content#text; category#select#options={"technology": "Technology", "tips": "Tips", "health": "Health"}' --view-path=admin --controller-namespace=Admin --route-group=admin --form-helper=html
 
 php artisan crud:generate Shippings --fields='name#string' --view-path=Vadmin/Catalog --controller-namespace=Catalog --route-group=Vadmin
+
+
+## Activar y Pausar items
+
+Usar este código de botón
+<label class="switch">
+    <input class="UpdateStatus switch-checkbox" type="checkbox" 
+    data-model="CAMBIAR POR NOMBRE DE MODELO" data-id="{{ $item->id }}"
+    @if($item->status == '1') checked @endif>
+    <span class="slider round"></span>
+</label>

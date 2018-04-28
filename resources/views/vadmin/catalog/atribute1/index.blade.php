@@ -7,23 +7,23 @@
 
 {{-- HEADER --}}
 @section('header')
-	@component('vadmin.components.headerfixed')
+	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Atributos</li>
+            <li class="breadcrumb-item active">Talles</li>
 		@endslot
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('cat_atribute1.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Atributo</a>
+				<a href="{{ route('cat_atribute1.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Talle</a>
 				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
 				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
 				<input id="EditId" type="hidden">
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
 				<input id="ModelName" type="hidden" value="cat_atribute1">
-				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
 				@if(isset($_GET['name']))
@@ -38,18 +38,6 @@
 	@endcomponent
 @endsection
 
-{{--  If section has fixed actions  --}}
-@if(isset($_GET['name']))
-	{{--  If section has fixed actions  --}}
-	@section('top-space')
-		<div class="top-space"></div>
-	@endsection
-@else
-	@section('top-space')
-		<div class="top-space-small"></div>
-	@endsection
-@endif
-
 {{-- CONTENT --}}
 @section('content')
 	<div class="list-wrapper">
@@ -60,7 +48,7 @@
 		<div class="row">
 			@component('vadmin.components.list')
 				@slot('actions', '')
-				@slot('title', 'Atributos')
+				@slot('title', 'Talles')
 					@if(!$atribute1->count() == '0')
 					@slot('tableTitles')
 						<th></th>

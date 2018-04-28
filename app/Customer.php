@@ -14,7 +14,7 @@ class Customer extends Authenticatable
     protected $table = 'customers';
 
     protected $fillable = [
-        'name', 'surname', 'username', 'email', 'address', 'province_id', 'location_id', 'cp', 'phone', 'phone2', 'password', 'group', 'avatar'
+        'name', 'surname', 'username', 'email', 'address', 'province_id', 'location_id', 'cp', 'phone', 'phone2', 'password', 'group', 'status', 'avatar'
     ];
 
     protected $hidden = [
@@ -54,9 +54,9 @@ class Customer extends Authenticatable
             ->orWhere('email', 'LIKE', "%$name%");
     }
 
-    public function scopeSearchrole($query, $role)
+    public function scopeSearchGroup($query, $group)
     {
-        $query->where('role', $role);
+        $query->where('group', $group);
     }   
 
     //Send password reset notification

@@ -6,7 +6,7 @@
 
 {{-- HEADER --}}
 @section('header')
-	@component('vadmin.components.headerfixed')
+	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item active">Listado de Items</li>
@@ -17,12 +17,12 @@
 				<a href="{{ route('catalogo.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Item</a>
 				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
 				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
 				<input id="EditId" type="hidden">
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
 				<input id="ModelName" type="hidden" value="catalogo">
-				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
 				@if(isset($_GET['code']) || isset($_GET['title']) || isset($_GET['category']))
@@ -36,8 +36,8 @@
 	@endcomponent
 @endsection
 
-@if(isset($_GET['title']) || isset($_GET['category']))
-	{{--  If section has fixed actions  --}}
+{{-- @if(isset($_GET['title']) || isset($_GET['category']))
+	
 	@section('top-space')
 		<div class="top-space"></div>
 	@endsection
@@ -45,7 +45,7 @@
 	@section('top-space')
 		<div class="top-space-small"></div>
 	@endsection
-@endif
+@endif --}}
 
 {{-- CONTENT --}}
 @section('content')
@@ -91,9 +91,9 @@
 								</td>
 								<td class="thumb">
 									@if($item->thumb != '' || $item->thumb != null)
-										<img src="{{ asset('webimages/catalogo/'. $item->thumb ) }}">
+										<img class="CheckImg" src="{{ asset('webimages/catalogo/'. $item->thumb ) }}">
 									@else
-										<img src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
+										<img class="CheckImg" src="{{ asset('webimages/gen/catalog-gen.jpg') }}">
 									@endif
 								</td>
 								<td class="w-50">#{{ $item->code }}</td>
@@ -130,19 +130,12 @@
 								{{--  DATE   --}}
 								<td class="w-200">{{ $item->category->name }}</td>
 								<td class="w-50 pad0 centered">
-									@if($item->status == '1')
-										<label class="switch">
-											<input class="PauseArticle switch-checkbox" data-id="{{ $item->id }}" type="checkbox" checked>
-											<span class="slider round"></span>
-										</label>
-									@elseif($item->status == '0')
-										<label class="switch">
-											<input class="ActivateArticle" data-id="{{ $item->id }}" type="checkbox">
-											<span class="slider round"></span>
-										</label>
-									@else 
-										Sin estado
-									@endif
+									<label class="switch">
+										<input class="UpdateStatus switch-checkbox" type="checkbox" 
+										data-model="CatalogArticle" data-id="{{ $item->id }}"
+										@if($item->status == '1') checked @endif>
+										<span class="slider round"></span>
+									</label>
 								</td>
 							</tr>					
 						@endforeach

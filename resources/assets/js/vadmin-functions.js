@@ -40,20 +40,33 @@ $(document).on("click", ".List-Checkbox", function(e){
 	}
 });
 
+
 function showButtons(trigger) {
 	
 	var countSelected = $('.List-Checkbox:checkbox:checked').length;
-
 	if(countSelected == 1) {
-        $('#DeleteBtn').removeClass('Hidden');
-        $('#EditBtn').removeClass('Hidden');
+        $('.DeleteBtn').removeClass('Hidden');
+		$('.EditBtn').removeClass('Hidden');
+		
 	} else if(countSelected >= 2) {
-        $('#EditBtn').addClass('Hidden');
+        $('.EditBtn').addClass('Hidden');
     } else if(countSelected == 0) {
-        $('#DeleteBtn').addClass('Hidden');
-        $('#EditBtn').addClass('Hidden');
+        $('.DeleteBtn').addClass('Hidden');
+        $('.EditBtn').addClass('Hidden');
     }
 }
+
+// Show Edit and Delete buttons in bottom if scrolled to mutch
+$(document).scroll(function(e){
+	var scrollAmount = $(window).scrollTop();
+	if(scrollAmount > 150){
+		$('.DeleteBtn').css({"position":"fixed", "bottom":"50px", "right":"10px", "z-index":"999"});
+		$('.EditBtn').css({"position":"fixed", "bottom":"50px", "right":"130px", "z-index":"999"});
+	} else {
+		$('.DeleteBtn').css({"position":"relative", "bottom":"auto", "right":"auto", "z-index":"999"});
+		$('.EditBtn').css({"position":"relative", "bottom":"auto", "right":"auto", "z-index":"999"});
+	}
+});
 
 // Uncheck all checkboxes on reload.
 function uncheckAll(){
@@ -198,4 +211,9 @@ function alert_info(bigtext, smalltext){
         confirmButtonText:
             '<i class="ion-checkmark-round"></i> Ok!'
         });
+}
+
+
+function closeParent(){
+	$(this).parent('hide');
 }

@@ -145,12 +145,12 @@
 					</ul>
 				</li>
 				<li class="has-sub is-shown {{ Menu::activeMenu('cat_atribute1') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
-					Atributos</a>
+					Talles</a>
 					<ul class="menu-content" style="">
 						<li class="is-shown {{ Menu::activeMenu('cat_atribute1') }}"><a href="{{ route('cat_atribute1.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
 							<i class="icon-list"></i> Listado</a></li>
 						<li class="is-shown {{ Menu::activeMenu('cat_atribute1') }}"><a href="{{ route('cat_atribute1.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item">
-							<i class="icon-plus-round"></i> Nuevo Atributo</a></li>
+							<i class="icon-plus-round"></i> Nuevo Talle</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -182,10 +182,16 @@
 		<li class="navigation-header"><span data-i18n="nav.category.support">Administración</span>
 			<i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
 		</li>
-		<li class="has-sub is-shown UsersLi"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-users2"></i>	Usuarios</a>
+		<li class="has-sub is-shown {{ Menu::activeMenu('users') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-users2"></i>	Usuarios</a>
 			<ul class="menu-content" style="">
-				<li class="is-shown UsersList"><a href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-				<li class="is-shown UsersNew"><a href="{{ route('users.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
+				<li class="is-shown {{ Menu::activeMenu('users') }}"><a href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+				<li class="is-shown {{ Menu::activeMenu('users') }}"><a href="{{ route('users.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
+			</ul>
+		</li>
+		<li class="has-sub is-shown {{ Menu::activeMenu('customers') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-users2"></i>	Clientes</a>
+			<ul class="menu-content" style="">
+				<li class="is-shown {{ Menu::activeMenu('customers') }}"><a href="{{ route('customers.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+				<li class="is-shown {{ Menu::activeMenu('customers') }}"><a href="{{ route('customers.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Cliente</a></li>
 			</ul>
 		</li>
 		<li class="{{ Menu::activeMenu('mensajes_recibidos') }}"><a href="{{ url('vadmin/mensajes_recibidos/*') }}" class="menu-item"><i class="icon-envelop"></i> Mensajes 

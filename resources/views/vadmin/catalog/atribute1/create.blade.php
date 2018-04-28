@@ -1,5 +1,5 @@
 @extends('layouts.vadmin.main')
-@section('title', 'VADmin | Nuevo Atributo')
+@section('title', 'VADmin | Nuevo Talle')
 
 @section('styles')
 @endsection
@@ -8,12 +8,12 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('cat_atribute1.index')}}">Listado de atributos</a></li>
-			<li class="breadcrumb-item active">Nuevo atributo</li>
+			<li class="breadcrumb-item"><a href="{{ route('cat_atribute1.index')}}">Listado de talles</a></li>
+			<li class="breadcrumb-item active">Nuevo talle</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h1>Nuevo atributo</h1>
+				<h1>Nuevo talle</h1>
 			</div>
 		@endslot
 	@endcomponent
@@ -40,11 +40,10 @@
 			<div class="col-md-7">
 				@component('vadmin.components.infoContainer')
 					@slot('text')
-					Agregue los <b>atributos</b> correspondientes. <br>
-					Luego estarán disponibles como opción al momento de cargar items para la <b>Sección1</b><br>
-					Estos atributos permitirán a los usuarios filtrar los items desde la web y facilitan a los administradores la carga de datos. 
+					Agregue los <b>talles</b> correspondientes. <br>
+					Luego estarán disponibles como opción al momento de cargar artículos para el <b>catálogo</b><br>
+					Estos atributos permitirán a los usuarios filtrar los artículos desde la tienda y facilitan a los administradores la carga de datos. 
 					<br>
-					
 					@endslot
 				@endcomponent
 			</div>

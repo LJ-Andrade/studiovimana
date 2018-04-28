@@ -6,14 +6,14 @@
     */
 
     // List Edit Row Trigger
-    $(document).on("click", "#EditBtn", function(e){
+    $(document).on("click", ".EditBtn", function(e){
         var id    = $('#EditId').val();
         var model = $('#ModelName').val();
         var route = "{{ url('vadmin') }}/"+model+"/"+id+"/edit";
         location.replace(route);
     });
 
-    $(document).on('click', '#DeleteBtn', function(e) { 
+    $(document).on('click', '.DeleteBtn', function(e) { 
         var id    = $('#RowsToDeletion').val();
         var model = $('#ModelName').val();
         var route = "{{ url('vadmin') }}/destroy_"+model;
@@ -212,36 +212,36 @@
     */
 
     // Update Status ---------------------------------------------------------
-    function updateStatus(id, route, status, user, action)
-	{
-		$.ajax({	
-			url: route,
-			method: 'POST',             
-			dataType: 'JSON',
-			data: { id: id, status: status, user: user },
-			success: function(data){
-                if(data.response == true){
-                    switch(action) {
-                        case 'reload':
-                            location.reload();
-                            break;
-                        case 'show':
-                            console.log('Mostrar algo');
-                            break;
-                        case 'none':
-                            console.log('Actualizado - Sin Acción');
-                        default:
-                            console.log('No hay acción');
-                            break;
-                    }   
-                } 
-			},
-			error: function(data){
-                //$('#Error').html(data.responseText);
-                console.log(data);
-			}
-		});
-	}
+   // function updateStatus(id, route, status, user, action)
+	//{
+	//	$.ajax({	
+	//		url: route,
+	//		method: 'POST',             
+	//		dataType: 'JSON',
+	//		data: { id: id, status: status, user: user },
+	//		success: function(data){
+   //             if(data.response == true){
+   //                 switch(action) {
+   //                     case 'reload':
+   //                         location.reload();
+   //                         break;
+   //                     case 'show':
+   //                         console.log('Mostrar algo');
+   //                         break;
+   //                     case 'none':
+   //                         console.log('Actualizado - Sin Acción');
+   //                     default:
+   //                         console.log('No hay acción');
+   //                         break;
+   //                 }   
+   //             } 
+	//		},
+	//		error: function(data){
+   //             
+   //             console.log(data);
+	//		}
+	//	});
+	//}
 
     // Update Stock  ---------------------------------------------------------
     function updateStock(route, id, value, action, loader){
@@ -312,6 +312,67 @@
                 //$('#Error').html(data.responseText);
             }
         }); 
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE STATUS (General)
+    |--------------------------------------------------------------------------
+    */
+
+    $('.UpdateStatus').click(function(){
+        let model = $(this).data('model');
+        let id = $(this).data('id');
+        updateStatus(model, id);
+    });
+
+    function updateStatus(model, id){
+
+        var route  = "{{ url('vadmin/updateStatus/')}}/"+model+"/"+id+"";
+        $.ajax({
+            url: route,
+            type: 'POST',
+            dataType: 'JSON',
+            beforeSend: function(){
+                
+            },
+            success: function(data){
+                console.log(data.newStatus);
+            },
+            error: function(data){
+                console.log(data);
+                alert_error('Ha ocurrido un error');
+                //$('#Error').html(data.responseText);
+            }
+        }); 
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE CUSTOMER GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    function updateCustomerGroup(value, customerId){
+        
+        var route  = "{{ url('vadmin/updateCustomerGroup') }}";
+        var data = { id: customerId, group: value.value};
+        
+        $.ajax({
+            url: route,
+            type: 'POST',
+            data: data,
+            success: function(data){
+                console.log(data);
+            },
+            error: function(data){
+                console.log(data);
+                alert_error('Ha ocurrido un error');
+                //$('#Error').html(data.responseText);
+            }
+        }); 
+
     }
 
     /*

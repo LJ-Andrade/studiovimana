@@ -1,7 +1,6 @@
 @extends('auth.app')
 
 @section('content')
-
 <section class="login-container">
     <div class="inner">
         <div class="card border-grey border-lighten-3 m-0">
@@ -14,6 +13,7 @@
             <div class="card-body collapse in">
                 <div class="container" style="text-align: center">Gestor de Contenido</div>
                 <div class="card-block">
+                    @include('auth.messages')
                     <form class="form-horizontal form-simple" method="POST" action="{{ route('vadmin.login') }}">
                         {{ csrf_field() }}
                         <fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }} position-relative has-icon-left mb-0">

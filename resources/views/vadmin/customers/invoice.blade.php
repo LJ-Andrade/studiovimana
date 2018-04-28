@@ -1,10 +1,10 @@
 @extends('layouts.vadmin.invoice')
 
-@section('title', 'Listado de Usuarios')
+@section('title', 'Listado de Clientes')
 
 @section('table-titles')
     <th>Cód.</th>
-    <th>Nombre</th>
+    <th>Nombre y Apellido</th>
     <th>E-Mail</th>
 @endsection
 
@@ -12,7 +12,7 @@
     @foreach($items as $item)
     <tr>
         <td class="w-50">#{{ $item->id }}</td>
-        <td class="max-text">{{ $item->name }}</td>
+        <td class="max-text">{{ $item->name }} {{ $item->surname }}</td>
         <td class="">{{ $item->email }}</td>    
     </tr>
     @endforeach			

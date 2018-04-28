@@ -39,4 +39,10 @@
     <body class="login-page">
         @yield('content')
     </body>
+	<script>
+		function closeParent(element){
+			var parent = element.parentNode;
+			parent.style.display = 'none';
+		}
+	</script>
 </html>

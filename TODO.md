@@ -1,0 +1,1 @@
+Configurar la actualización de estado de portfolio. updateStatus es ahora una función generica.

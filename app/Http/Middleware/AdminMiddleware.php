@@ -17,6 +17,9 @@ class AdminMiddleware
         if(!auth()->guard($guard)->check()){
             return redirect('/vadmin/login');
         }
+        if(auth()->guard($guard)->user()->status == 0){
+            return redirect('/vadmin/login')->with('message','Su usuario está inactivo');
+        };
         return $next($request);
     }
 }

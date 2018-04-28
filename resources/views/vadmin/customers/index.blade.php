@@ -1,6 +1,6 @@
 @extends('layouts.vadmin.main')
 {{-- PAGE TITLE --}}
-@section('title', 'Vadmin | Usuarios')
+@section('title', 'Vadmin | Clientes')
 
 {{-- STYLE INCLUDES --}}
 @section('styles')
@@ -8,42 +8,37 @@
 @endsection
 {{-- CONTENT --}}
 @section('header')
-	@component('vadmin.components.headerfixed')
+	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Listado de Usuarios</li>
+            <li class="breadcrumb-item active">Listado de Clientes</li>
 		@endslot
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('users.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Usuario</a>
+				<a href="{{ route('users.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Cliente</a>
 				<button id="SearchFiltersBtn" class="btn btnGreen"><i class="icon-ios-search-strong"></i></button>
 				@if(Auth::guard('user')->user()->role <= 2)
 				{{-- Edit --}}
-				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
+				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
 				<input id="EditId" type="hidden">
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
-				<input id="ModelName" type="hidden" value="users">
-				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<input id="ModelName" type="hidden" value="customers">
+				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				@endif
 				{{-- If Search --}}
-				@if(isset($_GET['name']) || isset($_GET['group']) || isset($_GET['role']))
-					<a href="{{ url('vadmin/users') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
+				@if(isset($_GET['name']) || isset($_GET['group']))
+					<a href="{{ url('vadmin/customers') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
 					{{--  <div class="results">{{ $items->total() }} resultados de búsqueda: </div>  --}}
 				@endif
 			</div>
 		@endslot
 		@slot('searcher')
-			@include('vadmin.users.searcher')
+			@include('vadmin.customers.searcher')
 		@endslot
 	@endcomponent
-@endsection
-
-{{--  If section has fixed actions  --}}
-@section('top-space')
-<div class="top-space"></div>
 @endsection
 
 @section('content')
@@ -55,33 +50,24 @@
 			@component('vadmin.components.list')
 				@slot('actions')
 					@if(isset($_GET['name']) || isset($_GET['role']) || isset($_GET['group']))
-						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
-						<a href="{{ route('vadmin.exportUsersListXls', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
+						<a href="{{ route('vadmin.exportCustomersListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+						<a href="{{ route('vadmin.exportCustomersListXls', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
 					@else
-						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
-						<a href="{{ route('vadmin.exportUsersListXls', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
+						<a href="{{ route('vadmin.exportCustomersListPdf', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
+						<a href="{{ route('vadmin.exportCustomersListXls', ['params' => 'all']) }}" data-toggle="tooltip" title="Exportar a XLS"><i class="icon-file-excel"></i></a>
 					@endif
-
-					{{-- <a class="dropdown-item" href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.catalog.invoice', 'model' => 'CatalogArticle', 'filename' => 'catalogo']) }}">Exportar a Pdf</a> --}}
-					{{-- @if(isset($_GET['name']) || isset($_GET['role']) || isset($_GET['group']))
-						<a href="{{ route('vadmin.exportUsersListPdf', ['params' => http_build_query($_GET)]) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
-					@else
-						<a href="{{ route('vadmin.exportViewPdf', ['view' => 'vadmin.users.invoice', 'params' => '-', 'model' => 'User', 'filename' => 'listado-de-usuarios']) }}" data-toggle="tooltip" title="Exportar a PDF"><i class="icon-file-pdf"></i></a>
-					@endif
-						<a href="#" data-toggle="tooltip" title="Exportar a Excel (.XLS)"><i class="icon-file-excel"></i></a>	 --}}
 				@endslot	
-				@slot('title', 'Usuarios del Sistema')
+				@slot('title', 'Clientes')
 				@slot('tableTitles')
 					@if(!$items->isEmpty())
 						@if(Auth::guard('user')->user()->role <= 2)
 						<th></th>
 						@endif
-						<th>Usuario</th>
-						<th>Nombre</th>
+						<th>Cliente</th>
+						<th>Nombre y apellido</th>
 						<th>Email</th>
-						<th>Rol</th>
-						<th>Grupo</th>
-						<th>Fecha de Ingreso</th>
+						<th style="min-width: 150px">Tipo</th>
+						<th>Estado</th>
 					@else
 						<th></th>
 					@endif
@@ -100,12 +86,21 @@
 									</label>
 								</td>
 								@endif
-								<td class="show-link"><a href="{{ url('vadmin/users/'.$item->id) }}">{{ $item->username }}</a></td>
-								<td>{{ $item->name }}</td>
+								<td class="show-link"><a href="{{ url('vadmin/customers/'.$item->id) }}">{{ $item->username }}</a></td>
+								<td>{{ $item->name }} {{ $item->surname}}</td>
 								<td>{{ $item->email }}</td>
-								<td>{{ roleTrd($item->role) }}</td>
-								<td>{{ groupTrd($item->group) }}</td>
-								<td>{{ transDateT($item->created_at) }}</td>
+								<td>
+									{!! Form::select('group', [1 => 'Nuevo', 2 => 'Minorísta', 3 => 'Mayorísta'], $item->group, ['class' => 'form-control', 'onChange' => 'updateCustomerGroup(this, this.dataset.id)', 'data-id' => $item->id]) !!}
+								</td>
+								{{-- {{ clientGroupTrd($item->group) }}</td> --}}
+								<td class="w-50 pad0 centered">
+									<label class="switch">
+										<input class="UpdateStatus switch-checkbox" type="checkbox" 
+										data-model="Customer" data-id="{{ $item->id }}"
+										@if($item->status == '1') checked @endif>
+										<span class="slider round"></span>
+									</label>
+								</td>
 							</tr>						
 						@endforeach
 					@else
@@ -118,8 +113,8 @@
 			
 			@if(isset($_GET['name']))
 				{!! $items->appends(['name' => $name])->render(); !!}
-			@elseif(isset($_GET['role']) || isset($_GET['group']))
-				{!! $items->appends(['group' => $group])->appends(['role' => $role])->render(); !!}
+			@elseif(isset($_GET['group']))
+				{!! $items->appends(['group' => $group])->render(); !!}
 			@else
 				{!! $items->render(); !!}
 			@endif
@@ -128,18 +123,8 @@
 	</div>
 @endsection
 
-
-
 {{-- SCRIPT INCLUDES --}}
 @section('scripts')
 	@include('vadmin.components.bladejs')
 @endsection
 
-{{-- CUSTOM JS SCRIPTS--}}
-@section('custom_js')
-	<script>
-		$('.AdminLi').addClass('open');
-		$('.UsersLi').addClass('open');
-		$('.UsersList').addClass('active');
-	</script>
-@endsection

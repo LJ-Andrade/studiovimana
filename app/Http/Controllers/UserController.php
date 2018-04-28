@@ -59,7 +59,6 @@ class UserController extends Controller
     public function exportPdf($params)
     {   
         $items = $this->getData($params);
-        dd($items);
         $pdf = PDF::loadView('vadmin.users.invoice', array('items' => $items));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->download('listado-de-usuarios.pdf');
@@ -223,38 +222,21 @@ class UserController extends Controller
 
     public function destroy(Request $request)
     {   
-        
         $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);
         
-        if(is_array($ids)) {
-            try {
-                foreach ($ids as $id) {
-                    $record = User::find($id);
-                    $record->delete();
-                }
-                return response()->json([
-                    'success'   => true,
-                ]); 
-            }  catch (\Exception $e) {
-                return response()->json([
-                    'success'   => false,
-                    'error'    => 'Error: '.$e
-                ]);    
-            }
-        } else {
-            try {
+        try {
+            foreach ($ids as $id) {
                 $record = User::find($id);
                 $record->delete();
-                    return response()->json([
-                        'success'   => true,
-                    ]);  
-                    
-                } catch (\Exception $e) {
-                    return response()->json([
-                        'success'   => false,
-                        'error'    => 'Error: '.$e
-                    ]);    
-                }
+            }
+            return response()->json([
+                'success'   => true,
+            ]); 
+        }  catch (\Exception $e) {
+            return response()->json([
+                'success'   => false,
+                'error'    => 'Error: '.$e
+            ]);    
         }
     }
 }

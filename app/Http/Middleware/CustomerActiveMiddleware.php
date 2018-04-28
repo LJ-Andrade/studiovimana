@@ -2,8 +2,9 @@
 
 namespace App\Http\Middleware;
 use Closure;
+use Auth;
 
-class CustomerMiddleware
+class CustomerActiveMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,13 +16,14 @@ class CustomerMiddleware
     public function handle($request, Closure $next, $guard = 'customer')
     {
         
-        if(!auth()->guard($guard)->check()){
-            return redirect('/tienda');
-        }
-        if(auth()->guard($guard)->user()->status == 0){
+        if(auth()->guard($guard)->user() && auth()->guard($guard)->user()->status == 0){
+            
             $request->session()->invalidate();
-            return redirect('tienda/proceso');
-        };
+            auth()->guard()->logout();
+            
+        }
         return $next($request);
     }
 }
+
+

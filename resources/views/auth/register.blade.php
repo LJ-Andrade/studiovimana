@@ -1,7 +1,6 @@
 @extends('auth.app')
 
 @section('content')
-
 <section class="login-container">
     <div class="inner">
         <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
@@ -13,6 +12,7 @@
             </div>
             <div class="card-body collapse in">	
                 <div class="card-block" style="padding: 20px 10px">
+                    @include('auth.messages')
                     <form class="form-horizontal form-simple" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
                         {{-- Name --}}

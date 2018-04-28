@@ -72,12 +72,14 @@
 				</div>	
 			</div>
 		</div>
-		{{-- 
-		<footer class="footer footer-static footer-light navbar-border">
-			<p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2017 <a href="https://pixinvent.com" target="_blank" class="text-bold-800 grey darken-2">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-xs-block d-md-inline-block">Hand-crafted & Made with <i class="icon-heart5 pink"></i></span></p>
-		</footer>
-		--}}
-
+		<div class="main-copyright">
+			<div class="inner pull-right">
+				<div class="text">Desarrollado por <a href="https://vimana.studio">Vimana Studio</a></div>
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+				<img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a>
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"></a>
+			</div>
+		</div>
 		<!-- BEGIN VENDOR JS-->
 		<script src="{{ asset('vadmin-ui/app-assets/js/core/libraries/jquery.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('vadmin-ui/app-assets/vendors/js/ui/tether.min.js') }}" type="text/javascript"></script>
@@ -88,21 +90,12 @@
 		<script src="{{ asset('vadmin-ui/app-assets/vendors/js/ui/jquery.matchHeight-min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('vadmin-ui/app-assets/vendors/js/ui/screenfull.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('vadmin-ui/app-assets/vendors/js/extensions/pace.min.js') }}" type="text/javascript"></script>
-		<!-- BEGIN VENDOR JS-->
-		<!-- BEGIN PAGE VENDOR JS-->
-		{{--  <script src="{{ asset('vadmin-ui/app-assets/vendors/js/charts/chart.min.js') }}" type="text/javascript"></script>  --}}
-		<!-- END PAGE VENDOR JS-->
-		<!-- BEGIN ROBUST JS-->
 		<script src="{{ asset('vadmin-ui/app-assets/js/core/app-menu.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('vadmin-ui/app-assets/js/core/app.js') }}" type="text/javascript"></script>
-		<!-- END ROBUST JS-->
-		<!-- BEGIN PAGE LEVEL JS-->
-		{{-- <script src="{{ asset('vadmin-ui/app-assets/js/scripts/pages/dashboard-lite.js') }}" type="text/javascript"></script> --}}
 		<script src="{{ asset('plugins/sweetalert/sweetalert2.min.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('js/vadmin-ui.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('js/vadmin-functions.js') }}" type="text/javascript"></script>
 		@include('vadmin.components.appjs')
-		<!-- END PAGE LEVEL JS-->
 		@yield('scripts')
 		@yield('custom_js')
 		<script>
@@ -130,6 +123,8 @@
 				var svg  = "<img src='{{ asset('images/gral/loader-sm.svg') }}'>";
 				$(this).html(svg + ' ' + loadertext);
 			});
+
+			
 
 
 		</script>

@@ -105,6 +105,26 @@ function groupTrd($group)
     }
 }
 
+
+function clientGroupTrd($group)
+{   
+    // Group: 1 New - 2 SmallClient - 3 BigClient
+    switch ($group) {
+        case 1:
+            echo 'Nuevo';
+            break;
+        case 2:
+            echo 'Minorísta';
+            break;
+        case 3:
+            echo 'Mayorísta';
+            break;
+        default:
+            echo '';
+            break;
+    }
+}
+
 function statusTrd($status)
 {
     switch ($status) {

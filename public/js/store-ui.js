@@ -60,33 +60,72 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 7:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(6);
 
 
 /***/ }),
 
-/***/ 8:
+/***/ 6:
 /***/ (function(module, exports) {
 
-$('.btnClose').click(function () {
-    // $(this).parent().addClass('Hidden');
-    $(this).parent().hide();
-});
+/*
+|--------------------------------------------------------------------------
+| ALERTS - IziToast (http://izitoast.marcelodolce.com/)
+|--------------------------------------------------------------------------
+*/
+// Positions:  bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
 
-var searchFilters = $('#SearchFilters');
-searchFilters.hide();
+function toast_success(title, text, position, action, time) {
+    iziToast.show({
+        title: title,
+        message: text,
+        position: position,
+        messageSize: '1.5rem',
+        color: 'green',
+        timeout: time,
+        onClosing: function onClosing() {
+            switch (action) {
+                case 'reload':
+                    location.reload();
+                    break;
+                default:
+                    console.log('No action');
+                    break;
+            }
+        }
+    });
+}
 
-$('#SearchFiltersBtn').on('click', function () {
-    searchFilters.toggle(100);
-});
+function toast_error(title, text, position, action, time) {
+    iziToast.show({
+        title: title,
+        message: text,
+        position: position,
+        color: 'red',
+        timeout: time,
+        onClosing: function onClosing() {
+            switch (action) {
+                case 'reload':
+                    location.reload();
+                    break;
+                case 'none':
+                    console.log('No action');
+                    break;
+                default:
+
+                    break;
+            }
+        }
+    });
+}
 
 /***/ })
 

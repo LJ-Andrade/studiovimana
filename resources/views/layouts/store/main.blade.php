@@ -61,7 +61,8 @@
 		<script src="{{ asset('store-ui/js/iziToast.min.js') }}"></script>
 		<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
 		<script src="{{ asset('plugins/jquery/jquery-3.3.1.min.js') }}"></script>
-		<script src="{{ asset('store-ui/js/custom-scripts.js') }}"></script>
+		<script src="{{ asset('js/store-ui.js') }}"></script>
+		@include('layouts.store.partials.scripts');
 		<script>
 			$('.CheckImg').on('error', function(){
 				var defaultImg = "{{ asset('images/users/default.jpg') }}"
