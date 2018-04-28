@@ -6,7 +6,7 @@
 
 {{-- HEADER --}}
 @section('header')
-	@component('vadmin.components.headerfixed')
+	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
             <li class="breadcrumb-item active">Mensajes Recibidos</li>
@@ -19,7 +19,7 @@
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
 				<input id="ModelName" type="hidden" value="stored_contacts">
-				<button id="DeleteBtn" class="btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
+				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
 				
@@ -35,10 +35,6 @@
 	@endcomponent
 @endsection
 
-{{--  If section has fixed actions  --}}
-@section('top-space')
-	<div class="top-space"></div>
-@endsection
 
 {{-- CONTENT --}}
 @section('content')
