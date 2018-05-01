@@ -32,7 +32,7 @@ Route::post('mail_sender', 'WebController@mail_sender');
 
 Route::get('getGeoProvs', ['as' => 'store.getGeoProvs', 'uses' => 'VadminController@getGeoProvs']);
 // Route::get('getGeoLocs/{id}', ['as' => 'store.getGeoLocs', 'uses' => 'VadminController@getGeoLocs']);
-Route::get('getGeoLocs/{id}', 'VadminController@getGeoLocs');
+Route::get('getGeoLocs/{id}', 'Store\StoreController@getGeoLocs');
 
 Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
 Route::get('tienda/proceso', function(){ return view('store.proceso'); })->middleware('active-customer');

@@ -18,7 +18,6 @@ use App\Payment;
 use MP;
 use App\GeoProv;
 use App\GeoLoc;
-
 // Prov
 use App\Cart;
 use App\CartDetail;
@@ -339,6 +338,34 @@ class StoreController extends Controller
             ->with('activeCart', $activeCart)
             ->with('cart', $cart);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | CLIENT LOCATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function getGeoProvs()
+    {
+        $geoprovs = GeoProv::all();
+        return response()->json([
+            "success" => true,
+            "items" => $geoprovs
+        ]);
+    }
+
+    public function getGeoLocs($id)
+    {
+        
+        $geolocs = GeoLoc::where('geoprov_id',$id)->get();
+        // $geolocs->toArray();
+        
+        return response()->json([
+            "success" => true,
+            "geolocs" => $geolocs
+        ]);
+    }
+
 
     /*
     |--------------------------------------------------------------------------
