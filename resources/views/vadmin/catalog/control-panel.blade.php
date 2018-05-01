@@ -40,7 +40,7 @@
 @endsection
 
 @section('scripts')
-	@include('vadmin.components.bladejs')
+	@include('store.components.bladejs')
 @endsection
 
 @section('custom_js')

@@ -76,56 +76,7 @@ module.exports = __webpack_require__(6);
 /***/ 6:
 /***/ (function(module, exports) {
 
-/*
-|--------------------------------------------------------------------------
-| ALERTS - IziToast (http://izitoast.marcelodolce.com/)
-|--------------------------------------------------------------------------
-*/
-// Positions:  bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter or center.
-
-function toast_success(title, text, position, action, time) {
-    iziToast.show({
-        title: title,
-        message: text,
-        position: position,
-        messageSize: '1.5rem',
-        color: 'green',
-        timeout: time,
-        onClosing: function onClosing() {
-            switch (action) {
-                case 'reload':
-                    location.reload();
-                    break;
-                default:
-                    console.log('No action');
-                    break;
-            }
-        }
-    });
-}
-
-function toast_error(title, text, position, action, time) {
-    iziToast.show({
-        title: title,
-        message: text,
-        position: position,
-        color: 'red',
-        timeout: time,
-        onClosing: function onClosing() {
-            switch (action) {
-                case 'reload':
-                    location.reload();
-                    break;
-                case 'none':
-                    console.log('No action');
-                    break;
-                default:
-
-                    break;
-            }
-        }
-    });
-}
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/home/javzero/Documentos/Incubator/vimanastudio/resources/assets/js/store/store-ui.js'\n    at Error (native)");
 
 /***/ })
 

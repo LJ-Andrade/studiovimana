@@ -30,10 +30,16 @@ Route::post('mail_sender', 'WebController@mail_sender');
 |--------------------------------------------------------------------------
 */
 
+Route::get('getGeoProvs', ['as' => 'store.getGeoProvs', 'uses' => 'VadminController@getGeoProvs']);
+// Route::get('getGeoLocs/{id}', ['as' => 'store.getGeoLocs', 'uses' => 'VadminController@getGeoLocs']);
+Route::get('getGeoLocs/{id}', 'VadminController@getGeoLocs');
+
 Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
 Route::get('tienda/proceso', function(){ return view('store.proceso'); })->middleware('active-customer');
 
-Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function() {        
+
+Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function() {    
+
     // Customer Actions
     Route::get('articulo/{id}', 'Store\StoreController@show');
     

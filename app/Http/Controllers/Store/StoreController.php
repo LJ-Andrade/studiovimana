@@ -16,6 +16,8 @@ use App\Customer;
 use App\Shipping;
 use App\Payment;
 use MP;
+use App\GeoProv;
+use App\GeoLoc;
 
 // Prov
 use App\Cart;
@@ -257,11 +259,15 @@ class StoreController extends Controller
 
     public function customerAccount(Request $request)
     {
-        $favs       = $this->getCustomerFavs();
+        $favs = $this->getCustomerFavs();
         $activeCart = $this->getActiveCart();
+        $geoprovs = GeoProv::pluck('name','id');
+        
+
         return view('store.customer-account')
             ->with('activeCart', $activeCart)
-            ->with('favs', $favs);
+            ->with('favs', $favs)
+            ->with('geoprovs',$geoprovs);
     }
 
     public function customerOrders(Request $request)

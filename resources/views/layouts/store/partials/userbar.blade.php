@@ -6,10 +6,10 @@
             @if(Auth::guard('customer')->check())
             <div class="account"><a href="#" onclick="event.preventDefault();"></a>
                     <img src="{{ asset('webimages/customers/'.Auth::guard('customer')->user()->avatar ) }}" class="CheckImg" alt="">
-                @if(Auth::guard('customer')->user()->avatar)
+                {{-- @if(Auth::guard('customer')->user()->avatar)
                 @else
                     <i class="icon-head"></i>
-                @endif
+                @endif --}}
                 <ul class="toolbar-dropdown">
                     <li class="sub-menu-title"><span>Hola,</span> {{ Auth::guard('customer')->user()->name }}</li>
                     <li><a href="{{ route('store.customer-account') }}">Cuenta</a></li>

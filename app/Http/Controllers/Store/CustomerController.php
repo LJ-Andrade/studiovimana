@@ -21,8 +21,8 @@ class CustomerController extends Controller
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
             'cp' => 'required|max:255',
-            'province_id' => 'required|max:255',
-            'location_id' => 'required|max:255',
+            'geoprov_id' => 'required|max:255',
+            'geoloc_id' => 'required|max:255',
         ]);
         
         $item->fill($request->all());

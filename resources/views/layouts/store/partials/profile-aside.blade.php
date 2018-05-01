@@ -1,15 +1,18 @@
 <aside class="user-info-wrapper">
     {{--  Cambiar fondo de cabecera de aside  --}}
-    {{--  <div class="user-cover" style="background-image: url(img/account/user-cover-img.jpg);">
-        <div class="info-label" data-toggle="tooltip" title="You currently have 290 Reward Points to spend"><i class="icon-medal"></i>290 points</div>
-    </div>  --}}
+     <div class="user-cover" style="background-image: url(img/account/user-cover-img.jpg);">
+        {{-- <div class="info-label" data-toggle="tooltip" title="You currently have 290 Reward Points to spend"><i class="icon-medal"></i>290 points</div> --}}
+    </div> 
+
+
     <div class="user-info">
         <div class="user-avatar"><a id="UpdateCustomerAvatarBtn" class="edit-avatar" href="#"></a>
-        @if(Auth::guard('customer')->user()->avatar == 'default')
-            <img class="Image-Container" src="{{ asset('webimages/gen/genuser.jpg') }}" alt="Imágen de Usuario"></div>  
+        @if(Auth::guard('customer')->user()->avatar == '')
+            <img class="Image-Container" src="{{ asset('webimages/gen/logo-gen.jpg') }}" alt="Imágen de Usuario">
         @else
-            <img class="Image-Container" src="{{ asset('webimages/customers/'.Auth::guard('customer')->user()->avatar ) }}" alt="Imágen de Usuario"></div>
+            <img class="Image-Container" src="{{ asset('webimages/customers/'.Auth::guard('customer')->user()->avatar ) }}" alt="Imágen de Usuario">
         @endif
+        </div>  
         <div class="user-data">
             <h4>{{ Auth::guard('customer')->user()->name }} {{ Auth::guard('customer')->user()->surname }}</h4><span>Miembro desde {{ transDateT(Auth::guard('customer')->user()->created_at) }}</span>    
         </div>

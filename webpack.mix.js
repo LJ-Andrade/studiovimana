@@ -39,7 +39,7 @@ mix.sass('resources/assets/sass/web/web.sass', 'public/css')
 });
 
 // Store
-mix.js('resources/assets/js/store/store-ui.js', 'public/js');
+mix.js('resources/assets/js/store/store-scripts.js', 'public/js');
 mix.sass('resources/assets/sass/store/store-custom.sass', 'public/css')
 .options({
     processCssUrls: false,

@@ -36,9 +36,9 @@
 		@include('layouts.store.partials.mobilemenu')
 		@include('layouts.store.partials.nav') {{-- ToolBar in inside this nav include --}}
 		<!-- Off-Canvas Wrapper-->
-		<div class="offcanvas-wrapper">
+		{{-- <div class="offcanvas-wrapper">
 		<!-- Page Title-->
-		{{--  <div class="page-title">
+		 <div class="page-title">
 			<div class="container">
 			<div class="column">
 				<h1>Santa Osadía | Tienda </h1>
@@ -61,21 +61,8 @@
 		<script src="{{ asset('store-ui/js/iziToast.min.js') }}"></script>
 		<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
 		<script src="{{ asset('plugins/jquery/jquery-3.3.1.min.js') }}"></script>
-		<script src="{{ asset('js/store-ui.js') }}"></script>
-		@include('layouts.store.partials.scripts');
-		<script>
-			$('.CheckImg').on('error', function(){
-				var defaultImg = "{{ asset('images/users/default.jpg') }}"
-				$(this).attr('src', defaultImg);
-			});
-			// Laravel Token
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-			
-		</script>
+		<script src="{{ asset('js/store-scripts.js') }}"></script>
+		@include('layouts.store.partials.scripts')
 		@yield('scripts')
 		@yield('custom_js')
 	</body>

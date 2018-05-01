@@ -8,6 +8,8 @@ use App\Cart;
 use App\User;
 use Mail;
 use App\Mail\SendMail;
+use App\GeoProv;
+use App\GeoLoc;
 
 class VadminController extends Controller
 {   
@@ -195,6 +197,33 @@ class VadminController extends Controller
             dd($e);
             return view('vadmin.vadmin')->with('error', 'Ha ocurrido un error '. $e);
         }
+    }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | CLIENT LOCATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function getGeoProvs()
+    {
+        $geoprovs = GeoProv::all();
+        return response()->json([
+            "success" => true,
+            "items" => $geoprovs
+        ]);
+    }
+
+    public function getGeoLocs($id)
+    {
+        
+        $geolocs = GeoLoc::where('geoprov_id',$id)->get();
+        // $geolocs->toArray();
+        
+        return response()->json([
+            "success" => true,
+            "geolocs" => $geolocs
+        ]);
     }
 
 

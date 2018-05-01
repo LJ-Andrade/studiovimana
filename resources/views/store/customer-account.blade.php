@@ -62,23 +62,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Provincia</label>
-                            <input class="form-control" type="text" name="province_id" value="{{ Auth::guard('customer')->user()->province_id }}" required>
+                            
+                            {!! Form::select('geoprov_id', $geoprovs, Auth::guard('customer')->user()->geoprov_id,
+                            ['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Localidad</label>
-                            <input class="form-control" type="text" name="location_id" value="{{ Auth::guard('customer')->user()->location_id }}" required>
+                            <select id='GeoLocsSelect' name="geoloc_id" 
+                                data-actualloc="{{ Auth::guard('customer')->user()->geoloc->name }}" 
+                                data-actuallocid="{{ Auth::guard('customer')->user()->geoloc->id }}" 
+                                class="form-control GeoLocsSelect">
+                            </select>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        {{-- <a href="{{ route('store.updatePassword') }}" class="btn btn-primary margin-right-none" type="button">Modificar Contraseña</a> --}}
                     </div>
                     <div class="col-12">
                         <hr class="mt-2 mb-3">
                         <div class="d-flex flex-wrap justify-content-between align-items-center">
                             <label class="custom-control custom-checkbox d-block">
-                                
                             </label>
                             <button class="btn btn-primary margin-right-none" type="submit">Actualizar Datos</button>
                         </div>
@@ -87,11 +89,25 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <div id="Error"></div>
+    </div>
 @endsection
 
 @section('scripts')
-<script>
+	@include('store.components.bladejs')
+@endsection
 
+@section('custom_js')
+<script>
+    $(document).ready(function(){
+
+        getGeoLocs("{{ Auth::guard('customer')->user()->geoprov_id }}");
+        
+        $('.GeoProvSelect').on('change', function(){
+            let prov_id = $(this).val();
+            getGeoLocs(prov_id);
+        });
+    });
 </script>
 @endsection

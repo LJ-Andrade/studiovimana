@@ -14,7 +14,7 @@ class Customer extends Authenticatable
     protected $table = 'customers';
 
     protected $fillable = [
-        'name', 'surname', 'username', 'email', 'address', 'province_id', 'location_id', 'cp', 'phone', 'phone2', 'password', 'group', 'status', 'avatar'
+        'name', 'surname', 'username', 'email', 'address', 'geoprov_id', 'geoloc_id', 'cp', 'phone', 'phone2', 'password', 'group', 'status', 'avatar'
     ];
 
     protected $hidden = [
@@ -30,6 +30,16 @@ class Customer extends Authenticatable
     public function carts()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function geoprov()
+    {
+        return $this->belongsTo('App\GeoProv');
+    }
+
+    public function geoloc()
+    {
+        return $this->belongsTo('App\GeoLoc');
     }
 
     public function getCartAttribute()
@@ -64,5 +74,7 @@ class Customer extends Authenticatable
     {
         $this->notify(new ResetCustomerPasswordNotification($token));
     }
+
+    
 
 }

@@ -124,9 +124,6 @@
 				$(this).html(svg + ' ' + loadertext);
 			});
 
-			
-
-
 		</script>
 	</body>
 </html>
