@@ -25,4 +25,9 @@ class Cart extends Model
         return $this->belongsTo('App\Payment', 'payment_method_id');
     }
 
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
+
 }

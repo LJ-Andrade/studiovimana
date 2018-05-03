@@ -1,6 +1,6 @@
 <div class="card custom-card">
     <div class="card-header">
-        <h4 class="card-title" id="basic-layout-colored-form-control">{{ $title }}</h4>
+        <div class="card-title" id="basic-layout-colored-form-control">{{ $title }}</div>
         <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
         <div class="heading-elements">
             <ul class="list-inline mb-0">

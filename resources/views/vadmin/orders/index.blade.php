@@ -1,6 +1,6 @@
 
 @extends('layouts.vadmin.main')
-@section('title', 'Vadmin | Métodos de Envío')
+@section('title', 'Vadmin | Pedidos')
 {{-- STYLE INCLUDES --}}
 @section('styles')
 @endsection
@@ -10,29 +10,27 @@
 	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item active">Métodos de Envío</li>
+            <li class="breadcrumb-item active">Listado de pedidos</li>
 		@endslot
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('shippings.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Método de Envío</a>
+				<a href="{{ route('payments.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo </a>
 				<button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button>
-				{{-- Edit --}}
-				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
-				<input id="EditId" type="hidden">
+				
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
-				<input id="ModelName" type="hidden" value="shippings">
+				<input id="ModelName" type="hidden" value="orders">
 				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
 				@if(isset($_GET['name']))
-				<a href="{{ url('vadmin/shipping') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
+				<a href="{{ url('vadmin/payments') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
 				@endif
 			</div>
 		@endslot
 		@slot('searcher')
-			@include('vadmin.catalog.shippings.searcher')
+			@include('vadmin.catalog.payments.searcher')
 		@endslot
 	@endcomponent
 @endsection
@@ -47,23 +45,22 @@
 		<div class="row">
 			@component('vadmin.components.list')
 				@slot('actions', '')
-				@slot('title', 'Métodos de Envío')
-					@if($shippings->count() == '0')
+				@slot('title', 'Pedidos')
+					@if($items->count() == '0')
 						@slot('tableTitles', '')
 						@slot('tableContent', '')
 					@else
 					@slot('tableTitles')
 						<th></th>
-						<th>Nombre</th>
-						<th>Descripción</th>
-						<th>Zona</th>
-						<th>Tiempo de entrega</th>
-						<th>Costo</th>
-						<th>Fecha de Creación</th>
+						<th class="w-50"></th>
+						<th>N°</th>
+						<th>Cliente</th>
+						<th>Estado</th>
+						<th>Fecha</th>
 					@endslot
 
 					@slot('tableContent')
-						@foreach($shippings as $item)
+						@foreach($items as $item)
 							<tr>
 								<td class="w-50">
 									<label class="custom-control custom-checkbox list-checkbox">
@@ -72,11 +69,12 @@
 										<span class="custom-control-description"></span>
 									</label>
 								</td>
-								<td class="show-link max-text"><a href="{{ url('vadmin/shippings/'.$item->id) }}">{{ $item->name }}</a></td>
-								<td class="max-text">{{ $item->description }}</td>
-								<td class="max-text">{{ $item->zone }}</td>
-								<td class="max-text">{{ $item->delivery_time }}</td>
-								<td class="max-text">{{ $item->price }}</td>
+								<td><a href="{{ url('vadmin/orders/'.$item->id) }}" class="btn btnSm btnGreen"><i class="icon-eye6"></i></a></td>
+								<td class="w-50">#{{ $item->id }}</td>
+								<td class="show-link max-text">
+									<a href="{{ url('vadmin/customers/'.$item->customer_id) }}">{{ $item->customer->name }} {{ $item->customer->surname }} ({{ $item->customer->username }})</a>
+								</td>
+								<td>{{ orderStatusTrd($item->status) }}</td>
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 							</tr>						
 						@endforeach
@@ -85,7 +83,7 @@
 			@endcomponent
 			
 			{{--  Pagination  --}}
-			{!! $shippings->render() !!}
+			{{-- {!! $items->render() !!} --}}
 		</div>
 		<div id="Error"></div>	
 	</div>
@@ -96,9 +94,3 @@
 	@include('vadmin.components.bladejs')
 @endsection
 
-{{-- CUSTOM JS SCRIPTS--}}
-@section('custom_js')
-	<script>
-
-	</script>
-@endsection

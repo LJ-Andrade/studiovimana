@@ -159,7 +159,7 @@ function orderStatusTrd($status)
             echo '<span class="text-muted">Finalizada</span>';
             break;
         default:
-            echo 'Sin Estado';
+            echo 'Sin traducción';
             break;
     }
 }

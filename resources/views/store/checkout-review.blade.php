@@ -96,34 +96,44 @@
 					</ul>
 				</div>
 				<div class="col-sm-6">
-					<h5>Método de pago:</h5>
-					<ul class="list-unstyled">
-						<li><b>{{ $activeCart['activeCart']->payment->name }}:</b> % {{ $activeCart['activeCart']->payment->percent }}</li>
-						<li><span class="text-muted"></span></li>
-					</ul>
-					<h5>Método de envío:</h5>
-					<ul class="list-unstyled">
-						<li><b>{{ $activeCart['activeCart']->shipping->name }}:</b> $ {{ $activeCart['activeCart']->shipping->price }}</li>
-						<li><span class="text-muted"></span></li>
-					</ul>
+					@if($activeCart['activeCart']->payment != null)
+						<h5>Método de pago:</h5>
+						<ul class="list-unstyled">
+							<li><b>{{ $activeCart['activeCart']->payment->name }}:</b> % {{ $activeCart['activeCart']->payment->percent }}</li>
+							<li><span class="text-muted"></span></li>
+						</ul>
+					@else
+					<a href="{{ route('store.checkoutPaymentGet') }}">Debe seleccionar un método de pago</a><br>
+					@endif
+					@if($activeCart['activeCart']->shipping != null)
+						<h5>Método de envío:</h5>
+						<ul class="list-unstyled">
+							<li><b>{{ $activeCart['activeCart']->shipping->name }}:</b> $ {{ $activeCart['activeCart']->shipping->price }}</li>
+							<li><span class="text-muted"></span></li>
+						</ul>
+					@else
+						<a href="{{ route('store.checkoutShippingGet') }}">Debe seleccionar un método de envío</a>
+					@endif
 				</div>
 			</div>
 			<div class="checkout-footer">
 				<div class="column"><a class="btn btn-outline-secondary"  onclick="window.history.back();">
 					<i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Volver</span></a>
 				</div>
-				{{--  Mercado Pago id = 1   --}}
-				@if($activeCart['activeCart']->payment->id == '1')
-				<div class="column">
-					{{--  data-toggle="modal" data-target="#MpModal1"  --}}
-					<button id="MpModalBtn" type="button" class="btn btn-info btn-lg">
-						<span class="hidden-xs-down">Pagar&nbsp;</span><i class="icon-arrow-right"></i><span class="CheckOutLoader"></span>
-					</button>
-				</div>
-				@else
-				<div class="column"><button type="submit" class="btn btn-primary">
-					<span class="hidden-xs-down">Continuar&nbsp;</span><i class="icon-arrow-right"></i></button>
-				</div>
+				@if($activeCart['activeCart']->payment != null)
+					{{--  Mercado Pago id = 1   --}}
+					@if($activeCart['activeCart']->payment->id == '1')
+					<div class="column">
+						{{--  data-toggle="modal" data-target="#MpModal1"  --}}
+						<button id="MpModalBtn" type="button" class="btn btn-info btn-lg">
+							<span class="hidden-xs-down">Pagar&nbsp;</span><i class="icon-arrow-right"></i><span class="CheckOutLoader"></span>
+						</button>
+					</div>
+					@else
+					<div class="column"><button type="submit" class="btn btn-primary">
+						<span class="hidden-xs-down">Continuar&nbsp;</span><i class="icon-arrow-right"></i></button>
+					</div>
+					@endif
 				@endif
 			</div>
 		</div>

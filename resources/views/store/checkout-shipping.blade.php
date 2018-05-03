@@ -40,7 +40,7 @@
 											@if($activeCart['activeCart']->shipping != null && $activeCart['activeCart']->shipping->id == $item->id)
 											checked="checked"										
 											@endif
-											 type="radio">
+											 type="radio" required>
 											<span class="custom-control-indicator"></span>
 										</label>
 									</td>

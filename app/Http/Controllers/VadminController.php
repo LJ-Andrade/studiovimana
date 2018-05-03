@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Cart;
+use App\CatalogArticle;
+use App\Article;
 use App\User;
 use Mail;
 use App\Mail\SendMail;
+use App\GeoProv;
+use App\GeoLoc;
 
 
 class VadminController extends Controller
@@ -19,7 +23,11 @@ class VadminController extends Controller
     
     public function index(Request $request)
     {
-        return view('vadmin.vadmin');
+        $CatalogarticlesCount = CatalogArticle::count();
+        $PortfolioArticlesCount = Article::count();
+        return view('vadmin.vadmin')
+            ->with('CatalogarticlesCount', $CatalogarticlesCount)
+            ->with('PortfolioArticlesCount', $PortfolioArticlesCount);
     }
 
     public function storeControlPanel(Request $request)
@@ -197,7 +205,6 @@ class VadminController extends Controller
             return view('vadmin.vadmin')->with('error', 'Ha ocurrido un error '. $e);
         }
     }
-    
 
 
     /*

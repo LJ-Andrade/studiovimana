@@ -1,5 +1,5 @@
 @extends('layouts.vadmin.main')
-@section('title', 'VADmin | Editar Etiqueta')
+@section('title', 'VADmin | Editar Pedido')
 
 @section('styles')
 @endsection
@@ -8,12 +8,12 @@
 	@component('vadmin.components.header')
 		@slot('breadcrums')
 			<li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('tags.index')}}">Etiquetas del Portfolio</a></li>
-			<li class="breadcrumb-item active">Edición de Etiqueta</li>
+			<li class="breadcrumb-item"><a href="{{ route('orders.index')}}">Listado de pedidos</a></li>
+			<li class="breadcrumb-item active">Editando pedido</li>
 		@endslot
 		@slot('actions')
 			<div class="list-actions">
-				<h2>Editando etiqueta del Portfolio: " {{ $tag->name }} "</h2>
+				<h2>Editando pedido #{{ $order->id }}</h2>
 				{{-- Edit --}}
 				<a href="#" id="EditBtn" class="btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</a>
 			</div>
@@ -24,14 +24,14 @@
 @section('content')
 
 	<div class="inner-wrapper">
-		{!! Form::model($tag, [
+		{!! Form::model($order, [
 				'method' => 'PATCH',
-				'url' => ['vadmin/tags', $tag->id],
+				'url' => ['vadmin/order', $order->id],
 				'files' => true,
 				'class' => 'row big-form mw450', 
 				'data-parsley-validate' => ''
 			]) !!}
-			@include('vadmin.portfolio.tags.form')
+			@include('vadmin.orders.form')
 			<div class="form-actions right">
 				<a href="{{ route('tags.index')}}">
 					<button type="button" class="btn btnRed">

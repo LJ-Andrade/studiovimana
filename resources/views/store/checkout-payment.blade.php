@@ -39,7 +39,7 @@
 										checked="checked"
 										@else 
 										@endif
-										type="radio">
+										type="radio" required>
 										<span class="custom-control-indicator"></span>
 									</label>
 								</td>

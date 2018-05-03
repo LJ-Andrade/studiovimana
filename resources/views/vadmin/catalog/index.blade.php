@@ -36,17 +36,6 @@
 	@endcomponent
 @endsection
 
-{{-- @if(isset($_GET['title']) || isset($_GET['category']))
-	
-	@section('top-space')
-		<div class="top-space"></div>
-	@endsection
-@else
-	@section('top-space')
-		<div class="top-space-small"></div>
-	@endsection
-@endif --}}
-
 {{-- CONTENT --}}
 @section('content')
 	<div class="list-wrapper">

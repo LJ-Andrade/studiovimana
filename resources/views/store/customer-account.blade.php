@@ -62,7 +62,6 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Provincia</label>
-                            
                             {!! Form::select('geoprov_id', $geoprovs, Auth::guard('customer')->user()->geoprov_id,
                             ['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
                         </div>
@@ -100,10 +99,10 @@
 
 @section('custom_js')
 <script>
+    
+    // Check for locality
     $(document).ready(function(){
-
         getGeoLocs("{{ Auth::guard('customer')->user()->geoprov_id }}");
-        
         $('.GeoProvSelect').on('change', function(){
             let prov_id = $(this).val();
             getGeoLocs(prov_id);

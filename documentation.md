@@ -43,17 +43,26 @@ Mediante JSON devuelve: <br>
 ## CRUDS
 Comando para generar CRUDS desde consola
 
-php artisan crud:generate Posts --fields='title#string; content#text; category#select#options={"technology": "Technology", "tips": "Tips", "health": "Health"}' --view-path=admin --controller-namespace=Admin --route-group=admin --form-helper=html
+<blockquote>php artisan crud:generate Posts --fields='title#string; content#text; category#select#options={"technology": "Technology", "tips": "Tips", "health": "Health"}' --view-path=admin --controller-namespace=Admin --route-group=admin --form-helper=html</blockquote>
 
-php artisan crud:generate Shippings --fields='name#string' --view-path=Vadmin/Catalog --controller-namespace=Catalog --route-group=Vadmin
+<blockquote>php artisan crud:generate Shippings --fields='name#string' --view-path=Vadmin/Catalog --controller-namespace=Catalog --route-group=Vadmin</blockquote>
 
 
 ## Activar y Pausar items
 
-Usar este código de botón
-<label class="switch">
+Insertar:
+><label class="switch">
     <input class="UpdateStatus switch-checkbox" type="checkbox" 
-    data-model="CAMBIAR POR NOMBRE DE MODELO" data-id="{{ $item->id }}"
+    data-model="NOMBRE-DEL-MODELO" data-id="{{ $item->id }}"
     @if($item->status == '1') checked @endif>
     <span class="slider round"></span>
 </label>
+
+
+## Calcular precios del carro de compras
+
+<blockquote>Método: calcCartTotalPrice($cart);</blockquote>
+
+Devuelve un array con dos valores 
+$data['subtotal']
+$data['total']

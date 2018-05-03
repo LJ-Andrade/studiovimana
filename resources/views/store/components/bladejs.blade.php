@@ -1,7 +1,8 @@
-
 <script>
 
+
     var loader = "<img src='{{ asset('images/gral/loader-sm.svg') }}'>";
+    
     
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@
             dataType: 'JSON',
             data: { article_id: articleid, size: size, quantity: quantity },
             success: function(data){
-                $('#Error').html(data.responseText);
+                //$('#Error').html(data.responseText);
                 //console.log(data);
                 var action = 'reload';
                 var time   = 1000;
@@ -118,8 +119,6 @@
             dataType: 'JSON',
             data: { fav_id: favid, article_id: articleid },
             success: function(data){
-                $('#Error').html(data.responseText);
-                console.log(data);
                 if(data.response == true && data.result == 'added'){
                     switch(action) {
                         case 'reload':
@@ -138,9 +137,6 @@
                 } else if(data.response == true && data.result == 'removed') {
                         displayButton.removeClass('addedToFavs');
                         toast_success('Ok!', 'Producto eliminado de favoritos', 'bottomCenter');
-                }  else {
-                //$('#Error').html(data.message['errorInfo']);
-                console.log(data);
                 }
             },
             error: function(data){

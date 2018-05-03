@@ -30,9 +30,8 @@ Route::post('mail_sender', 'WebController@mail_sender');
 |--------------------------------------------------------------------------
 */
 
-Route::get('getGeoProvs', ['as' => 'store.getGeoProvs', 'uses' => 'VadminController@getGeoProvs']);
-// Route::get('getGeoLocs/{id}', ['as' => 'store.getGeoLocs', 'uses' => 'VadminController@getGeoLocs']);
-Route::get('getGeoLocs/{id}', 'Store\StoreController@getGeoLocs');
+
+
 
 Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
 Route::get('tienda/proceso', function(){ return view('store.proceso'); })->middleware('active-customer');
@@ -127,6 +126,7 @@ Route::group(['prefix'=> 'vadmin'], function() {
 | Vadmin - Sections
 |--------------------------------------------------------------------------
 */
+
 Route::get('sendmail', 'VadminController@sendMail');
 
 // Functions that all users can access
@@ -145,8 +145,6 @@ Route::group(['prefix' => 'vadmin'], function(){
     Route::get('exportCustomersListPdf/{params}', ['as' => 'vadmin.exportCustomersListPdf', 'uses' => 'CustomerController@exportPdf']);
     Route::get('exportCustomersListXls/{params}', ['as' => 'vadmin.exportCustomersListXls', 'uses' => 'CustomerController@exportXls']);
     
-
-
     Route::get('exportCatalogListPdf/{params}', ['as' => 'vadmin.exportCatalogListPdf', 'uses' => 'Catalog\ArticlesController@exportPdf']);
     Route::get('exportCatalogListXls/{params}', ['as' => 'vadmin.exportCatalogListXls', 'uses' => 'Catalog\ArticlesController@exportExcel']);
     Route::get('mailChecker', ['as' => 'vadmin.mailChecker', 'uses' => 'ToolsController@mailChecker']);
@@ -170,7 +168,6 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     Route::resource('customers', 'CustomerController');
     Route::post('updateCustomerGroup', 'CustomerController@updateCustomerGroup');
     
-
     // -- MESSAGES --
     Route::get('/mensajes_recibidos/{status}', 'VadminController@storedContacts');
     Route::post('buscar_mensajes_recibidos', ['as' => 'searchStoredContact', 'uses' => 'VadminController@searchStoredContact']);
@@ -204,12 +201,23 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     Route::resource('payments', 'Catalog\PaymentsController');
 
 
+    // TODO
+    Route::resource('orders', 'Store\OrdersController');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Shared Functionalities
+|--------------------------------------------------------------------------
+*/
+
+// Get Localities
+Route::get('getGeoLocs/{id}', 'SharedController@getGeoLocs');
     
 /*
 |--------------------------------------------------------------------------
-| Vadmin - Destroy
+| Destroy
 |--------------------------------------------------------------------------
 */
 

@@ -82,6 +82,7 @@ class LoginController extends Controller
     public function logout(Request $request){
         
         $this->guard('customer')->logout();
+        //$request->session()->invalidate();
         return redirect('/tienda');
     }
 

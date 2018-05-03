@@ -17,7 +17,6 @@ use App\Shipping;
 use App\Payment;
 use MP;
 use App\GeoProv;
-use App\GeoLoc;
 // Prov
 use App\Cart;
 use App\CartDetail;
@@ -111,8 +110,11 @@ class StoreController extends Controller
     public function checkout(Request $request)
     {
         $activeCart = $this->getActiveCart();
+        $geoprovs = GeoProv::pluck('name','id');
+
         return view('store.checkout-checkdata')
-            ->with('activeCart', $activeCart);
+            ->with('activeCart', $activeCart)
+            ->with('geoprovs', $geoprovs);;
     }
     
     public function checkoutCustomerData(Request $request)
@@ -128,8 +130,8 @@ class StoreController extends Controller
                 'phone' => 'required|max:255',
                 'address' => 'required|max:255',
                 'cp' => 'required',
-                'province_id' => 'required|max:255',
-                'location_id' => 'required|max:255',
+                'geoprov_id' => 'required|max:255',
+                'geoloc_id' => 'required|max:255',
             ]);
             
             $item->fill($request->all());
@@ -140,6 +142,7 @@ class StoreController extends Controller
             return view('store.checkout-shipping')
                 ->with('activeCart', $activeCart)
                 ->with('items', $items);
+                
     }
 
     public function checkoutShippingGet()
@@ -154,6 +157,9 @@ class StoreController extends Controller
     // Checkout Step 2
     public function checkoutShipping(Request $request)
     {   
+        if($request->shipping_id == null) {
+            return back()->with('message', 'Debe seleccionar un método de envío');
+        }
         $shipping = Shipping::findOrFail($request->shipping_id);
         $cart = Cart::where('customer_id', auth()->guard('customer')->user()->id)->where('status', '=', 'active')->first();
         $cart->shipping_id = $request->shipping_id;
@@ -169,6 +175,9 @@ class StoreController extends Controller
     // Checkout Step 3
     public function checkoutPayment(Request $request)
     {
+        if($request->payment_method_id == null) {
+            return back()->with('message', 'Debe seleccionar una forma de pago');
+        }
         $payment = Payment::findOrFail($request->payment_method_id);
         $cart = Cart::where('customer_id', auth()->guard('customer')->user()->id)->where('status', '=', 'active')->first();
         $cart->payment_method_id = $request->payment_method_id;
@@ -193,6 +202,15 @@ class StoreController extends Controller
     public function checkoutReview(Request $request)
     {
         $activeCart = $this->getActiveCart();
+        
+        if($activeCart['activeCart']->payment_method_id == null){
+            return back()->with('message', 'Debe seleccionar una forma de pago');
+        }
+        
+        if($activeCart['activeCart']->shipping_id == null){
+            return back()->with('message', 'Debe seleccionar una forma de envío');
+        }
+        
         return view('store.checkout-review')
             ->with('activeCart', $activeCart);
     }
@@ -261,7 +279,6 @@ class StoreController extends Controller
         $favs = $this->getCustomerFavs();
         $activeCart = $this->getActiveCart();
         $geoprovs = GeoProv::pluck('name','id');
-        
 
         return view('store.customer-account')
             ->with('activeCart', $activeCart)
@@ -337,33 +354,6 @@ class StoreController extends Controller
         return view('store.customer-updatepassword')
             ->with('activeCart', $activeCart)
             ->with('cart', $cart);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | CLIENT LOCATIONS
-    |--------------------------------------------------------------------------
-    */
-
-    public function getGeoProvs()
-    {
-        $geoprovs = GeoProv::all();
-        return response()->json([
-            "success" => true,
-            "items" => $geoprovs
-        ]);
-    }
-
-    public function getGeoLocs($id)
-    {
-        
-        $geolocs = GeoLoc::where('geoprov_id',$id)->get();
-        // $geolocs->toArray();
-        
-        return response()->json([
-            "success" => true,
-            "geolocs" => $geolocs
-        ]);
     }
 
 

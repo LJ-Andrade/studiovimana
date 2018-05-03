@@ -66,14 +66,17 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Provincia</label>
-						<input class="form-control" type="text" name="province_id" value="{{ Auth::guard('customer')->user()->province_id }}" required>
+						{!! Form::select('geoprov_id', $geoprovs, Auth::guard('customer')->user()->geoprov_id,
+						['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="form-group">
-						<label>Localidad</label>
-						<input class="form-control" type="text" name="location_id" value="{{ Auth::guard('customer')->user()->location_id }}" required>
-					</div>
+					<label>Localidad</label>
+					<select id='GeoLocsSelect' name="geoloc_id" 
+						data-actualloc="{{ Auth::guard('customer')->user()->geoloc->name }}" 
+						data-actuallocid="{{ Auth::guard('customer')->user()->geoloc->id }}" 
+						class="form-control GeoLocsSelect">
+					</select>
 				</div>
 				<div class="checkout-footer">
 					<div class="column"><a class="btn btn-outline-secondary" href="{{ route('store.activecart') }}">
@@ -87,12 +90,26 @@
 		</div>
 			<!-- Sidebar          -->
 			<div class="col-xl-3 col-lg-4">
-			@include('layouts.store.partials.checkout-aside')
+				@include('layouts.store.partials.checkout-aside')
 			</div>
 		</div>
   </div>
-
 @endsection
 
 @section('scripts')
+	@include('store.components.bladejs')
+@endsection
+
+
+@section('custom_js')
+	<script>
+		// Check for locality
+		$(document).ready(function(){
+			getGeoLocs("{{ Auth::guard('customer')->user()->geoprov_id }}");
+			$('.GeoProvSelect').on('change', function(){
+				let prov_id = $(this).val();
+				getGeoLocs(prov_id);
+			});
+		});
+	</script>
 @endsection
