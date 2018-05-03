@@ -16,5 +16,5 @@
 </div>  
 <div class="form-group">
     {!! Form::label('price', 'Costo') !!}
-    {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => 'Estimativo o aclaración sobre el costo']) !!}
+    {!! Form::number('price', null, ['class' => 'form-control', 'placeholder' => 'Costo de envio', 'min' => '0']) !!}
 </div>  

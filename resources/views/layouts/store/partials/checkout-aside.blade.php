@@ -33,13 +33,12 @@
                 <?php $chargesCost = '0'; ?>
                 $ 0
             </td>
-            </td>
             @endif
         </tr>
         <tr>
-            <td></td>
             <td class="text-lg text-medium"><h4>Total $ {{ $activeCart['cartTotal'] + $shippingCost + $chargesCost  }}</h4></td>
             <input id="CartTotal" type="hidden" name="carttotal" value="{{ $activeCart['cartTotal'] + $shippingCost + $chargesCost }}">
+            <td></td>
         </tr>
         </table>
     </section>

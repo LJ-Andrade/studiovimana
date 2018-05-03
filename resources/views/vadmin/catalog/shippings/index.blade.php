@@ -76,7 +76,7 @@
 								<td class="max-text">{{ $item->description }}</td>
 								<td class="max-text">{{ $item->zone }}</td>
 								<td class="max-text">{{ $item->delivery_time }}</td>
-								<td class="max-text">{{ $item->price }}</td>
+								<td class="max-text">$ {{ $item->price }}</td>
 								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 							</tr>						
 						@endforeach
