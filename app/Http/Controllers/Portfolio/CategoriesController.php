@@ -96,38 +96,21 @@ class CategoriesController extends Controller
 
     public function destroy(Request $request)
     {   
-        
         $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);
-        
-        if(is_array($ids)) {
-            try {
-                foreach ($ids as $id) {
-                    $record = Category::find($id);
-                    $record->delete();
-                }
-                return response()->json([
-                    'success'   => true,
-                ]); 
-            }  catch (\Exception $e) {
-                return response()->json([
-                    'success'   => false,
-                    'error'    => 'Error: '.$e
-                ]);    
+    
+        try {
+            foreach ($ids as $id) {
+                $item = Category::find($id);
+                $item->delete();
             }
-        } else {
-            try {
-                $record = Category::find($id);
-                $record->delete();
-                    return response()->json([
-                        'success'   => true,
-                    ]);  
-                    
-                } catch (\Exception $e) {
-                    return response()->json([
-                        'success'   => false,
-                        'error'    => 'Error: '.$e
-                    ]);    
-                }
-        }
+            return response()->json([
+                'success'   => true,
+            ]); 
+        }  catch (\Exception $e) {
+            return response()->json([
+                'success'   => false,
+                'error'    => 'Error: '.$e
+            ]);    
+        } 
     }
 } // End

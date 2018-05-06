@@ -182,22 +182,22 @@
 		<li class="navigation-header"><span data-i18n="nav.category.support">Administración</span>
 			<i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
 		</li>
-		<li class="has-sub is-shown {{ Menu::activeMenu('orders') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-download"></i> Pedidos</a>
+		<li class="has-sub is-shown {{ Menu::activeMenu('carts') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-download"></i> Pedidos</a>
 			<ul class="menu-content" style="">
-				<li class="is-shown {{ Menu::activeMenu('orders') }}"><a href="{{ route('orders.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-				<li class="is-shown {{ Menu::activeMenu('orders') }}"><a href="{{ route('orders.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
-			</ul>
-		</li>
-		<li class="has-sub is-shown {{ Menu::activeMenu('users') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-user-tie"></i>	Usuarios</a>
-			<ul class="menu-content" style="">
-				<li class="is-shown {{ Menu::activeMenu('users') }}"><a href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
-				<li class="is-shown {{ Menu::activeMenu('users') }}"><a href="{{ route('users.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
+				<li class="is-shown {{ Menu::activeMenu('carts') }}"><a href="{{ route('carts.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+				<li class="is-shown {{ Menu::activeMenu('carts') }}"><a href="{{ route('carts.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
 			</ul>
 		</li>
 		<li class="has-sub is-shown {{ Menu::activeMenu('customers') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-users2"></i>	Clientes</a>
 			<ul class="menu-content" style="">
 				<li class="is-shown {{ Menu::activeMenu('customers') }}"><a href="{{ route('customers.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
 				<li class="is-shown {{ Menu::activeMenu('customers') }}"><a href="{{ route('customers.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Cliente</a></li>
+			</ul>
+		</li>
+		<li class="has-sub is-shown {{ Menu::activeMenu('users') }}"><a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item"><i class="icon-user-tie"></i>	Usuarios</a>
+			<ul class="menu-content" style="">
+				<li class="is-shown {{ Menu::activeMenu('users') }}"><a href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> Listado</a></li>
+				<li class="is-shown {{ Menu::activeMenu('users') }}"><a href="{{ route('users.create') }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-plus-round"></i> Nuevo Usuario</a></li>
 			</ul>
 		</li>
 		<li class="{{ Menu::activeMenu('mensajes_recibidos') }}"><a href="{{ url('vadmin/mensajes_recibidos/*') }}" class="menu-item"><i class="icon-envelop"></i> Mensajes 

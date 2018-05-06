@@ -8,10 +8,10 @@ use App\Cart;
 use App\CatalogArticle;
 use App\Article;
 use App\User;
-use Mail;
-use App\Mail\SendMail;
 use App\GeoProv;
 use App\GeoLoc;
+use Mail;
+use App\Mail\SendMail;
 
 
 class VadminController extends Controller
@@ -23,11 +23,19 @@ class VadminController extends Controller
     
     public function index(Request $request)
     {
-        $CatalogarticlesCount = CatalogArticle::count();
-        $PortfolioArticlesCount = Article::count();
+        $catalogarticlesCount = CatalogArticle::count();
+        $portfolioArticlesCount = Article::count();
+        $activeCartsCount = Cart::where('status', 'Active')->count();
+        $processCartsCount = Cart::where('status', 'Process')->count();
+        $approvedCartsCount = Cart::where('status', 'Approved')->count();
+        $finishedCartsCount = Cart::where('status', 'Finished')->count();
+        
         return view('vadmin.vadmin')
-            ->with('CatalogarticlesCount', $CatalogarticlesCount)
-            ->with('PortfolioArticlesCount', $PortfolioArticlesCount);
+            ->with('catalogarticlesCount', $catalogarticlesCount)
+            ->with('portfolioArticlesCount', $portfolioArticlesCount)
+            ->with('activeCartsCount', $activeCartsCount)
+            ->with('processCartsCount', $processCartsCount)
+            ->with('finishedCartsCount', $finishedCartsCount); 
     }
 
     public function storeControlPanel(Request $request)

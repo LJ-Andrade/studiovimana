@@ -144,15 +144,15 @@ function orderStatusTrd($status)
 {
     switch ($status) {
         case 'Active':
-            echo '<span class="text-info">Activa</span>';
+            echo '<span class="text-info">Iniciado</span>';
             break;
-        case 'Pending':
+        case 'Process':
             echo '<span class="text-warning">Pendiente</span>';
             break;
         case 'Approved':
             echo '<span class="text-success">Aprobada</span>';
             break;
-        case 'Cancelled':
+        case 'Canceled':
             echo '<span class="text-danger">Cancelada</span>';
             break;
         case 'Finished':

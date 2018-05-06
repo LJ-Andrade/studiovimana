@@ -375,6 +375,37 @@
 
     }
 
+    
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE CUSTOMER GROUP
+    |--------------------------------------------------------------------------
+    */
+
+    function updateCartStatus(status, cartid){
+        
+        var route  = "{{ url('vadmin/updateCartStatus') }}";
+        var data = { id: cartid, status: status.value};
+        $.ajax({
+            url: route,
+            type: 'POST',
+            data: data,
+            success: function(data){
+                console.log(data);
+                if(data.response == true){
+                    location.reload();
+                } else {
+                    $('#Error').html(data.responseText);
+                }
+            },
+            error: function(data){
+                console.log(data);
+                //alert_error('Ha ocurrido un error');
+                $('#Error').html(data.responseText);
+            }
+        }); 
+    }
+
     /*
     |--------------------------------------------------------------------------
     | VALIDATIONS

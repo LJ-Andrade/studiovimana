@@ -3,3 +3,8 @@ Configurar la actualización de estado de portfolio. updateStatus es ahora una f
 
 Recordar descomentar los $request->session()->invalidate();
 en los LoginController tanto de admin como customers.
+
+
+SISTEMA GEO
+Tamaño de imágenes
+750x500

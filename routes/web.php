@@ -34,6 +34,9 @@ Route::post('mail_sender', 'WebController@mail_sender');
 
 
 Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
+Route::get('store-register-hold', ['as' => 'store-register-hold', 'uses' => 'CustomerAuth\RegisterController@holdRegisterLogin'])->middleware('active-customer');
+
+
 Route::get('tienda/proceso', function(){ return view('store.proceso'); })->middleware('active-customer');
 
 
@@ -50,13 +53,18 @@ Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function(
         // Route::post('/cart', 'Store\CartDetailController@store');
         Route::post('addtocart', ['as' => 'store.addtocart', 'uses' => 'Store\CartDetailController@store']);
         Route::post('removefromcart', ['as' => 'store.removefromcart', 'uses' => 'Store\CartDetailController@destroy']);
-        Route::get('checkout', ['as' => 'store.checkout', 'uses' => 'Store\StoreController@checkout']);
-        Route::post('envio', ['as' => 'store.checkoutCustomerData', 'uses' => 'Store\StoreController@checkoutCustomerData']);
-        Route::get('envio', ['as' => 'store.checkoutShippingGet', 'uses' => 'Store\StoreController@checkoutShippingGet']);
-        Route::post('pago', ['as' => 'store.checkoutShipping', 'uses' => 'Store\StoreController@checkoutShipping']);
-        Route::get('pago', ['as' => 'store.checkoutPaymentGet', 'uses' => 'Store\StoreController@checkoutPaymentGet']);
-        Route::post('resumen', ['as' => 'store.checkoutPayment', 'uses' => 'Store\StoreController@checkoutPayment']);
-        Route::get('resumen', ['as' => 'store.checkoutReview', 'uses' => 'Store\StoreController@checkoutReview']);
+        Route::get('checkout', ['as' => 'store.checkout', 'uses' => 'Store\StoreController@checkout'])->middleware('verifyOrderStatus');
+        Route::post('envio', ['as' => 'store.checkoutCustomerData', 'uses' => 'Store\StoreController@checkoutCustomerData'])->middleware('verifyOrderStatus');
+        Route::get('envio', ['as' => 'store.checkoutShippingGet', 'uses' => 'Store\StoreController@checkoutShippingGet'])->middleware('verifyOrderStatus');
+        Route::post('pago', ['as' => 'store.checkoutShipping', 'uses' => 'Store\StoreController@checkoutShipping'])->middleware('verifyOrderStatus');
+        Route::get('pago', ['as' => 'store.checkoutPaymentGet', 'uses' => 'Store\StoreController@checkoutPaymentGet'])->middleware('verifyOrderStatus');
+        Route::post('resumen', ['as' => 'store.checkoutPayment', 'uses' => 'Store\StoreController@checkoutPayment'])->middleware('verifyOrderStatus');
+        Route::get('resumen', ['as' => 'store.checkoutReview', 'uses' => 'Store\StoreController@checkoutReview'])->middleware('verifyOrderStatus');
+        Route::get('comprobante/{id}', ['as' => 'store.finishCheckOut', 'uses' => 'Store\StoreController@finishCheckOut'])->middleware('verifyOrderStatus');
+        Route::get('descargar-comprobante/{id}', ['as' => 'store.orderInvoice', 'uses' => 'Store\StoreController@downloadInvoice']);
+        
+        
+
         
         //Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'MercadoPagoController@getCreatePreference']);
         Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'Store\StoreController@mpConnect']);
@@ -79,16 +87,16 @@ Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function(
     Route::post('removeArticleFromFavs', ['as' => 'customer.removeArticleFromFavs', 'uses' => 'Store\StoreController@removeArticleFromFavs']);
     Route::post('removeAllArticlesFromFavs', ['as' => 'customer.removeAllArticlesFromFavs', 'uses' => 'Store\StoreController@removeAllArticlesFromFavs']);
 
-    // Store Login Routes...
+    // Store Login Routes
     Route::get('login', ['as' => 'customer.login', 'uses' => 'CustomerAuth\LoginController@showLoginForm']);
     Route::post('login', ['uses' => 'CustomerAuth\LoginController@login']);
     Route::post('logout', ['as' => 'customer.logout', 'uses' => 'CustomerAuth\LoginController@logout']);
     
-    // Store Registration Routes...
+    // Store Registration Routes
     Route::get('register', ['as' => 'customer.register', 'uses' => 'CustomerAuth\RegisterController@showRegistrationForm']);
     Route::post('register', ['uses' => 'CustomerAuth\RegisterController@register']);
     
-    // Store Password Reset Routes...
+    // Store Password Reset Routes
     Route::get('password/reset', ['as' => 'customer.password.reset', 'uses' => 'CustomerAuth\ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/email', ['as' => 'customer.password.email', 'uses' => 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset/{token}', ['as' => 'customer.password.reset.token', 'uses' => 'CustomerAuth\ResetPasswordController@showResetForm']);
@@ -200,9 +208,9 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'admin'], function(){
     // Payments Methods
     Route::resource('payments', 'Catalog\PaymentsController');
 
-
-    // TODO
-    Route::resource('orders', 'Store\OrdersController');
+    // Carts (Orders) Management
+    Route::resource('carts', 'Store\CartsController');
+    Route::post('updateCartStatus', 'Store\CartsController@updateStatus');
 
 });
 
@@ -236,8 +244,8 @@ Route::prefix('vadmin')->middleware('admin')->group(function () {
     Route::post('destroy_portfolio_image', 'Portfolio\ImagesController@destroy');
     Route::post('destroy_shippings', 'Catalog\ShippingsController@destroy');
     Route::post('destroy_payments', 'Catalog\PaymentsController@destroy');
+    Route::post('destroy_carts', 'Store\CartsController@destroy');
 });
-
 
 /*
 |--------------------------------------------------------------------------

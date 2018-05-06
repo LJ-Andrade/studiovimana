@@ -69,11 +69,19 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Localidad</label>
+                            @if(Auth::guard('customer')->user()->geoloc)
                             <select id='GeoLocsSelect' name="geoloc_id" 
                                 data-actualloc="{{ Auth::guard('customer')->user()->geoloc->name }}" 
                                 data-actuallocid="{{ Auth::guard('customer')->user()->geoloc->id }}" 
                                 class="form-control GeoLocsSelect">
                             </select>
+                            @else
+                            <select id='GeoLocsSelect' name="geoloc_id" 
+                                data-actualloc="" 
+                                data-actuallocid="" 
+                                class="form-control GeoLocsSelect">
+                            </select>
+                            @endif
                         </div>
                     </div>
                     <div class="col-12">
@@ -102,7 +110,12 @@
     
     // Check for locality
     $(document).ready(function(){
-        getGeoLocs("{{ Auth::guard('customer')->user()->geoprov_id }}");
+        var actualGeoProv = "{{ Auth::guard('customer')->user()->geoprov_id }}";
+        
+        if(actualGeoProv != ''){
+            getGeoLocs(actualGeoProv);
+        }
+        
         $('.GeoProvSelect').on('change', function(){
             let prov_id = $(this).val();
             getGeoLocs(prov_id);

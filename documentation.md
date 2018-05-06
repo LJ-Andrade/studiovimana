@@ -22,6 +22,14 @@ Vadmin es un gestor de contenido. Permite el manejo de distintas secciones de un
 - 2 ClientBig
 - 3 Other
 
+# Carro de compras
+## Estado de las órdenes
+- 'Active' => Iniciado
+- 'Process' => Pendiente
+- 'Approved' => Aprobada
+- 'Canceled' => Cancelada
+- 'Finished' => Finalizada
+- 
 ## Funciones y Métodos
 
 <!-- ### Actualizar estados:

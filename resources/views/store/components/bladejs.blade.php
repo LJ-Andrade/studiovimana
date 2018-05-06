@@ -275,17 +275,14 @@
             url: route,
             method: 'GET',
             dataType: 'JSON',
-            beforeSend: function(){
-            },
             success: function(e){
                 // Print Locs
                 var select = $('#GeoLocsSelect');
-                var actualloc   = $('#GeoLocsSelect').data('actualloc');
                 var actuallocid = $('#GeoLocsSelect').data('actuallocid');
+
                 select.html('');
-                console.log('Su localidad es' + actualloc);
                 for (var i = 0, len = e.geolocs.length; i < len; i++) {
-                    if(e.geolocs[i]['id'] == actuallocid){
+                    if(actuallocid != '' && e.geolocs[i]['id'] == actuallocid){
                         select.append("<option selected value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");
                     } else {
                         select.append("<option value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");

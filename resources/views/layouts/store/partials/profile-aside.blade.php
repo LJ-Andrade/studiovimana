@@ -35,9 +35,11 @@
         <span><i class="icon-heart"></i>Favoritos</span>
         </span>
     </a>
+    @if($activeCart['activeCart'])
     <a class="list-group-item justify-content-between" href="{{ route('store.checkout') }}">
         <span><i class="icon-tag"></i>CheckOut</span>
     </a>
+    @endif
     {{-- <a class="list-group-item justify-content-between" href="#">
         <span><i class="icon-tag"></i>Ayuda y Reclamos</span>
     </a> --}}

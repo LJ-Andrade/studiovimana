@@ -6,6 +6,8 @@ use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -27,7 +29,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/tienda';
+    
+    protected $redirectTo = '/store-register-hold';
 
     /**
      * Create a new controller instance.
@@ -74,6 +77,7 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'username' => $data['username'],
             'email' => $data['email'],
+            'status' => '0',
             'password' => bcrypt($data['password']),
             'group' => $group
         ]);
@@ -85,6 +89,23 @@ class RegisterController extends Controller
 
     public function showRegistrationForm(){
         return view('store.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+    public function holdRegisterLogin()
+    {
+        return view('store.register-hold');
     }
 
 }

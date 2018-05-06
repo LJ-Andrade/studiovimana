@@ -33,14 +33,14 @@ class CartDetailController extends Controller
         $item = CartDetail::findOrFail($request->detailid);
         try{
             $item->delete();
-        } catch (\Exception $e) {
-            return response()->json([
-                'response'   => false,
-                'error'    => 'Error: '.$e
-                ]);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'response'   => false,
+                    'error'    => 'Error: '.$e
+                    ]);
             }
             
-            // If last article is deleted also delete activecart
+        // If last article is deleted also delete activecart
         $cart = Cart::findOrFail($item->cart->id);
         if($cart->details->count() < 1)
         {

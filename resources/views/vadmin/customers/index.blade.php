@@ -16,7 +16,7 @@
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('users.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Cliente</a>
+				<a href="{{ route('customers.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Cliente</a>
 				<button id="SearchFiltersBtn" class="btn btnGreen"><i class="icon-ios-search-strong"></i></button>
 				@if(Auth::guard('user')->user()->role <= 2)
 				{{-- Edit --}}

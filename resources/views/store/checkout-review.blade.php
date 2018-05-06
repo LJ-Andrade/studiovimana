@@ -130,8 +130,8 @@
 						</button>
 					</div>
 					@else
-					<div class="column"><button type="submit" class="btn btn-primary">
-						<span class="hidden-xs-down">Continuar&nbsp;</span><i class="icon-arrow-right"></i></button>
+					<div class="column">
+						<a href="{{ route('store.finishCheckOut', $activeCart['activeCart']->id) }}" class="btn btn-primary hidden-xs-down">Finalizar <i class="icon-arrow-right"></i></a>	
 					</div>
 					@endif
 				@endif

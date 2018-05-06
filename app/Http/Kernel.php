@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminMiddleware::class, // Custom Line
         'customer' => \App\Http\Middleware\CustomerMiddleware::class,
         'active-customer' => \App\Http\Middleware\CustomerActiveMiddleware::class,
+        'verifyOrderStatus' => \App\Http\Middleware\CustomerVerifyOrderStatus::class
     ];
 }

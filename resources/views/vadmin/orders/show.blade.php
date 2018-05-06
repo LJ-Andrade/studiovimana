@@ -7,7 +7,7 @@
 	@component('vadmin.components.header-list')
 		@slot('breadcrums')
 		    <li class="breadcrumb-item"><a href="{{ url('vadmin')}}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('orders.index')}}">Listado de pedidos</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('carts.index')}}">Listado de pedidos</a></li>
             <li class="breadcrumb-item active">Pedido <b>#{{ $order->id }}</b></li>
 		@endslot
 		@slot('actions')

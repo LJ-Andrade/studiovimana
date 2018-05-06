@@ -160,43 +160,48 @@ class ArticlesController extends Controller
         
         $number = '2';
 
-        $article->save();
-        $article->atribute1()->sync($request->atribute1);
-        $article->tags()->sync($request->tags);
- 
-        try {
-            if($thumbnail){
-                $thumb = \Image::make($thumbnail);
-                $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
-                $article->thumb    = $article->id.'-0'.$extension;
-                $article->save();
-
-                $thumbToImg = \Image::make($thumbnail);
-                $image       = new CatalogImage();
-                $image->name = $article->id.'-1'.$extension;
-                $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
-                $image->article()->associate($article);
-                $image->save();
-            }
-
-            if($images){
+        if($article->save()){
+            $article->atribute1()->sync($request->atribute1);
+            $article->tags()->sync($request->tags);
             
-                foreach($images as $phisic_image)
-                {
-                    $filename = $article->id.'-'.$number++;
-                    $img      = \Image::make($phisic_image);
-                    $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
-                    
-                    $image            = new CatalogImage();
-                    $image->name      = $filename.$extension;
+            $thumbHeight = 360;
+            $thumbWidth = 240;
+            $imgHeight = 750;
+            $imgWidth = 500;
+
+            try {
+                if($thumbnail){
+                    $thumb = \Image::make($thumbnail);
+                    $thumb->encode('jpg', 80)->fit($thumbWidth, $thumbHeight)->save($imgPath.$article->id.'-0'.$extension);
+                    $article->thumb    = $article->id.'-0'.$extension;
+                    $article->save();
+
+                    $thumbToImg = \Image::make($thumbnail);
+                    $image = new CatalogImage();
+                    $image->name = $article->id.'-1'.$extension;
+                    $thumbToImg->encode('jpg', 80)->fit($imgWidth, $imgHeight)->save($imgPath.$image->name);
                     $image->article()->associate($article);
                     $image->save();
                 }
-            }
 
-        } catch(\Exception $e) {
-            $article->delete();
-            return redirect()->route('catalogo.index')->with('message','Error al crear el artículo: '. $e);
+                if($images){
+                    foreach($images as $phisic_image)
+                    {
+                        $filename = $article->id.'-'.$number++;
+                        $img = \Image::make($phisic_image);
+                        $img->encode('jpg', 80)->fit($imgWidth, $imgHeight)->save($imgPath.$filename.$extension);
+                        
+                        $image = new CatalogImage();
+                        $image->name = $filename.$extension;
+                        $image->article()->associate($article);
+                        $image->save();
+                    }
+                }
+
+            } catch(\Exception $e) {
+                $article->delete();
+                return redirect()->route('catalogo.index')->with('message','Error al crear el artículo: '. $e);
+            }
         }
     
         return redirect()->route('catalogo.index')->with('message','Item creado');
@@ -257,55 +262,61 @@ class ArticlesController extends Controller
         $thumbnail = $request->file('thumbnail');
         $imgPath   = public_path("webimages/catalogo/"); 
         $extension = '.jpg';
+
+        $thumbHeight = 360;
+        $thumbWidth = 240;
+        $imgHeight = 750;
+        $imgWidth = 500;
                
         $article->thumb = $article->id.'-0'.$extension;
-        $article->save();
-        $article->atribute1()->sync($request->atribute1);
-        $article->tags()->sync($request->tags);
-        
-        if(!$article->images->isEmpty()){
-            $number = $article->images->last()->name;
-            $number = explode('-',$number);
-            $number = explode('.',$number[1]);
-            $number = ($number[0]+'1');
-        } else {
-            $number = '1';
-        }
-
-                
-        try {
-            if($thumbnail){
-                $thumb = \Image::make($thumbnail);
-                $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
-                $article->thumb    = $article->id.'-0'.$extension;
-                $article->save();
-
-                $thumbToImg = \Image::make($thumbnail);
-                $image       = new CatalogImage();
-                $image->name = $article->id.'-1'.$extension;
-                $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
-                $image->article()->associate($article);
-                $image->save();
+        if($article->save()){
+            $article->atribute1()->sync($request->atribute1);
+            $article->tags()->sync($request->tags);
+            
+            if(!$article->images->isEmpty()){
+                $number = $article->images->last()->name;
+                $number = explode('-',$number);
+                $number = explode('.',$number[1]);
+                $number = ($number[0]+'1');
+            } else {
+                $number = '1';
             }
 
-            if($images){
-            
-                foreach($images as $phisic_image)
-                {
-                    $filename = $article->id.'-'.$number++;
-                    $img      = \Image::make($phisic_image);
-                    $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
                     
-                    $image            = new CatalogImage();
-                    $image->name      = $filename.$extension;
+            try {
+                if($thumbnail){
+                    $thumb = \Image::make($thumbnail);
+                    $thumb->encode('jpg', 80)->fit(250, 250)->save($imgPath.$article->id.'-0'.$extension);
+                    $article->thumb    = $article->id.'-0'.$extension;
+                    $article->save();
+
+                    $thumbToImg = \Image::make($thumbnail);
+                    $image       = new CatalogImage();
+                    $image->name = $article->id.'-1'.$extension;
+                    $thumbToImg->encode('jpg', 80)->fit(800, 800)->save($imgPath.$image->name);
                     $image->article()->associate($article);
                     $image->save();
                 }
-            }
 
-        } catch(\Exception $e) {
-            $article->delete();
-            return redirect()->route('catalogo.index')->with('message','Error al crear el item: '. $e);
+                if($images){
+                
+                    foreach($images as $phisic_image)
+                    {
+                        $filename = $article->id.'-'.$number++;
+                        $img      = \Image::make($phisic_image);
+                        $img->encode('jpg', 80)->fit(800, 800)->save($imgPath.$filename.$extension);
+                        
+                        $image            = new CatalogImage();
+                        $image->name      = $filename.$extension;
+                        $image->article()->associate($article);
+                        $image->save();
+                    }
+                }
+
+            } catch(\Exception $e) {
+                $article->delete();
+                return redirect()->route('catalogo.index')->with('message','Error al crear el item: '. $e);
+            }
         }
 
         return redirect()->route('catalogo.index')->with('message', 'Se ha editado el item con éxito');
@@ -374,41 +385,16 @@ class ArticlesController extends Controller
         $ids      = json_decode('['.str_replace("'",'"',$request->id).']', true);
         $path     = 'webimages/catalogo/';
 
-        if(is_array($ids)) {
-            try {
+        try {
 
-                foreach ($ids as $id) {
-                    // Check existence of related favs and delete
-                    $relatedFavs = CatalogFav::where('article_id', $id)->get();
-                    if(!$relatedFavs->isEmpty()){
-                        foreach($relatedFavs as $relatedFav){
-                            $relatedFav->delete();
-                        }
+            foreach ($ids as $id) {
+                // Check existence of related favs and delete
+                $relatedFavs = CatalogFav::where('article_id', $id)->get();
+                if(!$relatedFavs->isEmpty()){
+                    foreach($relatedFavs as $relatedFav){
+                        $relatedFav->delete();
                     }
-                    $record = CatalogArticle::find($id);
-                    $record->tags()->detach();
-                    $record->atribute1()->detach();
-                    
-                    $images = $record->images;
-                    File::Delete(public_path( $path . $record->thumb));
-                    foreach ($images as $image) {
-                        File::Delete(public_path( $path . $image->name));
-                    }
-
-                    $delete = $record->delete();
                 }
-                return response()->json([
-                    'success'   => true,
-                ]); 
-            }  catch (\Exception $e) {
-                return response()->json([
-                    'success'   => false,
-                    'error'    => 'Error: '.$e
-                ]);    
-            }
-        } else {
-            try {
-                dd($ids);
                 $record = CatalogArticle::find($id);
                 $record->tags()->detach();
                 $record->atribute1()->detach();
@@ -419,18 +405,16 @@ class ArticlesController extends Controller
                     File::Delete(public_path( $path . $image->name));
                 }
 
-                $record->delete();
-                    return response()->json([
-                        'success'   => true,
-                    ]);  
-                    
-                } catch (\Exception $e) {
-                    return response()->json([
-                        'success'   => false,
-                        'error'    => 'Error: '.$e
-                    ]);    
-                }
+                $delete = $record->delete();
+            }
+            return response()->json([
+                'success'   => true,
+            ]); 
+        }  catch (\Exception $e) {
+            return response()->json([
+                'success'   => false,
+                'error'    => 'Error: '.$e
+            ]);    
         }
     }
-
 }

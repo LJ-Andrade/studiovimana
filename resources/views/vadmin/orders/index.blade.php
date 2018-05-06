@@ -20,7 +20,7 @@
 				
 				{{-- Delete --}}
 				{{--  THIS VALUE MUST BE THE NAME OF THE SECTION CONTROLLER  --}}
-				<input id="ModelName" type="hidden" value="orders">
+				<input id="ModelName" type="hidden" value="carts">
 				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				{{-- If Search --}}
@@ -51,17 +51,56 @@
 						@slot('tableContent', '')
 					@else
 					@slot('tableTitles')
-						<th></th>
-						<th class="w-50"></th>
 						<th>N°</th>
 						<th>Cliente</th>
+						<th>Valor</th>
 						<th>Estado</th>
 						<th>Fecha</th>
+						<th></th>
+						<th class="w-50"></th>
 					@endslot
 
 					@slot('tableContent')
 						@foreach($items as $item)
 							<tr>
+								<td class="w-50">#{{ $item->id }}</td>
+								<td class="show-link max-text">
+									<a href="{{ url('vadmin/customers/'.$item->customer_id) }}">
+										{{ $item->customer->name }} {{ $item->customer->surname }} ({{ $item->customer->username }})
+									</a>
+								</td>
+								<td>
+									<div class="input-group"> 
+										<span class="input-group-btn">
+											<span class="btn btnSquare grey-back">
+												@switch($item->status)
+													@case('Active')
+														<i class="icon-download"></i>
+														@break
+													@case('Process')
+														<i class="icon-cog"></i>
+														@break
+													@case('Approved')
+														<i class="icon-forward2"></i>
+														@break
+													@case('Canceled')
+														<i class="icon-cancel-circle"></i>
+														@break
+													@case('Finished')
+														<i class="icon-checkmark2"></i>
+														@break
+													@default
+														<i class="icon-close"></i>
+												@endswitch
+											</span>
+										</span>
+										{!! Form::select('group', 
+										[ 'Active' => 'Iniciado', 'Process' => 'En proceso', 'Approved' => 'Aprobado', 'Canceled' => 'Cancelado', 'Finished' => 'Finalizado'], 
+										$item->status, ['class' => 'form-control custom-select minWidth150', 'onChange' => 'updateCartStatus(this, this.dataset.id)', 'data-id' => $item->id]) !!}
+									</div>
+								</td>
+								<td class="w-200">{{ transDateT($item->created_at) }}</td>
+								<td class="w-50"><a href="{{ url('vadmin/carts/'.$item->id) }}" class="btn btnSm btnGreen"><i class="icon-eye6"></i></a></td>
 								<td class="w-50">
 									<label class="custom-control custom-checkbox list-checkbox">
 										<input type="checkbox" class="List-Checkbox custom-control-input row-checkbox" data-id="{{ $item->id }}">
@@ -69,13 +108,6 @@
 										<span class="custom-control-description"></span>
 									</label>
 								</td>
-								<td><a href="{{ url('vadmin/orders/'.$item->id) }}" class="btn btnSm btnGreen"><i class="icon-eye6"></i></a></td>
-								<td class="w-50">#{{ $item->id }}</td>
-								<td class="show-link max-text">
-									<a href="{{ url('vadmin/customers/'.$item->customer_id) }}">{{ $item->customer->name }} {{ $item->customer->surname }} ({{ $item->customer->username }})</a>
-								</td>
-								<td>{{ orderStatusTrd($item->status) }}</td>
-								<td class="w-200">{{ transDateT($item->created_at) }}</td>
 							</tr>						
 						@endforeach
 					@endif
