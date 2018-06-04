@@ -22,12 +22,20 @@
                     </thead>
                     <tbody>
                     @if(!$carts->isEmpty())
-                        <?php $total = 0 ?>
                         @foreach($carts as $cart)
+                            <?php $total = 0 ?>
                             {{--  Calcs total items price  --}}
                             @foreach($cart->details as $detail)
-                                <?php $total += $detail->price ?>
+                                <?php 
+                                if($detail->discount > 0){
+                                    $total += calcValuePercentNeg($detail->price, $cart->payment->percent);
+                                } else {
+                                    $total += $detail->price;
+                                }
+                                ?>
+
                             @endforeach
+                            <?php $total += $cart->shipping->price; ?>
                                 <tr>
                                     <td><span class="text-medium">{{ $cart->id }}</span></td>
                                     <td>{{ transDateAndTime($cart->created_at) }}</td>

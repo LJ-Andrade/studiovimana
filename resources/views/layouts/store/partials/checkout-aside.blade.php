@@ -22,7 +22,7 @@
         </tr>
         <tr>
             @if($activeCart['activeCart']->payment !=null && $activeCart['activeCart']->payment->percent > '0')
-            <td>Recargo por forma de pago: (% {{ $activeCart['activeCart']->payment->percent }}) </td>
+            <td>Recargo por forma de pago: <br> (% {{ $activeCart['activeCart']->payment->percent }}) </td>
             <td class="text-medium">
                 <?php $chargesCost = calcValuePercentNeg($activeCart['cartTotal'], $activeCart['activeCart']->payment->percent) ?>
                 $ {{ $chargesCost }}

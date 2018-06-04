@@ -18,7 +18,6 @@ class CustomerVerifyOrderStatus
     {   
         $customerId = auth()->guard('customer')->user()->id;
         $activeCart = Cart::where('customer_id', $customerId)->where('status','Active')->get();
-        
         if($activeCart->isEmpty() || $activeCart == null){
             return redirect('tienda');
         }

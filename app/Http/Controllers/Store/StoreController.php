@@ -32,11 +32,12 @@ class StoreController extends Controller
     public function __construct()
     {
         // $this->middleware('auth:customer');
-        // $customer = auth()->guard('customer')->user();     
+        //$customer = auth()->guard('customer')->user();     
     }
     
     public function index(Request $request)
     {   
+        
         if($request->category)
         {
             $articles = CatalogArticle::orderBy('id', 'DESC')->active()->where('category_id', $request->category)->paginate(15);
@@ -55,7 +56,7 @@ class StoreController extends Controller
 
         $tags = CatalogTag::orderBy('id', 'ASC')->select('name', 'id')->get();
         $atributes1 = CatalogAtribute1::orderBy('id', 'ASC')->select('name', 'id')->get();
-            
+        
         $activeCart = $this->getActiveCart();
         $favs = $this->getCustomerFavs();
 
@@ -331,9 +332,15 @@ class StoreController extends Controller
             $cartTotal += $item->article->price;
         }
 
+        $paymentCost = calcValuePercentNeg($cartTotal, $cart->payment->percent);
+        $shippingCost = $cart->shipping->price;
+        $cartTotal += $paymentCost + $shippingCost;
+
         return view('store.customer-cart')
             ->with('cartTotal', $cartTotal)
             ->with('cart', $cart)
+            ->with('shippingCost', $shippingCost)
+            ->with('paymentCost', $paymentCost)
             ->with('activeCart', $activeCart);
     }
     

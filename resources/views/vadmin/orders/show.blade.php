@@ -69,7 +69,7 @@
                                 <td>{{ $detail->quantity }}</td>
                                 <td>$ {{ $detail->price }}</td>
                                 <td>% {{ $detail->discount }}</td>
-                                <td>$ {{ calcValuePercentNeg($detail->price, $detail->discount)}} </td>
+                                <td>$ {{ $detail->quantity * calcValuePercentNeg($detail->price, $detail->discount)}} </td>
                             </tr>
                             @endforeach
                             <tr>

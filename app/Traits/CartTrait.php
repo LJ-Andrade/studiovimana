@@ -6,7 +6,6 @@ trait CartTrait {
  
     public function calcCartTotalPrice($cart)
     {
-
         $articlesPrice = 0;
         $shippingCost = 0;
         $paymentCost = 0;
@@ -17,9 +16,9 @@ trait CartTrait {
         {
             // Check discounts
             if($detail->discount != '0'){
-                $articlesPrice += calcValuePercentNeg($detail->price, $detail->discount);
+                $articlesPrice += $detail->quantity * calcValuePercentNeg($detail->price, $detail->discount);
             } else {
-                $articlesPrice += $detail->price;
+                $articlesPrice += $detail->quantity * $detail->price;
             }
         }
 

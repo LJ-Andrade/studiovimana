@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 		<meta name="description" content="Gestion de contenido">
 		<meta name="keywords" content="">
-		<meta name="author" content="Studio Vimana">
+		<meta name="author" content="Vimana Studio">
 		<title>@yield('title')</title>
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('images/logos/favicon.png') }}">
@@ -123,7 +123,6 @@
 				var svg  = "<img src='{{ asset('images/gral/loader-sm.svg') }}'>";
 				$(this).html(svg + ' ' + loadertext);
 			});
-
 		</script>
 	</body>
 </html>

@@ -57,3 +57,6 @@ mix.sass('resources/assets/sass/vadmin/vadmin.sass', 'public/css')
     processCssUrls: false,
     outputStyle: 'compressed'
 });
+
+// Live Browser Reload
+mix.browserSync('http://localhost/vimanastudio/');
