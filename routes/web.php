@@ -8,6 +8,7 @@
 */
 
 Route::get('/', ['as' => 'web', 'uses' => 'WebController@home']);
+Route::get('vt-001', function(){ return view('store.proceso'); });
 
 
 /*
@@ -29,9 +30,6 @@ Route::post('mail_sender', 'WebController@mail_sender');
 | Store
 |--------------------------------------------------------------------------
 */
-
-
-
 
 Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
 Route::get('store-register-hold', ['as' => 'store-register-hold', 'uses' => 'CustomerAuth\RegisterController@holdRegisterLogin'])->middleware('active-customer');
